@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PolicyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +75,6 @@ Route::get('pricing.html', function () {
 Route::get('contact.html', function () {
     abort(404);
 });
+
+Route::get('/privacy', [PolicyController::class, 'show'])
+    ->name('privacy.policy');
