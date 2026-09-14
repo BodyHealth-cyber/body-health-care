@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LegalController;
 use App\Http\Controllers\PolicyController;
 
 /*
@@ -20,25 +21,34 @@ use App\Http\Controllers\PolicyController;
 
 // Головна сторінка
 Route::get('/', function () {
-    return file_get_contents(resource_path('views/index.html'));
+    return view('index');
 });
+
+Route::get('/lang/{locale}', function (string $locale) {
+    $supported = ['ru', 'en', 'uk'];
+    if (in_array($locale, $supported, true)) {
+        session(['locale' => $locale]);
+    }
+
+    return redirect()->back();
+})->name('locale.switch');
 
 // Сторінки послуг
 Route::get('services/healthcare.html', function () {
-    return file_get_contents(resource_path('views/services/healthcare.html'));
+    return view('services.healthcare');
 });
 
 Route::get('services/ambulance.html', function () {
-    return file_get_contents(resource_path('views/services/ambulance.html'));
+    return view('services.ambulance');
 });
 
 Route::get('services/checkup.html', function () {
-    return file_get_contents(resource_path('views/services/checkup.html'));
+    return view('services.checkup');
 });
 
 // Інші сторінки
 Route::get('for-companies.html', function () {
-    return file_get_contents(resource_path('views/for-companies.html'));
+    return view('for-companies');
 });
 
 Route::get('for-clinics.html', function () {
@@ -54,14 +64,25 @@ Route::get('evidence.html', function () {
 });
 
 Route::get('blog.html', function () {
-    return file_get_contents(resource_path('views/blog.html'));
+    return view('blog');
+});
+
+Route::get('login.html', function () {
+    return view('login');
+});
+
+Route::get('contacts.html', function () {
+    return view('contacts');
 });
 
 Route::get('blog/{article}.html', function ($article) {
-    $path = resource_path('views/blog/' . $article . '.html');
+    if (view()->exists('blog.' . $article)) {
+        return view('blog.' . $article);
+    }
 
-    if (file_exists($path)) {
-        return file_get_contents($path);
+    $htmlPath = resource_path('views/blog/' . $article . '.html');
+    if (file_exists($htmlPath)) {
+        return file_get_contents($htmlPath);
     }
 
     // Якщо файл не знайдено, повертаємо 404
@@ -73,8 +94,23 @@ Route::get('pricing.html', function () {
 });
 
 Route::get('contact.html', function () {
-    abort(404);
+    return redirect('/contacts.html');
 });
 
 Route::get('/privacy', [PolicyController::class, 'show'])
     ->name('privacy.policy');
+
+Route::get('/terms-and-conditions', [LegalController::class, 'termsIndex'])
+    ->name('legal.terms');
+
+Route::get('/terms-and-conditions/{locale}', [LegalController::class, 'termsVersion'])
+    ->whereIn('locale', ['en', 'uk', 'ru'])
+    ->name('legal.terms.version');
+
+Route::get('/refund-policy', [LegalController::class, 'show'])
+    ->defaults('slug', 'refund-policy')
+    ->name('legal.refund');
+
+Route::get('/contact-information', [LegalController::class, 'show'])
+    ->defaults('slug', 'contact-information')
+    ->name('legal.contact_info');

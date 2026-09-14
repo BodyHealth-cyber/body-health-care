@@ -1,34 +1,91 @@
 // ===== MOBILE NAVIGATION =====
-document.addEventListener('DOMContentLoaded', function() {
+function initMobileNavigation() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
-    
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            
-            // Animate hamburger menu
-            navToggle.classList.toggle('active');
+    const mobileLangSwitcher = document.querySelector('.mobile-lang-switcher');
+    const mobileLangCurrent = document.querySelector('.mobile-lang-current');
+
+    if (!navToggle || !navMenu || navToggle.dataset.navBound === '1') {
+        return;
+    }
+
+    const closeMenu = () => {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        if (mobileLangSwitcher) {
+            mobileLangSwitcher.classList.remove('open');
+        }
+        if (mobileLangCurrent) {
+            mobileLangCurrent.setAttribute('aria-expanded', 'false');
+        }
+    };
+
+    const openMenu = () => {
+        navMenu.classList.add('active');
+        navToggle.classList.add('active');
+        navToggle.setAttribute('aria-expanded', 'true');
+    };
+
+    navToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (navMenu.classList.contains('active')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    navToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            navToggle.click();
+        }
+    });
+
+    const navLinks = navMenu.querySelectorAll('.nav-link, .mobile-lang-link');
+    navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            closeMenu();
         });
-        
-        // Close menu when clicking on a link
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-            });
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-            }
+    });
+
+    if (mobileLangSwitcher && mobileLangCurrent) {
+        mobileLangCurrent.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const isOpen = mobileLangSwitcher.classList.toggle('open');
+            mobileLangCurrent.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
     }
-});
+
+    document.addEventListener('click', (e) => {
+        if (mobileLangSwitcher && !mobileLangSwitcher.contains(e.target)) {
+            mobileLangSwitcher.classList.remove('open');
+            if (mobileLangCurrent) {
+                mobileLangCurrent.setAttribute('aria-expanded', 'false');
+            }
+        }
+        if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            closeMenu();
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.matchMedia('(min-width: 769px)').matches) {
+            closeMenu();
+        }
+    });
+
+    navToggle.dataset.navBound = '1';
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileNavigation);
+} else {
+    initMobileNavigation();
+}
 
 // ===== SMOOTH SCROLLING =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -45,6 +102,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ===== CONTACT FORM HANDLING =====
+const i18n = window.bodyHealthI18n || {};
+const contactFormMessages = {
+    sending: i18n.contactFormSending || 'Отправка...',
+    success: i18n.contactFormSuccess || 'Спасибо! Ваша заявка отправлена. Мы свяжемся с Вами в течение 24 часов.',
+    invalidFirstName: i18n.contactFormInvalidFirstName || 'Пожалуйста, введите корректное имя',
+    invalidLastName: i18n.contactFormInvalidLastName || 'Пожалуйста, введите корректную фамилию',
+    invalidEmail: i18n.contactFormInvalidEmail || 'Пожалуйста, введите корректный email',
+    missingService: i18n.contactFormMissingService || 'Пожалуйста, выберите услугу',
+    missingPrivacy: i18n.contactFormMissingPrivacy || 'Необходимо согласие с политикой конфиденциальности',
+    invalidPhone: i18n.contactFormInvalidPhone || 'Пожалуйста, введите корректный номер телефона',
+};
+
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
@@ -65,12 +134,12 @@ if (contactForm) {
         // Show loading state
         const submitButton = this.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
-        submitButton.textContent = 'Отправка...';
+        submitButton.textContent = contactFormMessages.sending;
         submitButton.disabled = true;
         
         // Simulate form submission (replace with actual API call)
         setTimeout(() => {
-            showNotification('Спасибо! Ваша заявка отправлена. Мы свяжемся с Вами в течение 24 часов.', 'success');
+            showNotification(contactFormMessages.success, 'success');
             contactForm.reset();
             
             // Restore button state
@@ -86,28 +155,28 @@ function validateForm(data) {
     
     // Required fields
     if (!data.firstName || data.firstName.trim().length < 2) {
-        errors.push('Пожалуйста, введите корректное имя');
+        errors.push(contactFormMessages.invalidFirstName);
     }
     
     if (!data.lastName || data.lastName.trim().length < 2) {
-        errors.push('Пожалуйста, введите корректную фамилию');
+        errors.push(contactFormMessages.invalidLastName);
     }
     
     if (!data.email || !isValidEmail(data.email)) {
-        errors.push('Пожалуйста, введите корректный email');
+        errors.push(contactFormMessages.invalidEmail);
     }
     
     if (!data.service) {
-        errors.push('Пожалуйста, выберите услугу');
+        errors.push(contactFormMessages.missingService);
     }
     
     if (!data.privacy) {
-        errors.push('Необходимо согласие с политикой конфиденциальности');
+        errors.push(contactFormMessages.missingPrivacy);
     }
     
     // Phone validation (if provided)
     if (data.phone && !isValidPhone(data.phone)) {
-        errors.push('Пожалуйста, введите корректный номер телефона');
+        errors.push(contactFormMessages.invalidPhone);
     }
     
     if (errors.length > 0) {
@@ -215,48 +284,42 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// ===== LANGUAGE SWITCHER =====
-const languageSwitcher = document.querySelector('.language-switcher');
-if (languageSwitcher) {
-    const langLinks = languageSwitcher.querySelectorAll('.lang-menu a');
-    
-    langLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const lang = this.getAttribute('data-lang');
-            
-            // Update current language display
-            const currentLang = languageSwitcher.querySelector('.current-lang');
-            currentLang.textContent = lang.toUpperCase();
-            
-            // Here you would implement actual language switching logic
-            showNotification(`Язык изменён на ${lang.toUpperCase()}`, 'info');
-        });
-    });
-}
-
 // ===== SCROLL TO TOP BUTTON =====
 function createScrollToTopButton() {
     const button = document.createElement('button');
     button.innerHTML = '↑';
     button.className = 'scroll-to-top';
-    button.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background-color: #0066cc;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: none;
-        z-index: 1000;
-        font-size: 18px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        transition: all 0.3s ease;
-    `;
+
+    function applyButtonLayout() {
+        const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
+        const buttonSize = isMobileViewport ? 44 : 50;
+        const horizontalOffset = isMobileViewport ? 16 : 24;
+        const bottomOffset = isMobileViewport ? 16 : 24;
+        const fontSize = isMobileViewport ? 16 : 18;
+
+        button.style.cssText = `
+            position: fixed;
+            bottom: ${bottomOffset}px;
+            bottom: max(${bottomOffset}px, env(safe-area-inset-bottom));
+            right: ${horizontalOffset}px;
+            right: max(${horizontalOffset}px, env(safe-area-inset-right));
+            left: auto;
+            width: ${buttonSize}px;
+            height: ${buttonSize}px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            font-size: ${fontSize}px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        `;
+    }
+
+    applyButtonLayout();
     
     button.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -282,6 +345,8 @@ function createScrollToTopButton() {
             button.style.display = 'none';
         }
     });
+
+    window.addEventListener('resize', applyButtonLayout);
 }
 
 // Initialize scroll to top button

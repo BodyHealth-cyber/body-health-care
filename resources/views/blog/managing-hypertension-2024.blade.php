@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
     <meta property="article:section" content="Кардиология">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ $styleVersion }}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -24,47 +24,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <div class="nav-brand">
-                    <a href="/" class="logo">
-                        <i class="fas fa-heartbeat"></i>
-                        <span>BodyHealth</span>
-                    </a>
-                </div>
-
-                <ul class="nav-menu">
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">Услуги <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/services/healthcare.html">Healthcare ($250/мес)</a></li>
-                            <li><a href="/services/ambulance.html">Ambulance ($500/мес)</a></li>
-                            <li><a href="/services/checkup.html">HealthCheckup ($100)</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/for-companies.html" class="nav-link">Для компаний</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/blog.html" class="nav-link active">Блог</a>
-                    </li>
-                </ul>
-
-                <div class="nav-actions">
-                    <a href="/login.html" class="btn btn-white">Вход</a>
-                    <a href="/index.html#contact-form" class="btn btn-primary">Начать сопровождение</a>
-                </div>
-
-                <button class="nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </nav>
-        </div>
-    </header>
+    @include('partials.header', ['active' => 'blog-article'])
 
     <!-- Main Content -->
     <main>
@@ -572,55 +532,10 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-brand">
-                        <div class="logo">
-                            <i class="fas fa-heartbeat"></i>
-                            <span>BodyHealth</span>
-                        </div>
-                        <p>Персонализированная система медицинского сопровождения с доказательным подходом</p>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Услуги</h4>
-                    <ul>
-                        <li><a href="/services/healthcare.html">Healthcare</a></li>
-                        <li><a href="/services/ambulance.html">Ambulance</a></li>
-                        <li><a href="/services/checkup.html">HealthCheckup</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Компания</h4>
-                    <ul>
-                        <li><a href="/for-companies.html">Для компаний</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Поддержка</h4>
-                    <ul>
-                        <li><a href="/blog.html">Блог</a></li>
-                        <li><a href="/privacy">Политика конфиденциальности</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div class="footer-legal">
-                    <p>&copy; 2024 BodyHealth. Все права защищены.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <!-- JavaScript -->
-    <script src="/js/main.js"></script>
+    <script src="{{ asset('js/main.js') }}?v={{ $mainJsVersion }}"></script>
 
     <!-- Article-specific JavaScript -->
     <script>
