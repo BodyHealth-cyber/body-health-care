@@ -257,8 +257,7 @@ window.BH_TRANSLATIONS = {
     app_download_h:       'Завантажте додаток',
     app_download_ios:     'App Store',
     app_download_android: 'Google Play',
-        footer_cta_write_sub: "Написати у",
-        footer_cta_call_sub: "Зв\'язатись зараз",
+    footer_cta_call_sub:  'Зв\'язатись зараз',
   },
 
   en: {
@@ -510,8 +509,7 @@ window.BH_TRANSLATIONS = {
     app_download_h:       'Download the App',
     app_download_ios:     'App Store',
     app_download_android: 'Google Play',
-        footer_cta_call_sub: "Contact now",
-        footer_cta_write_sub: "Message us on",,
+    footer_cta_call_sub:  'Contact us now',
   },
 
   ru: {
@@ -763,7 +761,6 @@ window.BH_TRANSLATIONS = {
     app_download_h:       'Скачать приложение',
     app_download_ios:     'App Store',
     app_download_android: 'Google Play',
-        footer_cta_call_sub: "Связаться сейчас",
-        footer_cta_write_sub: "Написать в",,
+    footer_cta_call_sub:  'Связаться сейчас',
   }
 };
