@@ -21,7 +21,9 @@ COVERAGE = 0.98
 HREFLANG = {'en': 'en', 'ru': 'ru'}
 OG_LOCALE = {'en': 'en_US', 'ru': 'ru_RU', 'uk': 'uk_UA'}
 ATTRS = ('content', 'placeholder', 'alt', 'aria-label', 'title')
-ASSET = re.compile(r'/(css|js|img|favicon|robots|sitemap)')
+# Paths shared by every locale: static assets, and the public offer, which is
+# versioned by language rather than by site locale and so has no /en/ or /ru/ copy.
+ASSET = re.compile(r'/(css|js|img|favicon|robots|sitemap|terms-and-conditions/)')
 
 # privacy.html states each clause in English, Ukrainian and Russian on purpose.
 # Those paragraphs are the legal text itself and must appear verbatim in every
@@ -150,7 +152,8 @@ def hreflang(rel, langs):
 def main():
     pages = []
     for root, _, fns in os.walk('dist'):
-        if any(p in LOCALES for p in root.split(os.sep)):
+        parts = root.split(os.sep)
+        if any(p in LOCALES for p in parts) or 'terms-and-conditions' in parts:
             continue
         for fn in sorted(fns):
             if fn.endswith('.html'):

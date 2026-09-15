@@ -16,6 +16,11 @@ node check-translations.js
 # Generate the en/ and ru/ pages before the sitemap, so it lists them
 python3 build-locales.py
 
+# The public offer is one page per language, shared across site locales. Built
+# after the locales so each document can take the header and footer already
+# translated into its own language.
+python3 build-legal.py
+
 # Generate sitemap from the pages that were actually built
 python3 generate-sitemap.py
 echo "Build complete: $(find dist -name "*.html" | wc -l) HTML files"
