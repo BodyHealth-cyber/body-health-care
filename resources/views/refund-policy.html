@@ -1,78 +1,71 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Политика возврата средств | BodyHealth</title>
-    <meta name="description" content="Политика возврата средств и отмены услуг Body Health.">
-
-    <link rel="stylesheet" href="css/style.css%3Fv=1789392467.css">
+    <title>Політика повернення коштів | BodyHealth</title>
+    <meta name="description" content="Офіційна політика відміни послуг та повернення коштів Body Health.">
+    <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="/js/translations.js"></script>
 </head>
 <body>
     <header class="header">
-    <div class="container">
-        <nav class="nav">
-            <div class="nav-brand">
-                <a href="index.html" class="logo">
-                    <img src="img/logo_no_bg.png" alt="BodyHealth" style="height:55px;">
-                    <span style="margin-right:8px; margin-left:8px">BodyHealth</span>
-                </a>
-            </div>
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-brand">
+                    <a href="/" class="logo" aria-label="BodyHealth">
+                        <img src="/img/logo_no_bg.png" alt="BodyHealth" class="logo-img" style="height:40px; filter:brightness(0) invert(1);"/>
+                        <span style="margin-left:8px; color:#fff; font-weight:600;">BodyHealth</span>
+                    </a>
+                </div>
 
-            <ul class="nav-menu">
-                <li class="nav-item dropdown">
-                    <a href="refund-policy.html#" class="nav-link">Услуги <i class="fas fa-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="services/healthcare.html">План Healthcare ($250/месяц)</a></li>
-                        <li><a href="services/ambulance.html">План Ambulance ($500/месяц)</a></li>
-                        <li><a href="services/checkup.html">План Checkup ($100 разово)</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="for-companies.html" class="nav-link">Для компаний</a>
-                </li>
-                <li class="nav-item">
-                    <a href="blog.html" class="nav-link">Блог</a>
-                </li>
-                <li class="nav-item">
-                    <a href="contacts.html" class="nav-link">Контакты</a>
-                </li>
-            </ul>
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link" data-i18n="nav_services">Послуги <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/services/healthcare.html">Personal Care ($250/міс)</a></li>
+                            <li><a href="/services/ambulance.html">Integrated Care ($500/міс)</a></li>
+                            <li><a href="/services/checkup.html">HealthCheckup ($100)</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/for-companies.html" class="nav-link" data-i18n="nav_companies">Для компаній</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/blog.html" class="nav-link" data-i18n="nav_blog">Блог</a>
+                    </li>
+                </ul>
 
-            <div class="nav-actions">
-                <div class="language-switcher">
-                    <span class="current-lang">RU</span>
-                    <ul class="lang-menu">
-                        <li><a href="refund-policy%3Flang=en.html">EN</a></li>
-                        <li><a href="refund-policy%3Flang=uk.html">UA</a></li>
-                        <li><a href="refund-policy%3Flang=ru.html">RU</a></li>
+                <div class="nav-actions">
+                    <div class="language-switcher">
+                        <button class="current-lang" id="langToggle" aria-label="Мова / Language">UK</button>
+                        <ul class="lang-menu" id="langMenu">
+                            <li><a href="#" data-lang="uk">UK</a></li>
+                            <li><a href="#" data-lang="en">EN</a></li>
+                            <li><a href="#" data-lang="ru">RU</a></li>
+                        </ul>
+                    </div>
+                    <a href="/login.html" class="btn btn-white" data-i18n="nav_login">Вхід</a>
+                    <a href="/#contact-form" class="btn btn-primary" data-i18n="nav_cta">Почати супровід</a>
+                </div>
+
+                <div class="mobile-lang-switcher" id="mobileLangSwitcher">
+                    <button class="mobile-lang-current" id="mobileLangToggle">UK</button>
+                    <ul class="mobile-lang-menu" id="mobileLangMenu">
+                        <li><a href="#" class="mobile-lang-link" data-lang="uk">UK</a></li>
+                        <li><a href="#" class="mobile-lang-link" data-lang="en">EN</a></li>
+                        <li><a href="#" class="mobile-lang-link" data-lang="ru">RU</a></li>
                     </ul>
                 </div>
-                <a href="login.html" class="btn btn-white">Вход</a>
-                <a href="index.html#contact-form" class="btn btn-primary">Начать сопровождение</a>
-            </div>
 
-            <div class="mobile-lang-switcher" aria-label="Language switcher">
-                <button class="mobile-lang-current" type="button" aria-expanded="false" aria-label="Select language">
-                    RU
+                <button class="nav-toggle" id="navToggle" aria-label="Меню">
+                    <span></span><span></span><span></span>
                 </button>
-                <ul class="mobile-lang-menu">
-                    <li><a href="refund-policy%3Flang=en.html" class="mobile-lang-link">EN</a></li>
-                    <li><a href="refund-policy%3Flang=uk.html" class="mobile-lang-link">UA</a></li>
-                    <li><a href="refund-policy%3Flang=ru.html" class="mobile-lang-link active">RU</a></li>
-                </ul>
-            </div>
-
-            <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
-    </div>
-</header>
+            </nav>
+        </div>
+    </header>
 
     <main class="legal-page">
         <section class="legal-page-section">
@@ -177,7 +170,7 @@
                 <strong>Компания:</strong> Body Health<br>
                 <strong>Веб-сайт:</strong> https://body-health.care<br>
                 <strong>Email:</strong> bodyhealthmediclinic@gmail.com<br>
-                <strong>Телефон:</strong> +38 096 267 50 52
+                <strong>Телефон:</strong> +380 98 150 14 98
             </p>
         </div>
     </section>
@@ -188,56 +181,96 @@
     </main>
 
     <footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <img src="img/logo_no_bg.png" alt="BodyHealth" style="height:55px;">
-                        <span style="margin-right:8px; margin-left:8px">BodyHealth</span>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <a href="/" class="logo" aria-label="BodyHealth">
+                            <img src="/img/logo_no_bg.png" alt="BodyHealth" style="height:40px; filter:brightness(0) invert(1);"/>
+                            <span style="margin-left:8px; color:#fff; font-weight:600;">BodyHealth</span>
+                        </a>
+                        <div class="footer-ctas">
+                            <a href="tel:+380981501498" class="footer-cta cta-phone">
+                                <span class="cta-icon"><i class="fas fa-phone"></i></span>
+                                <span class="cta-label">
+                                    <small data-i18n="footer_cta_call_sub">Зв'язатись зараз</small>
+                                    <span>+380 98 150 14 98</span>
+                                </span>
+                            </a>
+                            <a href="https://t.me/bodyhealthclinic" target="_blank" rel="noopener" class="footer-cta cta-tg">
+                                <span class="cta-icon"><i class="fab fa-telegram"></i></span>
+                                <span class="cta-label">
+                                    <small data-i18n="footer_cta_write_sub">Написати у</small>
+                                    <span>Telegram</span>
+                                </span>
+                            </a>
+                            <a href="https://wa.me/380981501498" target="_blank" rel="noopener" class="footer-cta cta-wa">
+                                <span class="cta-icon"><i class="fab fa-whatsapp"></i></span>
+                                <span class="cta-label">
+                                    <small data-i18n="footer_cta_write_sub">Написати у</small>
+                                    <span>WhatsApp</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="footer-apps">
+                            <a href="https://apps.apple.com/us/app/healthie/id1112029170" target="_blank" rel="noopener" class="app-badge">
+                                <span class="badge-icon"><i class="fab fa-apple"></i></span>
+                                <div class="badge-text"><small data-i18n="app_download_h">Завантажте</small><span data-i18n="app_download_ios">App Store</span></div>
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.healthie.app.healthie" target="_blank" rel="noopener" class="app-badge">
+                                <span class="badge-icon"><i class="fab fa-google-play"></i></span>
+                                <div class="badge-text"><small data-i18n="app_download_h">Завантажте</small><span data-i18n="app_download_android">Google Play</span></div>
+                            </a>
+                        </div>
                     </div>
-                    <p>Персонализированная система медицинского сопровождения с доказательным подходом</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-i18n="footer_services">Послуги</h4>
+                    <ul>
+                        <li><a href="/services/healthcare.html">Personal Care</a></li>
+                        <li><a href="/services/ambulance.html">Integrated Care</a></li>
+                        <li><a href="/services/checkup.html">HealthCheckup</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-i18n="footer_company">Компанія</h4>
+                    <ul>
+                        <li><a href="/for-companies.html" data-i18n="footer_companies">Для компаній</a></li>
+                        <li><a href="/blog.html" data-i18n="footer_blog">Блог</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-i18n="footer_support">Підтримка</h4>
+                    <ul>
+                        <li><a href="/privacy.html" data-i18n="footer_privacy">Конфіденційність</a></li>
+                        <li><a href="/refund-policy.html" data-i18n="footer_refund">Повернення</a></li>
+                        <li><a href="mailto:bodyhealthmediclinic@gmail.com">Email</a></li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="footer-section">
-                <h4>Услуги</h4>
-                <ul>
-                    <li><a href="services/healthcare.html">План Healthcare ($250/месяц)</a></li>
-                    <li><a href="services/ambulance.html">План Ambulance ($500/месяц)</a></li>
-                    <li><a href="services/checkup.html">План Checkup ($100 разово)</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Компания</h4>
-                <ul>
-                    <li><a href="for-companies.html">Для компаний</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Поддержка</h4>
-                <ul>
-                    <li><a href="blog.html">Блог</a></li>
-                    <li><a href="privacy.html">Политика конфиденциальности</a></li>
-                    <li><a href="terms-and-conditions.html">Условия и положения</a></li>
-                    <li><a href="refund-policy.html">Политика возврата средств</a></li>
-                    <li><a href="contact-information.html">Контактная информация</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <p data-i18n="footer_legal">© 2024–2026 BodyHealth. Всі права захищені.</p>
+                    <p data-i18n="footer_compliance">HIPAA та GDPR сумісно. Медичні дані захищені відповідно до міжнародних стандартів.</p>
+                </div>
             </div>
         </div>
+    </footer>
 
-        <div class="footer-bottom">
-            <div class="footer-legal">
-                <p>&copy; 2026 BodyHealth. Все права защищены.</p>
-                            </div>
-
-                    </div>
+    <!-- Floating contact buttons -->
+    <div class="float-contacts">
+        <a href="https://t.me/bodyhealthclinic" target="_blank" rel="noopener" class="float-btn float-tg" title="Telegram">
+            <i class="fab fa-telegram"></i>
+        </a>
+        <a href="https://wa.me/380981501498" target="_blank" rel="noopener" class="float-btn float-wa" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
     </div>
-</footer>
 
-    <script src="js/main.js%3Fv=1789392467"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html>

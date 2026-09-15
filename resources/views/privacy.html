@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>PRIVACY POLICY</title>
+    <title>Конфіденційність | BodyHealth</title>
     <!-- <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,7 +26,9 @@
         }
         
     </style> -->
-    <link rel="stylesheet" href="css/style.css%3Fv=1789392467.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/translations.js"></script>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -36,7 +38,57 @@
 </head>
 
 <body>
-    <div class="container hero">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-brand">
+                    <a href="/" class="logo" aria-label="BodyHealth">
+                        <img src="/img/logo_no_bg.png" alt="BodyHealth" class="logo-img" style="height:40px; filter:brightness(0) invert(1);"/>
+                        <span style="margin-left:8px; color:#fff; font-weight:600;">BodyHealth</span>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link" data-i18n="nav_services">Послуги <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/services/healthcare.html">Personal Care ($250/міс)</a></li>
+                            <li><a href="/services/ambulance.html">Integrated Care ($500/міс)</a></li>
+                            <li><a href="/services/checkup.html">HealthCheckup ($100)</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="/for-companies.html" class="nav-link" data-i18n="nav_companies">Для компаній</a></li>
+                    <li class="nav-item"><a href="/blog.html" class="nav-link" data-i18n="nav_blog">Блог</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <div class="language-switcher">
+                        <button class="current-lang" id="langToggle" aria-label="Мова / Language">UK</button>
+                        <ul class="lang-menu" id="langMenu">
+                            <li><a href="#" data-lang="uk">UK</a></li>
+                            <li><a href="#" data-lang="en">EN</a></li>
+                            <li><a href="#" data-lang="ru">RU</a></li>
+                        </ul>
+                    </div>
+                    <a href="/login.html" class="btn btn-white" data-i18n="nav_login">Вхід</a>
+                    <a href="/#contact-form" class="btn btn-primary" data-i18n="nav_cta">Почати супровід</a>
+                </div>
+                <div class="mobile-lang-switcher" id="mobileLangSwitcher">
+                    <button class="mobile-lang-current" id="mobileLangToggle">UK</button>
+                    <ul class="mobile-lang-menu" id="mobileLangMenu">
+                        <li><a href="#" class="mobile-lang-link" data-lang="uk">UK</a></li>
+                        <li><a href="#" class="mobile-lang-link" data-lang="en">EN</a></li>
+                        <li><a href="#" class="mobile-lang-link" data-lang="ru">RU</a></li>
+                    </ul>
+                </div>
+                <button class="nav-toggle" id="navToggle" aria-label="Меню">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+    <div class="container" style="max-width:860px; padding-block:3rem 4rem;">
 
 
 
@@ -87,7 +139,7 @@
             <ul class="service-features">
                 <li><a href="https://www.whoop.com/terms-of-use" target="_blank">WHOOP Terms of Use</a></li>
                 <li><a href="https://www.whoop.com/privacy" target="_blank">WHOOP Privacy Policy</a></li>
-                <li>BodyHealth Data Protection Contact: <a href="mailto:privacy@bodyhealth.com">privacy@bodyhealth.com</a></li>
+                <li>BodyHealth Data Protection Contact: <a href="mailto:bodyhealthmediclinic@gmail.com">bodyhealthmediclinic@gmail.com</a></li>
             </ul>
         </div>
 
