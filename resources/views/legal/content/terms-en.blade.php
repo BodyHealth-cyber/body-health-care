@@ -176,7 +176,7 @@
             <p>
                 <strong>Company:</strong> Body Health<br>
                 <strong>Website:</strong> https://body-health.care<br>
-                <strong>Email:</strong> bodyhealthmediclinic@gmail.com<br>
+                <strong>Email:</strong> info@body-health.care<br>
                 <strong>Phone:</strong> +38 096 267 50 52
             </p>
         </div>

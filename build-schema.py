@@ -16,7 +16,7 @@ import json, os, re, sys
 
 SITE = 'https://body-health.care'
 PHONE = '+380981501498'
-EMAIL = 'bodyhealthmediclinic@gmail.com'
+EMAIL = 'info@body-health.care'
 SAME_AS = ['https://www.linkedin.com/company/bodyhealthcare',
            'https://www.instagram.com/bodyhealth.care',
            'https://www.facebook.com/bodyhealthcare']

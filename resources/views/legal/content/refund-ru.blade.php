@@ -51,7 +51,7 @@
 
     <section class="legal-section-block">
         <h2>8. Порядок подачи заявки на возврат</h2>
-        <p>8.1. Для инициации возврата необходимо отправить письмо на bodyhealthmediclinic@gmail.com с темой "Запрос на возврат средств - [ФИО Заказчика]".</p>
+        <p>8.1. Для инициации возврата необходимо отправить письмо на billing@body-health.care с темой "Запрос на возврат средств - [ФИО Заказчика]".</p>
         <p>8.2. В письме необходимо указать ФИО, email регистрации, дату и сумму платежа, а также причину возврата.</p>
         <p>8.3. Компания подтверждает получение заявки в течение 2 рабочих дней и рассматривает ее в течение 10 рабочих дней.</p>
     </section>
@@ -69,7 +69,7 @@
             <p>
                 <strong>Компания:</strong> Body Health<br>
                 <strong>Веб-сайт:</strong> https://body-health.care<br>
-                <strong>Email:</strong> bodyhealthmediclinic@gmail.com<br>
+                <strong>Email:</strong> billing@body-health.care<br>
                 <strong>Телефон:</strong> +38 096 267 50 52
             </p>
         </div>

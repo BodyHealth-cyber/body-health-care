@@ -38,7 +38,7 @@
                         </div>
                         <h3>{{ __('contacts.page.email') }}</h3>
                         <p class="service-description">
-                            <a href="mailto:bodyhealthmediclinic@gmail.com">bodyhealthmediclinic@gmail.com</a>
+                            <a href="mailto:info@body-health.care">info@body-health.care</a>
                         </p>
                     </div>
 

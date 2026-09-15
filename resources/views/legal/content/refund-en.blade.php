@@ -24,7 +24,7 @@
     <section class="legal-section-block">
         <h2>4. Cancellation and Refund Conditions for Subscriptions</h2>
         <p>4.1. The "Healthcare" and "Ambulance" packages are provided in the format of a monthly subscription with automatic renewal.</p>
-        <p>4.2. <strong>Cancellation rules:</strong> the Client may cancel the subscription at any time through the Personal Account or by emailing bodyhealthmediclinic@gmail.com.</p>
+        <p>4.2. <strong>Cancellation rules:</strong> the Client may cancel the subscription at any time through the Personal Account or by emailing billing@body-health.care.</p>
         <p>4.3. <strong>"15th Day" Policy:</strong></p>
         <ul>
             <li>Cancellation <strong>before the 15th</strong> of the current month means access is retained until the end of the paid period and no further charge is made.</li>
@@ -54,7 +54,7 @@
 
     <section class="legal-section-block">
         <h2>8. Refund Request Procedure</h2>
-        <p>8.1. To initiate a refund procedure, the Client must send a written request to bodyhealthmediclinic@gmail.com.</p>
+        <p>8.1. To initiate a refund procedure, the Client must send a written request to billing@body-health.care.</p>
         <p>8.2. The request must include the email subject "Refund Request - [Client Full Name]", the payment date and amount, the reason for the refund request, and the order or transaction number if available.</p>
         <p>8.3. Body Health will confirm receipt of the request within 1 business day and will review it within 5 business days.</p>
     </section>
@@ -72,7 +72,7 @@
             <p>
                 <strong>Company:</strong> Body Health<br>
                 <strong>Website:</strong> https://body-health.care<br>
-                <strong>Email:</strong> bodyhealthmediclinic@gmail.com<br>
+                <strong>Email:</strong> billing@body-health.care<br>
                 <strong>Phone:</strong> +38 096 267 50 52
             </p>
         </div>

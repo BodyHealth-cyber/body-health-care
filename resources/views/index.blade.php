@@ -638,7 +638,7 @@
                         <h3>{{ __('index.contact.contact_info_title') }}</h3>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>bodyhealthmediclinic@gmail.com</span>
+                            <span>info@body-health.care</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>

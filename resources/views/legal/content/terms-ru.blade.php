@@ -168,7 +168,7 @@
             <p>
                 <strong>Компания:</strong> Body Health<br>
                 <strong>Веб-сайт:</strong> https://body-health.care<br>
-                <strong>Email:</strong> bodyhealthmediclinic@gmail.com<br>
+                <strong>Email:</strong> info@body-health.care<br>
                 <strong>Телефон:</strong> +38 096 267 50 52
             </p>
         </div>

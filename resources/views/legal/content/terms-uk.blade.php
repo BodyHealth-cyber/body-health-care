@@ -206,7 +206,7 @@
                 <strong>Фактична адреса:</strong> Львівська обл., Стрийський р-н, с. Великі Дідушичі, вул. Гошівська, буд. 234<br>
                 <strong>Банківські реквізити:</strong> IBAN UA303220010000026007370030452<br>
                 <strong>Банк:</strong> АТ УНІВЕРСАЛ БАНК, МФО 322001, ЄДРПОУ Банку 21133352<br>
-                <strong>Email:</strong> bodyhealthmediclinic@gmail.com<br>
+                <strong>Email:</strong> info@body-health.care<br>
                 <strong>Телефон:</strong> +38 (096) 267-50-52<br>
                 <strong>Веб-сайт:</strong> https://body-health.care
             </p>
