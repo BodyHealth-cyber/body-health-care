@@ -109,13 +109,16 @@ def lang_links(html, rel, langs, current):
         available[l] = f'/{l}/{page}'
 
     def one(m):
-        whole, target = m.group(0), m.group(2)
+        """Rewrite one <a data-lang=...>LABEL</a>, or drop it if that locale
+        has no copy of this page. m.group(0) is the whole anchor, so the label
+        and closing tag must not be re-appended by the caller."""
+        target = m.group(1)
         if target not in available:
-            return ''  # locale not published for this page
+            return ''
+        whole = m.group(0)
         whole = re.sub(r'href="[^"]*"', f'href="{available[target]}"', whole)
-        cls = ' lang-active' if target == current else ''
         whole = re.sub(r'\sclass="[^"]*"', '', whole)
-        if cls:
+        if target == current:
             whole = whole.replace('<a ', '<a class="lang-active" ', 1)
         return whole
 
@@ -127,9 +130,7 @@ def lang_links(html, rel, langs, current):
         return re.sub(r'\s*<div class="language-switcher">.*?</ul>\s*</div>',
                       '', html, count=1, flags=re.DOTALL)
 
-    html = re.sub(r'(<a\b[^>]*\bdata-lang="(\w+)"[^>]*>)(.*?)(</a>)',
-                  lambda m: (one(m) + m.group(3) + m.group(4)) if one(m) else '',
-                  html, flags=re.DOTALL)
+    html = re.sub(r'<a\b[^>]*\bdata-lang="(\w+)"[^>]*>.*?</a>', one, html, flags=re.DOTALL)
     # drop list items left empty by a removed locale
     html = re.sub(r'<li>\s*</li>', '', html)
     # the toggle shows the language you are currently reading

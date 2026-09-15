@@ -13,18 +13,22 @@ def main():
             if not fn.endswith('.html'):
                 continue
             rel = os.path.relpath(os.path.join(root, fn), 'dist').replace(os.sep, '/')
-            if rel in SKIP:
+            # SKIP names a page, not a path — /en/login.html is the same page as
+            # /login.html and must be left out of the sitemap just the same
+            if rel.split('/')[-1] in SKIP:
                 continue
             s = open(os.path.join(root, fn), encoding='utf-8').read()
             if re.search(r'<meta name="robots"[^>]*noindex', s):
                 continue
             loc = SITE + '/' + ('' if rel == 'index.html' else rel)
-            if rel.startswith('services/'):
+            parts = rel.split('/')
+            base = '/'.join(parts[1:]) if parts[0] in ('en', 'ru') else rel
+            if base.startswith('services/'):
                 prio = '0.9'
-            elif rel.startswith('blog/'):
+            elif base.startswith('blog/'):
                 prio = '0.7'
             else:
-                prio = PRIORITY.get('' if rel == 'index.html' else rel, '0.5')
+                prio = PRIORITY.get('' if base == 'index.html' else base, '0.5')
             urls.append((loc, prio))
 
     today = datetime.date.today().isoformat()
