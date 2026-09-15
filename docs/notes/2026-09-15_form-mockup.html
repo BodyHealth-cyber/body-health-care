@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Анкета заявки — два варіанти</title>
+<style>
+  :root{
+    --navy:#003d82; --navy-deep:#00224a;
+    --line:#e2e6ea; --line-soft:#eef1f4;
+    --ink:#15181c; --muted:#5b6672; --field:#fbfcfd;
+    --page:#f4f6f9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);
+       font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       padding:0 16px 80px}
+  .wrap{max-width:1140px;margin:0 auto}
+  header{padding-block:48px 8px}
+  h1{font-size:1.9rem;line-height:1.2;margin:0 0 .6rem;text-wrap:balance}
+  .lede{color:var(--muted);max-width:64ch;margin:0}
+  .rule{height:4px;width:96px;background:var(--navy);margin:28px 0 0;border-radius:2px}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:52px;align-items:start}
+  @media(max-width:900px){.cols{grid-template-columns:1fr;gap:56px}}
+  .col-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+  .tag{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);
+       font-weight:700;border:1px solid var(--navy);border-radius:4px;padding:3px 8px}
+  h2{font-size:1.2rem;margin:0}
+  .note{color:var(--muted);margin:0 0 22px;font-size:.92rem}
+
+  /* ---------- shared form skin ---------- */
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:1.75rem}
+  .form-title{font-size:1.05rem;font-weight:700;margin:0 0 .25rem}
+  .form-sub{font-size:.85rem;color:var(--muted);margin:0 0 1.4rem}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+  @media(max-width:520px){.row{grid-template-columns:1fr}}
+  .fld{margin-bottom:.85rem}
+  .lbl{display:block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+       font-weight:700;color:var(--muted);margin-bottom:.35rem}
+  .lbl .req{color:var(--navy)}
+  .inp{width:100%;padding:.68rem .8rem;border:1px solid var(--line);border-radius:6px;
+       background:var(--field);font:inherit;color:var(--ink);transition:border-color .12s,background-color .12s}
+  .inp::placeholder{color:#9aa4ae}
+  .inp:focus{outline:none;border-color:var(--navy);background:#fff;box-shadow:0 0 0 3px rgba(0,61,130,.1)}
+  textarea.inp{min-height:84px;resize:vertical}
+  select.inp{appearance:none;background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235b6672' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+       background-repeat:no-repeat;background-position:right .8rem center;padding-right:2.2rem}
+
+  .consent{display:flex;gap:.6rem;align-items:flex-start;margin:1.1rem 0 1.25rem;
+           font-size:.8rem;color:var(--muted);line-height:1.45}
+  .consent input{margin-top:.15rem;accent-color:var(--navy);width:15px;height:15px;flex-shrink:0}
+  .consent a{color:var(--navy)}
+
+  .submit-wrap{display:flex;flex-direction:column;align-items:center;gap:.6rem}
+  .submit{background:var(--navy);color:#fff;border:none;border-radius:6px;
+          padding:.85rem 2.6rem;font:inherit;font-weight:600;cursor:pointer;
+          transition:background-color .15s}
+  .submit:hover{background:var(--navy-deep)}
+  .reassure{font-size:.75rem;color:var(--muted);text-align:center}
+
+  /* ---------- variant B: service tiles ---------- */
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem}
+  @media(max-width:520px){.tiles{grid-template-columns:1fr}}
+  .tile{border:1px solid var(--line);border-radius:6px;padding:.7rem .6rem;text-align:center;
+        cursor:pointer;background:var(--field);transition:border-color .12s,background-color .12s}
+  .tile:hover{border-color:#b9c6d6}
+  .tile input{position:absolute;opacity:0;pointer-events:none}
+  .tile .t-name{display:block;font-weight:600;font-size:.83rem;line-height:1.2}
+  .tile .t-price{display:block;font-size:.75rem;color:var(--muted);margin-top:2px;font-variant-numeric:tabular-nums}
+  .tile.is-on{border-color:var(--navy);background:#f2f6fb;box-shadow:inset 0 0 0 1px var(--navy)}
+  .tile.is-on .t-price{color:var(--navy)}
+
+  footer{margin-top:64px;border-top:1px solid var(--line);padding-top:28px;color:var(--muted)}
+  footer h2{font-size:1.05rem;color:var(--ink);margin:0 0 .5rem}
+  footer ul{margin:0 0 1.5rem;padding-left:1.1rem;font-size:.95rem}
+  footer li{margin-bottom:.35rem}
+  code{background:#fff;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:.85em}
+  .kbd{display:inline-block;border:1px solid var(--line);background:#fff;border-radius:4px;padding:0 5px;font-size:.8em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Анкета заявки — два варіанти</h1>
+  <p class="lede">Обидва варіанти мають однакові поля й однакову поведінку: «Консультація» прибрана, «Оберіть послугу» більше не можна залишити, кнопка по центру. Різниця в одному — як подається вибір послуги.</p>
+  <div class="rule"></div>
+</header>
+
+<div class="cols">
+
+  <!-- ============ A ============ -->
+  <section>
+    <div class="col-head"><span class="tag">Варіант A</span><h2>Компактна</h2></div>
+    <p class="note">Та сама форма, стиснута. Підписи стали дрібними великими літерами й перестали красти висоту, поля отримали спокійний фон, згода набрана дрібно. Вибір послуги — звичайний список.</p>
+
+    <form class="card" onsubmit="return false">
+      <p class="form-title">Залишити заявку</p>
+      <p class="form-sub">Куратор зв'яжеться з вами протягом робочого дня.</p>
+
+      <div class="row">
+        <div class="fld"><label class="lbl">Ім'я <span class="req">*</span></label><input class="inp" placeholder="Олександр"></div>
+        <div class="fld"><label class="lbl">Прізвище <span class="req">*</span></label><input class="inp" placeholder="Мельник"></div>
+      </div>
+      <div class="row">
+        <div class="fld"><label class="lbl">Email <span class="req">*</span></label><input class="inp" type="email" placeholder="you@example.com"></div>
+        <div class="fld"><label class="lbl">Телефон</label><input class="inp" placeholder="+380 XX XXX XX XX"></div>
+      </div>
+      <div class="fld">
+        <label class="lbl">Послуга <span class="req">*</span></label>
+        <select class="inp" required>
+          <option value="" disabled selected hidden>Оберіть послугу</option>
+          <option>Personal Care — $250/міс</option>
+          <option>Integrated Care — $500/міс</option>
+          <option>HealthCheckup — $100</option>
+        </select>
+      </div>
+      <div class="fld">
+        <label class="lbl">Що вас турбує</label>
+        <textarea class="inp" placeholder="Коротко опишіть ситуацію або поставте запитання"></textarea>
+      </div>
+
+      <label class="consent">
+        <input type="checkbox">
+        <span>Погоджуюсь з <a href="#">політикою конфіденційності</a> та обробкою персональних даних</span>
+      </label>
+
+      <div class="submit-wrap">
+        <button class="submit">Надіслати заявку</button>
+        <span class="reassure">Це не запис на прийом і не діагноз</span>
+      </div>
+    </form>
+  </section>
+
+  <!-- ============ B ============ -->
+  <section>
+    <div class="col-head"><span class="tag">Варіант B</span><h2>З вибором послуги</h2></div>
+    <p class="note">Те саме, але послуга обирається трьома плитками замість випадаючого списку. Людина бачить усі три пакети й ціну одразу, без зайвого кліку — і вже на цьому кроці розуміє, у якому діапазоні розмова.</p>
+
+    <form class="card" onsubmit="return false">
+      <p class="form-title">Залишити заявку</p>
+      <p class="form-sub">Куратор зв'яжеться з вами протягом робочого дня.</p>
+
+      <div class="fld">
+        <label class="lbl">Послуга <span class="req">*</span></label>
+        <div class="tiles">
+          <label class="tile is-on"><input type="radio" name="svc" checked>
+            <span class="t-name">Personal Care</span><span class="t-price">$250/міс</span></label>
+          <label class="tile"><input type="radio" name="svc">
+            <span class="t-name">Integrated Care</span><span class="t-price">$500/міс</span></label>
+          <label class="tile"><input type="radio" name="svc">
+            <span class="t-name">HealthCheckup</span><span class="t-price">$100</span></label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="fld"><label class="lbl">Ім'я <span class="req">*</span></label><input class="inp" placeholder="Олександр"></div>
+        <div class="fld"><label class="lbl">Прізвище <span class="req">*</span></label><input class="inp" placeholder="Мельник"></div>
+      </div>
+      <div class="row">
+        <div class="fld"><label class="lbl">Email <span class="req">*</span></label><input class="inp" type="email" placeholder="you@example.com"></div>
+        <div class="fld"><label class="lbl">Телефон</label><input class="inp" placeholder="+380 XX XXX XX XX"></div>
+      </div>
+      <div class="fld">
+        <label class="lbl">Що вас турбує</label>
+        <textarea class="inp" placeholder="Коротко опишіть ситуацію або поставте запитання"></textarea>
+      </div>
+
+      <label class="consent">
+        <input type="checkbox">
+        <span>Погоджуюсь з <a href="#">політикою конфіденційності</a> та обробкою персональних даних</span>
+      </label>
+
+      <div class="submit-wrap">
+        <button class="submit">Надіслати заявку</button>
+        <span class="reassure">Це не запис на прийом і не діагноз</span>
+      </div>
+    </form>
+  </section>
+
+</div>
+
+<footer>
+  <h2>Що змінено в обох варіантах</h2>
+  <ul>
+    <li><strong>«Консультація» прибрана.</strong> Такої послуги на сайті немає — заявка на неї не мала куди вести.</li>
+    <li><strong>«Оберіть послугу» більше не є варіантом.</strong> Тепер це підказка: видно, поки не обрано, але обрати її не можна й відправити форму з нею теж.</li>
+    <li><strong>Ціна поруч із назвою</strong> через тире, а не в дужках — читається як рядок прайсу, а не як виноска.</li>
+    <li><strong>Підписи полів</strong> — дрібні великі літери. Забирають удвічі менше висоти, і форма перестає виглядати як анкета в поліклініці.</li>
+    <li><strong>Кнопка по центру</strong>, під нею тихий рядок «Це не запис на прийом і не діагноз» — знімає тривогу перед натисканням і водночас закриває медичну межу.</li>
+    <li>Поля отримали ледь помітний фон і світлішають при фокусі — око бачить, де стоїть курсор, без жирної рамки.</li>
+  </ul>
+
+  <h2>Окремо: кнопки по сайту</h2>
+  <ul>
+    <li>Зараз по сайту <strong>42 посилання на <code>#contact-form</code> на 18 сторінках</strong>, а сама форма існує тільки на головній. З будь-якої внутрішньої сторінки кнопка веде на головну й кидає вниз — саме те, що ви описали.</li>
+    <li>Зроблю так: кнопка відкриває цю форму <strong>вікном поверх сторінки</strong>, там де людина стоїть. Закривається по <span class="kbd">Esc</span>, по фону й по хрестику.</li>
+    <li>Форма внизу головної <strong>залишається</strong> — хто долистав, заповнює там.</li>
+    <li>Розмітку вікна збиратиме <code>main.js</code>, як панель контактів у підвалі. Інакше 18 сторінок носили б по копії однієї форми.</li>
+  </ul>
+
+  <h2>Що потрібно від вас</h2>
+  <ul>
+    <li>Назвати варіант — <strong>A</strong> або <strong>B</strong>.</li>
+    <li>Рядок «Це не запис на прийом і не діагноз» — залишаємо, міняємо формулювання чи прибираємо?</li>
+  </ul>
+</footer>
+
+</div>
+
+<script>
+  // tiles are just for the mockup
+  document.querySelectorAll('.tile').forEach(function (t) {
+    t.addEventListener('click', function () {
+      t.parentElement.querySelectorAll('.tile').forEach(function (x) { x.classList.remove('is-on'); });
+      t.classList.add('is-on');
+    });
+  });
+</script>
+</body>
+</html>
