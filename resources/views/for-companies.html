@@ -1,18 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Корпоративные программы здоровья | BodyHealth для бизнеса</title>
-    <meta name="description" content="Корпоративные программы медицинского сопровождения сотрудников. Экономия до 40% на расходах, повышение продуктивности, снижение больничных">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    
-    <!-- Fonts -->
+    <title>Корпоративні програми здоров'я | BodyHealth для бізнесу</title>
+    <meta name="description" content="Корпоративні програми медичного супроводу співробітників. Економія до 40% на витратах, підвищення продуктивності, зниження лікарняних">
+    <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <script src="/js/translations.js"></script>
 </head>
@@ -22,90 +16,100 @@
         <div class="container">
             <nav class="nav">
                 <div class="nav-brand">
-                    <a href="/" class="logo">
+                    <a href="/" class="logo" aria-label="BodyHealth">
                         <img src="/img/logo_no_bg.png" alt="BodyHealth" class="logo-img" style="height:55px;"/>
+                        <span style="margin-right:8px; margin-left:8px">BodyHealth</span>
                     </a>
                 </div>
-                
-                <ul class="nav-menu">
+
+                <ul class="nav-menu" id="navMenu">
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">Услуги <i class="fas fa-chevron-down"></i></a>
+                        <a href="#" class="nav-link" data-i18n="nav_services">Послуги <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="services/healthcare.html">Personal Care ($250/мес)</a></li>
-                            <li><a href="services/ambulance.html">Integrated Care ($500/мес)</a></li>
-                            <li><a href="services/checkup.html">HealthCheckup ($100)</a></li>
+                            <li><a href="/services/healthcare.html">Personal Care ($250/міс)</a></li>
+                            <li><a href="/services/ambulance.html">Integrated Care ($500/міс)</a></li>
+                            <li><a href="/services/checkup.html">HealthCheckup ($100)</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="for-companies.html" class="nav-link active">Для компаний</a>
+                        <a href="/for-companies.html" class="nav-link active" data-i18n="nav_companies">Для компаній</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/blog.html" class="nav-link" data-i18n="nav_blog">Блог</a>
                     </li>
                 </ul>
 
                 <div class="nav-actions">
                     <div class="language-switcher">
                         <button class="current-lang" id="langToggle" aria-label="Мова / Language">UK</button>
-                        <ul class="lang-menu">
+                        <ul class="lang-menu" id="langMenu">
                             <li><a href="#" data-lang="uk">UK</a></li>
                             <li><a href="#" data-lang="en">EN</a></li>
                             <li><a href="#" data-lang="ru">RU</a></li>
                         </ul>
                     </div>
-                    <a href="login.html" class="btn btn-white">Вход</a>
-                    <a href="#b2b-form" class="btn btn-primary">Получить предложение</a>
+                    <a href="/login.html" class="btn btn-white" data-i18n="nav_login">Вхід</a>
+                    <a href="#b2b-form" class="btn btn-primary" data-i18n="b2b_btn_proposal">Отримати пропозицію</a>
                 </div>
 
-                <button class="nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <div class="mobile-lang-switcher" id="mobileLangSwitcher">
+                    <button class="mobile-lang-current" id="mobileLangToggle">UK</button>
+                    <ul class="mobile-lang-menu" id="mobileLangMenu">
+                        <li><a href="#" class="mobile-lang-link" data-lang="uk">UK</a></li>
+                        <li><a href="#" class="mobile-lang-link" data-lang="en">EN</a></li>
+                        <li><a href="#" class="mobile-lang-link" data-lang="ru">RU</a></li>
+                    </ul>
+                </div>
+
+                <button class="nav-toggle" id="navToggle" aria-label="Меню">
+                    <span></span><span></span><span></span>
                 </button>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
+        <!-- Hero -->
         <section class="b2b-hero">
             <div class="container">
                 <div class="b2b-hero-content">
                     <div class="hero-text">
-                        <h1>Корпоративные программы здоровья сотрудников</h1>
-                        <p class="hero-subtitle">Повысьте продуктивность команды и снизьте расходы на медицинское обслуживание с помощью комплексных программ медицинского сопровождения от BodyHealth</p>
-                        
+                        <h1 data-i18n="b2b_hero_h1">Корпоративні програми здоров'я співробітників</h1>
+                        <p class="hero-subtitle" data-i18n="b2b_hero_sub">Підвищте продуктивність команди та знизьте витрати на медичне обслуговування завдяки комплексним програмам медичного супроводу від BodyHealth</p>
+
                         <div class="hero-benefits">
                             <div class="benefit-item">
                                 <i class="fas fa-chart-line"></i>
-                                <span>Экономия до 40% на медицинских расходах</span>
+                                <span data-i18n="b2b_benefit1">Економія до 40% на медичних витратах</span>
                             </div>
                             <div class="benefit-item">
                                 <i class="fas fa-users"></i>
-                                <span>Снижение количества больничных на 35%</span>
+                                <span data-i18n="b2b_benefit2">Зниження кількості лікарняних на 35%</span>
                             </div>
                             <div class="benefit-item">
                                 <i class="fas fa-rocket"></i>
-                                <span>Повышение продуктивности на 25%</span>
+                                <span data-i18n="b2b_benefit3">Підвищення продуктивності на 25%</span>
                             </div>
                         </div>
-                        
+
                         <div class="hero-actions">
-                            <a href="#b2b-form" class="btn btn-primary btn-large">Получить коммерческое предложение</a>
-                            <a href="#demo" class="btn btn-outline btn-large">Заказать демонстрацию</a>
+                            <a href="#b2b-form" class="btn btn-primary btn-large" data-i18n="b2b_btn_proposal">Отримати комерційну пропозицію</a>
+                            <a href="#demo" class="btn btn-outline btn-large" data-i18n="b2b_btn_demo">Замовити демонстрацію</a>
                         </div>
                     </div>
-                    
+
                     <div class="hero-stats">
                         <div class="stat-card">
-                            <div class="stat-number">1,800+</div>
-                            <div class="stat-label">Сотрудников в программах</div>
+                            <div class="stat-number">1 800+</div>
+                            <div class="stat-label">Співробітників у програмах</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-number">95%</div>
-                            <div class="stat-label">Удовлетворённость HR</div>
+                            <div class="stat-label">Задоволеність HR</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-number">$112K</div>
-                            <div class="stat-label">Средняя LTV контракта</div>
+                            <div class="stat-label">Середній LTV контракту</div>
                         </div>
                     </div>
                 </div>
@@ -117,68 +121,68 @@
             <div class="container">
                 <div class="content-split">
                     <div class="problem-section">
-                        <h2>Проблемы работодателей</h2>
+                        <h2 data-i18n="b2b_problems_h2">Проблеми роботодавців</h2>
                         <div class="problem-list">
                             <div class="problem-item">
                                 <i class="fas fa-exclamation-triangle"></i>
                                 <div>
-                                    <h3>Высокие медицинские расходы</h3>
-                                    <p>Растущие затраты на корпоративное медицинское страхование и лечение сотрудников</p>
+                                    <h3>Високі медичні витрати</h3>
+                                    <p>Зростаючі витрати на корпоративне медичне страхування та лікування співробітників</p>
                                 </div>
                             </div>
                             <div class="problem-item">
                                 <i class="fas fa-bed"></i>
                                 <div>
-                                    <h3>Частые больничные</h3>
-                                    <p>Потери продуктивности из-за болезней сотрудников и необходимости замещения</p>
+                                    <h3>Часті лікарняні</h3>
+                                    <p>Втрати продуктивності через хвороби співробітників та необхідність заміни</p>
                                 </div>
                             </div>
                             <div class="problem-item">
                                 <i class="fas fa-chart-line-down"></i>
                                 <div>
-                                    <h3>Снижение эффективности</h3>
-                                    <p>Ухудшение работоспособности из-за хронических заболеваний и стресса</p>
+                                    <h3>Зниження ефективності</h3>
+                                    <p>Погіршення працездатності через хронічні захворювання та стрес</p>
                                 </div>
                             </div>
                             <div class="problem-item">
                                 <i class="fas fa-user-times"></i>
                                 <div>
-                                    <h3>Текучесть кадров</h3>
-                                    <p>Потеря ценных сотрудников из-за проблем со здоровьем</p>
+                                    <h3>Плинність кадрів</h3>
+                                    <p>Втрата цінних співробітників через проблеми зі здоров'ям</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="solution-section">
-                        <h2>Решение BodyHealth</h2>
+                        <h2 data-i18n="b2b_solution_h2">Рішення BodyHealth</h2>
                         <div class="solution-list">
                             <div class="solution-item">
                                 <i class="fas fa-shield-alt"></i>
                                 <div>
-                                    <h3>Профилактика заболеваний</h3>
-                                    <p>Раннее выявление и предотвращение развития хронических болезней</p>
+                                    <h3>Профілактика захворювань</h3>
+                                    <p>Раннє виявлення та попередження розвитку хронічних хвороб</p>
                                 </div>
                             </div>
                             <div class="solution-item">
                                 <i class="fas fa-heartbeat"></i>
                                 <div>
-                                    <h3>Постоянный мониторинг</h3>
-                                    <p>Регулярное отслеживание состояния здоровья и своевременные вмешательства</p>
+                                    <h3>Постійний моніторинг</h3>
+                                    <p>Регулярне відстеження стану здоров'я та своєчасні втручання</p>
                                 </div>
                             </div>
                             <div class="solution-item">
                                 <i class="fas fa-clock"></i>
                                 <div>
-                                    <h3>Доступность 24/7</h3>
-                                    <p>Круглосуточная медицинская поддержка без отрыва от работы</p>
+                                    <h3>Доступність 24/7</h3>
+                                    <p>Цілодобова медична підтримка без відриву від роботи</p>
                                 </div>
                             </div>
                             <div class="solution-item">
                                 <i class="fas fa-chart-bar"></i>
                                 <div>
-                                    <h3>Аналитика и отчёты</h3>
-                                    <p>Детальная статистика здоровья коллектива и ROI программы</p>
+                                    <h3>Аналітика та звіти</h3>
+                                    <p>Детальна статистика здоров'я колективу та ROI програми</p>
                                 </div>
                             </div>
                         </div>
@@ -191,150 +195,126 @@
         <section class="corporate-programs">
             <div class="container">
                 <div class="section-header">
-                    <h2>Корпоративные программы</h2>
-                    <p>Гибкие решения для компаний любого размера</p>
+                    <h2 data-i18n="b2b_programs_h2">Корпоративні програми</h2>
+                    <p data-i18n="b2b_programs_sub">Гнучкі рішення для компаній будь-якого розміру</p>
                 </div>
-                
+
                 <div class="programs-grid">
                     <div class="program-card">
                         <div class="program-header">
                             <h3>Wellness Base</h3>
-                            <p class="program-price">От $150 <span>/сотрудник/мес</span></p>
-                            <p class="program-subtitle">Базовая программа для небольших компаний</p>
+                            <p class="program-price">Від $150 <span>/співробітник/міс</span></p>
+                            <p class="program-subtitle">Базова програма для невеликих компаній</p>
                         </div>
                         <div class="program-features">
-                            <div class="feature-category">
-                                <h4>Включено:</h4>
-                                <ul>
-                                    <li>Первичный HealthCheckup для всех сотрудников</li>
-                                    <li>Телемедицинские консультации</li>
-                                    <li>Мониторинг базовых показателей здоровья</li>
-                                    <li>Ежемесячные отчёты для HR</li>
-                                    <li>Программы профилактики простудных заболеваний</li>
-                                </ul>
-                            </div>
+                            <h4>Включено:</h4>
+                            <ul>
+                                <li>Первинний HealthCheckup для всіх співробітників</li>
+                                <li>Телемедичні консультації</li>
+                                <li>Моніторинг базових показників здоров'я</li>
+                                <li>Щомісячні звіти для HR</li>
+                                <li>Програми профілактики простудних захворювань</li>
+                            </ul>
                         </div>
                         <div class="program-footer">
-                            <p class="min-users">Минимум 25 сотрудников</p>
-                            <a href="#b2b-form" class="btn btn-outline">Подробнее</a>
+                            <p class="min-users">Мінімум 25 співробітників</p>
+                            <a href="#b2b-form" class="btn btn-outline" data-i18n="b2b_btn_details">Детальніше</a>
                         </div>
                     </div>
-                    
+
                     <div class="program-card featured">
-                        <div class="program-badge">Популярный</div>
+                        <div class="program-badge" data-i18n="b2b_popular">Популярний</div>
                         <div class="program-header">
                             <h3>Wellness Pro</h3>
-                            <p class="program-price">От $250 <span>/сотрудник/мес</span></p>
-                            <p class="program-subtitle">Комплексная программа для средних компаний</p>
+                            <p class="program-price">Від $250 <span>/співробітник/міс</span></p>
+                            <p class="program-subtitle">Комплексна програма для середніх компаній</p>
                         </div>
                         <div class="program-features">
-                            <div class="feature-category">
-                                <h4>Всё из Base плюс:</h4>
-                                <ul>
-                                    <li>Персональные медицинские кураторы</li>
-                                    <li>Программы управления стрессом</li>
-                                    <li>Корпоративные тренинги по здоровью</li>
-                                    <li>Интеграция с корпоративными системами</li>
-                                    <li>Приоритетная поддержка</li>
-                                    <li>Детальная аналитика по департаментам</li>
-                                </ul>
-                            </div>
+                            <h4>Все з Base плюс:</h4>
+                            <ul>
+                                <li>Персональні медичні куратори</li>
+                                <li>Програми управління стресом</li>
+                                <li>Корпоративні тренінги з охорони здоров'я</li>
+                                <li>Інтеграція з корпоративними системами</li>
+                                <li>Пріоритетна підтримка</li>
+                                <li>Детальна аналітика по департаментах</li>
+                            </ul>
                         </div>
                         <div class="program-footer">
-                            <p class="min-users">Минимум 100 сотрудников</p>
-                            <a href="#b2b-form" class="btn btn-primary">Подробнее</a>
+                            <p class="min-users">Мінімум 100 співробітників</p>
+                            <a href="#b2b-form" class="btn btn-primary" data-i18n="b2b_btn_details">Детальніше</a>
                         </div>
                     </div>
-                    
+
                     <div class="program-card">
                         <div class="program-header">
                             <h3>Wellness Enterprise</h3>
-                            <p class="program-price">Индивидуально</p>
-                            <p class="program-subtitle">Масштабируемое решение для крупных корпораций</p>
+                            <p class="program-price">Індивідуально</p>
+                            <p class="program-subtitle">Масштабоване рішення для великих корпорацій</p>
                         </div>
                         <div class="program-features">
-                            <div class="feature-category">
-                                <h4>Всё из Pro плюс:</h4>
-                                <ul>
-                                    <li>Мультидисциплинарные команды специалистов</li>
-                                    <li>On-site медицинские консультации</li>
-                                    <li>Интеграция с существующей медстраховкой</li>
-                                    <li>Собственный дашборд для руководства</li>
-                                    <li>Персональный менеджер аккаунта</li>
-                                    <li>Кастомизация под потребности компании</li>
-                                </ul>
-                            </div>
+                            <h4>Все з Pro плюс:</h4>
+                            <ul>
+                                <li>Мультидисциплінарні команди спеціалістів</li>
+                                <li>On-site медичні консультації</li>
+                                <li>Інтеграція з існуючим медстрахуванням</li>
+                                <li>Власний дашборд для керівництва</li>
+                                <li>Персональний менеджер акаунту</li>
+                                <li>Кастомізація під потреби компанії</li>
+                            </ul>
                         </div>
                         <div class="program-footer">
-                            <p class="min-users">От 500+ сотрудников</p>
-                            <a href="#b2b-form" class="btn btn-outline">Обсудить</a>
+                            <p class="min-users">Від 500+ співробітників</p>
+                            <a href="#b2b-form" class="btn btn-outline" data-i18n="b2b_btn_discuss">Обговорити</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ROI & Benefits -->
+        <!-- ROI -->
         <section class="roi-benefits">
             <div class="container">
                 <div class="section-header">
-                    <h2>Возврат инвестиций и выгоды</h2>
-                    <p>Измеримые результаты для Вашего бизнеса</p>
+                    <h2 data-i18n="b2b_roi_h2">Повернення інвестицій та вигоди</h2>
+                    <p data-i18n="b2b_roi_sub">Вимірювані результати для Вашого бізнесу</p>
                 </div>
-                
                 <div class="roi-grid">
                     <div class="roi-item">
-                        <div class="roi-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
-                        <h3>Экономия на медицинских расходах</h3>
+                        <div class="roi-icon"><i class="fas fa-dollar-sign"></i></div>
+                        <h3>Економія на медичних витратах</h3>
                         <div class="roi-stat">До 40%</div>
-                        <p>Снижение затрат на лечение благодаря профилактике и раннему выявлению заболеваний</p>
+                        <p>Зниження витрат завдяки профілактиці та ранньому виявленню захворювань</p>
                     </div>
-                    
                     <div class="roi-item">
-                        <div class="roi-icon">
-                            <i class="fas fa-calendar-times"></i>
-                        </div>
-                        <h3>Сокращение больничных</h3>
+                        <div class="roi-icon"><i class="fas fa-calendar-times"></i></div>
+                        <h3>Скорочення лікарняних</h3>
                         <div class="roi-stat">35%</div>
-                        <p>Уменьшение количества дней на больничном и связанных с этим потерь продуктивности</p>
+                        <p>Зменшення кількості днів на лікарняному та пов'язаних втрат продуктивності</p>
                     </div>
-                    
                     <div class="roi-item">
-                        <div class="roi-icon">
-                            <i class="fas fa-trending-up"></i>
-                        </div>
-                        <h3>Рост продуктивности</h3>
+                        <div class="roi-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Зростання продуктивності</h3>
                         <div class="roi-stat">25%</div>
-                        <p>Повышение эффективности работы сотрудников благодаря лучшему состоянию здоровья</p>
+                        <p>Підвищення ефективності роботи завдяки кращому стану здоров'я</p>
                     </div>
-                    
                     <div class="roi-item">
-                        <div class="roi-icon">
-                            <i class="fas fa-user-check"></i>
-                        </div>
-                        <h3>Удержание персонала</h3>
+                        <div class="roi-icon"><i class="fas fa-user-check"></i></div>
+                        <h3>Утримання персоналу</h3>
                         <div class="roi-stat">18%</div>
-                        <p>Снижение текучести кадров благодаря улучшенному пакету социальных льгот</p>
+                        <p>Зниження плинності кадрів завдяки покращеному соціальному пакету</p>
                     </div>
-                    
                     <div class="roi-item">
-                        <div class="roi-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h3>Улучшение репутации</h3>
+                        <div class="roi-icon"><i class="fas fa-star"></i></div>
+                        <h3>Покращення репутації</h3>
                         <div class="roi-stat">4.8/5</div>
-                        <p>Повышение рейтинга работодателя и привлекательности для талантов</p>
+                        <p>Підвищення рейтингу роботодавця та привабливості для талантів</p>
                     </div>
-                    
                     <div class="roi-item">
-                        <div class="roi-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3>ROI программы</h3>
+                        <div class="roi-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>ROI програми</h3>
                         <div class="roi-stat">3.2x</div>
-                        <p>Возврат каждого вложенного доллара в течение 12 месяцев</p>
+                        <p>Повернення кожного вкладеного долара протягом 12 місяців</p>
                     </div>
                 </div>
             </div>
@@ -345,61 +325,41 @@
             <div class="container">
                 <div class="integration-content">
                     <div class="integration-text">
-                        <h2>Простая интеграция с корпоративными системами</h2>
-                        <p>Наша платформа легко интегрируется с существующими HR-системами, медицинским страхованием и корпоративными приложениями</p>
-                        
+                        <h2 data-i18n="b2b_int_h2">Проста інтеграція з корпоративними системами</h2>
+                        <p>Наша платформа легко інтегрується з існуючими HR-системами, медичним страхуванням та корпоративними застосунками</p>
                         <div class="integration-features">
                             <div class="integration-feature">
                                 <i class="fas fa-plug"></i>
                                 <div>
-                                    <h4>API интеграции</h4>
-                                    <p>Подключение к HRIS, ERP и другим корпоративным системам</p>
+                                    <h4>API інтеграції</h4>
+                                    <p>Підключення до HRIS, ERP та інших корпоративних систем</p>
                                 </div>
                             </div>
                             <div class="integration-feature">
                                 <i class="fas fa-shield-alt"></i>
                                 <div>
-                                    <h4>SSO авторизация</h4>
-                                    <p>Единый вход через корпоративную систему аутентификации</p>
+                                    <h4>SSO авторизація</h4>
+                                    <p>Єдиний вхід через корпоративну систему аутентифікації</p>
                                 </div>
                             </div>
                             <div class="integration-feature">
                                 <i class="fas fa-chart-bar"></i>
                                 <div>
-                                    <h4>Корпоративная аналитика</h4>
-                                    <p>Интеграция данных в бизнес-аналитику и дашборды</p>
+                                    <h4>Корпоративна аналітика</h4>
+                                    <p>Інтеграція даних у бізнес-аналітику та дашборди</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
                     <div class="integration-logos">
-                        <h3>Интеграции</h3>
+                        <h3 data-i18n="b2b_int_logos_h">Інтеграції</h3>
                         <div class="logos-grid">
-                            <div class="logo-item">
-                                <i class="fab fa-microsoft"></i>
-                                <span>Microsoft 365</span>
-                            </div>
-                            <div class="logo-item">
-                                <i class="fab fa-google"></i>
-                                <span>Google Workspace</span>
-                            </div>
-                            <div class="logo-item">
-                                <i class="fas fa-users-cog"></i>
-                                <span>Workday</span>
-                            </div>
-                            <div class="logo-item">
-                                <i class="fas fa-chart-line"></i>
-                                <span>Salesforce</span>
-                            </div>
-                            <div class="logo-item">
-                                <i class="fas fa-slack"></i>
-                                <span>Slack</span>
-                            </div>
-                            <div class="logo-item">
-                                <i class="fas fa-plus"></i>
-                                <span>И другие</span>
-                            </div>
+                            <div class="logo-item"><i class="fab fa-microsoft"></i><span>Microsoft 365</span></div>
+                            <div class="logo-item"><i class="fab fa-google"></i><span>Google Workspace</span></div>
+                            <div class="logo-item"><i class="fas fa-users-cog"></i><span>Workday</span></div>
+                            <div class="logo-item"><i class="fas fa-chart-line"></i><span>Salesforce</span></div>
+                            <div class="logo-item"><i class="fab fa-slack"></i><span>Slack</span></div>
+                            <div class="logo-item"><i class="fas fa-plus"></i><span>Та інші</span></div>
                         </div>
                     </div>
                 </div>
@@ -410,266 +370,231 @@
         <section class="case-studies">
             <div class="container">
                 <div class="section-header">
-                    <h2>Истории успеха наших клиентов</h2>
-                    <p>Реальные результаты внедрения программ BodyHealth</p>
+                    <h2 data-i18n="b2b_cases_h2">Історії успіху наших клієнтів</h2>
+                    <p data-i18n="b2b_cases_sub">Реальні результати впровадження програм BodyHealth</p>
                 </div>
-                
                 <div class="cases-grid">
                     <div class="case-item">
                         <div class="case-header">
-                            <div class="case-company">IT-компания, 250 сотрудников</div>
-                            <div class="case-industry">Технологии</div>
+                            <div class="case-company">IT-компанія, 250 співробітників</div>
+                            <div class="case-industry">Технології</div>
                         </div>
-                        <h3>Снижение выгорания разработчиков</h3>
+                        <h3>Зниження вигорання розробників</h3>
                         <div class="case-results">
-                            <div class="case-stat">
-                                <span class="stat-number">45%</span>
-                                <span class="stat-label">Снижение стресса</span>
-                            </div>
-                            <div class="case-stat">
-                                <span class="stat-number">30%</span>
-                                <span class="stat-label">Меньше больничных</span>
-                            </div>
+                            <div class="case-stat"><span class="stat-number">45%</span><span class="stat-label">Зниження стресу</span></div>
+                            <div class="case-stat"><span class="stat-number">30%</span><span class="stat-label">Менше лікарняних</span></div>
                         </div>
-                        <p>Внедрение программы управления стрессом и регулярного мониторинга помогло значительно улучшить самочувствие команды разработчиков</p>
+                        <p>Програма управління стресом та регулярного моніторингу значно покращила самопочуття команди розробників</p>
                     </div>
-                    
                     <div class="case-item">
                         <div class="case-header">
-                            <div class="case-company">Производственное предприятие, 800 сотрудников</div>
-                            <div class="case-industry">Производство</div>
+                            <div class="case-company">Виробниче підприємство, 800 співробітників</div>
+                            <div class="case-industry">Виробництво</div>
                         </div>
-                        <h3>Профилактика травматизма</h3>
+                        <h3>Профілактика травматизму</h3>
                         <div class="case-results">
-                            <div class="case-stat">
-                                <span class="stat-number">60%</span>
-                                <span class="stat-label">Меньше травм</span>
-                            </div>
-                            <div class="case-stat">
-                                <span class="stat-number">$2.1M</span>
-                                <span class="stat-label">Экономия в год</span>
-                            </div>
+                            <div class="case-stat"><span class="stat-number">60%</span><span class="stat-label">Менше травм</span></div>
+                            <div class="case-stat"><span class="stat-number">$2.1M</span><span class="stat-label">Економія на рік</span></div>
                         </div>
-                        <p>Программа профилактических осмотров и мониторинга физического состояния работников привела к значительному снижению производственного травматизма</p>
+                        <p>Програма профілактичних оглядів та моніторингу фізичного стану призвела до значного зниження виробничого травматизму</p>
                     </div>
-                    
                     <div class="case-item">
                         <div class="case-header">
-                            <div class="case-company">Финансовая компания, 450 сотрудников</div>
-                            <div class="case-industry">Финансы</div>
+                            <div class="case-company">Фінансова компанія, 450 співробітників</div>
+                            <div class="case-industry">Фінанси</div>
                         </div>
-                        <h3>Управление хроническими заболеваниями</h3>
+                        <h3>Управління хронічними захворюваннями</h3>
                         <div class="case-results">
-                            <div class="case-stat">
-                                <span class="stat-number">55%</span>
-                                <span class="stat-label">Снижение обострений</span>
-                            </div>
-                            <div class="case-stat">
-                                <span class="stat-number">$850K</span>
-                                <span class="stat-label">Экономия на лечении</span>
-                            </div>
+                            <div class="case-stat"><span class="stat-number">55%</span><span class="stat-label">Зниження загострень</span></div>
+                            <div class="case-stat"><span class="stat-number">$850K</span><span class="stat-label">Економія на лікуванні</span></div>
                         </div>
-                        <p>Персонализированные программы для сотрудников с диабетом и сердечно-сосудистыми заболеваниями позволили значительно улучшить контроль</p>
+                        <p>Персоналізовані програми для співробітників з діабетом та серцево-судинними захворюваннями дозволили значно покращити контроль</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Implementation Process -->
+        <!-- Implementation -->
         <section class="implementation">
             <div class="container">
                 <div class="section-header">
-                    <h2>Процесс внедрения</h2>
-                    <p>От первой встречи до полноценной работы программы</p>
+                    <h2 data-i18n="b2b_impl_h2">Процес впровадження</h2>
+                    <p data-i18n="b2b_impl_sub">Від першої зустрічі до повноцінної роботи програми</p>
                 </div>
-                
                 <div class="implementation-timeline">
                     <div class="timeline-item">
                         <div class="timeline-step">1</div>
                         <div class="timeline-content">
-                            <h3>Консультация и анализ потребностей</h3>
-                            <p>Изучение специфики компании, анализ текущих расходов на здравоохранение и определение целей программы</p>
-                            <div class="timeline-duration">1-2 недели</div>
+                            <h3>Консультація та аналіз потреб</h3>
+                            <p>Вивчення специфіки компанії, аналіз поточних витрат на охорону здоров'я та визначення цілей програми</p>
+                            <div class="timeline-duration">1–2 тижні</div>
                         </div>
                     </div>
-                    
                     <div class="timeline-item">
                         <div class="timeline-step">2</div>
                         <div class="timeline-content">
-                            <h3>Разработка индивидуального предложения</h3>
-                            <p>Создание персонализированной программы с учётом размера компании, бюджета и приоритетов</p>
-                            <div class="timeline-duration">1 неделя</div>
+                            <h3>Розробка індивідуальної пропозиції</h3>
+                            <p>Створення персоналізованої програми з урахуванням розміру компанії, бюджету та пріоритетів</p>
+                            <div class="timeline-duration">1 тиждень</div>
                         </div>
                     </div>
-                    
                     <div class="timeline-item">
                         <div class="timeline-step">3</div>
                         <div class="timeline-content">
-                            <h3>Техническая интеграция</h3>
-                            <p>Настройка интеграций с корпоративными системами, создание аккаунтов сотрудников</p>
-                            <div class="timeline-duration">2-3 недели</div>
+                            <h3>Технічна інтеграція</h3>
+                            <p>Налаштування інтеграцій з корпоративними системами, створення акаунтів співробітників</p>
+                            <div class="timeline-duration">2–3 тижні</div>
                         </div>
                     </div>
-                    
                     <div class="timeline-item">
                         <div class="timeline-step">4</div>
                         <div class="timeline-content">
-                            <h3>Обучение и онбординг</h3>
-                            <p>Обучение HR-команды, проведение презентаций для сотрудников, помощь в регистрации</p>
-                            <div class="timeline-duration">1-2 недели</div>
+                            <h3>Навчання та онбординг</h3>
+                            <p>Навчання HR-команди, проведення презентацій для співробітників, допомога в реєстрації</p>
+                            <div class="timeline-duration">1–2 тижні</div>
                         </div>
                     </div>
-                    
                     <div class="timeline-item">
                         <div class="timeline-step">5</div>
                         <div class="timeline-content">
-                            <h3>Запуск и поддержка</h3>
-                            <p>Полный запуск программы с постоянной поддержкой и регулярными отчётами о результатах</p>
-                            <div class="timeline-duration">Постоянно</div>
+                            <h3>Запуск та підтримка</h3>
+                            <p>Повний запуск програми з постійною підтримкою та регулярними звітами про результати</p>
+                            <div class="timeline-duration">Постійно</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- B2B Form Section -->
+        <!-- B2B Form -->
         <section id="b2b-form" class="b2b-form-section">
             <div class="container">
                 <div class="form-wrapper">
                     <div class="form-info">
-                        <h2>Получите персональное коммерческое предложение</h2>
-                        <p>Заполните форму, и наш специалист свяжется с Вами в течение 24 часов для обсуждения потребностей Вашей компании</p>
-                        
+                        <h2 data-i18n="b2b_form_h2">Отримайте персональну комерційну пропозицію</h2>
+                        <p data-i18n="b2b_form_p">Заповніть форму, і наш спеціаліст зв'яжеться з Вами протягом 24 годин</p>
                         <div class="form-benefits">
-                            <div class="form-benefit">
-                                <i class="fas fa-check"></i>
-                                <span>Бесплатная консультация и анализ потребностей</span>
-                            </div>
-                            <div class="form-benefit">
-                                <i class="fas fa-check"></i>
-                                <span>Индивидуальное коммерческое предложение</span>
-                            </div>
-                            <div class="form-benefit">
-                                <i class="fas fa-check"></i>
-                                <span>Демонстрация платформы</span>
-                            </div>
-                            <div class="form-benefit">
-                                <i class="fas fa-check"></i>
-                                <span>Расчёт ROI для Вашей компании</span>
-                            </div>
+                            <div class="form-benefit"><i class="fas fa-check"></i><span data-i18n="b2b_form_b1">Безкоштовна консультація та аналіз потреб</span></div>
+                            <div class="form-benefit"><i class="fas fa-check"></i><span data-i18n="b2b_form_b2">Індивідуальна комерційна пропозиція</span></div>
+                            <div class="form-benefit"><i class="fas fa-check"></i><span data-i18n="b2b_form_b3">Демонстрація платформи</span></div>
+                            <div class="form-benefit"><i class="fas fa-check"></i><span data-i18n="b2b_form_b4">Розрахунок ROI для Вашої компанії</span></div>
+                        </div>
+
+                        <!-- Contact quick links -->
+                        <div class="form-contact-quick">
+                            <a href="tel:+380981501498" class="contact-quick-link">
+                                <i class="fas fa-phone"></i> +380 98 150 14 98
+                            </a>
+                            <a href="https://t.me/bodyhealthclinic" target="_blank" rel="noopener" class="contact-quick-link">
+                                <i class="fab fa-telegram"></i> @bodyhealthclinic
+                            </a>
+                            <a href="https://wa.me/380981501498" target="_blank" rel="noopener" class="contact-quick-link">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
                         </div>
                     </div>
-                    
+
                     <div class="form-container">
-                        <form class="b2b-form" id="b2bForm">
+                        <form class="b2b-form" id="b2bForm" data-make-webhook="MAKE_WEBHOOK_URL">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="companyName">Название компании *</label>
+                                    <label for="companyName" data-i18n="b2b_label_company">Назва компанії *</label>
                                     <input type="text" id="companyName" name="companyName" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="industry">Отрасль *</label>
+                                    <label for="industry" data-i18n="b2b_label_industry">Галузь *</label>
                                     <select id="industry" name="industry" required>
-                                        <option value="">Выберите отрасль</option>
-                                        <option value="it">IT и технологии</option>
-                                        <option value="finance">Финансы и банки</option>
-                                        <option value="manufacturing">Производство</option>
-                                        <option value="retail">Торговля и ритейл</option>
-                                        <option value="healthcare">Здравоохранение</option>
-                                        <option value="education">Образование</option>
-                                        <option value="other">Другое</option>
+                                        <option value="">Оберіть галузь</option>
+                                        <option value="it">IT та технології</option>
+                                        <option value="finance">Фінанси та банки</option>
+                                        <option value="manufacturing">Виробництво</option>
+                                        <option value="retail">Торгівля та рітейл</option>
+                                        <option value="healthcare">Охорона здоров'я</option>
+                                        <option value="education">Освіта</option>
+                                        <option value="other">Інше</option>
                                     </select>
                                 </div>
                             </div>
-                            
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="employeeCount">Количество сотрудников *</label>
+                                    <label for="employeeCount" data-i18n="b2b_label_employees">Кількість співробітників *</label>
                                     <select id="employeeCount" name="employeeCount" required>
-                                        <option value="">Выберите размер</option>
-                                        <option value="25-50">25-50 сотрудников</option>
-                                        <option value="51-100">51-100 сотрудников</option>
-                                        <option value="101-250">101-250 сотрудников</option>
-                                        <option value="251-500">251-500 сотрудников</option>
-                                        <option value="501-1000">501-1000 сотрудников</option>
-                                        <option value="1000+">Более 1000 сотрудников</option>
+                                        <option value="">Оберіть розмір</option>
+                                        <option value="25-50">25–50 співробітників</option>
+                                        <option value="51-100">51–100 співробітників</option>
+                                        <option value="101-250">101–250 співробітників</option>
+                                        <option value="251-500">251–500 співробітників</option>
+                                        <option value="501-1000">501–1000 співробітників</option>
+                                        <option value="1000+">Більше 1000 співробітників</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="currentBudget">Текущий бюджет на здравоохранение (месяц)</label>
+                                    <label for="currentBudget" data-i18n="b2b_label_budget">Поточний бюджет на охорону здоров'я (місяць)</label>
                                     <select id="currentBudget" name="currentBudget">
-                                        <option value="">Выберите диапазон</option>
-                                        <option value="5000-15000">$5,000 - $15,000</option>
-                                        <option value="15000-50000">$15,000 - $50,000</option>
-                                        <option value="50000-100000">$50,000 - $100,000</option>
-                                        <option value="100000+">Более $100,000</option>
-                                        <option value="no-budget">Нет текущего бюджета</option>
+                                        <option value="">Оберіть діапазон</option>
+                                        <option value="5000-15000">$5 000 – $15 000</option>
+                                        <option value="15000-50000">$15 000 – $50 000</option>
+                                        <option value="50000-100000">$50 000 – $100 000</option>
+                                        <option value="100000+">Більше $100 000</option>
+                                        <option value="no-budget">Немає поточного бюджету</option>
                                     </select>
                                 </div>
                             </div>
-                            
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="contactName">Контактное лицо *</label>
+                                    <label for="contactName" data-i18n="b2b_label_contact">Контактна особа *</label>
                                     <input type="text" id="contactName" name="contactName" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="position">Должность *</label>
-                                    <input type="text" id="position" name="position" required placeholder="например, HR-директор">
+                                    <label for="position" data-i18n="b2b_label_position">Посада *</label>
+                                    <input type="text" id="position" name="position" required data-i18n-placeholder="b2b_ph_position" placeholder="наприклад, HR-директор">
                                 </div>
                             </div>
-                            
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="email">Email *</label>
+                                    <label for="email" data-i18n="label_email">Email *</label>
                                     <input type="email" id="email" name="email" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">Телефон</label>
+                                    <label for="phone" data-i18n="label_phone">Телефон</label>
                                     <input type="tel" id="phone" name="phone">
                                 </div>
                             </div>
-                            
                             <div class="form-group">
-                                <label for="goals">Основные цели программы здоровья</label>
+                                <label data-i18n="b2b_label_goals">Основні цілі програми здоров'я</label>
                                 <div class="checkbox-group goals-checkboxes">
-                                    <label><input type="checkbox" name="goals" value="reduce-costs"> Снижение медицинских расходов</label>
-                                    <label><input type="checkbox" name="goals" value="reduce-sick-days"> Сокращение больничных</label>
-                                    <label><input type="checkbox" name="goals" value="increase-productivity"> Повышение продуктивности</label>
-                                    <label><input type="checkbox" name="goals" value="improve-retention"> Улучшение удержания кадров</label>
-                                    <label><input type="checkbox" name="goals" value="wellness-culture"> Развитие культуры здоровья</label>
-                                    <label><input type="checkbox" name="goals" value="compliance"> Соответствие требованиям</label>
+                                    <label><input type="checkbox" name="goals" value="reduce-costs"> Зниження медичних витрат</label>
+                                    <label><input type="checkbox" name="goals" value="reduce-sick-days"> Скорочення лікарняних</label>
+                                    <label><input type="checkbox" name="goals" value="increase-productivity"> Підвищення продуктивності</label>
+                                    <label><input type="checkbox" name="goals" value="improve-retention"> Покращення утримання кадрів</label>
+                                    <label><input type="checkbox" name="goals" value="wellness-culture"> Розвиток культури здоров'я</label>
+                                    <label><input type="checkbox" name="goals" value="compliance"> Відповідність вимогам</label>
                                 </div>
                             </div>
-                            
                             <div class="form-group">
-                                <label for="challenges">Основные вызовы в области здоровья сотрудников</label>
-                                <textarea id="challenges" name="challenges" rows="3" placeholder="Опишите текущие проблемы и задачи"></textarea>
+                                <label for="challenges" data-i18n="b2b_label_challenges">Виклики у сфері здоров'я співробітників</label>
+                                <textarea id="challenges" name="challenges" rows="3" data-i18n-placeholder="b2b_ph_challenges" placeholder="Опишіть поточні проблеми та завдання"></textarea>
                             </div>
-                            
                             <div class="form-group">
-                                <label for="timeline">Планируемые сроки внедрения</label>
+                                <label for="timeline" data-i18n="b2b_label_timeline">Плановані терміни впровадження</label>
                                 <select id="timeline" name="timeline">
-                                    <option value="">Выберите сроки</option>
-                                    <option value="immediate">Немедленно</option>
-                                    <option value="1-3-months">1-3 месяца</option>
-                                    <option value="3-6-months">3-6 месяцев</option>
-                                    <option value="6-12-months">6-12 месяцев</option>
-                                    <option value="planning">На стадии планирования</option>
+                                    <option value="">Оберіть терміни</option>
+                                    <option value="immediate">Негайно</option>
+                                    <option value="1-3-months">1–3 місяці</option>
+                                    <option value="3-6-months">3–6 місяців</option>
+                                    <option value="6-12-months">6–12 місяців</option>
+                                    <option value="planning">На стадії планування</option>
                                 </select>
                             </div>
-                            
                             <div class="form-group checkbox-group">
                                 <input type="checkbox" id="privacy-b2b" name="privacy" required>
-                                <label for="privacy-b2b">Я согласен с <a href="/privacy" target="_blank">политикой конфиденциальности</a> и обработкой корпоративных данных *</label>
+                                <label for="privacy-b2b" data-i18n-html="b2b_label_privacy">Я погоджуюсь з <a href="/privacy.html" target="_blank">політикою конфіденційності</a> та обробкою корпоративних даних *</label>
                             </div>
-                            
                             <div class="form-group checkbox-group">
                                 <input type="checkbox" id="demo-request" name="demoRequest">
-                                <label for="demo-request">Запросить демонстрацию платформы</label>
+                                <label for="demo-request" data-i18n="b2b_label_demo_req">Запросити демонстрацію платформи</label>
                             </div>
-                            
-                            <button type="submit" class="btn btn-primary btn-large">Получить коммерческое предложение</button>
+                            <button type="submit" class="btn btn-primary btn-large" data-i18n="b2b_btn_submit">Отримати комерційну пропозицію</button>
                         </form>
                     </div>
                 </div>
@@ -686,103 +611,127 @@
                         <div class="logo">
                             <img src="/img/logo_no_bg.png" alt="BodyHealth" style="height:40px; filter:brightness(0) invert(1);"/>
                         </div>
-                        <p>Персонализированная система медицинского сопровождения с доказательным подходом</p>
+                        <p data-i18n="footer_desc">Персоналізована система медичного супроводу з доказовим підходом</p>
+                        <!-- App downloads -->
+                        <div class="footer-apps">
+                            <a href="https://apps.apple.com/us/app/healthie/id1112029170" target="_blank" rel="noopener" class="app-badge">
+                                <i class="fab fa-apple"></i>
+                                <div>
+                                    <small data-i18n="app_download_h">Завантажте</small>
+                                    <span data-i18n="app_download_ios">App Store</span>
+                                </div>
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.healthie.app.healthie" target="_blank" rel="noopener" class="app-badge">
+                                <i class="fab fa-google-play"></i>
+                                <div>
+                                    <small data-i18n="app_download_h">Завантажте</small>
+                                    <span data-i18n="app_download_android">Google Play</span>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Contacts -->
+                        <div class="footer-contacts">
+                            <a href="tel:+380981501498" class="footer-contact-link">
+                                <i class="fas fa-phone"></i> +380 98 150 14 98
+                            </a>
+                            <a href="https://t.me/bodyhealthclinic" target="_blank" rel="noopener" class="footer-contact-link">
+                                <i class="fab fa-telegram"></i> @bodyhealthclinic
+                            </a>
+                            <a href="https://wa.me/380981501498" target="_blank" rel="noopener" class="footer-contact-link">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h4>Услуги</h4>
+                    <h4 data-i18n="footer_services">Послуги</h4>
                     <ul>
-                        <li><a href="services/healthcare.html">Personal Care</a></li>
-                        <li><a href="services/ambulance.html">Integrated Care</a></li>
-                        <li><a href="services/checkup.html">HealthCheckup</a></li>
+                        <li><a href="/services/healthcare.html">Personal Care</a></li>
+                        <li><a href="/services/ambulance.html">Integrated Care</a></li>
+                        <li><a href="/services/checkup.html">HealthCheckup</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h4>Компания</h4>
+                    <h4 data-i18n="footer_company">Компанія</h4>
                     <ul>
-                        <li><a href="for-companies.html">Для компаний</a></li>
+                        <li><a href="/for-companies.html" data-i18n="footer_companies">Для компаній</a></li>
+                        <li><a href="/blog.html" data-i18n="footer_blog">Блог</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h4>Поддержка</h4>
+                    <h4 data-i18n="footer_support">Підтримка</h4>
                     <ul>
-                        <li><a href="/privacy">Политика конфиденциальности</a></li>
+                        <li><a href="/privacy.html" data-i18n="footer_privacy">Політика конфіденційності</a></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <div class="footer-legal">
-                    <p>&copy; 2024–2026 BodyHealth. Все права защищены.</p>
+                    <p data-i18n="footer_legal">© 2024–2026 BodyHealth. Всі права захищені.</p>
+                    <p data-i18n="footer_compliance">HIPAA та GDPR сумісно. Медичні дані захищені відповідно до міжнародних стандартів.</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
-    
-    <!-- B2B Form Handler -->
+    <!-- Floating contact buttons -->
+    <div class="float-contacts">
+        <a href="https://t.me/bodyhealthclinic" target="_blank" rel="noopener" class="float-btn float-tg" title="Telegram">
+            <i class="fab fa-telegram"></i>
+        </a>
+        <a href="https://wa.me/380981501498" target="_blank" rel="noopener" class="float-btn float-wa" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="/js/main.js"></script>
     <script>
-        // B2B Form Handling
-        const b2bForm = document.getElementById('b2bForm');
-        if (b2bForm) {
-            b2bForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Get form data
-                const formData = new FormData(this);
-                const formObject = {};
-                
-                // Handle checkboxes separately
-                const goals = [];
-                const goalCheckboxes = this.querySelectorAll('input[name="goals"]:checked');
-                goalCheckboxes.forEach(checkbox => goals.push(checkbox.value));
-                
-                formData.forEach((value, key) => {
-                    if (key !== 'goals') {
-                        formObject[key] = value;
-                    }
-                });
-                
-                formObject.goals = goals;
-                
-                // Basic validation
-                if (!formObject.companyName || !formObject.industry || !formObject.employeeCount || 
-                    !formObject.contactName || !formObject.position || !formObject.email || !formObject.privacy) {
-                    showNotification('Пожалуйста, заполните все обязательные поля', 'error');
-                    return;
+    // B2B Form — Make.com webhook
+    (function() {
+        var form = document.getElementById('b2bForm');
+        if (!form) return;
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var webhookUrl = form.dataset.makeWebhook || 'MAKE_WEBHOOK_URL';
+            if (!webhookUrl || webhookUrl === 'MAKE_WEBHOOK_URL') {
+                if (typeof showNotification === 'function') {
+                    showNotification('Форма тимчасово недоступна. Будь ласка, зв\'яжіться з нами напряму.', 'error');
                 }
-                
-                // Show loading state
-                const submitButton = this.querySelector('button[type="submit"]');
-                const originalText = submitButton.textContent;
-                submitButton.textContent = 'Отправка...';
-                submitButton.disabled = true;
-                
-                // Simulate form submission
-                setTimeout(() => {
-                    showNotification('Спасибо! Ваша заявка отправлена. Наш специалист свяжется с Вами в течение 24 часов для обсуждения коммерческого предложения.', 'success');
-                    b2bForm.reset();
-                    
-                    // Restore button state
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                    
-                    // Track conversion
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'b2b_form_submit', {
-                            event_category: 'conversion',
-                            company_size: formObject.employeeCount,
-                            industry: formObject.industry
-                        });
-                    }
-                }, 1500);
-            });
-        }
+                return;
+            }
+            var fd = new FormData(form);
+            var obj = {};
+            var goals = [];
+            form.querySelectorAll('input[name="goals"]:checked').forEach(function(cb) { goals.push(cb.value); });
+            fd.forEach(function(v, k) { if (k !== 'goals') obj[k] = v; });
+            obj.goals = goals;
+            obj.form_type = 'b2b';
+            obj.timestamp = new Date().toISOString();
+            obj.source_page = window.location.href;
+
+            var btn = form.querySelector('button[type="submit"]');
+            var origText = btn.textContent;
+            var t = (window.BH_TRANSLATIONS && window.BH_TRANSLATIONS[localStorage.getItem('bh_lang') || 'uk']) || {};
+            btn.textContent = t.b2b_sending || 'Надсилаємо...';
+            btn.disabled = true;
+
+            fetch(webhookUrl, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(obj) })
+                .then(function(r) {
+                    if (r.ok) {
+                        if (typeof showNotification === 'function') showNotification(t.b2b_success || 'Дякуємо! Заявку отримано.', 'success');
+                        form.reset();
+                    } else { throw new Error('HTTP ' + r.status); }
+                })
+                .catch(function() {
+                    if (typeof showNotification === 'function') showNotification(t.b2b_error || 'Помилка. Спробуйте ще раз або зв\'яжіться напряму.', 'error');
+                })
+                .finally(function() { btn.textContent = origText; btn.disabled = false; });
+        });
+    })();
     </script>
 </body>
 </html>
