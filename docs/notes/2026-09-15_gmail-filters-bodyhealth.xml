@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns='http://www.w3.org/2005/Atom' xmlns:apps='http://schemas.google.com/apps/2006'>
+  <title>BodyHealth corporate routing</title>
+  <entry>
+    <category term='filter'></category>
+    <title>Sales</title>
+    <content></content>
+    <apps:property name='to' value='sales@body-health.care'/>
+    <apps:property name='label' value='Sales'/>
+    <apps:property name='shouldNeverSpam' value='true'/>
+  </entry>
+  <entry>
+    <category term='filter'></category>
+    <title>Office</title>
+    <content></content>
+    <apps:property name='to' value='office@body-health.care'/>
+    <apps:property name='label' value='Office'/>
+    <apps:property name='shouldNeverSpam' value='true'/>
+  </entry>
+  <entry>
+    <category term='filter'></category>
+    <title>Director</title>
+    <content></content>
+    <apps:property name='to' value='director@body-health.care'/>
+    <apps:property name='label' value='Director'/>
+    <apps:property name='shouldNeverSpam' value='true'/>
+  </entry>
+  <entry>
+    <category term='filter'></category>
+    <title>Support</title>
+    <content></content>
+    <apps:property name='to' value='support@body-health.care'/>
+    <apps:property name='label' value='Support'/>
+    <apps:property name='shouldNeverSpam' value='true'/>
+  </entry>
+  <entry>
+    <category term='filter'></category>
+    <title>Billing</title>
+    <content></content>
+    <apps:property name='to' value='billing@body-health.care'/>
+    <apps:property name='label' value='Billing'/>
+    <apps:property name='shouldNeverSpam' value='true'/>
+  </entry>
+  <entry>
+    <category term='filter'></category>
+    <title>Security</title>
+    <content></content>
+    <apps:property name='to' value='security@body-health.care'/>
+    <apps:property name='label' value='Security'/>
+    <apps:property name='shouldNeverSpam' value='true'/>
+  </entry>
+  <entry>
+    <category term='filter'></category>
+    <title>Legacy inbox</title>
+    <content></content>
+    <apps:property name='to' value='bodyhealthmediclinic@gmail.com'/>
+    <apps:property name='label' value='Legacy'/>
+    <apps:property name='shouldNeverSpam' value='true'/>
+  </entry>
+</feed>
