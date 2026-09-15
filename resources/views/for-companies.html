@@ -731,13 +731,8 @@
         if (!form) return;
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            var webhookUrl = form.dataset.makeWebhook || 'MAKE_WEBHOOK_URL';
-            if (!webhookUrl || webhookUrl === 'MAKE_WEBHOOK_URL') {
-                if (typeof showNotification === 'function') {
-                    showNotification(t0().unavailable, 'error');
-                }
-                return;
-            }
+            var webhookUrl = form.dataset.makeWebhook || '';
+            var webhookReady = /^https?:\/\//.test(webhookUrl);
             var fd = new FormData(form);
             var obj = {};
             var goals = [];
@@ -748,8 +743,19 @@
             obj.timestamp = new Date().toISOString();
             obj.source_page = window.location.href;
 
+            var summary = [obj.companyName, obj.contactName, obj.email, obj.phone,
+                           obj.employees, obj.industry, obj.message].filter(Boolean).join('\n').trim();
+
             var btn = form.querySelector('button[type="submit"]');
             var origText = btn.textContent;
+
+            // Until the webhook is configured the enquiry has nowhere to go, so it
+            // is handed to a channel that works rather than lost behind an error.
+            if (!webhookReady) {
+                if (typeof offerDirectContact === 'function') offerDirectContact(summary);
+                else if (typeof showNotification === 'function') showNotification(t0().unavailable, 'error');
+                return;
+            }
             var t = (window.B2B_MESSAGES || {})[(document.documentElement.lang || 'uk').slice(0, 2)]
                     || (window.B2B_MESSAGES || {}).uk || {};
             btn.textContent = t.sending || 'Надсилаємо…';
@@ -763,7 +769,9 @@
                     } else { throw new Error('HTTP ' + r.status); }
                 })
                 .catch(function() {
-                    if (typeof showNotification === 'function') showNotification(t.error || 'Помилка. Спробуйте ще раз або зв\'яжіться напряму.', 'error');
+                    // the form keeps what was typed
+                    if (typeof offerDirectContact === 'function') offerDirectContact(summary);
+                    else if (typeof showNotification === 'function') showNotification(t.error, 'error');
                 })
                 .finally(function() { btn.textContent = origText; btn.disabled = false; });
         });

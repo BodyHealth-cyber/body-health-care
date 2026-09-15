@@ -24,6 +24,9 @@ python3 build-legal.py
 # Structured data, read back out of the pages that were actually built
 python3 build-schema.py
 
+# Say plainly whether the forms can actually deliver a submission
+python3 check-forms.py
+
 # Generate sitemap from the pages that were actually built
 python3 generate-sitemap.py
 echo "Build complete: $(find dist -name "*.html" | wc -l) HTML files"

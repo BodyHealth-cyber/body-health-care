@@ -207,8 +207,28 @@ if (contactForm) {
         submitButton.textContent = contactFormMessages.sending;
         submitButton.disabled = true;
 
-        // Make.com webhook URL — replace MAKE_WEBHOOK_URL with your actual webhook from Make.com
-        const MAKE_WEBHOOK_URL = contactForm.dataset.makeWebhook || 'MAKE_WEBHOOK_URL';
+        // Make.com webhook. Until it is configured the attribute still holds the
+        // literal placeholder, which would resolve as a relative URL against this
+        // page and quietly 404 — so the enquiry is handed to a working channel
+        // instead of being lost behind an error box.
+        const MAKE_WEBHOOK_URL = contactForm.dataset.makeWebhook || '';
+        const webhookReady = /^https?:\/\//.test(MAKE_WEBHOOK_URL);
+
+        const enquirySummary = [
+            (formObject.firstName || '') + ' ' + (formObject.lastName || ''),
+            formObject.email,
+            formObject.phone,
+            formObject.service,
+            formObject.message,
+        ].filter(Boolean).join('\n').trim();
+
+        if (!webhookReady) {
+            offerDirectContact(enquirySummary);
+            trackEvent('form_submit_unconfigured', { service: formObject.service });
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+            return;
+        }
 
         try {
             const payload = {
@@ -242,7 +262,8 @@ if (contactForm) {
             }
         } catch (err) {
             console.error('Form submission error:', err);
-            showNotification(contactFormMessages.error, 'error');
+            // the form is deliberately not reset — what they typed is still there
+            offerDirectContact(enquirySummary);
             trackEvent('form_submit_error', { error: err.message });
         } finally {
             submitButton.textContent = originalText;
@@ -299,6 +320,53 @@ function isValidPhone(phone) {
 }
 
 // ===== NOTIFICATION SYSTEM =====
+// ===== WHEN A FORM CANNOT BE SUBMITTED =====
+// The forms post to a Make.com webhook. If that webhook is not configured, or the
+// request fails, the visitor has typed a real enquiry and it must not simply
+// disappear behind a red box. This hands them the same message over a channel
+// that works right now, with what they wrote already in it.
+var CONTACT = {
+    phone: '+380981501498',
+    phoneLabel: '+380 98 150 14 98',
+    telegram: 'https://t.me/bodyhealthclinic',
+    whatsapp: '380981501498',
+};
+
+var FALLBACK_TEXT = {
+    uk: {
+        lead: 'Не вдалося надіслати форму. Напишіть нам напряму — ваше повідомлення вже готове:',
+        wa: 'Надіслати у WhatsApp',
+        tg: 'Написати в Telegram',
+        call: 'Зателефонувати',
+    },
+    en: {
+        lead: 'The form could not be sent. Message us directly — your enquiry is ready to go:',
+        wa: 'Send on WhatsApp',
+        tg: 'Message on Telegram',
+        call: 'Call us',
+    },
+    ru: {
+        lead: 'Не удалось отправить форму. Напишите нам напрямую — ваше сообщение уже готово:',
+        wa: 'Отправить в WhatsApp',
+        tg: 'Написать в Telegram',
+        call: 'Позвонить',
+    },
+};
+
+function offerDirectContact(summary) {
+    var lang = (document.documentElement.lang || 'uk').slice(0, 2);
+    var t = FALLBACK_TEXT[lang] || FALLBACK_TEXT.uk;
+    var wa = 'https://wa.me/' + CONTACT.whatsapp + '?text=' + encodeURIComponent(summary);
+    showNotification(
+        '<div style="line-height:1.5">' +
+        '<div style="margin-bottom:.6rem">' + t.lead + '</div>' +
+        '<div style="display:flex;flex-direction:column;gap:.35rem">' +
+        '<a href="' + wa + '" target="_blank" rel="noopener" style="color:inherit;font-weight:600">' + t.wa + '</a>' +
+        '<a href="' + CONTACT.telegram + '" target="_blank" rel="noopener" style="color:inherit;font-weight:600">' + t.tg + '</a>' +
+        '<a href="tel:' + CONTACT.phone + '" style="color:inherit;font-weight:600">' + t.call + ' ' + CONTACT.phoneLabel + '</a>' +
+        '</div></div>', 'error');
+}
+
 function showNotification(message, type = 'info') {
     const existingNotifications = document.querySelectorAll('.notification');
     existingNotifications.forEach(notification => notification.remove());
@@ -367,12 +435,16 @@ function showNotification(message, type = 'info') {
         setTimeout(() => notification.remove(), 300);
     });
 
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.style.animation = 'slideOutRight 0.3s ease';
-            setTimeout(() => notification.remove(), 300);
-        }
-    }, 6000);
+    // A notice that hands the visitor a link to follow must not slide away
+    // while they are reading it.
+    if (!notification.querySelector('a')) {
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }
+        }, 6000);
+    }
 }
 
 // ===== SCROLL TO TOP BUTTON =====
