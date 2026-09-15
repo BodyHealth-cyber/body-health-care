@@ -805,3 +805,94 @@ document.addEventListener('click', function(e) {
     }
     }
 })();
+
+// ===== NEWSLETTER SUBSCRIPTION =====
+// Two subscribe boxes live in the blog: the sidebar widget on the index and the
+// wide band at the foot of the hypertension article. Until now neither had a
+// handler or a name on its input, so submitting did a plain GET: the page
+// reloaded and the address was gone. They post to the same Make webhook as the
+// enquiry forms, marked form_type: 'newsletter' so the scenario can tell them
+// apart. Deferred, because this file is loaded before the markup on some pages.
+(function () {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initNewsletterForms);
+    } else {
+        initNewsletterForms();
+    }
+
+    function initNewsletterForms() {
+        var forms = document.querySelectorAll('form.newsletter-form[data-make-webhook], form.newsletter-form-large[data-make-webhook]');
+        Array.prototype.forEach.call(forms, function (form) {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                var t = newsletterMessages();
+                var input = form.querySelector('input[type="email"]');
+                var email = input ? String(input.value || '').trim() : '';
+                var webhookUrl = form.dataset.makeWebhook || '';
+
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    showNotification(t.invalidEmail, 'error');
+                    return;
+                }
+                if (!/^https?:\/\//.test(webhookUrl)) {
+                    showNotification(t.error, 'error');
+                    return;
+                }
+
+                var btn = form.querySelector('button[type="submit"]');
+                var originalText = btn ? btn.textContent : '';
+                if (btn) { btn.textContent = t.sending; btn.disabled = true; }
+
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        form_type: 'newsletter',
+                        subject: 'BodyHealth — підписка на розсилку',
+                        email: email,
+                        timestamp: new Date().toISOString(),
+                        source_page: window.location.href
+                    })
+                }).then(function (r) {
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    showNotification(t.success, 'success');
+                    form.reset();
+                    if (typeof trackEvent === 'function') trackEvent('newsletter_subscribe', { page: window.location.pathname });
+                }).catch(function (err) {
+                    console.error('Newsletter submission error:', err);
+                    // what they typed stays in the field
+                    showNotification(t.error, 'error');
+                    if (typeof trackEvent === 'function') trackEvent('newsletter_error', { error: err.message });
+                }).then(function () {
+                    if (btn) { btn.textContent = originalText; btn.disabled = false; }
+                });
+            });
+        });
+    }
+
+    function newsletterMessages() {
+        var lang = (document.documentElement.lang || 'uk').slice(0, 2);
+        var dict = {
+            uk: {
+                sending: 'Надсилаємо…',
+                success: 'Дякуємо! Ви підписані на розсилку.',
+                error: 'Не вдалося підписатися. Напишіть нам на info@body-health.care',
+                invalidEmail: 'Введіть коректну електронну адресу'
+            },
+            en: {
+                sending: 'Sending…',
+                success: 'Thank you! You are subscribed.',
+                error: 'Could not subscribe. Please write to info@body-health.care',
+                invalidEmail: 'Please enter a valid email address'
+            },
+            ru: {
+                sending: 'Отправляем…',
+                success: 'Спасибо! Вы подписаны на рассылку.',
+                error: 'Не удалось подписаться. Напишите нам на info@body-health.care',
+                invalidEmail: 'Введите корректный адрес электронной почты'
+            }
+        };
+        return dict[lang] || dict.uk;
+    }
+})();

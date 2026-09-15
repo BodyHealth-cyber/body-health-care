@@ -732,6 +732,7 @@
             fd.forEach(function(v, k) { if (k !== 'goals') obj[k] = v; });
             obj.goals = goals;
             obj.form_type = 'b2b';
+            obj.subject = 'BodyHealth B2B — ' + (obj.companyName || 'Заявка від компанії');
             obj.timestamp = new Date().toISOString();
             obj.source_page = window.location.href;
 
