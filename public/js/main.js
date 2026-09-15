@@ -1,62 +1,32 @@
 // ===== LANGUAGE SWITCHER =====
-// Each locale is a real page generated at build time (/ , /en/ , /ru/), so the
-// switcher navigates rather than swapping text in place. Nothing is translated
-// client-side: the markup a visitor — or a crawler — receives is already in the
-// right language, with no flash of the wrong one.
+// Each locale is a real page generated at build time (/ , /en/ , /ru/), and
+// build-locales.py already writes the correct href and active state into every
+// entry of this menu. Nothing here decides what the links point at — the menu
+// works with JavaScript disabled, and this only opens and closes it.
 (function () {
-    var DEFAULT_LANG = 'uk';
-    var LOCALES = ['uk', 'en', 'ru'];
-    var PREFIX = /^\/(en|ru)(?=\/|$)/;
+    function init() {
+        var toggle = document.getElementById('langToggle');
+        var menu = document.querySelector('.lang-menu');
+        if (!toggle || !menu) return;
 
-    function currentLang() {
-        var m = location.pathname.match(PREFIX);
-        return m ? m[1] : DEFAULT_LANG;
-    }
-
-    function urlFor(lang) {
-        var path = location.pathname.replace(PREFIX, '');
-        if (path.charAt(0) !== '/') path = '/' + path;
-        return (lang === DEFAULT_LANG ? '' : '/' + lang) + path + location.search + location.hash;
-    }
-
-    function initLanguageSwitcher() {
-        var lang = currentLang();
-
-        var langToggle = document.getElementById('langToggle');
-        if (langToggle) langToggle.textContent = lang.toUpperCase();
-
-        var langMenu = document.querySelector('.lang-menu');
-        if (langToggle && langMenu) {
-            langToggle.addEventListener('click', function (e) {
-                e.stopPropagation();
-                langMenu.classList.toggle('open');
-            });
-            document.addEventListener('click', function (e) {
-                if (!langToggle.contains(e.target) && !langMenu.contains(e.target)) {
-                    langMenu.classList.remove('open');
-                }
-            });
-        }
-
-        // Give every entry a real href so it works without JS and can be opened
-        // in a new tab like any other link.
-        document.querySelectorAll('.lang-menu a[data-lang], .mobile-lang-menu a[data-lang]').forEach(function (a) {
-            var target = a.dataset.lang;
-            if (LOCALES.indexOf(target) === -1) return;
-            a.setAttribute('href', urlFor(target));
-            a.classList.toggle('lang-active', target === lang);
+        toggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            menu.classList.toggle('open');
         });
-
-        var mobileCurrent = document.querySelector('.mobile-lang-current');
-        if (mobileCurrent) mobileCurrent.textContent = lang.toUpperCase();
-
-        document.documentElement.lang = lang;
+        document.addEventListener('click', function (e) {
+            if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+                menu.classList.remove('open');
+            }
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') menu.classList.remove('open');
+        });
     }
 
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
+        document.addEventListener('DOMContentLoaded', init);
     } else {
-        initLanguageSwitcher();
+        init();
     }
 })();
 

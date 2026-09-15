@@ -23,6 +23,11 @@ OG_LOCALE = {'en': 'en_US', 'ru': 'ru_RU', 'uk': 'uk_UA'}
 ATTRS = ('content', 'placeholder', 'alt', 'aria-label', 'title')
 ASSET = re.compile(r'/(css|js|img|favicon|robots|sitemap)')
 
+# privacy.html states each clause in English, Ukrainian and Russian on purpose.
+# Those paragraphs are the legal text itself and must appear verbatim in every
+# locale, so they are lifted out before translation and put back afterwards.
+KEEP = re.compile(r'<p class="lang">.*?</p>', re.DOTALL)
+
 
 def translatable(t):
     return len(t.strip()) >= 2 and bool(re.search(r'[А-Яа-яІЇЄҐіїєґ]', t))
@@ -31,6 +36,12 @@ def translatable(t):
 def render(html, cat, lang, rel):
     """Return (html, hits, misses) for one page in one locale."""
     hits, misses = [], []
+
+    kept = []
+    def stash(m):
+        kept.append(m.group(0))
+        return f'\x00KEEP{len(kept) - 1}\x00'
+    html = KEEP.sub(stash, html)
 
     def text_node(m):
         lead, body, tail = m.group(1), m.group(2), m.group(3)
@@ -73,7 +84,52 @@ def render(html, cat, lang, rel):
                   lambda m: m.group(1) + f'{SITE}/{lang}/{page}' + m.group(2), html, count=1)
     html = re.sub(r'(<meta property="og:locale" content=")[^"]*(")',
                   lambda m: m.group(1) + OG_LOCALE[lang] + m.group(2), html, count=1)
+
+    html = re.sub(r'\x00KEEP(\d+)\x00', lambda m: kept[int(m.group(1))], html)
     return html, hits, misses
+
+
+def lang_links(html, rel, langs, current):
+    """Point each entry of the language menu at that locale's copy of this page.
+
+    Written at build time rather than by the switcher script: the links then work
+    without JavaScript, can be opened in a new tab, and are followable by a
+    crawler. Locales that did not clear COVERAGE for this page are dropped from
+    the menu instead of offering a page that was never generated.
+    """
+    page = '' if rel == 'index.html' else rel
+    available = {DEFAULT: f'/{page}'}
+    for l in langs:
+        available[l] = f'/{l}/{page}'
+
+    def one(m):
+        whole, target = m.group(0), m.group(2)
+        if target not in available:
+            return ''  # locale not published for this page
+        whole = re.sub(r'href="[^"]*"', f'href="{available[target]}"', whole)
+        cls = ' lang-active' if target == current else ''
+        whole = re.sub(r'\sclass="[^"]*"', '', whole)
+        if cls:
+            whole = whole.replace('<a ', '<a class="lang-active" ', 1)
+        return whole
+
+    if len(available) == 1:
+        # Only one language exists for this page — a switcher offering a single
+        # choice is noise, so drop the control rather than show a dead menu.
+        # anchor on the menu's own </ul></div>, not the next </div></div> —
+        # the latter swallows the login and CTA buttons that follow it
+        return re.sub(r'\s*<div class="language-switcher">.*?</ul>\s*</div>',
+                      '', html, count=1, flags=re.DOTALL)
+
+    html = re.sub(r'(<a\b[^>]*\bdata-lang="(\w+)"[^>]*>)(.*?)(</a>)',
+                  lambda m: (one(m) + m.group(3) + m.group(4)) if one(m) else '',
+                  html, flags=re.DOTALL)
+    # drop list items left empty by a removed locale
+    html = re.sub(r'<li>\s*</li>', '', html)
+    # the toggle shows the language you are currently reading
+    html = re.sub(r'(<button class="current-lang"[^>]*>)[^<]*(</button>)',
+                  lambda m: m.group(1) + current.upper() + m.group(2), html, count=1)
+    return html
 
 
 def hreflang(rel, langs):
@@ -122,16 +178,19 @@ def main():
     for rel in pages:
         langs = built[rel]
         block = hreflang(rel, langs) if (langs and rel != '404.html') else None
+        s = sources[rel]
+        s = re.sub(r'\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*">', '', s)
         if block:
-            s = sources[rel]
-            s = re.sub(r'\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*">', '', s)
             s = s.replace('<link rel="canonical"', block + '\n    <link rel="canonical"', 1)
-            open(os.path.join('dist', rel), 'w', encoding='utf-8').write(s)
+        s = lang_links(s, rel, langs, DEFAULT)
+        open(os.path.join('dist', rel), 'w', encoding='utf-8').write(s)
+
         for lang in langs:
             html = rendered[(lang, rel)]
+            html = re.sub(r'\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*">', '', html)
             if block:
-                html = re.sub(r'\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*">', '', html)
                 html = html.replace('<link rel="canonical"', block + '\n    <link rel="canonical"', 1)
+            html = lang_links(html, rel, langs, lang)
             dst = os.path.join('dist', lang, rel)
             os.makedirs(os.path.dirname(dst), exist_ok=True)
             open(dst, 'w', encoding='utf-8').write(html)
