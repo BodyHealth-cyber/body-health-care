@@ -4595,6 +4595,13 @@ a:hover {
 
     .nav-toggle {
         display: flex;
+        /* Nothing else in the row pushes it right: the desktop nav-actions are
+           hidden here and the mobile language switcher is not present on every
+           page, so the toggle was left sitting next to the logo. */
+        margin-left: auto;
+        /* cancel the button's own padding so the icon lines up with the
+           container edge while the tap target still reaches toward the corner */
+        margin-right: -0.5rem;
     }
 
     .nav-actions {
@@ -5036,8 +5043,34 @@ a:hover {
     right: 1.5rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.75rem;
     z-index: 9000;
+}
+
+/* The scroll-to-top button used to be positioned fixed in the same corner as
+   this stack, so it sat underneath the WhatsApp button. It is now a member of
+   the stack and the flex column keeps them apart. */
+.float-contacts .scroll-to-top {
+    order: -1;
+    position: static;
+    width: 52px;
+    height: 52px;
+    border: none;
+    border-radius: 50%;
+    background-color: #1e4fa8;
+    color: #ffffff;
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.float-contacts .scroll-to-top:hover {
+    background-color: #163a80;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
 }
 
 .float-btn {
@@ -5149,7 +5182,8 @@ a:hover {
         right: 1rem;
     }
 
-    .float-btn {
+    .float-btn,
+    .float-contacts .scroll-to-top {
         width: 46px;
         height: 46px;
         font-size: 1.2rem;

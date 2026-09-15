@@ -448,55 +448,48 @@ function showNotification(message, type = 'info') {
 }
 
 // ===== SCROLL TO TOP BUTTON =====
+// Placed inside the floating contact stack rather than positioned in the same
+// corner independently: as two separately fixed elements they landed on top of
+// each other, and the button showed through from behind the WhatsApp circle.
+// Sizing, spacing and the mobile breakpoint all live in style.css.
 function createScrollToTopButton() {
-    const button = document.createElement('button');
-    button.innerHTML = '↑';
+    var button = document.createElement('button');
+    button.type = 'button';
     button.className = 'scroll-to-top';
-    button.setAttribute('aria-label', 'Наверх');
+    button.innerHTML = '\u2191';
 
-    function applyButtonLayout() {
-        const isMobile = window.matchMedia('(max-width: 768px)').matches;
-        const size = isMobile ? 44 : 50;
-        const offset = isMobile ? 16 : 24;
+    var LABEL = { uk: 'Догори', en: 'Back to top', ru: 'Наверх' };
+    var lang = (document.documentElement.lang || 'uk').slice(0, 2);
+    button.setAttribute('aria-label', LABEL[lang] || LABEL.uk);
+    button.setAttribute('title', LABEL[lang] || LABEL.uk);
+    button.hidden = true;
 
-        button.style.cssText = `
-            position: fixed;
-            bottom: max(${offset}px, env(safe-area-inset-bottom));
-            right: max(${offset}px, env(safe-area-inset-right));
-            width: ${size}px;
-            height: ${size}px;
-            background-color: #1e4fa8;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-            z-index: 1000;
-            font-size: ${isMobile ? 16 : 18}px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            transition: background-color 0.2s, transform 0.2s;
-        `;
+    var stack = document.querySelector('.float-contacts');
+    if (stack) {
+        stack.appendChild(button);
+    } else {
+        // no contact stack on this page — stand alone, clear of the corner
+        button.style.position = 'fixed';
+        button.style.right = '1.5rem';
+        button.style.bottom = '2rem';
+        button.style.zIndex = '9000';
+        document.body.appendChild(button);
     }
 
-    applyButtonLayout();
-
-    button.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    button.addEventListener('mouseenter', () => {
-        button.style.backgroundColor = '#163a80';
-        button.style.transform = 'scale(1.1)';
-    });
-    button.addEventListener('mouseleave', () => {
-        button.style.backgroundColor = '#1e4fa8';
-        button.style.transform = 'scale(1)';
+    button.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    document.body.appendChild(button);
-
-    window.addEventListener('scroll', () => {
-        button.style.display = window.pageYOffset > 300 ? 'block' : 'none';
-    }, { passive: true });
-
-    window.addEventListener('resize', applyButtonLayout);
+    var shown = false;
+    function sync() {
+        var should = window.pageYOffset > 300;
+        if (should !== shown) {
+            shown = should;
+            button.hidden = !should;
+        }
+    }
+    sync();
+    window.addEventListener('scroll', sync, { passive: true });
 }
 
 createScrollToTopButton();
