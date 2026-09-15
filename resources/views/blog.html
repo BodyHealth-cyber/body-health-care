@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Блог о здоровье | Экспертные статьи от команды BodyHealth</title>
-    <meta name="description" content="Читайте экспертные статьи о здоровье, профилактике заболеваний и современных методах лечения от специалистов BodyHealth">
+    <title>Блог про здоров'я | Експертні статті від команди BodyHealth</title>
+    <meta name="description" content="Читайте експертні статті про здоров'я, профілактику захворювань та сучасні методи лікування від фахівців BodyHealth">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Блог о здоровье | BodyHealth">
-    <meta property="og:description" content="Экспертные статьи о здоровье, профилактике заболеваний и современных методах лечения">
+    <meta property="og:title" content="Блог про здоров'я | BodyHealth">
+    <meta property="og:description" content="Експертні статті про здоров'я, профілактику захворювань та сучасні методи лікування">
     <meta property="og:type" content="website">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css?v=20260915">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <script src="/js/translations.js"></script>
+    <script src="/js/translations.js?v=20260915"></script>
 </head>
 <body>
     <!-- Header -->
@@ -27,44 +27,53 @@
         <div class="container">
             <nav class="nav">
                 <div class="nav-brand">
-                    <a href="/" class="logo">
-                        <img src="/img/logo_no_bg.png" alt="BodyHealth" class="logo-img" style="height:55px;"/>
+                    <a href="/" class="logo" aria-label="BodyHealth">
+                        <img src="/img/logo_no_bg.png" alt="BodyHealth" class="logo-img" style="height:40px; filter:brightness(0) invert(1);"/>
+                        <span style="margin-left:8px; color:#fff; font-weight:600;">BodyHealth</span>
                     </a>
                 </div>
-                
-                <ul class="nav-menu">
+
+                <ul class="nav-menu" id="navMenu">
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">Услуги <i class="fas fa-chevron-down"></i></a>
+                        <a href="#" class="nav-link" data-i18n="nav_services">Послуги <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="services/healthcare.html">Personal Care ($250/мес)</a></li>
-                            <li><a href="services/ambulance.html">Integrated Care ($500/мес)</a></li>
-                            <li><a href="services/checkup.html">HealthCheckup ($100)</a></li>
+                            <li><a href="/services/healthcare.html">Personal Care ($250/міс)</a></li>
+                            <li><a href="/services/ambulance.html">Integrated Care ($500/міс)</a></li>
+                            <li><a href="/services/checkup.html">HealthCheckup ($100)</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="for-companies.html" class="nav-link">Для компаний</a>
+                        <a href="/for-companies.html" class="nav-link" data-i18n="nav_companies">Для компаній</a>
                     </li>
                     <li class="nav-item">
-                        <a href="blog.html" class="nav-link active">Блог</a>
+                        <a href="/blog.html" class="nav-link active" data-i18n="nav_blog">Блог</a>
                     </li>
                 </ul>
 
                 <div class="nav-actions">
                     <div class="language-switcher">
-                        <span class="current-lang">RU</span>
-                        <ul class="lang-menu">
+                        <button class="current-lang" id="langToggle" aria-label="Мова / Language">UK</button>
+                        <ul class="lang-menu" id="langMenu">
+                            <li><a href="#" data-lang="uk">UK</a></li>
                             <li><a href="#" data-lang="en">EN</a></li>
-                            <li><a href="#" data-lang="uk">UA</a></li>
+                            <li><a href="#" data-lang="ru">RU</a></li>
                         </ul>
                     </div>
-                    <a href="login.html" class="btn btn-white">Вход</a>
-                    <a href="index.html#contact-form" class="btn btn-primary">Начать сопровождение</a>
+                    <a href="/login.html" class="btn btn-white" data-i18n="nav_login">Вхід</a>
+                    <a href="/#contact-form" class="btn btn-primary" data-i18n="nav_cta">Почати супровід</a>
                 </div>
 
-                <button class="nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <div class="mobile-lang-switcher" id="mobileLangSwitcher">
+                    <button class="mobile-lang-current" id="mobileLangToggle">UK</button>
+                    <ul class="mobile-lang-menu" id="mobileLangMenu">
+                        <li><a href="#" class="mobile-lang-link" data-lang="uk">UK</a></li>
+                        <li><a href="#" class="mobile-lang-link" data-lang="en">EN</a></li>
+                        <li><a href="#" class="mobile-lang-link" data-lang="ru">RU</a></li>
+                    </ul>
+                </div>
+
+                <button class="nav-toggle" id="navToggle" aria-label="Меню">
+                    <span></span><span></span><span></span>
                 </button>
             </nav>
         </div>
@@ -77,23 +86,23 @@
             <div class="container">
                 <div class="blog-hero-content">
                     <div class="breadcrumb">
-                        <a href="/">Главная</a> / <span>Блог</span>
+                        <a href="/">Головна</a> / <span>Блог</span>
                     </div>
-                    <h1>Блог о здоровье</h1>
-                    <p class="blog-subtitle">Экспертные статьи о профилактике заболеваний, современных методах лечения и поддержании здорового образа жизни от команды сертифицированных специалистов BodyHealth</p>
+                    <h1 data-i18n="blog_h1">Блог про здоров'я</h1>
+                    <p class="blog-subtitle">Експертні статті про профілактику захворювань, сучасні методи лікування та підтримання здорового способу життя від команди сертифікованих спеціалістів BodyHealth</p>
                     
                     <div class="blog-stats">
                         <div class="blog-stat">
                             <span class="stat-number">150+</span>
-                            <span class="stat-label">Экспертных статей</span>
+                            <span class="stat-label">Експертних статей</span>
                         </div>
                         <div class="blog-stat">
                             <span class="stat-number">70+</span>
-                            <span class="stat-label">Авторов-специалистов</span>
+                            <span class="stat-label">Авторів-фахівців</span>
                         </div>
                         <div class="blog-stat">
                             <span class="stat-number">25K+</span>
-                            <span class="stat-label">Читателей ежемесячно</span>
+                            <span class="stat-label">Читачів щомісяця</span>
                         </div>
                     </div>
                 </div>
@@ -105,16 +114,16 @@
             <div class="container">
                 <div class="filter-container">
                     <div class="filter-group">
-                        <h3>Категории:</h3>
+                        <h3>Категорії:</h3>
                         <div class="filter-buttons">
-                            <button class="filter-btn active" data-category="all">Все статьи</button>
-                            <button class="filter-btn" data-category="prevention">Профилактика</button>
-                            <button class="filter-btn" data-category="cardiology">Кардиология</button>
-                            <button class="filter-btn" data-category="endocrinology">Эндокринология</button>
-                            <button class="filter-btn" data-category="neurology">Неврология</button>
-                            <button class="filter-btn" data-category="nutrition">Питание</button>
-                            <button class="filter-btn" data-category="mental-health">Психическое здоровье</button>
-                            <button class="filter-btn" data-category="lifestyle">Образ жизни</button>
+                            <button class="filter-btn active" data-category="all">Всі статті</button>
+                            <button class="filter-btn" data-category="prevention">Профілактика</button>
+                            <button class="filter-btn" data-category="cardiology">Кардіологія</button>
+                            <button class="filter-btn" data-category="endocrinology">Ендокринологія</button>
+                            <button class="filter-btn" data-category="neurology">Неврологія</button>
+                            <button class="filter-btn" data-category="nutrition">Харчування</button>
+                            <button class="filter-btn" data-category="mental-health">Психічне здоров'я</button>
+                            <button class="filter-btn" data-category="lifestyle">Спосіб життя</button>
                         </div>
                     </div>
                     
@@ -132,35 +141,35 @@
         <section class="featured-article">
             <div class="container">
                 <div class="section-header">
-                    <h2>Рекомендуемая статья</h2>
+                    <h2>Рекомендована стаття</h2>
                 </div>
                 
                 <article class="featured-post">
                     <div class="featured-content">
                         <div class="post-meta">
-                            <span class="post-category cardiology">Кардиология</span>
-                            <span class="post-date">15 декабря 2024</span>
-                            <span class="post-read-time">8 мин чтения</span>
+                            <span class="post-category cardiology">Кардіологія</span>
+                            <span class="post-date">15 грудня 2024</span>
+                            <span class="post-read-time">8 хв читання</span>
                         </div>
                         
-                        <h2><a href="blog/managing-hypertension-2024.html">Современные подходы к управлению артериальной гипертензией в 2024 году</a></h2>
+                        <h2><a href="blog/managing-hypertension-2024.html">Сучасні підходи до управління артеріальною гіпертензією у 2024 році</a></h2>
                         
-                        <p class="post-excerpt">Артериальная гипертензия остается одним из ведущих факторов риска сердечно-сосудистых заболеваний. В этой статье рассматриваем последние рекомендации по диагностике, лечению и профилактике повышенного давления...</p>
+                        <p class="post-excerpt">Артеріальна гіпертензія залишається одним із провідних факторів ризику серцево-судинних захворювань. У цій статті розглядаємо останні рекомендації щодо діагностики, лікування та профілактики підвищеного тиску...</p>
                         
                         <div class="post-author">
                             <div class="author-info">
                                 <div class="author-name">Д-р Яна Кочержинская</div>
-                                <div class="author-title">CEO & Medical Director, кардиолог</div>
+                                <div class="author-title">CEO & Medical Director, кардіолог</div>
                             </div>
                         </div>
                         
-                        <a href="blog/managing-hypertension-2024.html" class="btn btn-outline">Читать статью</a>
+                        <a href="blog/managing-hypertension-2024.html" class="btn btn-outline">Читати статтю</a>
                     </div>
                     
                     <div class="featured-image">
                         <div class="image-placeholder">
                             <i class="fas fa-heartbeat"></i>
-                            <span>Изображение статьи</span>
+                            <span>Зображення статті</span>
                         </div>
                     </div>
                 </article>
@@ -178,18 +187,18 @@
                                 <div class="image-placeholder">
                                     <i class="fas fa-apple-alt"></i>
                                 </div>
-                                <div class="post-category-badge prevention">Профилактика</div>
+                                <div class="post-category-badge prevention">Профілактика</div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
-                                    <span class="post-date">12 декабря 2024</span>
-                                    <span class="post-read-time">5 мин</span>
+                                    <span class="post-date">12 грудня 2024</span>
+                                    <span class="post-read-time">5 хв</span>
                                 </div>
-                                <h3><a href="blog/diabetes-prevention-guide.html">10 научно обоснованных способов профилактики диабета 2 типа</a></h3>
-                                <p class="post-excerpt">Диабет 2 типа можно предотвратить в 90% случаев. Рассказываем о доказанных методах профилактики на основе последних исследований...</p>
+                                <h3><a href="blog/diabetes-prevention-guide.html">10 науково обґрунтованих способів профілактики діабету 2 типу</a></h3>
+                                <p class="post-excerpt">Діабет 2 типу можна попередити у 90% випадків. Розповідаємо про доведені методи профілактики на основі останніх досліджень...</p>
                                 <div class="post-author">
                                     <span class="author-name">Д-р Сергей Пилкевич</span>
-                                    <span class="author-specialty">Эндокринолог</span>
+                                    <span class="author-specialty">Ендокринолог</span>
                                 </div>
                             </div>
                         </article>
@@ -200,15 +209,15 @@
                                 <div class="image-placeholder">
                                     <i class="fas fa-brain"></i>
                                 </div>
-                                <div class="post-category-badge mental-health">Психическое здоровье</div>
+                                <div class="post-category-badge mental-health">Психічне здоров'я</div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
-                                    <span class="post-date">10 декабря 2024</span>
-                                    <span class="post-read-time">7 мин</span>
+                                    <span class="post-date">10 грудня 2024</span>
+                                    <span class="post-read-time">7 хв</span>
                                 </div>
-                                <h3><a href="blog/stress-management-techniques.html">Управление стрессом: проверенные техники для работающих профессионалов</a></h3>
-                                <p class="post-excerpt">Хронический стресс негативно влияет на все системы организма. Изучаем эффективные методы управления стрессом в условиях современной жизни...</p>
+                                <h3><a href="blog/stress-management-techniques.html">Управління стресом: перевірені техніки для працюючих професіоналів</a></h3>
+                                <p class="post-excerpt">Хронічний стрес негативно впливає на всі системи організму. Вивчаємо ефективні методи управління стресом в умовах сучасного життя...</p>
                                 <div class="post-author">
                                     <span class="author-name">Д-р Анна Смирнова</span>
                                     <span class="author-specialty">Психолог, нейропсихолог</span>
@@ -222,15 +231,15 @@
                                 <div class="image-placeholder">
                                     <i class="fas fa-bed"></i>
                                 </div>
-                                <div class="post-category-badge neurology">Неврология</div>
+                                <div class="post-category-badge neurology">Неврологія</div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
-                                    <span class="post-date">8 декабря 2024</span>
-                                    <span class="post-read-time">6 мин</span>
+                                    <span class="post-date">8 грудня 2024</span>
+                                    <span class="post-read-time">6 хв</span>
                                 </div>
-                                <h3><a href="blog/sleep-hygiene-guide.html">Гигиена сна: как качественный отдых влияет на здоровье и продуктивность</a></h3>
-                                <p class="post-excerpt">Недостаток сна связан с повышенным риском множества заболеваний. Разбираем принципы здорового сна и практические рекомендации...</p>
+                                <h3><a href="blog/sleep-hygiene-guide.html">Гігієна сну: як якісний відпочинок впливає на здоров'я та продуктивність</a></h3>
+                                <p class="post-excerpt">Нестача сну пов'язана з підвищеним ризиком безлічі захворювань. Розбираємо принципи здорового сну та практичні рекомендації...</p>
                                 <div class="post-author">
                                     <span class="author-name">Д-р Михаил Волков</span>
                                     <span class="author-specialty">Невролог, сомнолог</span>
@@ -244,18 +253,18 @@
                                 <div class="image-placeholder">
                                     <i class="fas fa-leaf"></i>
                                 </div>
-                                <div class="post-category-badge nutrition">Питание</div>
+                                <div class="post-category-badge nutrition">Харчування</div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
-                                    <span class="post-date">5 декабря 2024</span>
-                                    <span class="post-read-time">9 мин</span>
+                                    <span class="post-date">5 грудня 2024</span>
+                                    <span class="post-read-time">9 хв</span>
                                 </div>
-                                <h3><a href="blog/mediterranean-diet-benefits.html">Средиземноморская диета: научные доказательства пользы для здоровья</a></h3>
-                                <p class="post-excerpt">Средиземноморская диета признана одной из самых здоровых в мире. Анализируем исследования и практические рекомендации по внедрению...</p>
+                                <h3><a href="blog/mediterranean-diet-benefits.html">Середземноморська дієта: наукові докази користі для здоров'я</a></h3>
+                                <p class="post-excerpt">Середземноморська дієта визнана однією з найздоровіших у світі. Аналізуємо дослідження та практичні рекомендації щодо впровадження...</p>
                                 <div class="post-author">
                                     <span class="author-name">Д-р Елена Петрова</span>
-                                    <span class="author-specialty">Диетолог, нутрициолог</span>
+                                    <span class="author-specialty">Дієтолог, нутриціолог</span>
                                 </div>
                             </div>
                         </article>
@@ -266,18 +275,18 @@
                                 <div class="image-placeholder">
                                     <i class="fas fa-running"></i>
                                 </div>
-                                <div class="post-category-badge cardiology">Кардиология</div>
+                                <div class="post-category-badge cardiology">Кардіологія</div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
-                                    <span class="post-date">3 декабря 2024</span>
-                                    <span class="post-read-time">4 мин</span>
+                                    <span class="post-date">3 грудня 2024</span>
+                                    <span class="post-read-time">4 хв</span>
                                 </div>
-                                <h3><a href="blog/cardio-exercise-guide.html">Кардиотренировки: оптимальная нагрузка для здоровья сердца</a></h3>
-                                <p class="post-excerpt">Регулярные кардиотренировки снижают риск сердечно-сосудистых заболеваний на 35%. Определяем оптимальную интенсивность и продолжительность...</p>
+                                <h3><a href="blog/cardio-exercise-guide.html">Кардіотренування: оптимальне навантаження для здоров'я серця</a></h3>
+                                <p class="post-excerpt">Регулярні кардіотренування знижують ризик серцево-судинних захворювань на 35%. Визначаємо оптимальну інтенсивність та тривалість...</p>
                                 <div class="post-author">
                                     <span class="author-name">Д-р Андрей Козлов</span>
-                                    <span class="author-specialty">Кардиолог, спортивная медицина</span>
+                                    <span class="author-specialty">Кардіолог, спортивна медицина</span>
                                 </div>
                             </div>
                         </article>
@@ -288,18 +297,18 @@
                                 <div class="image-placeholder">
                                     <i class="fas fa-pills"></i>
                                 </div>
-                                <div class="post-category-badge endocrinology">Эндокринология</div>
+                                <div class="post-category-badge endocrinology">Ендокринологія</div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
-                                    <span class="post-date">1 декабря 2024</span>
-                                    <span class="post-read-time">8 мин</span>
+                                    <span class="post-date">1 грудня 2024</span>
+                                    <span class="post-read-time">8 хв</span>
                                 </div>
-                                <h3><a href="blog/thyroid-health-guide.html">Здоровье щитовидной железы: ранняя диагностика и профилактика</a></h3>
-                                <p class="post-excerpt">Заболевания щитовидной железы часто протекают бессимптомно на ранних стадиях. Рассматриваем методы ранней диагностики и профилактики...</p>
+                                <h3><a href="blog/thyroid-health-guide.html">Здоров'я щитовидної залози: рання діагностика та профілактика</a></h3>
+                                <p class="post-excerpt">Захворювання щитовидної залози часто протікають безсимптомно на ранніх стадіях. Розглядаємо методи ранньої діагностики та профілактики...</p>
                                 <div class="post-author">
                                     <span class="author-name">Д-р Ольга Лебедева</span>
-                                    <span class="author-specialty">Эндокринолог</span>
+                                    <span class="author-specialty">Ендокринолог</span>
                                 </div>
                             </div>
                         </article>
@@ -308,20 +317,20 @@
                     <!-- Sidebar -->
                     <aside class="blog-sidebar">
                         <div class="sidebar-widget">
-                            <h3>Популярные темы</h3>
+                            <h3>Популярні теми</h3>
                             <div class="topics-cloud">
-                                <a href="#" class="topic-tag" data-category="prevention">Профилактика</a>
-                                <a href="#" class="topic-tag" data-category="nutrition">Питание</a>
-                                <a href="#" class="topic-tag" data-category="cardiology">Кардиология</a>
-                                <a href="#" class="topic-tag" data-category="mental-health">Стресс</a>
-                                <a href="#" class="topic-tag" data-category="lifestyle">Образ жизни</a>
-                                <a href="#" class="topic-tag" data-category="endocrinology">Диабет</a>
+                                <a href="#" class="topic-tag" data-category="prevention">Профілактика</a>
+                                <a href="#" class="topic-tag" data-category="nutrition">Харчування</a>
+                                <a href="#" class="topic-tag" data-category="cardiology">Кардіологія</a>
+                                <a href="#" class="topic-tag" data-category="mental-health">Стрес</a>
+                                <a href="#" class="topic-tag" data-category="lifestyle">Спосіб життя</a>
+                                <a href="#" class="topic-tag" data-category="endocrinology">Діабет</a>
                                 <a href="#" class="topic-tag" data-category="neurology">Сон</a>
                             </div>
                         </div>
                         
                         <div class="sidebar-widget">
-                            <h3>Наши авторы</h3>
+                            <h3>Наші автори</h3>
                             <div class="authors-list">
                                 <div class="author-item">
                                     <div class="author-avatar">
@@ -329,7 +338,7 @@
                                     </div>
                                     <div class="author-info">
                                         <div class="author-name">Д-р Яна Кочержинская</div>
-                                        <div class="author-specialty">CEO, кардиолог</div>
+                                        <div class="author-specialty">CEO, кардіолог</div>
                                     </div>
                                 </div>
                                 <div class="author-item">
@@ -338,7 +347,7 @@
                                     </div>
                                     <div class="author-info">
                                         <div class="author-name">Д-р Сергей Пилкевич</div>
-                                        <div class="author-specialty">Основатель, эндокринолог</div>
+                                        <div class="author-specialty">Засновник, ендокринолог</div>
                                     </div>
                                 </div>
                                 <div class="author-item">
@@ -354,17 +363,17 @@
                         </div>
                         
                         <div class="sidebar-widget cta-widget">
-                            <h3>Получить консультацию</h3>
-                            <p>Хотите получить персональные рекомендации от наших специалистов?</p>
-                            <a href="index.html#contact-form" class="btn btn-primary btn-small">Записаться на консультацию</a>
+                            <h3>Отримати консультацію</h3>
+                            <p>Хочете отримати персональні рекомендації від наших спеціалістів?</p>
+                            <a href="index.html#contact-form" class="btn btn-primary btn-small">Записатись на консультацію</a>
                         </div>
                         
                         <div class="sidebar-widget newsletter-widget">
-                            <h3>Подписка на новости</h3>
-                            <p>Получайте новые статьи и экспертные рекомендации прямо на почту</p>
+                            <h3>Підписка на новини</h3>
+                            <p>Отримуйте нові статті та експертні рекомендації прямо на пошту</p>
                             <form class="newsletter-form" id="newsletterForm">
                                 <input type="email" placeholder="Ваш email" required>
-                                <button type="submit" class="btn btn-outline btn-small">Подписаться</button>
+                                <button type="submit" class="btn btn-outline btn-small">Підписатися</button>
                             </form>
                         </div>
                     </aside>
@@ -374,7 +383,7 @@
                 <div class="pagination">
                     <button class="pagination-btn" disabled>
                         <i class="fas fa-chevron-left"></i>
-                        Предыдущая
+                        Попередня
                     </button>
                     <div class="pagination-numbers">
                         <button class="pagination-number active">1</button>
@@ -384,7 +393,7 @@
                         <button class="pagination-number">8</button>
                     </div>
                     <button class="pagination-btn">
-                        Следующая
+                        Наступна
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
@@ -399,7 +408,7 @@
                     <p>Наши специалисты готовы ответить на Ваши вопросы и дать индивидуальные рекомендации</p>
                     <div class="cta-actions">
                         <a href="services/checkup.html" class="btn btn-primary btn-large">HealthCheckup за $100</a>
-                        <a href="index.html#contact-form" class="btn btn-outline btn-large">Записаться на консультацию</a>
+                        <a href="index.html#contact-form" class="btn btn-outline btn-large">Записатись на консультацію</a>
                     </div>
                 </div>
             </div>
@@ -416,37 +425,26 @@
                             <img src="/img/logo_no_bg.png" alt="BodyHealth" style="height:40px; filter:brightness(0) invert(1);"/>
                         </div>
                         <p>Персонализированная система медицинского сопровождения с доказательным подходом</p>
-                        <div class="footer-ctas">
-                            <a href="tel:+380981501498" class="footer-cta cta-phone">
-                                <span class="cta-icon"><i class="fas fa-phone"></i></span>
-                                <span class="cta-label">
-                                    <small data-i18n="footer_cta_call_sub">Зв'язатись зараз</small>
-                                    <span>+380 98 150 14 98</span>
-                                </span>
+                        <div class="footer-links">
+                            <a href="tel:+380981501498" class="footer-link fl-phone">
+                                <span class="fl-icon"><i class="fas fa-phone"></i></span>
+                                <span data-i18n="footer_cta_call_sub">Зв'язатись зараз</span>
                             </a>
-                            <a href="https://t.me/bodyhealthclinic" target="_blank" rel="noopener" class="footer-cta cta-tg">
-                                <span class="cta-icon"><i class="fab fa-telegram"></i></span>
-                                <span class="cta-label">
-                                    <small data-i18n="footer_cta_write_sub">Написати у</small>
-                                    <span>Telegram</span>
-                                </span>
+                            <a href="https://t.me/bodyhealthclinic" target="_blank" rel="noopener" class="footer-link fl-tg">
+                                <span class="fl-icon"><i class="fab fa-telegram"></i></span>
+                                <span>Telegram</span>
                             </a>
-                            <a href="https://wa.me/380981501498" target="_blank" rel="noopener" class="footer-cta cta-wa">
-                                <span class="cta-icon"><i class="fab fa-whatsapp"></i></span>
-                                <span class="cta-label">
-                                    <small data-i18n="footer_cta_write_sub">Написати у</small>
-                                    <span>WhatsApp</span>
-                                </span>
+                            <a href="https://wa.me/380981501498" target="_blank" rel="noopener" class="footer-link fl-wa">
+                                <span class="fl-icon"><i class="fab fa-whatsapp"></i></span>
+                                <span>WhatsApp</span>
                             </a>
-                        </div>
-                        <div class="footer-apps">
-                            <a href="https://apps.apple.com/us/app/healthie/id1112029170" target="_blank" rel="noopener" class="app-badge">
-                                <span class="badge-icon"><i class="fab fa-apple"></i></span>
-                                <div class="badge-text"><small>Завантажте</small><span>App Store</span></div>
+                            <a href="https://apps.apple.com/us/app/healthie/id1112029170" target="_blank" rel="noopener" class="footer-link fl-apple">
+                                <span class="fl-icon"><i class="fab fa-apple"></i></span>
+                                <span>App Store</span>
                             </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.healthie.app.healthie" target="_blank" rel="noopener" class="app-badge">
-                                <span class="badge-icon"><i class="fab fa-google-play"></i></span>
-                                <div class="badge-text"><small>Завантажте</small><span>Google Play</span></div>
+                            <a href="https://play.google.com/store/apps/details?id=com.healthie.app.healthie" target="_blank" rel="noopener" class="footer-link fl-gp">
+                                <span class="fl-icon"><i class="fab fa-google-play"></i></span>
+                                <span>Google Play</span>
                             </a>
                         </div>
                     </div>
@@ -497,7 +495,7 @@
         <a href="https://wa.me/380981501498" target="_blank" rel="noopener" class="float-btn float-wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="/js/main.js?v=20260915"></script>
     
     <!-- Blog-specific JavaScript -->
     <script>
@@ -578,7 +576,7 @@
                     const email = this.querySelector('input[type="email"]').value;
                     
                     if (email) {
-                        showNotification('Спасибо! Вы успешно подписались на наши новости.', 'success');
+                        showNotification('Дякуємо! Ви успішно підписались на наші новини.', 'success');
                         this.reset();
                     }
                 });
