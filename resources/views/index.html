@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BodyHealth - Персонализированная система медицинского сопровождения</title>
-    <meta name="description" content="Междисциплинарная команда из 70+ специалистов и доказательные протоколы в удобном цифровом формате. 92% удовлетворённости пациентов.">
+    <title>BodyHealth — Персоналізована система медичного супроводу</title>
+    <meta name="description" content="Міждисциплінарна команда з 70+ спеціалістів та доказові протоколи у зручному цифровому форматі. 92% задоволеності пацієнтів.">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="BodyHealth - Персонализированная система медицинского сопровождения">
-    <meta property="og:description" content="Междисциплинарная команда из 70+ специалистов и доказательные протоколы в удобном цифровом формате">
+    <meta property="og:title" content="BodyHealth — Персоналізована система медичного супроводу">
+    <meta property="og:description" content="Міждисциплінарна команда з 70+ спеціалістів та доказові протоколи у зручному цифровому форматі">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://body-health.care/">
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -19,6 +20,9 @@
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+
+    <!-- Translations (load before main.js) -->
+    <script src="js/translations.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -34,34 +38,35 @@
 
                 <ul class="nav-menu">
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">Услуги <i class="fas fa-chevron-down"></i></a>
+                        <a href="#" class="nav-link" data-i18n="nav_services">Послуги</a>
                         <ul class="dropdown-menu">
-                            <li><a href="services/healthcare.html">Healthcare ($250/мес)</a></li>
-                            <li><a href="services/ambulance.html">Ambulance ($500/мес)</a></li>
+                            <li><a href="services/healthcare.html">Personal Care ($250/міс)</a></li>
+                            <li><a href="services/ambulance.html">Integrated Care ($500/міс)</a></li>
                             <li><a href="services/checkup.html">HealthCheckup ($100)</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="for-companies.html" class="nav-link">Для компаний</a>
+                        <a href="for-companies.html" class="nav-link" data-i18n="nav_companies">Для компаній</a>
                     </li>
                     <li class="nav-item">
-                        <a href="blog.html" class="nav-link">Блог</a>
+                        <a href="blog.html" class="nav-link" data-i18n="nav_blog">Блог</a>
                     </li>
                 </ul>
 
                 <div class="nav-actions">
                     <div class="language-switcher">
-                        <span class="current-lang">RU</span>
+                        <button class="current-lang" id="langToggle" aria-label="Мова / Language">UK</button>
                         <ul class="lang-menu">
+                            <li><a href="#" data-lang="uk">UK</a></li>
                             <li><a href="#" data-lang="en">EN</a></li>
-                            <li><a href="#" data-lang="uk">UA</a></li>
+                            <li><a href="#" data-lang="ru">RU</a></li>
                         </ul>
                     </div>
-                    <a href="login.html" class="btn btn-white">Вход</a>
-                    <a href="#contact-form" class="btn btn-primary">Начать сопровождение</a>
+                    <a href="login.html" class="btn btn-white" data-i18n="nav_login">Вхід</a>
+                    <a href="#contact-form" class="btn btn-primary" data-i18n="nav_start">Розпочати супровід</a>
                 </div>
 
-                <button class="nav-toggle">
+                <button class="nav-toggle" aria-label="Меню">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -77,27 +82,27 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
-                        <h1>Мы берем на себя заботу о Вашем здоровье</h1>
-                        <p class="hero-subtitle">Больше не нужно помнить о лекарствах, анализах и визитах к врачу. Команда из 70+ специалистов следит за Вашим здоровьем 24/7 и предупреждает о проблемах до появления симптомов</p>
+                        <h1 data-i18n="hero_h1">Ми беремо на себе турботу про Ваше здоров'я</h1>
+                        <p class="hero-subtitle" data-i18n="hero_sub">Більше не потрібно пам'ятати про ліки, аналізи та візити до лікаря. Команда з 70+ спеціалістів стежить за Вашим здоров'ям 24/7 та попереджає про проблеми до появи симптомів</p>
 
                         <div class="hero-actions">
-                            <a href="#contact-form" class="btn btn-primary btn-large">Начать сопровождение</a>
-                            <a href="for-companies.html" class="btn btn-outline btn-large">Стать партнёром</a>
+                            <a href="#contact-form" class="btn btn-primary btn-large" data-i18n="hero_btn_start">Розпочати супровід</a>
+                            <a href="for-companies.html" class="btn btn-outline btn-large" data-i18n="hero_btn_partner">Стати партнером</a>
                         </div>
                     </div>
 
                     <div class="hero-stats">
                         <div class="stat-item">
                             <div class="stat-number">92%</div>
-                            <div class="stat-label">Удовлетворённости пациентов</div>
+                            <div class="stat-label" data-i18n="stat_satisfaction">Задоволеності пацієнтів</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">70+</div>
-                            <div class="stat-label">Сертифицированных специалистов</div>
+                            <div class="stat-label" data-i18n="stat_specialists">Сертифікованих спеціалістів</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">14</div>
-                            <div class="stat-label">Медицинских специальностей</div>
+                            <div class="stat-label" data-i18n="stat_specialties">Медичних спеціальностей</div>
                         </div>
                     </div>
                 </div>
@@ -108,61 +113,64 @@
         <section class="services">
             <div class="container">
                 <div class="section-header">
-                    <h2>Наши услуги</h2>
-                    <p>Выберите подходящий Вам пакет медицинского сопровождения</p>
+                    <h2 data-i18n="services_h2">Наші послуги</h2>
+                    <p data-i18n="services_sub">Оберіть підходящий Вам пакет медичного супроводу</p>
                 </div>
 
                 <div class="services-grid">
+                    <!-- Personal Care -->
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-user-md"></i>
                         </div>
-                        <h3>Healthcare</h3>
-                        <p class="service-price">$250/месяц</p>
-                        <p class="service-description">Комплексное медицинское сопровождение с персональным куратором и доступом к междисциплинарной команде специалистов</p>
+                        <h3>Personal Care</h3>
+                        <p class="service-price" data-i18n="svc_pc_price">$250/міс</p>
+                        <p class="service-description" data-i18n="svc_pc_desc">Комплексний медичний супровід з персональним куратором та доступом до міждисциплінарної команди спеціалістів</p>
                         <ul class="service-features">
-                            <li>Персональный медицинский куратор</li>
-                            <li>Консультации специалистов</li>
-                            <li>Мониторинг показателей здоровья</li>
-                            <li>Индивидуальные рекомендации</li>
-                            <li>Телемедицинские консультации 24/7</li>
+                            <li data-i18n="svc_pc_f1">Персональний медичний куратор</li>
+                            <li data-i18n="svc_pc_f2">Консультації спеціалістів</li>
+                            <li data-i18n="svc_pc_f3">Моніторинг показників здоров'я</li>
+                            <li data-i18n="svc_pc_f4">Індивідуальні рекомендації</li>
+                            <li data-i18n="svc_pc_f5">Телемедичні консультації 24/7</li>
                         </ul>
-                        <a href="services/healthcare.html" class="btn btn-primary">Подробнее</a>
+                        <a href="services/healthcare.html" class="btn btn-primary" data-i18n="btn_more">Детальніше</a>
                     </div>
 
+                    <!-- Integrated Care -->
                     <div class="service-card featured">
-                        <div class="service-badge">Рекомендуем</div>
+                        <div class="service-badge" data-i18n="badge_recommended">Рекомендуємо</div>
                         <div class="service-icon">
-                            <i class="fas fa-ambulance"></i>
+                            <i class="fas fa-heartbeat"></i>
                         </div>
-                        <h3>Ambulance</h3>
-                        <p class="service-price">$500/месяц</p>
-                        <p class="service-description">Расширенное медицинское сопровождение для пациентов с хроническими заболеваниями и комплексными состояниями</p>
+                        <h3>Integrated Care</h3>
+                        <p class="service-price" data-i18n="svc_ic_price">$500/міс</p>
+                        <p class="service-description" data-i18n="svc_ic_desc">Розширений медичний супровід для пацієнтів із хронічними захворюваннями та комплексними станами</p>
                         <ul class="service-features">
-                            <li>Всё из пакета Healthcare</li>
-                            <li>Мультидисциплинарные сессии</li>
-                            <li>Протоколы экстренной помощи</li>
-                            <li>Приоритетная поддержка</li>
-                            <li>Координация с лечащими врачами</li>
+                            <li data-i18n="svc_ic_f1">Усе з пакету Personal Care</li>
+                            <li data-i18n="svc_ic_f2">Мультидисциплінарні сесії</li>
+                            <li data-i18n="svc_ic_f3">Протоколи екстреної допомоги</li>
+                            <li data-i18n="svc_ic_f4">Пріоритетна підтримка</li>
+                            <li data-i18n="svc_ic_f5">Координація з лікуючими лікарями</li>
                         </ul>
-                        <a href="services/ambulance.html" class="btn btn-primary">Подробнее</a>
+                        <a href="services/ambulance.html" class="btn btn-primary" data-i18n="btn_more">Детальніше</a>
                     </div>
 
+                    <!-- HealthCheckup -->
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-clipboard-check"></i>
                         </div>
                         <h3>HealthCheckup</h3>
-                        <p class="service-price">$100 разово</p>
-                        <p class="service-description">Комплексная оценка состояния здоровья с персональными рекомендациями и планом действий</p>
+                        <p class="service-price" data-i18n="svc_ch_price">$100 одноразово</p>
+                        <p class="service-description" data-i18n="svc_ch_desc">Комплексна оцінка стану здоров'я з персональними рекомендаціями та планом дій</p>
                         <ul class="service-features">
-                            <li>Комплексный анализ здоровья</li>
-                            <li>Персональный отчёт</li>
-                            <li>Рекомендации специалистов</li>
-                            <li>План профилактических мер</li>
-                            <li>Консультация по результатам</li>
+                            <li data-i18n="svc_ch_f1">Комплексний аналіз здоров'я</li>
+                            <li data-i18n="svc_ch_f2">Персональний звіт</li>
+                            <li data-i18n="svc_ch_f3">Рекомендації спеціалістів</li>
+                            <li data-i18n="svc_ch_f4">План профілактичних заходів</li>
+                            <li data-i18n="svc_ch_f5">Консультація за результатами</li>
                         </ul>
-                        <a href="services/checkup.html" class="btn btn-primary">Подробнее</a>
+                        <a href="services/checkup.html" class="btn btn-primary" data-i18n="btn_more">Детальніше</a>
                     </div>
                 </div>
             </div>
@@ -172,40 +180,40 @@
         <section class="how-it-works">
             <div class="container">
                 <div class="section-header">
-                    <h2>Как это работает</h2>
-                    <p>Простой путь к качественному медицинскому сопровождению</p>
+                    <h2 data-i18n="how_h2">Як це працює</h2>
+                    <p data-i18n="how_sub">Простий шлях до якісного медичного супроводу</p>
                 </div>
 
                 <div class="steps-grid">
                     <div class="step-item">
                         <div class="step-number">1</div>
                         <div class="step-content">
-                            <h3>Регистрация и анкетирование</h3>
-                            <p>Заполните медицинскую анкету и выберите подходящий пакет услуг</p>
+                            <h3 data-i18n="step1_h">Реєстрація та анкетування</h3>
+                            <p data-i18n="step1_p">Заповніть медичну анкету та оберіть підходящий пакет послуг</p>
                         </div>
                     </div>
 
                     <div class="step-item">
                         <div class="step-number">2</div>
                         <div class="step-content">
-                            <h3>Назначение куратора</h3>
-                            <p>Вам назначается персональный медицинский куратор из нашей команды</p>
+                            <h3 data-i18n="step2_h">Призначення куратора</h3>
+                            <p data-i18n="step2_p">Вам призначається персональний медичний куратор з нашої команди</p>
                         </div>
                     </div>
 
                     <div class="step-item">
                         <div class="step-number">3</div>
                         <div class="step-content">
-                            <h3>Составление плана</h3>
-                            <p>Разрабатывается индивидуальный план медицинского сопровождения</p>
+                            <h3 data-i18n="step3_h">Складання плану</h3>
+                            <p data-i18n="step3_p">Розробляється індивідуальний план медичного супроводу</p>
                         </div>
                     </div>
 
                     <div class="step-item">
                         <div class="step-number">4</div>
                         <div class="step-content">
-                            <h3>Сопровождение</h3>
-                            <p>Получайте консультации, мониторинг и поддержку 24/7</p>
+                            <h3 data-i18n="step4_h">Супровід</h3>
+                            <p data-i18n="step4_p">Отримуйте консультації, моніторинг та підтримку 24/7</p>
                         </div>
                     </div>
                 </div>
@@ -216,45 +224,45 @@
         <section class="health-monitoring">
             <div class="container">
                 <div class="section-header">
-                    <h2>Мы следим за Вашим здоровьем 24/7</h2>
-                    <p>Интегрированный мониторинг показателей здоровья с персональной аналитикой и рекомендациями специалистов</p>
+                    <h2 data-i18n="mon_h2">Ми стежимо за Вашим здоров'ям 24/7</h2>
+                    <p data-i18n="mon_sub">Інтегрований моніторинг показників здоров'я з персональною аналітикою та рекомендаціями спеціалістів</p>
                 </div>
 
                 <div class="monitoring-dashboard">
                     <div class="monitoring-intro">
-                        <h3>Ваше здоровье под контролем</h3>
-                        <p>Мы автоматически отслеживаем ключевые показатели Вашего организма через интегрированные устройства и предупреждаем о любых отклонениях еще до появления симптомов.</p>
+                        <h3 data-i18n="mon_title">Ваше здоров'я під контролем</h3>
+                        <p data-i18n="mon_p">Ми автоматично відстежуємо ключові показники Вашого організму через інтегровані пристрої та попереджаємо про будь-які відхилення ще до появи симптомів.</p>
 
                         <div class="monitoring-benefits">
                             <div class="benefit-point">
                                 <i class="fas fa-shield-alt"></i>
-                                <span>Раннее выявление отклонений</span>
+                                <span data-i18n="mon_b1">Раннє виявлення відхилень</span>
                             </div>
                             <div class="benefit-point">
                                 <i class="fas fa-bell"></i>
-                                <span>Персональные уведомления</span>
+                                <span data-i18n="mon_b2">Персональні сповіщення</span>
                             </div>
                             <div class="benefit-point">
                                 <i class="fas fa-chart-line"></i>
-                                <span>Аналитика и прогнозы</span>
+                                <span data-i18n="mon_b3">Аналітика та прогнози</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="health-metrics-demo">
                         <div class="metrics-header">
-                            <h4>Пример отчета за сегодня</h4>
+                            <h4 data-i18n="mon_demo_h">Приклад звіту за сьогодні</h4>
                             <span class="live-indicator">
                                 <span class="pulse-dot"></span>
-                                Live мониторинг
+                                <span data-i18n="mon_live">Live-моніторинг</span>
                             </span>
                         </div>
 
                         <div class="metrics-grid">
                             <div class="metric-card strain">
                                 <div class="metric-header">
-                                    <span class="metric-label">Нагрузка</span>
-                                    <span class="metric-status optimal">Оптимальная</span>
+                                    <span class="metric-label" data-i18n="met_strain">Навантаження</span>
+                                    <span class="metric-status optimal" data-i18n="met_strain_s">Оптимальне</span>
                                 </div>
                                 <div class="metric-visual">
                                     <div class="circular-progress">
@@ -268,14 +276,14 @@
                                     </div>
                                 </div>
                                 <div class="metric-insights">
-                                    <p>Ваш уровень нагрузки в норме. Можете продолжить обычную активность.</p>
+                                    <p data-i18n="met_strain_p">Ваш рівень навантаження в нормі. Можете продовжити звичайну активність.</p>
                                 </div>
                             </div>
 
                             <div class="metric-card recovery">
                                 <div class="metric-header">
-                                    <span class="metric-label">Восстановление</span>
-                                    <span class="metric-status good">Хорошее</span>
+                                    <span class="metric-label" data-i18n="met_rec">Відновлення</span>
+                                    <span class="metric-status good" data-i18n="met_rec_s">Добре</span>
                                 </div>
                                 <div class="metric-visual">
                                     <div class="recovery-bar">
@@ -284,14 +292,14 @@
                                     </div>
                                 </div>
                                 <div class="metric-insights">
-                                    <p>Организм хорошо восстанавливается. Рекомендуем умеренную тренировку.</p>
+                                    <p data-i18n="met_rec_p">Організм добре відновлюється. Рекомендуємо помірне тренування.</p>
                                 </div>
                             </div>
 
                             <div class="metric-card sleep">
                                 <div class="metric-header">
-                                    <span class="metric-label">Качество сна</span>
-                                    <span class="metric-status excellent">Отличное</span>
+                                    <span class="metric-label" data-i18n="met_sleep">Якість сну</span>
+                                    <span class="metric-status excellent" data-i18n="met_sleep_s">Відмінно</span>
                                 </div>
                                 <div class="metric-visual">
                                     <div class="sleep-chart">
@@ -302,18 +310,18 @@
                                             <div class="stage light" style="height: 35%; width: 18%"></div>
                                             <div class="stage awake" style="height: 10%; width: 15%"></div>
                                         </div>
-                                        <div class="sleep-duration">7ч 42м</div>
+                                        <div class="sleep-duration">7г 42хв</div>
                                     </div>
                                 </div>
                                 <div class="metric-insights">
-                                    <p>Глубокий сон составил 22%. Отличные показатели для восстановления.</p>
+                                    <p data-i18n="met_sleep_p">Глибокий сон склав 22%. Відмінні показники для відновлення.</p>
                                 </div>
                             </div>
 
                             <div class="metric-card hrv">
                                 <div class="metric-header">
-                                    <span class="metric-label">Вариабельность ЧСС</span>
-                                    <span class="metric-status normal">Норма</span>
+                                    <span class="metric-label" data-i18n="met_hrv">Варіабельність ЧСС</span>
+                                    <span class="metric-status normal" data-i18n="met_hrv_s">Норма</span>
                                 </div>
                                 <div class="metric-visual">
                                     <div class="hrv-trend">
@@ -326,7 +334,7 @@
                                     </div>
                                 </div>
                                 <div class="metric-insights">
-                                    <p>Стабильная вариабельность указывает на хорошую адаптацию к стрессу.</p>
+                                    <p data-i18n="met_hrv_p">Стабільна варіабельність вказує на гарну адаптацію до стресу.</p>
                                 </div>
                             </div>
                         </div>
@@ -334,20 +342,20 @@
                         <div class="ai-recommendations">
                             <div class="ai-header">
                                 <i class="fas fa-robot"></i>
-                                <h4>Персональные рекомендации ИИ</h4>
+                                <h4 data-i18n="ai_rec_h">Персональні рекомендації ШІ</h4>
                             </div>
                             <div class="recommendations-list">
                                 <div class="recommendation priority-high">
                                     <i class="fas fa-exclamation-circle"></i>
-                                    <span>Повышенный пульс в покое. Рекомендуем консультацию кардиолога в течение 24 часов.</span>
+                                    <span data-i18n="ai_rec_1">Підвищений пульс у стані спокою. Рекомендуємо консультацію кардіолога протягом 24 годин.</span>
                                 </div>
                                 <div class="recommendation priority-medium">
                                     <i class="fas fa-info-circle"></i>
-                                    <span>Снижение качества сна на 15%. Попробуйте ложиться спать на 30 минут раньше.</span>
+                                    <span data-i18n="ai_rec_2">Зниження якості сну на 15%. Спробуйте лягати спати на 30 хвилин раніше.</span>
                                 </div>
                                 <div class="recommendation priority-low">
                                     <i class="fas fa-lightbulb"></i>
-                                    <span>Отличная неделя! Ваши показатели улучшились на 12% по сравнению с прошлым месяцем.</span>
+                                    <span data-i18n="ai_rec_3">Чудовий тиждень! Ваші показники покращились на 12% порівняно з минулим місяцем.</span>
                                 </div>
                             </div>
                         </div>
@@ -359,40 +367,40 @@
                         <div class="feature-icon">
                             <i class="fas fa-sync-alt"></i>
                         </div>
-                        <h4>Автоматическая синхронизация</h4>
-                        <p>Подключение к популярным фитнес-трекерам и смарт-устройствам для непрерывного мониторинга</p>
+                        <h4 data-i18n="mon_f1_h">Автоматична синхронізація</h4>
+                        <p data-i18n="mon_f1_p">Підключення до популярних фітнес-трекерів та смарт-пристроїв для безперервного моніторингу</p>
                     </div>
 
                     <div class="feature-item">
                         <div class="feature-icon">
                             <i class="fas fa-brain"></i>
                         </div>
-                        <h4>ИИ-анализ данных</h4>
-                        <p>Алгоритмы машинного обучения выявляют паттерны и предсказывают изменения в состоянии здоровья</p>
+                        <h4 data-i18n="mon_f2_h">ШІ-аналіз даних</h4>
+                        <p data-i18n="mon_f2_p">Алгоритми машинного навчання виявляють паттерни та прогнозують зміни у стані здоров'я</p>
                     </div>
 
                     <div class="feature-item">
                         <div class="feature-icon">
                             <i class="fas fa-user-md"></i>
                         </div>
-                        <h4>Контроль специалистов</h4>
-                        <p>Ваш медицинский куратор получает все данные и может оперативно скорректировать план лечения</p>
+                        <h4 data-i18n="mon_f3_h">Контроль спеціалістів</h4>
+                        <p data-i18n="mon_f3_p">Ваш медичний куратор отримує всі дані та може оперативно скоригувати план лікування</p>
                     </div>
 
                     <div class="feature-item">
                         <div class="feature-icon">
                             <i class="fas fa-mobile-alt"></i>
                         </div>
-                        <h4>Мобильные уведомления</h4>
-                        <p>Мгновенные оповещения о критических изменениях и персональные рекомендации в реальном времени</p>
+                        <h4 data-i18n="mon_f4_h">Мобільні сповіщення</h4>
+                        <p data-i18n="mon_f4_p">Миттєві повідомлення про критичні зміни та персональні рекомендації в реальному часі</p>
                     </div>
                 </div>
 
                 <div class="monitoring-cta">
                     <div class="cta-content">
-                        <h3>Доверьте заботу о здоровье профессионалам</h3>
-                        <p>Больше не нужно помнить о приеме лекарств, анализах и визитах к врачу. Мы берем на себя полный контроль за Вашим самочувствием.</p>
-                        <a href="#contact-form" class="btn btn-primary btn-large">Начать мониторинг здоровья</a>
+                        <h3 data-i18n="mon_cta_h">Довіртеся піклуванню про здоров'я профессіоналам</h3>
+                        <p data-i18n="mon_cta_p">Більше не потрібно пам'ятати про ліки, аналізи та візити до лікаря. Ми беремо на себе повний контроль за Вашим самопочуттям.</p>
+                        <a href="#contact-form" class="btn btn-primary btn-large" data-i18n="mon_cta_btn">Розпочати моніторинг здоров'я</a>
                     </div>
                 </div>
             </div>
@@ -403,39 +411,39 @@
             <div class="container">
                 <div class="responsibility-content">
                     <div class="responsibility-text">
-                        <h2>Мы несем ответственность за Ваше здоровье</h2>
-                        <p class="responsibility-subtitle">Больше не нужно самостоятельно следить за своим самочувствием, помнить о приеме лекарств или беспокоиться о пропущенных симптомах. Это теперь наша работа.</p>
+                        <h2 data-i18n="resp_h2">Ми несемо відповідальність за Ваше здоров'я</h2>
+                        <p class="responsibility-subtitle" data-i18n="resp_sub">Більше не потрібно самостійно стежити за своїм самопочуттям, пам'ятати про прийом ліків або хвилюватись про пропущені симптоми. Це тепер наша робота.</p>
 
                         <div class="responsibility-promises">
                             <div class="promise-item">
                                 <div class="promise-number">01</div>
                                 <div class="promise-content">
-                                    <h3>Мы не даем Вам забыть</h3>
-                                    <p>Напоминаем о лекарствах, анализах, визитах к врачу. Ведем полный контроль Вашего расписания лечения.</p>
+                                    <h3 data-i18n="resp_p1_h">Ми не даємо Вам забути</h3>
+                                    <p data-i18n="resp_p1_p">Нагадуємо про ліки, аналізи, візити до лікаря. Ведемо повний контроль Вашого розкладу лікування.</p>
                                 </div>
                             </div>
 
                             <div class="promise-item">
                                 <div class="promise-number">02</div>
                                 <div class="promise-content">
-                                    <h3>Мы видим проблемы заранее</h3>
-                                    <p>Анализируем данные трекеров и предупреждаем об отклонениях еще до появления симптомов.</p>
+                                    <h3 data-i18n="resp_p2_h">Ми бачимо проблеми заздалегідь</h3>
+                                    <p data-i18n="resp_p2_p">Аналізуємо дані трекерів та попереджаємо про відхилення ще до появи симптомів.</p>
                                 </div>
                             </div>
 
                             <div class="promise-item">
                                 <div class="promise-number">03</div>
                                 <div class="promise-content">
-                                    <h3>Мы принимаем решения</h3>
-                                    <p>При изменениях в состоянии здоровья наши врачи оперативно корректируют план лечения.</p>
+                                    <h3 data-i18n="resp_p3_h">Ми приймаємо рішення</h3>
+                                    <p data-i18n="resp_p3_p">При змінах у стані здоров'я наші лікарі оперативно коригують план лікування.</p>
                                 </div>
                             </div>
 
                             <div class="promise-item">
                                 <div class="promise-number">04</div>
                                 <div class="promise-content">
-                                    <h3>Мы всегда на связи</h3>
-                                    <p>24/7 поддержка, экстренные консультации, мгновенная помощь при любых вопросах.</p>
+                                    <h3 data-i18n="resp_p4_h">Ми завжди на зв'язку</h3>
+                                    <p data-i18n="resp_p4_p">24/7 підтримка, екстрені консультації, миттєва допомога за будь-яких питань.</p>
                                 </div>
                             </div>
                         </div>
@@ -445,34 +453,34 @@
                         <div class="care-circle">
                             <div class="patient-center">
                                 <i class="fas fa-user"></i>
-                                <span>Вы</span>
+                                <span data-i18n="care_you">Ви</span>
                             </div>
 
                             <div class="care-layer doctor">
                                 <div class="care-item">
                                     <i class="fas fa-user-md"></i>
-                                    <span>Врач-куратор</span>
+                                    <span data-i18n="care_doctor">Лікар-куратор</span>
                                 </div>
                             </div>
 
                             <div class="care-layer monitoring">
                                 <div class="care-item">
                                     <i class="fas fa-heartbeat"></i>
-                                    <span>24/7 мониторинг</span>
+                                    <span data-i18n="care_monitoring">24/7 моніторинг</span>
                                 </div>
                             </div>
 
                             <div class="care-layer ai">
                                 <div class="care-item">
                                     <i class="fas fa-robot"></i>
-                                    <span>ИИ-анализ</span>
+                                    <span data-i18n="care_ai">ШІ-аналіз</span>
                                 </div>
                             </div>
 
                             <div class="care-layer team">
                                 <div class="care-item">
                                     <i class="fas fa-users"></i>
-                                    <span>Команда специалистов</span>
+                                    <span data-i18n="care_team">Команда спеціалістів</span>
                                 </div>
                             </div>
                         </div>
@@ -480,8 +488,8 @@
                         <div class="protection-badge">
                             <i class="fas fa-shield-alt"></i>
                             <div>
-                                <strong>Полная защита</strong>
-                                <span>Ваше здоровье под контролем</span>
+                                <strong data-i18n="protection_title">Повний захист</strong>
+                                <span data-i18n="protection_sub">Ваше здоров'я під контролем</span>
                             </div>
                         </div>
                     </div>
@@ -493,27 +501,27 @@
         <section class="evidence">
             <div class="container">
                 <div class="section-header">
-                    <h2>Доказательная медицина</h2>
-                    <p>Наш подход основан на научных данных и клинических исследованиях</p>
+                    <h2 data-i18n="evidence_h2">Доказова медицина</h2>
+                    <p data-i18n="evidence_sub">Наш підхід базується на наукових даних та клінічних дослідженнях</p>
                 </div>
 
                 <div class="evidence-stats">
                     <div class="evidence-stat">
                         <div class="stat-number">68%</div>
-                        <div class="stat-description">пациентов с хроническими заболеваниями показали измеримое улучшение</div>
+                        <div class="stat-description" data-i18n="ev_s1">% пацієнтів з хронічними захворюваннями показали вимірне покращення</div>
                     </div>
                     <div class="evidence-stat">
                         <div class="stat-number">43%</div>
-                        <div class="stat-description">снижение выраженности симптомов</div>
+                        <div class="stat-description" data-i18n="ev_s2">% зниження виразності симптомів</div>
                     </div>
                     <div class="evidence-stat">
                         <div class="stat-number">38%</div>
-                        <div class="stat-description">уменьшение потребности в коррекции медикаментов</div>
+                        <div class="stat-description" data-i18n="ev_s3">% зменшення потреби у корекції медикаментів</div>
                     </div>
                 </div>
 
                 <div class="certifications">
-                    <h3>Соответствие стандартам</h3>
+                    <h3 data-i18n="cert_h">Відповідність стандартам</h3>
                     <div class="cert-badges">
                         <div class="cert-badge">
                             <i class="fas fa-shield-alt"></i>
@@ -536,50 +544,50 @@
         <section class="blog-preview">
             <div class="container">
                 <div class="section-header">
-                    <h2>Экспертные статьи о здоровье</h2>
-                    <p>Полезная информация и рекомендации от наших специалистов</p>
+                    <h2 data-i18n="blog_h2">Експертні статті про здоров'я</h2>
+                    <p data-i18n="blog_sub">Корисна інформація та рекомендації від наших спеціалістів</p>
                 </div>
 
                 <div class="blog-posts-preview">
                     <article class="blog-preview-card">
                         <div class="blog-preview-meta">
-                            <span class="post-category cardiology">Кардиология</span>
-                            <span class="post-date">15 декабря 2024</span>
+                            <span class="post-category cardiology" data-i18n="post1_cat">Кардіологія</span>
+                            <span class="post-date" data-i18n="post1_date">15 грудня 2024</span>
                         </div>
-                        <h3><a href="blog/managing-hypertension-2024.html">Современные подходы к управлению артериальной гипертензией в 2024 году</a></h3>
-                        <p>Последние рекомендации по диагностике, лечению и профилактике повышенного артериального давления от кардиолога...</p>
+                        <h3><a href="blog/managing-hypertension-2024.html" data-i18n="post1_h">Сучасні підходи до управління артеріальною гіпертензією у 2024 році</a></h3>
+                        <p data-i18n="post1_p">Останні рекомендації щодо діагностики, лікування та профілактики підвищеного артеріального тиску від кардіолога...</p>
                         <div class="blog-preview-author">
-                            <span>Д-р Яна Кочержинская</span>
+                            <span data-i18n="post1_author">Д-р Яна Кочержинська</span>
                         </div>
                     </article>
 
                     <article class="blog-preview-card">
                         <div class="blog-preview-meta">
-                            <span class="post-category prevention">Профилактика</span>
-                            <span class="post-date">12 декабря 2024</span>
+                            <span class="post-category prevention" data-i18n="post2_cat">Профілактика</span>
+                            <span class="post-date" data-i18n="post2_date">12 грудня 2024</span>
                         </div>
-                        <h3><a href="blog/diabetes-prevention-guide.html">10 научно обоснованных способов профилактики диабета 2 типа</a></h3>
-                        <p>Диабет 2 типа можно предотвратить в 90% случаев. Рассказываем о доказанных методах профилактики на основе последних исследований...</p>
+                        <h3><a href="blog/diabetes-prevention-guide.html" data-i18n="post2_h">10 науково обґрунтованих способів профілактики діабету 2 типу</a></h3>
+                        <p data-i18n="post2_p">Діабет 2 типу можна попередити у 90% випадків. Розповідаємо про доведені методи профілактики на основі останніх досліджень...</p>
                         <div class="blog-preview-author">
-                            <span>Д-р Сергей Пилкевич</span>
+                            <span data-i18n="post2_author">Д-р Сергій Пілкевич</span>
                         </div>
                     </article>
 
                     <article class="blog-preview-card">
                         <div class="blog-preview-meta">
-                            <span class="post-category mental-health">Психическое здоровье</span>
-                            <span class="post-date">10 декабря 2024</span>
+                            <span class="post-category mental-health" data-i18n="post3_cat">Психічне здоров'я</span>
+                            <span class="post-date" data-i18n="post3_date">10 грудня 2024</span>
                         </div>
-                        <h3><a href="blog/stress-management-techniques.html">Управление стрессом: проверенные техники для работающих профессионалов</a></h3>
-                        <p>Хронический стресс негативно влияет на все системы организма. Изучаем эффективные методы управления стрессом...</p>
+                        <h3><a href="blog/stress-management-techniques.html" data-i18n="post3_h">Управління стресом: перевірені техніки для працюючих фахівців</a></h3>
+                        <p data-i18n="post3_p">Хронічний стрес негативно впливає на всі системи організму. Вивчаємо ефективні методи управління стресом...</p>
                         <div class="blog-preview-author">
-                            <span>Д-р Анна Смирнова</span>
+                            <span data-i18n="post3_author">Д-р Анна Смирнова</span>
                         </div>
                     </article>
                 </div>
 
                 <div class="blog-preview-actions">
-                    <a href="blog.html" class="btn btn-outline">Все статьи блога</a>
+                    <a href="blog.html" class="btn btn-outline" data-i18n="blog_all">Всі статті блогу</a>
                 </div>
             </div>
         </section>
@@ -588,23 +596,23 @@
         <section class="partners">
             <div class="container">
                 <div class="section-header">
-                    <h2>Наши партнёры</h2>
-                    <p>Работаем с ведущими медицинскими организациями</p>
+                    <h2 data-i18n="partners_h2">Наші партнери</h2>
+                    <p data-i18n="partners_sub">Працюємо з провідними медичними організаціями</p>
                 </div>
 
                 <div class="partners-info">
                     <div class="partner-types">
                         <div class="partner-type">
-                            <h3>Медицинские учреждения</h3>
-                            <p>Интеграция с госпитальными сетями в США и Европе</p>
+                            <h3 data-i18n="part1_h">Медичні установи</h3>
+                            <p data-i18n="part1_p">Інтеграція з госпітальними мережами у США та Європі</p>
                         </div>
                         <div class="partner-type">
-                            <h3>Страховые компании</h3>
-                            <p>Корпоративные программы медицинского сопровождения</p>
+                            <h3 data-i18n="part2_h">Страхові компанії</h3>
+                            <p data-i18n="part2_p">Корпоративні програми медичного супроводу</p>
                         </div>
                         <div class="partner-type">
-                            <h3>Работодатели</h3>
-                            <p>Программы здоровья сотрудников с экономией до 40%</p>
+                            <h3 data-i18n="part3_h">Роботодавці</h3>
+                            <p data-i18n="part3_p">Програми здоров'я співробітників з економією до 40%</p>
                         </div>
                     </div>
                 </div>
@@ -615,11 +623,11 @@
         <section class="cta-section">
             <div class="container">
                 <div class="cta-content">
-                    <h2>Перестаньте беспокоиться о своём здоровье</h2>
-                    <p>Доверьте заботу профессионалам. Мы возьмем на себя полную ответственность за Ваше самочувствие и предупредим о любых проблемах заранее</p>
+                    <h2 data-i18n="cta_h2">Перестаньте хвилюватись про своє здоров'я</h2>
+                    <p data-i18n="cta_p">Довіртеся піклуванню профессіоналів. Ми візьмемо на себе повну відповідальність за Ваше самопочуття та попередимо про будь-які проблеми заздалегідь</p>
                     <div class="cta-actions">
-                        <a href="#contact-form" class="btn btn-primary btn-large">Записаться на консультацию</a>
-                        <a href="pricing.html" class="btn btn-outline btn-large">Посмотреть тарифы</a>
+                        <a href="#contact-form" class="btn btn-primary btn-large" data-i18n="cta_btn1">Записатись на консультацію</a>
+                        <a href="pricing.html" class="btn btn-outline btn-large" data-i18n="cta_btn2">Переглянути тарифи</a>
                     </div>
                 </div>
             </div>
@@ -629,71 +637,79 @@
         <section id="contact-form" class="contact-form-section">
             <div class="container">
                 <div class="section-header">
-                    <h2>Запись на консультацию</h2>
-                    <p>Оставьте заявку, и мы свяжемся с Вами в течение 24 часов</p>
+                    <h2 data-i18n="form_h2">Запис на консультацію</h2>
+                    <p data-i18n="form_sub">Залиште заявку, і ми зв'яжемось з Вами протягом 24 годин</p>
                 </div>
 
                 <div class="form-container">
-                    <form class="contact-form" id="contactForm">
+                    <!-- Web3Forms: replace REPLACE_WITH_YOUR_KEY with the key from web3forms.com -->
+                    <form class="contact-form" id="contactForm" data-web3forms-key="REPLACE_WITH_YOUR_KEY">
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="firstName">Имя *</label>
-                                <input type="text" id="firstName" name="firstName" required>
+                                <label for="firstName" data-i18n="label_fname">Ім'я *</label>
+                                <input type="text" id="firstName" name="firstName"
+                                       data-i18n-placeholder="ph_fname" placeholder="Ваше ім'я" required>
                             </div>
                             <div class="form-group">
-                                <label for="lastName">Фамилия *</label>
-                                <input type="text" id="lastName" name="lastName" required>
+                                <label for="lastName" data-i18n="label_lname">Прізвище *</label>
+                                <input type="text" id="lastName" name="lastName"
+                                       data-i18n-placeholder="ph_lname" placeholder="Ваше прізвище" required>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="email">Email *</label>
+                                <label for="email" data-i18n="label_email">Email *</label>
                                 <input type="email" id="email" name="email" required>
                             </div>
                             <div class="form-group">
-                                <label for="phone">Телефон</label>
-                                <input type="tel" id="phone" name="phone">
+                                <label for="phone" data-i18n="label_phone">Телефон</label>
+                                <input type="tel" id="phone" name="phone"
+                                       data-i18n-placeholder="ph_phone" placeholder="+380 XX XXX XX XX">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="service">Интересующая услуга *</label>
+                            <label for="service" data-i18n="label_service">Послуга, що цікавить *</label>
                             <select id="service" name="service" required>
-                                <option value="">Выберите услугу</option>
-                                <option value="healthcare">Healthcare ($250/мес)</option>
-                                <option value="ambulance">Ambulance ($500/мес)</option>
-                                <option value="checkup">HealthCheckup ($100)</option>
-                                <option value="consultation">Консультация</option>
+                                <option value="" data-i18n="opt_select">Оберіть послугу</option>
+                                <option value="personal-care" data-i18n="opt_pc">Personal Care ($250/міс)</option>
+                                <option value="integrated-care" data-i18n="opt_ic">Integrated Care ($500/міс)</option>
+                                <option value="checkup" data-i18n="opt_ch">HealthCheckup ($100)</option>
+                                <option value="consultation" data-i18n="opt_consult">Консультація</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="message">Дополнительная информация</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Расскажите о своих потребностях или задайте вопрос"></textarea>
+                            <label for="message" data-i18n="label_message">Додаткова інформація</label>
+                            <textarea id="message" name="message" rows="4"
+                                      data-i18n-placeholder="ph_message"
+                                      placeholder="Розкажіть про свої потреби або поставте запитання"></textarea>
                         </div>
 
                         <div class="form-group checkbox-group">
                             <input type="checkbox" id="privacy" name="privacy" required>
-                            <label for="privacy">Я согласен с <a href="/privacy" target="_blank">политикой конфиденциальности</a> и обработкой персональных данных *</label>
+                            <label for="privacy" data-i18n-html="label_privacy">Я погоджуюсь з <a href="/privacy.html" target="_blank">політикою конфіденційності</a> та обробкою персональних даних *</label>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-large">Отправить заявку</button>
+                        <button type="submit" class="btn btn-primary btn-large" data-i18n="btn_submit">Надіслати заявку</button>
                     </form>
 
                     <div class="contact-info">
-                        <h3>Контактная информация</h3>
+                        <h3 data-i18n="contact_h3">Контактна інформація</h3>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>info@bodyhealth.com</span>
+                            <!-- TODO: Replace with official clinic email -->
+                            <span>bodyhealthmediclinic@gmail.com</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <span>+1 (555) 123-4567</span>
+                            <!-- TODO: Replace with official clinic phone number -->
+                            <span>+1 (XXX) XXX-XXXX</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-clock"></i>
-                            <span>Поддержка 24/7</span>
+                            <span data-i18n="support_247">Підтримка 24/7</span>
                         </div>
                     </div>
                 </div>
@@ -707,54 +723,55 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-brand">
-                        <div class="logo">
-                            <i class="fas fa-heartbeat"></i>
-                            <span>BodyHealth</span>
-                        </div>
-                        <p>Персонализированная система медицинского сопровождения с доказательным подходом</p>
+                        <a href="/" class="logo" aria-label="BodyHealth">
+                            <img src="/img/logo_no_bg.png" alt="BodyHealth" style="height:40px; filter:brightness(0) invert(1);"/>
+                            <span style="margin-left:8px; color:#fff; font-weight:600;">BodyHealth</span>
+                        </a>
+                        <p data-i18n="footer_desc">Персоналізована система медичного супроводу з доказовим підходом</p>
                     </div>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Услуги</h4>
+                    <h4 data-i18n="footer_services">Послуги</h4>
                     <ul>
-                        <li><a href="services/healthcare.html">Healthcare</a></li>
-                        <li><a href="services/ambulance.html">Ambulance</a></li>
+                        <li><a href="services/healthcare.html">Personal Care</a></li>
+                        <li><a href="services/ambulance.html">Integrated Care</a></li>
                         <li><a href="services/checkup.html">HealthCheckup</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Компания</h4>
+                    <h4 data-i18n="footer_company">Компанія</h4>
                     <ul>
-                        <li><a href="for-companies.html">Для компаний</a></li>
+                        <li><a href="for-companies.html" data-i18n="footer_companies">Для компаній</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Поддержка</h4>
+                    <h4 data-i18n="footer_support">Підтримка</h4>
                     <ul>
-                        <li><a href="blog.html">Блог</a></li>
-                        <li><a href="/privacy">Политика конфиденциальности</a></li>
+                        <li><a href="blog.html" data-i18n="footer_blog">Блог</a></li>
+                        <li><a href="privacy.html" data-i18n="footer_privacy">Політика конфіденційності</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
                 <div class="footer-legal">
-                    <p>&copy; 2024 BodyHealth. Все права защищены.</p>
-                    <p>HIPAA и GDPR совместимо. Медицинские данные защищены в соответствии с международными стандартами.</p>
+                    <p data-i18n="footer_legal">&copy; 2024–2026 BodyHealth. Всі права захищені.</p>
+                    <p data-i18n="footer_compliance">HIPAA та GDPR сумісно. Медичні дані захищені відповідно до міжнародних стандартів.</p>
                 </div>
+                <!-- Social links: add real URLs when available -->
                 <div class="footer-social">
-                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com/company/bodyhealthcare" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/bodyhealth.care" class="social-link" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/bodyhealthcare" class="social-link" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- JavaScript (translations.js already loaded in <head>) -->
     <script src="js/main.js"></script>
 </body>
 </html>

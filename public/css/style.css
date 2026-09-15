@@ -349,6 +349,19 @@ a:hover {
     background-color: #f8f9fa;
     color: #003d82;
 }
+/* JS-controlled dropdown open state */
+.lang-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Active/current language in dropdown */
+.lang-menu a.lang-active {
+    font-weight: 600;
+    color: #003d82;
+}
+
 
 /* Mobile Navigation */
 .nav-toggle {
