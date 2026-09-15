@@ -44,44 +44,45 @@
             <nav class="nav">
                 <div class="nav-brand">
                     <a href="/" class="logo" aria-label="BodyHealth">
-                        <img src="/img/logo_no_bg.png" alt="BodyHealth" class="logo-img" style="height:40px; filter:brightness(0) invert(1);"/>
-                        <span style="margin-left:8px; color:#fff; font-weight:600;">BodyHealth</span>
+                        <img src="/img/logo_no_bg.png" alt="BodyHealth" class="logo-img" style="height:55px;"/>
+                        <span style="margin-right:8px; margin-left:8px">BodyHealth</span>
                     </a>
                 </div>
-                <ul class="nav-menu" id="navMenu">
+
+                <ul class="nav-menu">
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link" data-i18n="nav_services">Послуги <i class="fas fa-chevron-down"></i></a>
+                        <a href="#" class="nav-link" data-i18n="nav_services">Послуги</a>
                         <ul class="dropdown-menu">
                             <li><a href="/services/healthcare.html">Personal Care ($250/міс)</a></li>
                             <li><a href="/services/ambulance.html">Integrated Care ($500/міс)</a></li>
                             <li><a href="/services/checkup.html">HealthCheckup ($100)</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a href="/for-companies.html" class="nav-link" data-i18n="nav_companies">Для компаній</a></li>
-                    <li class="nav-item"><a href="/blog.html" class="nav-link" data-i18n="nav_blog">Блог</a></li>
+                    <li class="nav-item">
+                        <a href="/for-companies.html" class="nav-link" data-i18n="nav_companies">Для компаній</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/blog.html" class="nav-link" data-i18n="nav_blog">Блог</a>
+                    </li>
                 </ul>
+
                 <div class="nav-actions">
                     <div class="language-switcher">
                         <button class="current-lang" id="langToggle" aria-label="Мова / Language">UK</button>
-                        <ul class="lang-menu" id="langMenu">
+                        <ul class="lang-menu">
                             <li><a href="#" data-lang="uk">UK</a></li>
                             <li><a href="#" data-lang="en">EN</a></li>
                             <li><a href="#" data-lang="ru">RU</a></li>
                         </ul>
                     </div>
                     <a href="/login.html" class="btn btn-white" data-i18n="nav_login">Вхід</a>
-                    <a href="/#contact-form" class="btn btn-primary" data-i18n="nav_cta">Почати супровід</a>
+                    <a href="/#contact-form" class="btn btn-primary" data-i18n="nav_start">Розпочати супровід</a>
                 </div>
-                <div class="mobile-lang-switcher" id="mobileLangSwitcher">
-                    <button class="mobile-lang-current" id="mobileLangToggle">UK</button>
-                    <ul class="mobile-lang-menu" id="mobileLangMenu">
-                        <li><a href="#" class="mobile-lang-link" data-lang="uk">UK</a></li>
-                        <li><a href="#" class="mobile-lang-link" data-lang="en">EN</a></li>
-                        <li><a href="#" class="mobile-lang-link" data-lang="ru">RU</a></li>
-                    </ul>
-                </div>
-                <button class="nav-toggle" id="navToggle" aria-label="Меню">
-                    <span></span><span></span><span></span>
+
+                <button class="nav-toggle" aria-label="Меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </nav>
         </div>
@@ -187,24 +188,26 @@
                 <div class="footer-section">
                     <h4 data-i18n="footer_services">Послуги</h4>
                     <ul>
-                        <li><a href="services/healthcare.html">Personal Care</a></li>
-                        <li><a href="services/ambulance.html">Integrated Care</a></li>
-                        <li><a href="services/checkup.html">HealthCheckup</a></li>
+                        <li><a href="/services/healthcare.html">Personal Care</a></li>
+                        <li><a href="/services/ambulance.html">Integrated Care</a></li>
+                        <li><a href="/services/checkup.html">HealthCheckup</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
                     <h4 data-i18n="footer_company">Компанія</h4>
                     <ul>
-                        <li><a href="for-companies.html" data-i18n="footer_companies">Для компаній</a></li>
+                        <li><a href="/for-companies.html" data-i18n="footer_companies">Для компаній</a></li>
+                        <li><a href="/blog.html" data-i18n="footer_blog">Блог</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
                     <h4 data-i18n="footer_support">Підтримка</h4>
                     <ul>
-                        <li><a href="blog.html" data-i18n="footer_blog">Блог</a></li>
-                        <li><a href="privacy.html" data-i18n="footer_privacy">Політика конфіденційності</a></li>
+                        <li><a href="/privacy.html" data-i18n="footer_privacy">Політика конфіденційності</a></li>
+                        <li><a href="/terms-and-conditions.html" data-i18n="footer_terms">Умови та положення</a></li>
+                        <li><a href="/refund-policy.html" data-i18n="footer_refund">Політика повернення коштів</a></li>
                     </ul>
                 </div>
             </div>
@@ -226,6 +229,10 @@
 
     <script src="/js/main.js?v=20260915"></script>
 
+<div class="float-contacts">
+        <a href="https://t.me/bodyhealthclinic" target="_blank" rel="noopener" class="float-btn float-tg" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://wa.me/380981501498" target="_blank" rel="noopener" class="float-btn float-wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
 </body>
 
 </html>

@@ -28,14 +28,14 @@
             <nav class="nav">
                 <div class="nav-brand">
                     <a href="/" class="logo" aria-label="BodyHealth">
-                        <img src="/img/logo_no_bg.png" alt="BodyHealth" class="logo-img" style="height:40px; filter:brightness(0) invert(1);"/>
-                        <span style="margin-left:8px; color:#fff; font-weight:600;">BodyHealth</span>
+                        <img src="/img/logo_no_bg.png" alt="BodyHealth" class="logo-img" style="height:55px;"/>
+                        <span style="margin-right:8px; margin-left:8px">BodyHealth</span>
                     </a>
                 </div>
 
-                <ul class="nav-menu" id="navMenu">
+                <ul class="nav-menu">
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link" data-i18n="nav_services">Послуги <i class="fas fa-chevron-down"></i></a>
+                        <a href="#" class="nav-link" data-i18n="nav_services">Послуги</a>
                         <ul class="dropdown-menu">
                             <li><a href="/services/healthcare.html">Personal Care ($250/міс)</a></li>
                             <li><a href="/services/ambulance.html">Integrated Care ($500/міс)</a></li>
@@ -46,34 +46,27 @@
                         <a href="/for-companies.html" class="nav-link" data-i18n="nav_companies">Для компаній</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/blog.html" class="nav-link active" data-i18n="nav_blog">Блог</a>
+                        <a href="/blog.html" class="nav-link" data-i18n="nav_blog">Блог</a>
                     </li>
                 </ul>
 
                 <div class="nav-actions">
                     <div class="language-switcher">
                         <button class="current-lang" id="langToggle" aria-label="Мова / Language">UK</button>
-                        <ul class="lang-menu" id="langMenu">
+                        <ul class="lang-menu">
                             <li><a href="#" data-lang="uk">UK</a></li>
                             <li><a href="#" data-lang="en">EN</a></li>
                             <li><a href="#" data-lang="ru">RU</a></li>
                         </ul>
                     </div>
                     <a href="/login.html" class="btn btn-white" data-i18n="nav_login">Вхід</a>
-                    <a href="/#contact-form" class="btn btn-primary" data-i18n="nav_cta">Почати супровід</a>
+                    <a href="/#contact-form" class="btn btn-primary" data-i18n="nav_start">Розпочати супровід</a>
                 </div>
 
-                <div class="mobile-lang-switcher" id="mobileLangSwitcher">
-                    <button class="mobile-lang-current" id="mobileLangToggle">UK</button>
-                    <ul class="mobile-lang-menu" id="mobileLangMenu">
-                        <li><a href="#" class="mobile-lang-link" data-lang="uk">UK</a></li>
-                        <li><a href="#" class="mobile-lang-link" data-lang="en">EN</a></li>
-                        <li><a href="#" class="mobile-lang-link" data-lang="ru">RU</a></li>
-                    </ul>
-                </div>
-
-                <button class="nav-toggle" id="navToggle" aria-label="Меню">
-                    <span></span><span></span><span></span>
+                <button class="nav-toggle" aria-label="Меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </nav>
         </div>
@@ -405,7 +398,7 @@
             <div class="container">
                 <div class="cta-content">
                     <h2>Нужна персональная консультация?</h2>
-                    <p>Наши специалисты готовы ответить на Ваши вопросы и дать индивидуальные рекомендации</p>
+                    <p>Наші спеціалісти готові відповісти на Ваші запитання та дати індивідуальні рекомендації</p>
                     <div class="cta-actions">
                         <a href="services/checkup.html" class="btn btn-primary btn-large">HealthCheckup за $100</a>
                         <a href="index.html#contact-form" class="btn btn-outline btn-large">Записатись на консультацію</a>
@@ -421,10 +414,10 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-brand">
-                        <div class="logo">
+                        <a href="/" class="logo" aria-label="BodyHealth">
                             <img src="/img/logo_no_bg.png" alt="BodyHealth" style="height:40px; filter:brightness(0) invert(1);"/>
-                        </div>
-                        <p>Персонализированная система медицинского сопровождения с доказательным подходом</p>
+                            <span style="margin-left:8px; color:#fff; font-weight:600;">BodyHealth</span>
+                        </a>
                         <div class="footer-links">
                             <a href="tel:+380981501498" class="footer-link fl-phone">
                                 <span class="fl-icon"><i class="fas fa-phone"></i></span>
@@ -449,40 +442,44 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h4>Услуги</h4>
+                    <h4 data-i18n="footer_services">Послуги</h4>
                     <ul>
-                        <li><a href="services/healthcare.html">Personal Care</a></li>
-                        <li><a href="services/ambulance.html">Integrated Care</a></li>
-                        <li><a href="services/checkup.html">HealthCheckup</a></li>
+                        <li><a href="/services/healthcare.html">Personal Care</a></li>
+                        <li><a href="/services/ambulance.html">Integrated Care</a></li>
+                        <li><a href="/services/checkup.html">HealthCheckup</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h4>Компания</h4>
+                    <h4 data-i18n="footer_company">Компанія</h4>
                     <ul>
-                        <li><a href="for-companies.html">Для компаний</a></li>
+                        <li><a href="/for-companies.html" data-i18n="footer_companies">Для компаній</a></li>
+                        <li><a href="/blog.html" data-i18n="footer_blog">Блог</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h4>Поддержка</h4>
+                    <h4 data-i18n="footer_support">Підтримка</h4>
                     <ul>
-                        <li><a href="blog.html">Блог</a></li>
-                        <li><a href="/privacy">Политика конфиденциальности</a></li>
+                        <li><a href="/privacy.html" data-i18n="footer_privacy">Політика конфіденційності</a></li>
+                        <li><a href="/terms-and-conditions.html" data-i18n="footer_terms">Умови та положення</a></li>
+                        <li><a href="/refund-policy.html" data-i18n="footer_refund">Політика повернення коштів</a></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <div class="footer-legal">
-                    <p>&copy; 2024–2026 BodyHealth. Все права защищены.</p>
+                    <p data-i18n="footer_legal">&copy; 2024–2026 BodyHealth. Всі права захищені.</p>
+                    <p data-i18n="footer_compliance">HIPAA та GDPR сумісно. Медичні дані захищені відповідно до міжнародних стандартів.</p>
                 </div>
+                <!-- Social links: add real URLs when available -->
                 <div class="footer-social">
-                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com/company/bodyhealthcare" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/bodyhealth.care" class="social-link" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/bodyhealthcare" class="social-link" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                 </div>
             </div>
         </div>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthCheckup - Комплексная оценка здоровья | BodyHealth</title>
-    <meta name="description" content="HealthCheckup за $100: комплексная оценка состояния здоровья с персональными рекомендациями и планом действий от команды специалистов">
+    <title>HealthCheckup — комплексна оцінка здоров'я | BodyHealth</title>
+    <meta name="description" content="HealthCheckup за $100: комплексна оцінка стану здоров'я з персональними рекомендаціями та планом дій від команди спеціалістів">
 
     <!-- CSS -->
     <link rel="stylesheet" href="/css/style.css?v=20260915">
@@ -22,22 +22,26 @@
         <div class="container">
             <nav class="nav">
                 <div class="nav-brand">
-                    <a href="/" class="logo">
+                    <a href="/" class="logo" aria-label="BodyHealth">
                         <img src="/img/logo_no_bg.png" alt="BodyHealth" class="logo-img" style="height:55px;"/>
+                        <span style="margin-right:8px; margin-left:8px">BodyHealth</span>
                     </a>
                 </div>
 
                 <ul class="nav-menu">
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">Услуги <i class="fas fa-chevron-down"></i></a>
+                        <a href="#" class="nav-link" data-i18n="nav_services">Послуги</a>
                         <ul class="dropdown-menu">
-                            <li><a href="healthcare.html">Healthcare ($250/мес)</a></li>
-                            <li><a href="ambulance.html">Ambulance ($500/мес)</a></li>
-                            <li><a href="checkup.html">HealthCheckup ($100)</a></li>
+                            <li><a href="/services/healthcare.html">Personal Care ($250/міс)</a></li>
+                            <li><a href="/services/ambulance.html">Integrated Care ($500/міс)</a></li>
+                            <li><a href="/services/checkup.html">HealthCheckup ($100)</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="/for-companies.html" class="nav-link">Для компаний</a>
+                        <a href="/for-companies.html" class="nav-link" data-i18n="nav_companies">Для компаній</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/blog.html" class="nav-link" data-i18n="nav_blog">Блог</a>
                     </li>
                 </ul>
 
@@ -50,11 +54,11 @@
                             <li><a href="#" data-lang="ru">RU</a></li>
                         </ul>
                     </div>
-                    <a href="/login.html" class="btn btn-white">Вход</a>
-                    <a href="/index.html#contact-form" class="btn btn-primary">Начать сопровождение</a>
+                    <a href="/login.html" class="btn btn-white" data-i18n="nav_login">Вхід</a>
+                    <a href="/#contact-form" class="btn btn-primary" data-i18n="nav_start">Розпочати супровід</a>
                 </div>
 
-                <button class="nav-toggle">
+                <button class="nav-toggle" aria-label="Меню">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -71,34 +75,34 @@
                 <div class="service-hero-content">
                     <div class="service-intro">
                         <div class="breadcrumb">
-                            <a href="/">Главная</a> / <a href="/">Услуги</a> / <span>HealthCheckup</span>
+                            <a href="/">Головна</a> / <a href="/">Послуги</a> / <span>HealthCheckup</span>
                         </div>
-                        <div class="service-badge" style="background-color: #d1ecf1; color: #0c5460;">Разовая услуга</div>
+                        <div class="service-badge" style="background-color: #d1ecf1; color: #0c5460;">Разова послуга</div>
                         <h1>HealthCheckup</h1>
                         <p class="service-price">$100 <span>разово</span></p>
-                        <p class="service-subtitle">Комплексная оценка состояния здоровья с персональными рекомендациями и планом действий. Идеальная точка входа в систему BodyHealth</p>
+                        <p class="service-subtitle">Комплексна оцінка стану здоров'я з персональними рекомендаціями та планом дій. Ідеальна точка входу в систему BodyHealth</p>
                         <div class="service-actions">
-                            <a href="/index.html#contact-form" class="btn btn-primary btn-large">Заказать Checkup</a>
-                            <a href="/pricing.html" class="btn btn-outline btn-large">Сравнить тарифы</a>
+                            <a href="/index.html#contact-form" class="btn btn-primary btn-large">Замовити Checkup</a>
+                            <a href="/#services" class="btn btn-outline btn-large">Порівняти тарифи</a>
                         </div>
                     </div>
 
                     <div class="service-highlights">
                         <div class="highlight-item">
                             <i class="fas fa-clipboard-check"></i>
-                            <span>Комплексная оценка</span>
+                            <span>Комплексна оцінка</span>
                         </div>
                         <div class="highlight-item">
                             <i class="fas fa-file-medical"></i>
-                            <span>Персональный отчёт</span>
+                            <span>Персональний звіт</span>
                         </div>
                         <div class="highlight-item">
                             <i class="fas fa-route"></i>
-                            <span>План действий</span>
+                            <span>План дій</span>
                         </div>
                         <div class="highlight-item">
                             <i class="fas fa-user-md"></i>
-                            <span>Консультация специалиста</span>
+                            <span>Консультація спеціаліста</span>
                         </div>
                     </div>
                 </div>
@@ -109,16 +113,16 @@
         <section class="whats-included">
             <div class="container">
                 <div class="section-header">
-                    <h2>Что входит в HealthCheckup</h2>
-                    <p>Полная оценка состояния здоровья за одну консультацию</p>
+                    <h2>Що входить у HealthCheckup</h2>
+                    <p>Повна оцінка стану здоров'я за одну консультацію</p>
                 </div>
 
                 <div class="checkup-process">
                     <div class="process-item">
                         <div class="process-number">1</div>
                         <div class="process-content">
-                            <h3>Детальная анкета здоровья</h3>
-                            <p>Подробный опрос о состоянии здоровья, образе жизни, наследственности и жалобах</p>
+                            <h3>Детальна анкета здоров'я</h3>
+                            <p>Докладне опитування про стан здоров'я, спосіб життя, спадковість та скарги</p>
                             <div class="process-duration">30 минут</div>
                         </div>
                     </div>
@@ -126,27 +130,27 @@
                     <div class="process-item">
                         <div class="process-number">2</div>
                         <div class="process-content">
-                            <h3>Анализ медицинских данных</h3>
-                            <p>Оценка имеющихся результатов анализов, обследований и медицинской документации</p>
-                            <div class="process-duration">24 часа</div>
+                            <h3>Аналіз медичних даних</h3>
+                            <p>Оцінка наявних результатів аналізів, обстежень та медичної документації</p>
+                            <div class="process-duration">24 години</div>
                         </div>
                     </div>
 
                     <div class="process-item">
                         <div class="process-number">3</div>
                         <div class="process-content">
-                            <h3>Консультация специалиста</h3>
-                            <p>Видеоконсультация с врачом для обсуждения результатов и рекомендаций</p>
-                            <div class="process-duration">45 минут</div>
+                            <h3>Консультація спеціаліста</h3>
+                            <p>Відеоконсультація з лікарем для обговорення результатів і рекомендацій</p>
+                            <div class="process-duration">45 хвилин</div>
                         </div>
                     </div>
 
                     <div class="process-item">
                         <div class="process-number">4</div>
                         <div class="process-content">
-                            <h3>Персональный отчёт</h3>
-                            <p>Подробный письменный отчёт с оценкой здоровья и планом рекомендаций</p>
-                            <div class="process-duration">48 часов</div>
+                            <h3>Персональний звіт</h3>
+                            <p>Докладний письмовий звіт з оцінкою здоров'я та планом рекомендацій</p>
+                            <div class="process-duration">48 годин</div>
                         </div>
                     </div>
                 </div>
@@ -156,13 +160,13 @@
                         <div class="feature-icon">
                             <i class="fas fa-search"></i>
                         </div>
-                        <h3>Комплексный анализ здоровья</h3>
-                        <p>Оценка всех систем организма с выявлением факторов риска и потенциальных проблем</p>
+                        <h3>Комплексний аналіз здоров'я</h3>
+                        <p>Оцінка всіх систем організму з виявленням факторів ризику та потенційних проблем</p>
                         <ul>
-                            <li>Анализ сердечно-сосудистой системы</li>
-                            <li>Оценка метаболических показателей</li>
-                            <li>Проверка неврологического статуса</li>
-                            <li>Анализ гормонального фона</li>
+                            <li>Аналіз серцево-судинної системи</li>
+                            <li>Оцінка метаболічних показників</li>
+                            <li>Перевірка неврологічного статусу</li>
+                            <li>Аналіз гормонального фону</li>
                         </ul>
                     </div>
 
@@ -170,13 +174,13 @@
                         <div class="feature-icon">
                             <i class="fas fa-file-medical-alt"></i>
                         </div>
-                        <h3>Персональный отчёт</h3>
-                        <p>Детальный письменный отчёт с результатами оценки и конкретными рекомендациями</p>
+                        <h3>Персональний звіт</h3>
+                        <p>Детальний письмовий звіт з результатами оцінки та конкретними рекомендаціями</p>
                         <ul>
-                            <li>Оценка текущего состояния здоровья</li>
-                            <li>Выявленные факторы риска</li>
-                            <li>Рекомендации по образу жизни</li>
-                            <li>План дополнительных обследований</li>
+                            <li>Оцінка поточного стану здоров'я</li>
+                            <li>Виявлені фактори ризику</li>
+                            <li>Рекомендації щодо способу життя</li>
+                            <li>План додаткових обстежень</li>
                         </ul>
                     </div>
 
@@ -184,13 +188,13 @@
                         <div class="feature-icon">
                             <i class="fas fa-route"></i>
                         </div>
-                        <h3>План профилактических мер</h3>
-                        <p>Индивидуальная программа профилактики с конкретными шагами и сроками</p>
+                        <h3>План профілактичних заходів</h3>
+                        <p>Індивідуальна програма профілактики з конкретними кроками та термінами</p>
                         <ul>
-                            <li>График регулярных обследований</li>
-                            <li>Рекомендации по питанию</li>
-                            <li>Программа физических нагрузок</li>
-                            <li>План контроля показателей</li>
+                            <li>Графік регулярних обстежень</li>
+                            <li>Рекомендації щодо харчування</li>
+                            <li>Програма фізичних навантажень</li>
+                            <li>План контролю показників</li>
                         </ul>
                     </div>
 
@@ -198,13 +202,13 @@
                         <div class="feature-icon">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
-                        <h3>Образовательные материалы</h3>
-                        <p>Персонализированные информационные материалы по Вашим потребностям</p>
+                        <h3>Освітні матеріали</h3>
+                        <p>Персоналізовані інформаційні матеріали за Вашими потребами</p>
                         <ul>
-                            <li>Памятки по профилактике заболеваний</li>
-                            <li>Руководства по здоровому образу жизни</li>
-                            <li>Инструкции по самоконтролю</li>
-                            <li>Список полезных ресурсов</li>
+                            <li>Пам'ятки з профілактики захворювань</li>
+                            <li>Посібники зі здорового способу життя</li>
+                            <li>Інструкції із самоконтролю</li>
+                            <li>Список корисних ресурсів</li>
                         </ul>
                     </div>
 
@@ -212,13 +216,13 @@
                         <div class="feature-icon">
                             <i class="fas fa-phone-alt"></i>
                         </div>
-                        <h3>Консультация по результатам</h3>
-                        <p>Подробное обсуждение результатов с врачом и ответы на все вопросы</p>
+                        <h3>Консультація за результатами</h3>
+                        <p>Докладне обговорення результатів з лікарем та відповіді на всі запитання</p>
                         <ul>
-                            <li>Объяснение результатов анализа</li>
-                            <li>Ответы на вопросы о здоровье</li>
-                            <li>Рекомендации по дальнейшим действиям</li>
-                            <li>Обсуждение возможности подписки</li>
+                            <li>Пояснення результатів аналізу</li>
+                            <li>Відповіді на запитання про здоров'я</li>
+                            <li>Рекомендації щодо подальших дій</li>
+                            <li>Обговорення можливості підписки</li>
                         </ul>
                     </div>
 
@@ -226,13 +230,13 @@
                         <div class="feature-icon">
                             <i class="fas fa-arrow-right"></i>
                         </div>
-                        <h3>Переход на постоянное сопровождение</h3>
-                        <p>Возможность продолжить с пакетами Healthcare или Ambulance со скидкой</p>
+                        <h3>Перехід на постійний супровід</h3>
+                        <p>Можливість продовжити з пакетами Personal Care або Integrated Care зі знижкою</p>
                         <ul>
-                            <li>Скидка 20% на первый месяц Healthcare</li>
-                            <li>Сохранение всех данных и истории</li>
-                            <li>Назначение персонального куратора</li>
-                            <li>Плавный переход без повторных анкет</li>
+                            <li>Знижка 20% на перший місяць Personal Care</li>
+                            <li>Збереження всіх даних та історії</li>
+                            <li>Призначення персонального куратора</li>
+                            <li>Плавний перехід без повторних анкет</li>
                         </ul>
                     </div>
                 </div>
@@ -243,8 +247,8 @@
         <section class="sample-report">
             <div class="container">
                 <div class="section-header">
-                    <h2>Пример отчёта HealthCheckup</h2>
-                    <p>Посмотрите, как выглядит персональный отчёт о состоянии здоровья</p>
+                    <h2>Приклад звіту HealthCheckup</h2>
+                    <p>Подивіться, як виглядає персональний звіт про стан здоров'я</p>
                 </div>
 
                 <div class="report-preview">
@@ -253,68 +257,68 @@
                             <div class="section-icon">
                                 <i class="fas fa-chart-pie"></i>
                             </div>
-                            <h3>Общая оценка здоровья</h3>
-                            <p>Интегральная оценка состояния с цветовой шкалой и баллами по каждой системе</p>
+                            <h3>Загальна оцінка здоров'я</h3>
+                            <p>Інтегральна оцінка стану з кольоровою шкалою та балами за кожною системою</p>
                         </div>
 
                         <div class="report-section">
                             <div class="section-icon">
                                 <i class="fas fa-exclamation-triangle"></i>
                             </div>
-                            <h3>Выявленные риски</h3>
-                            <p>Детальный анализ факторов риска с приоритизацией по степени важности</p>
+                            <h3>Виявлені ризики</h3>
+                            <p>Детальний аналіз факторів ризику з пріоритизацією за ступенем важливості</p>
                         </div>
 
                         <div class="report-section">
                             <div class="section-icon">
                                 <i class="fas fa-clipboard-list"></i>
                             </div>
-                            <h3>Рекомендации</h3>
-                            <p>Конкретные шаги для улучшения здоровья с указанием приоритетов и сроков</p>
+                            <h3>Рекомендації</h3>
+                            <p>Конкретні кроки для покращення здоров'я із зазначенням пріоритетів і термінів</p>
                         </div>
 
                         <div class="report-section">
                             <div class="section-icon">
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
-                            <h3>План обследований</h3>
-                            <p>График необходимых анализов и исследований на ближайшие 6-12 месяцев</p>
+                            <h3>План обстежень</h3>
+                            <p>Графік необхідних аналізів і досліджень на найближчі 6–12 місяців</p>
                         </div>
                     </div>
 
                     <div class="report-sample">
                         <div class="report-header">
-                            <h4>Персональный отчёт HealthCheckup</h4>
-                            <p>Подготовлен командой специалистов BodyHealth</p>
+                            <h4>Персональний звіт HealthCheckup</h4>
+                            <p>Підготовлений командою спеціалістів BodyHealth</p>
                         </div>
 
                         <div class="report-content">
                             <div class="health-score">
                                 <div class="score-circle">
                                     <span class="score">78</span>
-                                    <span class="score-label">баллов из 100</span>
+                                    <span class="score-label">балів зі 100</span>
                                 </div>
                                 <div class="score-description">
-                                    <h5>Хорошее состояние здоровья</h5>
-                                    <p>Выявлены незначительные отклонения, требующие внимания</p>
+                                    <h5>Добрий стан здоров'я</h5>
+                                    <p>Виявлено незначні відхилення, що потребують уваги</p>
                                 </div>
                             </div>
 
                             <div class="key-findings">
-                                <h5>Ключевые находки:</h5>
+                                <h5>Ключові знахідки:</h5>
                                 <ul>
-                                    <li><span class="priority high">Высокий</span> Повышенный уровень холестерина</li>
-                                    <li><span class="priority medium">Средний</span> Недостаток витамина D</li>
-                                    <li><span class="priority low">Низкий</span> Малоподвижный образ жизни</li>
+                                    <li><span class="priority high">Високий</span> Підвищений рівень холестерину</li>
+                                    <li><span class="priority medium">Середній</span> Нестача вітаміну D</li>
+                                    <li><span class="priority low">Низький</span> Малорухливий спосіб життя</li>
                                 </ul>
                             </div>
 
                             <div class="next-steps">
-                                <h5>Ближайшие шаги:</h5>
+                                <h5>Найближчі кроки:</h5>
                                 <ol>
-                                    <li>Повторная сдача липидограммы через 3 месяца</li>
-                                    <li>Начать приём витамина D 2000 МЕ ежедневно</li>
-                                    <li>Увеличить физическую активность до 150 мин/неделю</li>
+                                    <li>Повторне здавання ліпідограми через 3 місяці</li>
+                                    <li>Почати прийом вітаміну D 2000 МО щоденно</li>
+                                    <li>Збільшити фізичну активність до 150 хв/тиждень</li>
                                 </ol>
                             </div>
                         </div>
@@ -327,8 +331,8 @@
         <section class="target-audience">
             <div class="container">
                 <div class="section-header">
-                    <h2>Кому подходит HealthCheckup</h2>
-                    <p>Оптимальное решение для первичной оценки состояния здоровья</p>
+                    <h2>Кому підходить HealthCheckup</h2>
+                    <p>Оптимальне рішення для первинної оцінки стану здоров'я</p>
                 </div>
 
                 <div class="audience-grid">
@@ -336,32 +340,32 @@
                         <div class="audience-icon">
                             <i class="fas fa-search"></i>
                         </div>
-                        <h3>Желающие узнать о своём здоровье</h3>
-                        <p>Люди, которые хотят получить объективную оценку состояния здоровья и факторов риска</p>
+                        <h3>Ті, хто хоче дізнатись про своє здоров'я</h3>
+                        <p>Люди, які хочуть отримати об'єктивну оцінку стану здоров'я та факторів ризику</p>
                     </div>
 
                     <div class="audience-item">
                         <div class="audience-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
-                        <h3>Заботящиеся о профилактике</h3>
-                        <p>Люди, ориентированные на профилактику заболеваний и поддержание здоровья</p>
+                        <h3>Ті, хто дбає про профілактику</h3>
+                        <p>Люди, орієнтовані на профілактику захворювань і підтримання здоров'я</p>
                     </div>
 
                     <div class="audience-item">
                         <div class="audience-icon">
                             <i class="fas fa-question"></i>
                         </div>
-                        <h3>Сомневающиеся в выборе пакета</h3>
-                        <p>Те, кто хочет попробовать услуги BodyHealth перед выбором постоянного пакета</p>
+                        <h3>Ті, хто вагається у виборі пакета</h3>
+                        <p>Ті, хто хоче спробувати послуги BodyHealth перед вибором постійного пакета</p>
                     </div>
 
                     <div class="audience-item">
                         <div class="audience-icon">
                             <i class="fas fa-calendar-check"></i>
                         </div>
-                        <h3>Проходящие регулярные чекапы</h3>
-                        <p>Люди, которые хотят дополнить регулярные медосмотры экспертной оценкой</p>
+                        <h3>Ті, хто проходить регулярні чекапи</h3>
+                        <p>Люди, які хочуть доповнити регулярні медогляди експертною оцінкою</p>
                     </div>
                 </div>
             </div>
@@ -371,58 +375,58 @@
         <section class="faq-section">
             <div class="container">
                 <div class="section-header">
-                    <h2>Часто задаваемые вопросы</h2>
-                    <p>Ответы на популярные вопросы о HealthCheckup</p>
+                    <h2>Поширені запитання</h2>
+                    <p>Відповіді на популярні запитання про HealthCheckup</p>
                 </div>
 
                 <div class="faq-list">
                     <div class="faq-item">
                         <div class="faq-question">
-                            <h3>Сколько времени занимает полный HealthCheckup?</h3>
+                            <h3>Скільки часу займає повний HealthCheckup?</h3>
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>Полный процесс занимает 3-5 дней: заполнение анкеты (30 мин), анализ данных (24 часа), консультация (45 мин) и подготовка отчёта (48 часов). Консультацию можно назначить в удобное время.</p>
+                            <p>Повний процес займає 3–5 днів: заповнення анкети (30 хв), аналіз даних (24 години), консультація (45 хв) та підготовка звіту (48 годин). Консультацію можна призначити у зручний час.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <div class="faq-question">
-                            <h3>Нужно ли сдавать дополнительные анализы?</h3>
+                            <h3>Чи потрібно здавати додаткові аналізи?</h3>
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>HealthCheckup основан на анализе уже имеющихся у Вас медицинских данных. Если анализы отсутствуют или устарели, врач может рекомендовать сдать базовый набор анализов, но это не входит в стоимость услуги.</p>
+                            <p>HealthCheckup ґрунтується на аналізі вже наявних у Вас медичних даних. Якщо аналізи відсутні або застарілі, лікар може рекомендувати здати базовий набір аналізів, але це не входить у вартість послуги.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <div class="faq-question">
-                            <h3>Можно ли получить справку по результатам?</h3>
+                            <h3>Чи можна отримати довідку за результатами?</h3>
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>Да, по результатам HealthCheckup Вы получаете официальное медицинское заключение с цифровой подписью врача, которое можно использовать в различных организациях.</p>
+                            <p>Так, за результатами HealthCheckup Ви отримуєте офіційний медичний висновок із цифровим підписом лікаря, який можна використовувати в різних організаціях.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <div class="faq-question">
-                            <h3>Какая скидка предоставляется на дальнейшие услуги?</h3>
+                            <h3>Яка знижка надається на подальші послуги?</h3>
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>После прохождения HealthCheckup Вы получаете скидку 20% на первый месяц любого пакета (Healthcare или Ambulance). Скидка действует в течение 30 дней после получения отчёта.</p>
+                            <p>Після проходження HealthCheckup Ви отримуєте знижку 20% на перший місяць будь-якого пакета (Personal Care або Integrated Care). Знижка діє протягом 30 днів після отримання звіту.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <div class="faq-question">
-                            <h3>Можно ли проходить HealthCheckup несколько раз?</h3>
+                            <h3>Чи можна проходити HealthCheckup кілька разів?</h3>
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>Да, HealthCheckup можно проходить периодически (рекомендуется 1-2 раза в год) для отслеживания динамики состояния здоровья и корректировки рекомендаций.</p>
+                            <p>Так, HealthCheckup можна проходити періодично (рекомендується 1–2 рази на рік) для відстеження динаміки стану здоров'я та коригування рекомендацій.</p>
                         </div>
                     </div>
                 </div>
@@ -433,27 +437,27 @@
         <section class="service-cta">
             <div class="container">
                 <div class="cta-content">
-                    <h2>Начните заботиться о здоровье с HealthCheckup</h2>
-                    <p>Комплексная оценка состояния здоровья всего за $100</p>
+                    <h2>Почніть дбати про здоров'я з HealthCheckup</h2>
+                    <p>Комплексна оцінка стану здоров'я всього за $100</p>
 
                     <div class="cta-features">
                         <div class="cta-feature">
                             <i class="fas fa-check"></i>
-                            <span>Персональный отчёт от команды врачей</span>
+                            <span>Персональний звіт від команди лікарів</span>
                         </div>
                         <div class="cta-feature">
                             <i class="fas fa-check"></i>
-                            <span>Скидка 20% на дальнейшие услуги</span>
+                            <span>Знижка 20% на подальші послуги</span>
                         </div>
                         <div class="cta-feature">
                             <i class="fas fa-check"></i>
-                            <span>Результат через 3-5 дней</span>
+                            <span>Результат через 3–5 днів</span>
                         </div>
                     </div>
 
                     <div class="cta-actions">
-                        <a href="/index.html#contact-form" class="btn btn-primary btn-large">Заказать HealthCheckup за $100</a>
-                        <a href="/pricing.html" class="btn btn-outline btn-large">Сравнить все пакеты</a>
+                        <a href="/index.html#contact-form" class="btn btn-primary btn-large">Замовити HealthCheckup за $100</a>
+                        <a href="/#services" class="btn btn-outline btn-large">Порівняти всі пакети</a>
                     </div>
                 </div>
             </div>
@@ -466,10 +470,10 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-brand">
-                        <div class="logo">
+                        <a href="/" class="logo" aria-label="BodyHealth">
                             <img src="/img/logo_no_bg.png" alt="BodyHealth" style="height:40px; filter:brightness(0) invert(1);"/>
-                        </div>
-                        <p>Персонализированная система медицинского сопровождения с доказательным подходом</p>
+                            <span style="margin-left:8px; color:#fff; font-weight:600;">BodyHealth</span>
+                        </a>
                         <div class="footer-links">
                             <a href="tel:+380981501498" class="footer-link fl-phone">
                                 <span class="fl-icon"><i class="fas fa-phone"></i></span>
@@ -496,32 +500,42 @@
                 </div>
 
                 <div class="footer-section">
-                    <h4>Услуги</h4>
+                    <h4 data-i18n="footer_services">Послуги</h4>
                     <ul>
-                        <li><a href="healthcare.html">Healthcare</a></li>
-                        <li><a href="ambulance.html">Ambulance</a></li>
-                        <li><a href="checkup.html">HealthCheckup</a></li>
+                        <li><a href="/services/healthcare.html">Personal Care</a></li>
+                        <li><a href="/services/ambulance.html">Integrated Care</a></li>
+                        <li><a href="/services/checkup.html">HealthCheckup</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Компания</h4>
+                    <h4 data-i18n="footer_company">Компанія</h4>
                     <ul>
-                        <li><a href="/for-companies.html">Для компаний</a></li>
+                        <li><a href="/for-companies.html" data-i18n="footer_companies">Для компаній</a></li>
+                        <li><a href="/blog.html" data-i18n="footer_blog">Блог</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Поддержка</h4>
+                    <h4 data-i18n="footer_support">Підтримка</h4>
                     <ul>
-                        <li><a href="/privacy">Политика конфиденциальности</a></li>
+                        <li><a href="/privacy.html" data-i18n="footer_privacy">Політика конфіденційності</a></li>
+                        <li><a href="/terms-and-conditions.html" data-i18n="footer_terms">Умови та положення</a></li>
+                        <li><a href="/refund-policy.html" data-i18n="footer_refund">Політика повернення коштів</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
                 <div class="footer-legal">
-                    <p>&copy; 2024–2026 BodyHealth. Все права защищены.</p>
+                    <p data-i18n="footer_legal">&copy; 2024–2026 BodyHealth. Всі права захищені.</p>
+                    <p data-i18n="footer_compliance">HIPAA та GDPR сумісно. Медичні дані захищені відповідно до міжнародних стандартів.</p>
+                </div>
+                <!-- Social links: add real URLs when available -->
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/company/bodyhealthcare" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/bodyhealth.care" class="social-link" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/bodyhealthcare" class="social-link" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                 </div>
             </div>
         </div>

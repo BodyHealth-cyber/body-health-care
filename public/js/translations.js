@@ -198,6 +198,8 @@ window.BH_TRANSLATIONS = {
     footer_companies:  'Для компаній',
     footer_blog:       'Блог',
     footer_privacy:    'Політика конфіденційності',
+    footer_terms:      'Умови та положення',
+    footer_refund:     'Політика повернення коштів',
     footer_legal:      '© 2024–2026 BodyHealth. Всі права захищені.',
     footer_compliance: 'HIPAA та GDPR сумісно. Медичні дані захищені відповідно до міжнародних стандартів.',
 
@@ -449,6 +451,8 @@ window.BH_TRANSLATIONS = {
     footer_companies:  'For Companies',
     footer_blog:       'Blog',
     footer_privacy:    'Privacy Policy',
+    footer_terms:      'Terms & Conditions',
+    footer_refund:     'Refund Policy',
     footer_legal:      '© 2024–2026 BodyHealth. All rights reserved.',
     footer_compliance: 'HIPAA and GDPR compliant. Medical data protected to international standards.',
 
@@ -700,6 +704,8 @@ window.BH_TRANSLATIONS = {
     footer_companies:  'Для компаний',
     footer_blog:       'Блог',
     footer_privacy:    'Политика конфиденциальности',
+    footer_terms:      'Условия и положения',
+    footer_refund:     'Политика возврата средств',
     footer_legal:      '© 2024–2026 BodyHealth. Все права защищены.',
     footer_compliance: 'HIPAA и GDPR совместимо. Медицинские данные защищены в соответствии с международными стандартами.',
 
