@@ -183,9 +183,15 @@ function getContactMessages() {
 
 var contactFormMessages = getContactMessages();
 
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
+// Two forms share this handler: the one at the foot of the home page and the
+// one inside the enquiry dialog, which exists on every page. Everything below
+// reads `this`, never a captured element, so both behave identically.
+const contactForms = [
+    document.getElementById('contactForm'),
+    document.getElementById('contactFormModal')
+].filter(Boolean);
+contactForms.forEach(function (form) {
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
         contactFormMessages = getContactMessages(); // refresh for current language
 
@@ -211,7 +217,7 @@ if (contactForm) {
         // literal placeholder, which would resolve as a relative URL against this
         // page and quietly 404 — so the enquiry is handed to a working channel
         // instead of being lost behind an error box.
-        const MAKE_WEBHOOK_URL = contactForm.dataset.makeWebhook || '';
+        const MAKE_WEBHOOK_URL = this.dataset.makeWebhook || '';
         const webhookReady = /^https?:\/\//.test(MAKE_WEBHOOK_URL);
 
         const enquirySummary = [
@@ -255,7 +261,7 @@ if (contactForm) {
             // Make.com webhooks return 200 with "Accepted" on success
             if (response.ok) {
                 showNotification(contactFormMessages.success, 'success');
-                contactForm.reset();
+                this.reset();
                 trackEvent('form_submit_success', { service: formObject.service });
             } else {
                 throw new Error('Webhook error ' + response.status);
@@ -270,7 +276,7 @@ if (contactForm) {
             submitButton.disabled = false;
         }
     });
-}
+});
 
 // ===== FORM VALIDATION =====
 function validateForm(data) {
@@ -644,6 +650,7 @@ document.addEventListener('click', function(e) {
         var t = sheetText();
         var el = document.createElement('div');
         el.className = 'contact-sheet-backdrop';
+        el.hidden = true;
         el.setAttribute('role', 'dialog');
         el.setAttribute('aria-modal', 'true');
         el.setAttribute('aria-label', t.title);
@@ -711,4 +718,92 @@ document.addEventListener('click', function(e) {
             });
         });
     });
+})();
+
+// ===== ENQUIRY DIALOG =====
+// 42 buttons across 18 pages pointed at #contact-form, and the form only ever
+// existed on the home page: from an article or a service page the button threw
+// the reader onto a different page and scrolled them to the bottom. They now
+// open the form where the person already is. The form at the foot of the home
+// page stays for anyone who scrolled that far.
+(function () {
+    // main.js is included before the dialog markup at the foot of the page, so
+    // looking the element up at load time finds nothing and the whole
+    // controller bails silently. Wait for the document instead.
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initEnquiryDialog);
+    } else {
+        initEnquiryDialog();
+    }
+
+    function initEnquiryDialog() {
+    var dialog = document.getElementById('enquiryDialog');
+    if (!dialog) return;
+
+    var panel = dialog.querySelector('.enquiry-panel');
+    var lastFocused = null;
+
+    function isHome() {
+        // on the home page the visible form is right there; scrolling to it is
+        // the better answer than covering it with a copy of itself
+        return !!document.getElementById('contactForm');
+    }
+
+    function openDialog() {
+        lastFocused = document.activeElement;
+        dialog.hidden = false;
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(function () { dialog.classList.add('is-open'); });
+        var first = dialog.querySelector('input, select, textarea');
+        if (first) first.focus();
+        document.addEventListener('keydown', onKeydown);
+        trackEvent('enquiry_dialog_open', { page: window.location.pathname });
+    }
+
+    function closeDialog() {
+        dialog.classList.remove('is-open');
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', onKeydown);
+        setTimeout(function () { dialog.hidden = true; }, 180);
+        if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    function onKeydown(e) {
+        if (e.key === 'Escape' || e.keyCode === 27) { closeDialog(); return; }
+        if (e.key !== 'Tab') return;
+        // keep focus inside the dialog while it is open
+        var f = panel.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])');
+        if (!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+
+    dialog.addEventListener('click', function (e) {
+        if (e.target === dialog) closeDialog();
+    });
+    Array.prototype.forEach.call(dialog.querySelectorAll('[data-enquiry-close]'), function (b) {
+        b.addEventListener('click', closeDialog);
+    });
+
+    document.addEventListener('click', function (e) {
+        var a = e.target.closest ? e.target.closest('a[href*="#contact-form"]') : null;
+        if (!a) return;
+        if (isHome()) return; // let the anchor scroll to the real form
+        e.preventDefault();
+        openDialog();
+    });
+
+    // a successful send closes the dialog behind the visitor
+    var modalForm = document.getElementById('contactFormModal');
+    if (modalForm) {
+        modalForm.addEventListener('submit', function () {
+            var was = modalForm.querySelector('[name="email"]').value;
+            setTimeout(function () {
+                // only if the form actually cleared, i.e. the send went through
+                if (modalForm.querySelector('[name="email"]').value !== was) closeDialog();
+            }, 1200);
+        });
+    }
+    }
 })();

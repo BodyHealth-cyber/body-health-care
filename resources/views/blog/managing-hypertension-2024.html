@@ -27,7 +27,7 @@
     <meta property="article:section" content="Кардіологія">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/style.css?v=202609151732">
+    <link rel="stylesheet" href="/css/style.css?v=20260915180245">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -661,7 +661,7 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="/js/main.js?v=202609151732"></script>
+    <script src="/js/main.js?v=20260915180245"></script>
 
     <!-- Article-specific JavaScript -->
     <script>
@@ -716,6 +716,62 @@
 <div class="float-contacts">
         <a href="https://t.me/bodyhealthclinic" target="_blank" rel="noopener" class="float-btn float-tg" title="Telegram"><i class="fab fa-telegram"></i></a>
         <a href="https://wa.me/380981501498" target="_blank" rel="noopener" class="float-btn float-wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <!-- Enquiry dialog. Every "start care" button on the site used to point at
+         #contact-form, which exists only on the home page - so from any inner
+         page the button threw the visitor onto a different page. The markup
+         lives here rather than being built in JS so the locale generator
+         translates it like any other page text. -->
+    <div class="enquiry-backdrop" id="enquiryDialog" hidden role="dialog" aria-modal="true" aria-labelledby="enquiryTitle">
+      <div class="enquiry-panel">
+        <button type="button" class="enquiry-close" data-enquiry-close aria-label="Закрити" data-i18n-aria="aria_close">&times;</button>
+        <p class="enquiry-title" id="enquiryTitle" data-i18n="form_title">Залишити заявку</p>
+        <p class="enquiry-sub" data-i18n="form_sub">Куратор зв'яжеться з вами протягом робочого дня.</p>
+        <form class="contact-form contact-form--compact" id="contactFormModal" data-make-webhook="https://hook.eu1.make.com/2e9lvba2ypntnv4e4q40i6b7l1epsvgo">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName-m" data-i18n="label_fname">Ім'я *</label>
+              <input type="text" id="firstName-m" name="firstName" data-i18n-placeholder="ph_fname" placeholder="Ваше ім'я" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName-m" data-i18n="label_lname">Прізвище *</label>
+              <input type="text" id="lastName-m" name="lastName" data-i18n-placeholder="ph_lname" placeholder="Ваше прізвище" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email-m" data-i18n="label_email">Email *</label>
+              <input type="email" id="email-m" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone-m" data-i18n="label_phone">Телефон</label>
+              <input type="tel" id="phone-m" name="phone" data-i18n-placeholder="ph_phone" placeholder="+380 XX XXX XX XX">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="service-m" data-i18n="label_service">Послуга, що цікавить *</label>
+            <select id="service-m" name="service" required>
+              <option value="" disabled selected hidden data-i18n="opt_select">Оберіть послугу</option>
+              <option value="personal-care" data-i18n="opt_pc">Personal Care — постійний куратор і команда спеціалістів</option>
+              <option value="integrated-care" data-i18n="opt_ic">Integrated Care — для хронічних і складних станів</option>
+              <option value="checkup" data-i18n="opt_ch">HealthCheckup — разова оцінка стану здоров'я</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message-m" data-i18n="label_message">Додаткова інформація</label>
+            <textarea id="message-m" name="message" rows="3" data-i18n-placeholder="ph_message" placeholder="Розкажіть про свої потреби або поставте запитання"></textarea>
+          </div>
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="privacy-m" name="privacy" required>
+            <label for="privacy-m" data-i18n-html="label_privacy">Я погоджуюсь з <a href="/privacy.html" target="_blank">політикою конфіденційності</a> та обробкою персональних даних *</label>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary btn-large" data-i18n="btn_submit">Надіслати заявку</button>
+            <p class="form-reassure" data-i18n="form_reassure">Перша розмова — щоб зрозуміти, з чого почати</p>
+          </div>
+        </form>
+      </div>
     </div>
 </body>
 </html>

@@ -5382,3 +5382,171 @@ button.footer-link {
         transform: translateY(16px);
     }
 }
+
+/* ===== ENQUIRY FORM — compact skin =====
+   Field labels became small caps: they took twice the height as sentence-case
+   labels and made the form read like a clinic intake sheet. Fields carry a
+   faint ground so the eye finds the cursor without a heavy border. */
+.contact-form .form-group { margin-bottom: 0.85rem; }
+
+.contact-form label {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #5b6672;
+    margin-bottom: 0.35rem;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.68rem 0.8rem;
+    border: 1px solid #e2e6ea;
+    border-radius: 6px;
+    background-color: #fbfcfd;
+    font: inherit;
+    color: #15181c;
+    transition: border-color 0.12s ease, background-color 0.12s ease, box-shadow 0.12s ease;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #003d82;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 61, 130, 0.1);
+}
+.contact-form textarea { min-height: 84px; resize: vertical; }
+
+/* the native arrow differs per platform; this one matches the rest of the form */
+.contact-form select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235b6672' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    padding-right: 2.2rem;
+}
+
+/* consent is a legal line, not a field: it should not shout */
+.contact-form .checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin: 1.1rem 0 1.25rem;
+}
+.contact-form .checkbox-group input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+    accent-color: #003d82;
+}
+.contact-form .checkbox-group label {
+    font-size: 0.8rem;
+    line-height: 1.45;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: #5b6672;
+    margin: 0;
+}
+
+.contact-form .form-submit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+}
+.contact-form .form-reassure {
+    font-size: 0.75rem;
+    color: #5b6672;
+    text-align: center;
+    margin: 0;
+}
+
+/* ===== ENQUIRY DIALOG ===== */
+.enquiry-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 35, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    z-index: 10001;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+}
+.enquiry-backdrop.is-open { opacity: 1; }
+
+.enquiry-panel {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #e2e6ea;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 520px;
+    padding: 1.9rem;
+    box-shadow: 0 18px 54px rgba(0, 0, 0, 0.24);
+    margin: auto;
+    transform: translateY(10px);
+    transition: transform 0.18s ease;
+}
+.enquiry-backdrop.is-open .enquiry-panel { transform: none; }
+
+.enquiry-close {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    color: #5b6672;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 6px;
+}
+.enquiry-close:hover { background: #f1f3f6; color: #15181c; }
+
+.enquiry-title { font-size: 1.05rem; font-weight: 700; margin: 0 0 0.25rem; padding-right: 2rem; }
+.enquiry-sub { font-size: 0.85rem; color: #5b6672; margin: 0 0 1.4rem; }
+
+@media (prefers-reduced-motion: reduce) {
+    .enquiry-backdrop, .enquiry-panel { transition: none; }
+}
+
+@media (max-width: 560px) {
+    .enquiry-backdrop { padding: 0; align-items: flex-end; }
+    .enquiry-panel {
+        max-width: none;
+        border-radius: 10px 10px 0 0;
+        border-bottom: none;
+        padding: 1.5rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom, 0px));
+        transform: translateY(20px);
+    }
+    .contact-form .form-row { grid-template-columns: 1fr; }
+}
+
+/* A class selector beats the `hidden` attribute's built-in display:none, so a
+   closed overlay stayed in the layout at opacity 0 — invisible, full-screen and
+   swallowing every click on the page until a reload. Both overlays need this. */
+.contact-sheet-backdrop[hidden],
+.enquiry-backdrop[hidden] { display: none !important; }
+
+/* Inside the dialog the form is the panel: its own card background, border and
+   padding would render a box within a box. */
+.enquiry-panel .contact-form {
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+}
