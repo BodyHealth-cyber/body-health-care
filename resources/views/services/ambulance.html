@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ambulance - Расширенное медицинское сопровождение | BodyHealth</title>
-    <meta name="description" content="Ambulance пакет за $500/месяц: все функции Healthcare плюс мультидисциплинарные сессии, протоколы экстренной помощи и приоритетная поддержка">
+    <title>Integrated Care - Расширенное медицинское сопровождение | BodyHealth</title>
+    <meta name="description" content="Integrated Care пакет за $500/месяц: все функции Personal Care плюс мультидисциплинарные сессии, протоколы экстренной помощи и приоритетная поддержка">
 
     <!-- CSS -->
     <link rel="stylesheet" href="/css/style.css">
@@ -14,6 +14,7 @@
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="/js/translations.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -22,8 +23,7 @@
             <nav class="nav">
                 <div class="nav-brand">
                     <a href="/" class="logo">
-                        <i class="fas fa-heartbeat"></i>
-                        <span>BodyHealth</span>
+                        <img src="/img/logo_no_bg.png" alt="BodyHealth" class="logo-img" style="height:55px;"/>
                     </a>
                 </div>
 
@@ -31,8 +31,8 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link">Услуги <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="healthcare.html">Healthcare ($250/мес)</a></li>
-                            <li><a href="ambulance.html">Ambulance ($500/мес)</a></li>
+                            <li><a href="healthcare.html">Personal Care ($250/мес)</a></li>
+                            <li><a href="ambulance.html">Integrated Care ($500/мес)</a></li>
                             <li><a href="checkup.html">HealthCheckup ($100)</a></li>
                         </ul>
                     </li>
@@ -42,6 +42,14 @@
                 </ul>
 
                 <div class="nav-actions">
+                    <div class="language-switcher">
+                        <button class="current-lang" id="langToggle" aria-label="Мова / Language">UK</button>
+                        <ul class="lang-menu">
+                            <li><a href="#" data-lang="uk">UK</a></li>
+                            <li><a href="#" data-lang="en">EN</a></li>
+                            <li><a href="#" data-lang="ru">RU</a></li>
+                        </ul>
+                    </div>
                     <a href="/login.html" class="btn btn-white">Вход</a>
                     <a href="/index.html#contact-form" class="btn btn-primary">Начать сопровождение</a>
                 </div>
@@ -63,12 +71,12 @@
                 <div class="service-hero-content">
                     <div class="service-intro">
                         <div class="breadcrumb">
-                            <a href="/">Главная</a> / <a href="/">Услуги</a> / <span>Ambulance</span>
+                            <a href="/">Главная</a> / <a href="/">Услуги</a> / <span>Integrated Care</span>
                         </div>
                         <div class="service-badge" style="background-color: #fff3cd; color: #856404;">Рекомендуем</div>
-                        <h1>Ambulance</h1>
+                        <h1>Integrated Care</h1>
                         <p class="service-price">$500 <span>/месяц</span></p>
-                        <p class="service-subtitle">Расширенное медицинское сопровождение для пациентов с хроническими заболеваниями и комплексными состояниями. Включает все функции Healthcare плюс специализированные протоколы</p>
+                        <p class="service-subtitle">Расширенное медицинское сопровождение для пациентов с хроническими заболеваниями и комплексными состояниями. Включает все функции Personal Care плюс специализированные протоколы</p>
                         <div class="service-actions">
                             <a href="/index.html#contact-form" class="btn btn-primary btn-large">Выбрать пакет</a>
                             <a href="/pricing.html" class="btn btn-outline btn-large">Сравнить тарифы</a>
@@ -81,7 +89,7 @@
                             <span>Команда специалистов</span>
                         </div>
                         <div class="highlight-item">
-                            <i class="fas fa-ambulance"></i>
+                            <i class="fas fa-heartbeat"></i>
                             <span>Экстренные протоколы</span>
                         </div>
                         <div class="highlight-item">
@@ -101,15 +109,15 @@
         <section class="whats-included">
             <div class="container">
                 <div class="section-header">
-                    <h2>Что входит в пакет Ambulance</h2>
-                    <p>Всё из пакета Healthcare плюс расширенные возможности для комплексного ведения</p>
+                    <h2>Что входит в пакет Integrated Care</h2>
+                    <p>Всё из пакета Personal Care плюс расширенные возможности для комплексного ведения</p>
                 </div>
 
                 <div class="included-banner">
                     <div class="banner-content">
                         <i class="fas fa-check-circle"></i>
                         <div>
-                            <h3>Всё из пакета Healthcare включено</h3>
+                            <h3>Всё из пакета Personal Care включено</h3>
                             <p>Персональный куратор, консультации специалистов, мониторинг здоровья, телемедицина 24/7</p>
                         </div>
                     </div>
@@ -132,7 +140,7 @@
 
                     <div class="feature-item featured-item">
                         <div class="feature-icon">
-                            <i class="fas fa-ambulance"></i>
+                            <i class="fas fa-heartbeat"></i>
                         </div>
                         <h3>Протоколы экстренной помощи</h3>
                         <p>Специализированные алгоритмы действий при острых состояниях и обострениях хронических заболеваний</p>
@@ -207,7 +215,7 @@
         <section class="target-audience">
             <div class="container">
                 <div class="section-header">
-                    <h2>Кому подходит пакет Ambulance</h2>
+                    <h2>Кому подходит пакет Integrated Care</h2>
                     <p>Идеальное решение для пациентов с комплексными медицинскими потребностями</p>
                 </div>
 
@@ -252,7 +260,7 @@
             <div class="container">
                 <div class="section-header">
                     <h2>Результаты наших пациентов</h2>
-                    <p>Реальные истории улучшения здоровья с пакетом Ambulance</p>
+                    <p>Реальные истории улучшения здоровья с пакетом Integrated Care</p>
                 </div>
 
                 <div class="stories-grid">
@@ -297,17 +305,17 @@
             <div class="container">
                 <div class="section-header">
                     <h2>Часто задаваемые вопросы</h2>
-                    <p>Ответы на популярные вопросы о пакете Ambulance</p>
+                    <p>Ответы на популярные вопросы о пакете Integrated Care</p>
                 </div>
 
                 <div class="faq-list">
                     <div class="faq-item">
                         <div class="faq-question">
-                            <h3>Чем пакет Ambulance отличается от Healthcare?</h3>
+                            <h3>Чем пакет Integrated Care отличается от Healthcare?</h3>
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>Ambulance включает все функции Healthcare плюс мультидисциплинарные консультации, протоколы экстренной помощи, приоритетную поддержку и координацию с местными врачами. Это расширенный пакет для пациентов с хроническими и комплексными заболеваниями.</p>
+                            <p>Ambulance включает все функции Personal Care плюс мультидисциплинарные консультации, протоколы экстренной помощи, приоритетную поддержку и координацию с местными врачами. Это расширенный пакет для пациентов с хроническими и комплексными заболеваниями.</p>
                         </div>
                     </div>
 
@@ -317,7 +325,7 @@
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>В рамках пакета Ambulance мы гарантируем ответ дежурного врача в течение 15 минут при экстренных обращениях. Также активируются персональные протоколы экстренной помощи и уведомляются Ваши лечащие врачи.</p>
+                            <p>В рамках пакета Integrated Care мы гарантируем ответ дежурного врача в течение 15 минут при экстренных обращениях. Также активируются персональные протоколы экстренной помощи и уведомляются Ваши лечащие врачи.</p>
                         </div>
                     </div>
 
@@ -347,7 +355,7 @@
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>Да, Вы можете в любое время перейти с пакета Healthcare на Ambulance. Переход происходит со следующего расчетного периода, а все Ваши данные и история лечения сохраняются.</p>
+                            <p>Да, Вы можете в любое время перейти с пакета Personal Care на Ambulance. Переход происходит со следующего расчетного периода, а все Ваши данные и история лечения сохраняются.</p>
                         </div>
                     </div>
                 </div>
@@ -358,7 +366,7 @@
         <section class="service-cta">
             <div class="container">
                 <div class="cta-content">
-                    <h2>Получите расширенное медицинское сопровождение с пакетом Ambulance</h2>
+                    <h2>Получите расширенное медицинское сопровождение с пакетом Integrated Care</h2>
                     <p>Идеальное решение для пациентов с хроническими заболеваниями и комплексными состояниями</p>
 
                     <div class="cta-features">
@@ -377,7 +385,7 @@
                     </div>
 
                     <div class="cta-actions">
-                        <a href="/index.html#contact-form" class="btn btn-primary btn-large">Выбрать Ambulance за $500/мес</a>
+                        <a href="/index.html#contact-form" class="btn btn-primary btn-large">Выбрать Integrated Care за $500/мес</a>
                         <a href="/pricing.html" class="btn btn-outline btn-large">Сравнить все пакеты</a>
                     </div>
                 </div>
@@ -392,8 +400,7 @@
                 <div class="footer-section">
                     <div class="footer-brand">
                         <div class="logo">
-                            <i class="fas fa-heartbeat"></i>
-                            <span>BodyHealth</span>
+                            <img src="/img/logo_no_bg.png" alt="BodyHealth" style="height:40px; filter:brightness(0) invert(1);"/>
                         </div>
                         <p>Персонализированная система медицинского сопровождения с доказательным подходом</p>
                     </div>
@@ -402,8 +409,8 @@
                 <div class="footer-section">
                     <h4>Услуги</h4>
                     <ul>
-                        <li><a href="healthcare.html">Healthcare</a></li>
-                        <li><a href="ambulance.html">Ambulance</a></li>
+                        <li><a href="healthcare.html">Personal Care</a></li>
+                        <li><a href="ambulance.html">Integrated Care</a></li>
                         <li><a href="checkup.html">HealthCheckup</a></li>
                     </ul>
                 </div>

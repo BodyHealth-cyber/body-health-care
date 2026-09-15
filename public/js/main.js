@@ -238,40 +238,38 @@ if (contactForm) {
         submitButton.textContent = contactFormMessages.sending;
         submitButton.disabled = true;
 
-        // Get Web3Forms access key from hidden input or data attribute
-        const accessKey = contactForm.dataset.web3formsKey ||
-            (document.getElementById('web3forms-key') && document.getElementById('web3forms-key').value) ||
-            '';
+        // Make.com webhook URL — replace MAKE_WEBHOOK_URL with your actual webhook from Make.com
+        const MAKE_WEBHOOK_URL = contactForm.dataset.makeWebhook || 'MAKE_WEBHOOK_URL';
 
         try {
             const payload = {
-                access_key: accessKey,
-                subject: 'BodyHealth — ' + (formObject.service || 'Consultation'),
-                from_name: formObject.firstName + ' ' + formObject.lastName,
+                form_type: formObject.form_type || 'client',
+                subject: 'BodyHealth — ' + (formObject.service || 'Заявка'),
+                first_name: formObject.firstName,
+                last_name: formObject.lastName,
                 email: formObject.email,
                 phone: formObject.phone || '—',
                 service: formObject.service,
                 message: formObject.message || '—',
-                botcheck: ''
+                timestamp: new Date().toISOString(),
+                source_page: window.location.href
             };
 
-            const response = await fetch('https://api.web3forms.com/submit', {
+            const response = await fetch(MAKE_WEBHOOK_URL, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(payload)
             });
 
-            const data = await response.json();
-
-            if (data.success) {
+            // Make.com webhooks return 200 with "Accepted" on success
+            if (response.ok) {
                 showNotification(contactFormMessages.success, 'success');
                 contactForm.reset();
                 trackEvent('form_submit_success', { service: formObject.service });
             } else {
-                throw new Error(data.message || 'Submit failed');
+                throw new Error('Webhook error ' + response.status);
             }
         } catch (err) {
             console.error('Form submission error:', err);
