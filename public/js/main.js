@@ -743,12 +743,6 @@ document.addEventListener('click', function(e) {
     var panel = dialog.querySelector('.enquiry-panel');
     var lastFocused = null;
 
-    function isHome() {
-        // on the home page the visible form is right there; scrolling to it is
-        // the better answer than covering it with a copy of itself
-        return !!document.getElementById('contactForm');
-    }
-
     function openDialog() {
         lastFocused = document.activeElement;
         dialog.hidden = false;
@@ -789,7 +783,11 @@ document.addEventListener('click', function(e) {
     document.addEventListener('click', function (e) {
         var a = e.target.closest ? e.target.closest('a[href*="#contact-form"]') : null;
         if (!a) return;
-        if (isHome()) return; // let the anchor scroll to the real form
+        // Every one of these buttons opens the form in place, the home page
+        // included. Scrolling there instead was inconsistent: the same button
+        // behaved differently depending on the page, and on the home page it
+        // threw the reader to the very bottom. The form still sits at the foot
+        // of the home page for anyone who scrolls down on their own.
         e.preventDefault();
         openDialog();
     });
