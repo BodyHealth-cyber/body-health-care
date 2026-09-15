@@ -591,3 +591,124 @@ document.addEventListener('click', function(e) {
         });
     }
 });
+
+// ===== CONTACT SHEET =====
+// The footer no longer lists Telegram and WhatsApp as separate rows: the
+// "call now" button opens this panel and the visitor picks a channel. Built
+// once, on first open, so 18 pages don't each carry a copy of the markup.
+(function () {
+    var CONTACT_SHEET_TEXT = {
+        uk: {
+            title: 'Як вам зручніше звʼязатися?',
+            sub: 'Оберіть спосіб — ми відповімо в робочі години.',
+            close: 'Закрити',
+            phone: 'Подзвонити', phoneSub: '+380 98 150 14 98',
+            tg: 'Telegram', tgSub: 'Написати в месенджері',
+            wa: 'WhatsApp', waSub: 'Написати в месенджері'
+        },
+        en: {
+            title: 'How would you like to reach us?',
+            sub: 'Pick a channel — we reply during working hours.',
+            close: 'Close',
+            phone: 'Call', phoneSub: '+380 98 150 14 98',
+            tg: 'Telegram', tgSub: 'Message us',
+            wa: 'WhatsApp', waSub: 'Message us'
+        },
+        ru: {
+            title: 'Как вам удобнее связаться?',
+            sub: 'Выберите способ — ответим в рабочие часы.',
+            close: 'Закрыть',
+            phone: 'Позвонить', phoneSub: '+380 98 150 14 98',
+            tg: 'Telegram', tgSub: 'Написать в мессенджере',
+            wa: 'WhatsApp', waSub: 'Написать в мессенджере'
+        }
+    };
+
+    var sheetEl = null;
+    var lastFocused = null;
+
+    function sheetText() {
+        var lang = (document.documentElement.lang || 'uk').slice(0, 2);
+        return CONTACT_SHEET_TEXT[lang] || CONTACT_SHEET_TEXT.uk;
+    }
+
+    function option(cls, icon, href, label, sub, external) {
+        return '<a class="contact-option ' + cls + '" href="' + href + '"' +
+            (external ? ' target="_blank" rel="noopener"' : '') + '>' +
+            '<span class="co-icon"><i class="' + icon + '"></i></span>' +
+            '<span><span class="co-label">' + label + '</span>' +
+            '<span class="co-sub">' + sub + '</span></span></a>';
+    }
+
+    function buildSheet() {
+        var t = sheetText();
+        var el = document.createElement('div');
+        el.className = 'contact-sheet-backdrop';
+        el.setAttribute('role', 'dialog');
+        el.setAttribute('aria-modal', 'true');
+        el.setAttribute('aria-label', t.title);
+        el.innerHTML =
+            '<div class="contact-sheet">' +
+                '<div class="contact-sheet-head">' +
+                    '<div>' +
+                        '<p class="contact-sheet-title">' + t.title + '</p>' +
+                        '<p class="contact-sheet-sub">' + t.sub + '</p>' +
+                    '</div>' +
+                    '<button type="button" class="contact-sheet-close" aria-label="' + t.close + '">&times;</button>' +
+                '</div>' +
+                '<div class="contact-sheet-options">' +
+                    option('co-phone', 'fas fa-phone', 'tel:+380981501498', t.phone, t.phoneSub, false) +
+                    option('co-tg', 'fab fa-telegram', 'https://t.me/bodyhealthclinic', t.tg, t.tgSub, true) +
+                    option('co-wa', 'fab fa-whatsapp', 'https://wa.me/380981501498', t.wa, t.waSub, true) +
+                '</div>' +
+            '</div>';
+
+        el.addEventListener('click', function (e) {
+            if (e.target === el) closeSheet();
+        });
+        el.querySelector('.contact-sheet-close').addEventListener('click', closeSheet);
+        // picking a channel closes the panel behind the visitor
+        Array.prototype.forEach.call(el.querySelectorAll('.contact-option'), function (a) {
+            a.addEventListener('click', function () { setTimeout(closeSheet, 120); });
+        });
+        return el;
+    }
+
+    function onKeydown(e) {
+        if (e.key === 'Escape' || e.keyCode === 27) closeSheet();
+    }
+
+    function openSheet() {
+        if (!sheetEl) {
+            sheetEl = buildSheet();
+            document.body.appendChild(sheetEl);
+        }
+        lastFocused = document.activeElement;
+        sheetEl.hidden = false;
+        document.body.style.overflow = 'hidden';
+        // next frame, so the opacity transition actually runs
+        requestAnimationFrame(function () { sheetEl.classList.add('is-open'); });
+        var first = sheetEl.querySelector('.contact-option');
+        if (first) first.focus();
+        document.addEventListener('keydown', onKeydown);
+    }
+
+    function closeSheet() {
+        if (!sheetEl) return;
+        sheetEl.classList.remove('is-open');
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', onKeydown);
+        setTimeout(function () { if (sheetEl) sheetEl.hidden = true; }, 180);
+        if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var triggers = document.querySelectorAll('[data-contact-open]');
+        Array.prototype.forEach.call(triggers, function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                openSheet();
+            });
+        });
+    });
+})();
