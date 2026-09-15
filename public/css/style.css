@@ -5176,3 +5176,41 @@ a:hover {
     border-color: rgba(255, 255, 255, 0.8);
     color: #ffffff;
 }
+
+/* ===== 404 PAGE ===== */
+.error-page {
+    background: var(--bg-light, #f8f9fa);
+}
+
+.error-page .error-code {
+    font-size: clamp(3.5rem, 10vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin: 0 0 1rem;
+    opacity: 0.15;
+}
+
+.error-page .error-links {
+    margin-top: 3rem;
+    text-align: left;
+    display: inline-block;
+}
+
+.error-page .error-links h2 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    margin: 0 0 0.9rem;
+}
+
+.error-page .error-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
