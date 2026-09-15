@@ -23,7 +23,7 @@ OG_LOCALE = {'en': 'en_US', 'ru': 'ru_RU', 'uk': 'uk_UA'}
 ATTRS = ('content', 'placeholder', 'alt', 'aria-label', 'title')
 # Paths shared by every locale: static assets, and the public offer, which is
 # versioned by language rather than by site locale and so has no /en/ or /ru/ copy.
-ASSET = re.compile(r'/(css|js|img|favicon|robots|sitemap|terms-and-conditions/)')
+ASSET = re.compile(r'/(css|js|img|favicon|robots|sitemap|site\.webmanifest|terms-and-conditions/)')
 
 # privacy.html states each clause in English, Ukrainian and Russian on purpose.
 # Those paragraphs are the legal text itself and must appear verbatim in every
@@ -92,6 +92,8 @@ def render(html, cat, lang, rel):
                   lambda m: m.group(1) + f'{SITE}/{lang}/{page}' + m.group(2), html, count=1)
     html = re.sub(r'(<meta property="og:locale" content=")[^"]*(")',
                   lambda m: m.group(1) + OG_LOCALE[lang] + m.group(2), html, count=1)
+    # the preview card carries a headline, so each locale gets its own
+    html = html.replace('/img/og-card-uk.png', f'/img/og-card-{lang}.png')
 
     html = re.sub(r'\x00KEEP(\d+)\x00', lambda m: kept[int(m.group(1))], html)
     return html, hits, misses

@@ -96,6 +96,14 @@ def build(doc):
     <meta property="og:title" content="{meta.get('meta_title', '')}">
     <meta property="og:description" content="{meta.get('meta_description', '')}">
     <meta property="og:site_name" content="BodyHealth">
+    <meta property="og:image" content="{SITE}/img/og-card-{lang}.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#003d82">
     <link rel="stylesheet" href="/css/style.css?v=20260915">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
