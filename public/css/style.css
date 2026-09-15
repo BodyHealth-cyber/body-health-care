@@ -5161,17 +5161,17 @@ a:hover {
 }
 
 
-/* btn-outline on dark hero backgrounds */
-.b2b-hero .btn-outline,
-.hero .btn-outline,
-[class*="hero"] .btn-outline {
+/* btn-outline on dark hero backgrounds.
+   Scoped to .b2b-hero, the only hero with a dark ground. The old selector was
+   [class*="hero"], which also caught .hero (white), .service-hero and
+   .blog-hero (both #f8f9fa) and painted their outline buttons white on white —
+   "Порівняти тарифи" was invisible on all three service pages. */
+.b2b-hero .btn-outline {
     color: #ffffff;
     border-color: rgba(255, 255, 255, 0.55);
     background: transparent;
 }
-.b2b-hero .btn-outline:hover,
-.hero .btn-outline:hover,
-[class*="hero"] .btn-outline:hover {
+.b2b-hero .btn-outline:hover {
     background: rgba(255, 255, 255, 0.12);
     border-color: rgba(255, 255, 255, 0.8);
     color: #ffffff;
