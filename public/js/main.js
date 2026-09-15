@@ -1,63 +1,36 @@
-// ===== I18N LANGUAGE SWITCHER =====
+// ===== LANGUAGE SWITCHER =====
+// Each locale is a real page generated at build time (/ , /en/ , /ru/), so the
+// switcher navigates rather than swapping text in place. Nothing is translated
+// client-side: the markup a visitor — or a crawler — receives is already in the
+// right language, with no flash of the wrong one.
 (function () {
     var DEFAULT_LANG = 'uk';
-    var STORAGE_KEY = 'bh_lang';
+    var LOCALES = ['uk', 'en', 'ru'];
+    var PREFIX = /^\/(en|ru)(?=\/|$)/;
 
-    function applyTranslations(lang) {
-        var t = (window.BH_TRANSLATIONS || {})[lang];
-        if (!t) return;
+    function currentLang() {
+        var m = location.pathname.match(PREFIX);
+        return m ? m[1] : DEFAULT_LANG;
+    }
 
-        // Update <html lang>
-        document.documentElement.lang = lang;
-
-        // Text content via data-i18n
-        document.querySelectorAll('[data-i18n]').forEach(function (el) {
-            var key = el.dataset.i18n;
-            if (t[key] !== undefined) el.textContent = t[key];
-        });
-
-        // innerHTML via data-i18n-html (e.g. labels with <a> inside)
-        document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
-            var key = el.dataset.i18nHtml;
-            if (t[key] !== undefined) el.innerHTML = t[key];
-        });
-
-        // Placeholder attributes
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
-            var key = el.dataset.i18nPlaceholder;
-            if (t[key] !== undefined) el.placeholder = t[key];
-        });
-
-        // Select <option> elements
-        document.querySelectorAll('option[data-i18n]').forEach(function (el) {
-            var key = el.dataset.i18n;
-            if (t[key] !== undefined) el.textContent = t[key];
-        });
-
-        // Update language toggle button label
-        var langBtn = document.getElementById('langToggle');
-        if (langBtn) langBtn.textContent = lang.toUpperCase();
-
-        // Mark active item in dropdown
-        document.querySelectorAll('.lang-menu a[data-lang]').forEach(function (a) {
-            a.classList.toggle('lang-active', a.dataset.lang === lang);
-        });
+    function urlFor(lang) {
+        var path = location.pathname.replace(PREFIX, '');
+        if (path.charAt(0) !== '/') path = '/' + path;
+        return (lang === DEFAULT_LANG ? '' : '/' + lang) + path + location.search + location.hash;
     }
 
     function initLanguageSwitcher() {
-        var saved = localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG;
-        applyTranslations(saved);
+        var lang = currentLang();
 
         var langToggle = document.getElementById('langToggle');
-        var langMenu = document.querySelector('.lang-menu');
+        if (langToggle) langToggle.textContent = lang.toUpperCase();
 
+        var langMenu = document.querySelector('.lang-menu');
         if (langToggle && langMenu) {
-            // Clicking the toggle button opens/closes the dropdown
             langToggle.addEventListener('click', function (e) {
                 e.stopPropagation();
                 langMenu.classList.toggle('open');
             });
-            // Close on outside click
             document.addEventListener('click', function (e) {
                 if (!langToggle.contains(e.target) && !langMenu.contains(e.target)) {
                     langMenu.classList.remove('open');
@@ -65,16 +38,19 @@
             });
         }
 
-        // Language selection
-        document.querySelectorAll('.lang-menu a[data-lang]').forEach(function (link) {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                var lang = link.dataset.lang;
-                localStorage.setItem(STORAGE_KEY, lang);
-                applyTranslations(lang);
-                if (langMenu) langMenu.classList.remove('open');
-            });
+        // Give every entry a real href so it works without JS and can be opened
+        // in a new tab like any other link.
+        document.querySelectorAll('.lang-menu a[data-lang], .mobile-lang-menu a[data-lang]').forEach(function (a) {
+            var target = a.dataset.lang;
+            if (LOCALES.indexOf(target) === -1) return;
+            a.setAttribute('href', urlFor(target));
+            a.classList.toggle('lang-active', target === lang);
         });
+
+        var mobileCurrent = document.querySelector('.mobile-lang-current');
+        if (mobileCurrent) mobileCurrent.textContent = lang.toUpperCase();
+
+        document.documentElement.lang = lang;
     }
 
     if (document.readyState === 'loading') {
@@ -82,12 +58,6 @@
     } else {
         initLanguageSwitcher();
     }
-
-    // Global helper — returns translated string for current language
-    window.BH_T = function (key) {
-        var lang = localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG;
-        return ((window.BH_TRANSLATIONS || {})[lang] || {})[key] || key;
-    };
 })();
 
 
@@ -197,21 +167,50 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ===== CONTACT FORM HANDLING =====
-// Messages resolved at call time via i18n system
+// Every page is served in one language, so the form speaks that language too —
+// no runtime lookup and no "Введіть ім'я / Enter first name" double-barrelled
+// fallbacks. Keyed off <html lang>, which the build sets per locale.
+var FORM_MESSAGES = {
+    uk: {
+        sending: 'Надсилаємо…',
+        success: "Дякуємо! Ваша заявка відправлена. Ми зв'яжемось з Вами протягом 24 годин.",
+        error: 'Помилка при відправці. Будь ласка, спробуйте ще раз або напишіть нам напряму.',
+        invalidFirstName: "Введіть ім'я",
+        invalidLastName: 'Введіть прізвище',
+        invalidEmail: 'Email некоректний',
+        missingService: 'Оберіть послугу',
+        missingPrivacy: 'Потрібна згода з політикою конфіденційності',
+        invalidPhone: 'Номер телефону некоректний',
+    },
+    en: {
+        sending: 'Sending…',
+        success: "Thank you! Your request has been sent. We'll contact you within 24 hours.",
+        error: 'Submission error. Please try again or write to us directly.',
+        invalidFirstName: 'Enter your first name',
+        invalidLastName: 'Enter your last name',
+        invalidEmail: 'Email is not valid',
+        missingService: 'Select a service',
+        missingPrivacy: 'Consent to the privacy policy is required',
+        invalidPhone: 'Phone number is not valid',
+    },
+    ru: {
+        sending: 'Отправляем…',
+        success: 'Спасибо! Ваша заявка отправлена. Мы свяжемся с Вами в течение 24 часов.',
+        error: 'Ошибка при отправке. Пожалуйста, попробуйте ещё раз или напишите нам напрямую.',
+        invalidFirstName: 'Введите имя',
+        invalidLastName: 'Введите фамилию',
+        invalidEmail: 'Email некорректный',
+        missingService: 'Выберите услугу',
+        missingPrivacy: 'Требуется согласие с политикой конфиденциальности',
+        invalidPhone: 'Номер телефона некорректный',
+    },
+};
+
 function getContactMessages() {
-    var t = window.BH_T || function(k) { return k; };
-    return {
-        sending: t('btn_submit') + '…',
-        success: t('form_success'),
-        error: t('form_error'),
-        invalidFirstName: t('ph_fname') ? "Введіть ім'я / Enter first name" : "Введіть ім'я",
-        invalidLastName: t('ph_lname') ? "Введіть прізвище / Enter last name" : "Введіть прізвище",
-        invalidEmail: 'Email не валідний / Invalid email',
-        missingService: 'Оберіть послугу / Select a service',
-        missingPrivacy: 'Потрібна згода / Consent required',
-        invalidPhone: 'Номер телефону некоректний / Invalid phone',
-    };
+    var lang = (document.documentElement.lang || 'uk').slice(0, 2);
+    return FORM_MESSAGES[lang] || FORM_MESSAGES.uk;
 }
+
 var contactFormMessages = getContactMessages();
 
 const contactForm = document.getElementById('contactForm');

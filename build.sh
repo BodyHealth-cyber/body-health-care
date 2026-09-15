@@ -4,12 +4,17 @@ rm -rf dist && mkdir dist
 # Copy HTML views (exclude blade.php files)
 rsync -a --exclude="*.php" --exclude="legal/" --exclude="partials/" resources/views/ dist/
 # Copy public assets
-rsync -a --exclude="index.php" public/ dist/
+# translations.js is no longer loaded in the browser — locales are pre-rendered.
+# It stays in the repo as the origin of the i18n catalogs, but is not shipped.
+rsync -a --exclude="index.php" --exclude="js/translations.js" public/ dist/
 # Fail the build on broken JS rather than shipping a dead language switcher
 for f in dist/js/*.js; do
   node --check "$f" || { echo "SYNTAX ERROR in $f"; exit 1; }
 done
 node check-translations.js
+
+# Generate the en/ and ru/ pages before the sitemap, so it lists them
+python3 build-locales.py
 
 # Generate sitemap from the pages that were actually built
 python3 generate-sitemap.py

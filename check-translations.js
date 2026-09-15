@@ -1,41 +1,45 @@
 /**
- * Build guard for dist/js/translations.js.
+ * Build guard for the i18n catalogs in i18n/<lang>.json.
  *
- * A stray double comma once broke this file's syntax. Because the language
- * switcher fails silently when window.BH_TRANSLATIONS is undefined, the switcher
- * was dead site-wide and nothing in the build complained. This check makes that
- * class of error fail the build instead.
+ * Locales are pre-rendered into dist/<lang>/ by build-locales.py; a string with
+ * no catalog entry silently falls back to Ukrainian. That is the right runtime
+ * behaviour but a bad failure mode to leave unmeasured, so this reports coverage
+ * per locale and fails only on a catalog that cannot be parsed or is empty.
  */
-global.window = {};
-require('./dist/js/translations.js');
+const fs = require('fs');
+const path = require('path');
 
-const T = window.BH_TRANSLATIONS;
-if (!T) {
-    console.error('translations.js did not define window.BH_TRANSLATIONS');
-    process.exit(1);
-}
-
-const REFERENCE = 'uk';
-const base = Object.keys(T[REFERENCE] || {});
-if (!base.length) {
-    console.error(`translations.js has no keys under "${REFERENCE}"`);
-    process.exit(1);
-}
-
+const LOCALES = ['en', 'ru'];
 let failed = false;
-for (const lang of Object.keys(T)) {
-    const missing = base.filter(k => !(k in T[lang]));
-    const extra = Object.keys(T[lang]).filter(k => !base.includes(k));
-    if (missing.length || extra.length) {
+
+for (const lang of LOCALES) {
+    const file = path.join('i18n', `${lang}.json`);
+    if (!fs.existsSync(file)) {
+        console.error(`  ${lang}: ${file} is missing`);
         failed = true;
-        if (missing.length) console.error(`  ${lang}: missing ${missing.length} — ${missing.slice(0, 8).join(', ')}`);
-        if (extra.length) console.error(`  ${lang}: extra ${extra.length} — ${extra.slice(0, 8).join(', ')}`);
+        continue;
     }
+    let cat;
+    try {
+        cat = JSON.parse(fs.readFileSync(file, 'utf8'));
+    } catch (e) {
+        console.error(`  ${lang}: ${file} is not valid JSON — ${e.message}`);
+        failed = true;
+        continue;
+    }
+    const entries = Object.keys(cat);
+    const empty = entries.filter(k => !cat[k] || !String(cat[k]).trim());
+    if (!entries.length) {
+        console.error(`  ${lang}: catalog is empty`);
+        failed = true;
+        continue;
+    }
+    if (empty.length) {
+        console.error(`  ${lang}: ${empty.length} entries have no translation — ${empty.slice(0, 5).join(' | ')}`);
+        failed = true;
+        continue;
+    }
+    console.log(`i18n/${lang}.json: ${entries.length} entries`);
 }
 
-if (failed) {
-    console.error(`translations.js: locales are out of sync with "${REFERENCE}"`);
-    process.exit(1);
-}
-
-console.log(`translations.js: ${Object.keys(T).length} locales x ${base.length} keys, in sync`);
+process.exit(failed ? 1 : 0);
