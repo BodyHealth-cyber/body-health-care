@@ -690,6 +690,33 @@
 
     <script src="/js/main.js?v=20260915"></script>
     <script>
+    // B2B form messages. Each page is served in one language (build-locales.py
+    // generates /en/ and /ru/), so the table is keyed off <html lang> rather than
+    // a stored preference.
+    window.B2B_MESSAGES = {
+        uk: {
+            sending: 'Надсилаємо…',
+            success: 'Дякуємо! Заявку отримано. Ми зв\'яжемось з Вами найближчим часом.',
+            error: 'Помилка. Спробуйте ще раз або зв\'яжіться з нами напряму.',
+            unavailable: 'Форма тимчасово недоступна. Будь ласка, зв\'яжіться з нами напряму.'
+        },
+        en: {
+            sending: 'Sending…',
+            success: "Thank you! We've received your request and will be in touch shortly.",
+            error: 'Something went wrong. Please try again or contact us directly.',
+            unavailable: 'The form is temporarily unavailable. Please contact us directly.'
+        },
+        ru: {
+            sending: 'Отправляем…',
+            success: 'Спасибо! Заявка получена. Мы свяжемся с Вами в ближайшее время.',
+            error: 'Ошибка. Попробуйте ещё раз или свяжитесь с нами напрямую.',
+            unavailable: 'Форма временно недоступна. Пожалуйста, свяжитесь с нами напрямую.'
+        }
+    };
+    function t0() {
+        return window.B2B_MESSAGES[(document.documentElement.lang || 'uk').slice(0, 2)] || window.B2B_MESSAGES.uk;
+    }
+
     // B2B Form — Make.com webhook
     (function() {
         var form = document.getElementById('b2bForm');
@@ -699,7 +726,7 @@
             var webhookUrl = form.dataset.makeWebhook || 'MAKE_WEBHOOK_URL';
             if (!webhookUrl || webhookUrl === 'MAKE_WEBHOOK_URL') {
                 if (typeof showNotification === 'function') {
-                    showNotification('Форма тимчасово недоступна. Будь ласка, зв\'яжіться з нами напряму.', 'error');
+                    showNotification(t0().unavailable, 'error');
                 }
                 return;
             }
@@ -715,19 +742,20 @@
 
             var btn = form.querySelector('button[type="submit"]');
             var origText = btn.textContent;
-            var t = (window.BH_TRANSLATIONS && window.BH_TRANSLATIONS[localStorage.getItem('bh_lang') || 'uk']) || {};
-            btn.textContent = t.b2b_sending || 'Надсилаємо...';
+            var t = (window.B2B_MESSAGES || {})[(document.documentElement.lang || 'uk').slice(0, 2)]
+                    || (window.B2B_MESSAGES || {}).uk || {};
+            btn.textContent = t.sending || 'Надсилаємо…';
             btn.disabled = true;
 
             fetch(webhookUrl, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(obj) })
                 .then(function(r) {
                     if (r.ok) {
-                        if (typeof showNotification === 'function') showNotification(t.b2b_success || 'Дякуємо! Заявку отримано.', 'success');
+                        if (typeof showNotification === 'function') showNotification(t.success || 'Дякуємо! Заявку отримано.', 'success');
                         form.reset();
                     } else { throw new Error('HTTP ' + r.status); }
                 })
                 .catch(function() {
-                    if (typeof showNotification === 'function') showNotification(t.b2b_error || 'Помилка. Спробуйте ще раз або зв\'яжіться напряму.', 'error');
+                    if (typeof showNotification === 'function') showNotification(t.error || 'Помилка. Спробуйте ще раз або зв\'яжіться напряму.', 'error');
                 })
                 .finally(function() { btn.textContent = origText; btn.disabled = false; });
         });

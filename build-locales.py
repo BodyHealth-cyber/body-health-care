@@ -28,6 +28,11 @@ ASSET = re.compile(r'/(css|js|img|favicon|robots|sitemap)')
 # locale, so they are lifted out before translation and put back afterwards.
 KEEP = re.compile(r'<p class="lang">.*?</p>', re.DOTALL)
 
+# Script and style bodies are code, not copy. Without this they are handed to the
+# text-node pass, which would both report them as untranslated strings and, given
+# a catalog entry, rewrite the code itself.
+CODE = re.compile(r'<(script|style)\b[^>]*>.*?</\1>', re.DOTALL | re.IGNORECASE)
+
 
 def translatable(t):
     return len(t.strip()) >= 2 and bool(re.search(r'[А-Яа-яІЇЄҐіїєґ]', t))
@@ -42,6 +47,7 @@ def render(html, cat, lang, rel):
         kept.append(m.group(0))
         return f'\x00KEEP{len(kept) - 1}\x00'
     html = KEEP.sub(stash, html)
+    html = CODE.sub(stash, html)
 
     def text_node(m):
         lead, body, tail = m.group(1), m.group(2), m.group(3)
