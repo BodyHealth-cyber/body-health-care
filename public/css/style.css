@@ -5136,18 +5136,19 @@ a:hover {
 }
 
 .footer-cta {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.7rem;
-    padding: 0.6rem 0.9rem;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.05);
+    gap: 0.55rem;
+    padding: 0.42rem 0.75rem 0.42rem 0.5rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
     color: #ffffff;
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: 0.82rem;
     font-weight: 500;
     transition: background 0.15s ease, border-color 0.15s ease;
+    width: fit-content;
 }
 
 .footer-cta:hover {
@@ -5157,13 +5158,13 @@ a:hover {
 }
 
 .footer-cta .cta-icon {
-    width: 26px;
-    height: 26px;
-    border-radius: 6px;
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.875rem;
+    font-size: 0.78rem;
     flex-shrink: 0;
 }
 
@@ -5178,13 +5179,13 @@ a:hover {
 }
 
 .footer-cta .cta-label small {
-    font-size: 0.68rem;
-    opacity: 0.5;
+    font-size: 0.62rem;
+    opacity: 0.45;
     font-weight: 400;
 }
 
 .footer-cta .cta-label span {
-    font-size: 0.875rem;
+    font-size: 0.82rem;
     font-weight: 500;
 }
 
