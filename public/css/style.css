@@ -534,6 +534,15 @@ a:hover {
     margin-bottom: 1rem;
 }
 
+/* Own duotone marks replace the FontAwesome glyphs on the three service cards.
+   The SVG carries its own two brand tones, so nothing here sets a colour. */
+.service-icon img {
+    display: block;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto;
+}
+
 .service-card h3 {
     margin-bottom: 0.5rem;
 }

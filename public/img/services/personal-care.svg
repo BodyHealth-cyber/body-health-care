@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="72" height="72" role="img" aria-label="Personal Care">
+  <circle cx="36" cy="36" r="27" fill="none" stroke="#dfe9f5" stroke-width="7"/>
+  <circle cx="36" cy="36" r="27" fill="none" stroke="#003d82" stroke-width="7"
+          stroke-linecap="round" stroke-dasharray="127 43" transform="rotate(115 36 36)"/>
+  <circle cx="36" cy="31" r="7" fill="#003d82"/>
+  <path d="M24.5 49.5a11.5 11.5 0 0 1 23 0z" fill="#003d82"/>
+</svg>

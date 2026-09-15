@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Іконки карток послуг — три напрямки</title>
+<style>
+  :root{
+    --navy:#003d82;
+    --navy-deep:#00224a;
+    --tint:#eaf0f8;
+    --tint-2:#f5f8fc;
+    --line:#e5e5e5;
+    --ink:#1a1a1a;
+    --muted:#5b6672;
+    --page:#f4f6f9;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:0 16px 72px;
+  }
+  .wrap{max-width:1120px;margin:0 auto}
+  header{padding-block:48px 8px}
+  h1{font-size:1.9rem;line-height:1.2;margin:0 0 .6rem;text-wrap:balance}
+  .lede{color:var(--muted);max-width:62ch;margin:0}
+  .rule{height:4px;width:96px;background:var(--navy);margin:28px 0 0;border-radius:2px}
+
+  section{margin-top:56px}
+  .head{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:6px}
+  .num{
+    font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--navy);font-weight:700;
+    border:1px solid var(--navy);border-radius:4px;padding:3px 8px;
+  }
+  h2{font-size:1.3rem;margin:0}
+  .note{color:var(--muted);margin:0 0 24px;max-width:66ch}
+
+  /* --- картки один в один як на сайті --- */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:860px){.grid{grid-template-columns:1fr}}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:8px;
+    padding:2rem;text-align:center;position:relative;
+  }
+  .card.featured{border-color:var(--navy);box-shadow:0 4px 12px rgba(0,102,204,.1)}
+  .badge{
+    position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+    background:var(--navy);color:#fff;font-size:.72rem;font-weight:600;
+    padding:4px 12px;border-radius:4px;white-space:nowrap;
+  }
+  .icon{margin:0 auto 1rem;display:flex;justify-content:center;align-items:center}
+  .card h3{margin:0 0 .5rem;font-size:1.15rem}
+  .price{font-size:1.5rem;font-weight:700;color:var(--navy);margin:0 0 1rem}
+  .desc{color:var(--muted);font-size:.9rem;margin:0 0 1rem}
+  ul{list-style:none;padding:0;margin:0 0 1.4rem;text-align:left;font-size:.875rem}
+  li{padding:6px 0 6px 20px;position:relative;color:#333}
+  li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--navy)}
+  .btn{
+    display:inline-block;background:var(--navy);color:#fff;text-decoration:none;
+    padding:10px 26px;border-radius:6px;font-size:.9rem;font-weight:600;
+  }
+
+  footer{margin-top:64px;border-top:1px solid var(--line);padding-top:28px;color:var(--muted)}
+  footer h2{font-size:1.1rem;color:var(--ink);margin-bottom:.5rem}
+  footer ul{list-style:none;padding:0;margin:0;text-align:left;font-size:.95rem}
+  footer li{padding-left:20px}
+  footer li::before{background:var(--muted)}
+  code{background:#fff;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:.85em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Іконки карток послуг — три напрямки</h1>
+  <p class="lede">Зараз у картках стоять іконки зі стороннього шрифту FontAwesome — <code>fa-user-md</code>, <code>fa-heartbeat</code>, <code>fa-clipboard-check</code>. Вони не наші, не відповідають послугам і тягнуть за собою зовнішній шрифт на кожну сторінку. Нижче — три напрямки власної графіки. Картки показані такими, якими вони є на сайті: та сама рамка, ті самі відступи, той самий синій <code>#003d82</code>.</p>
+  <div class="rule"></div>
+</header>
+
+<!-- ============ НАПРЯМОК 1 ============ -->
+<section>
+  <div class="head"><span class="num">Напрямок 1</span><h2>Лінія</h2></div>
+  <p class="note">Тонкий контур, жодних заливок. Найтихіший варіант — іконка не сперечається із заголовком і ціною, а лише позначає послугу. Найкраще тримається на малих розмірах і на друку.</p>
+
+  <div class="grid">
+    <!-- Personal Care -->
+    <div class="card">
+      <div class="icon">
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" stroke="#003d82" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Personal Care">
+          <path d="M8 36a28 28 0 0 1 28-28 28 28 0 0 1 28 28"/>
+          <path d="M64 36a28 28 0 0 1-10 21.5"/>
+          <path d="M8 36a28 28 0 0 0 10 21.5"/>
+          <circle cx="36" cy="30" r="8"/>
+          <path d="M23 52a13 13 0 0 1 26 0"/>
+          <circle cx="60" cy="52" r="3.2" fill="#003d82" stroke="none"/>
+        </svg>
+      </div>
+      <h3>Personal Care</h3>
+      <p class="price">$250/міс</p>
+      <p class="desc">Комплексний медичний супровід з персональним куратором</p>
+      <ul><li>Персональний медичний куратор</li><li>Консультації спеціалістів</li><li>Моніторинг показників</li></ul>
+      <a class="btn" href="#">Детальніше</a>
+    </div>
+
+    <!-- Integrated Care -->
+    <div class="card featured">
+      <div class="badge">Рекомендуємо</div>
+      <div class="icon">
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" stroke="#003d82" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Integrated Care">
+          <path d="M36 27v-9M27.5 35.5l-8-5M44.5 35.5l8-5M31 45l-5.5 8M41 45l5.5 8"/>
+          <circle cx="36" cy="36" r="9"/>
+          <circle cx="36" cy="13" r="5"/>
+          <circle cx="14" cy="26" r="5"/>
+          <circle cx="58" cy="26" r="5"/>
+          <circle cx="21" cy="57" r="5"/>
+          <circle cx="51" cy="57" r="5"/>
+        </svg>
+      </div>
+      <h3>Integrated Care</h3>
+      <p class="price">$500/міс</p>
+      <p class="desc">Розширений супровід для складних і хронічних станів</p>
+      <ul><li>Усе з пакету Personal Care</li><li>Мультидисциплінарні сесії</li><li>Пріоритетна підтримка</li></ul>
+      <a class="btn" href="#">Детальніше</a>
+    </div>
+
+    <!-- HealthCheckup -->
+    <div class="card">
+      <div class="icon">
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" stroke="#003d82" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="HealthCheckup">
+          <rect x="16" y="12" width="40" height="48" rx="4"/>
+          <path d="M29 12V9a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/>
+          <path d="M23 38h6l3.5-8 5 15 3.5-7h8"/>
+          <path d="M26 52h20"/>
+        </svg>
+      </div>
+      <h3>HealthCheckup</h3>
+      <p class="price">$100 одноразово</p>
+      <p class="desc">Комплексна оцінка стану здоров'я з планом дій</p>
+      <ul><li>Комплексний аналіз здоров'я</li><li>Персональний звіт</li><li>Консультація за результатами</li></ul>
+      <a class="btn" href="#">Детальніше</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ НАПРЯМОК 2 ============ -->
+<section>
+  <div class="head"><span class="num">Напрямок 2</span><h2>Дуотон</h2></div>
+  <p class="note">Ті самі три знаки, але залиті двома відтінками того самого синього: світлий тримає масу, темний несе сенс. Іконка помітніша, картка набуває ваги. Сюжет навмисно не змінено — ви обираєте подачу, а не ідею.</p>
+  <div class="grid">
+    <div class="card">
+      <div class="icon">
+        <svg width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="Personal Care">
+          <circle cx="36" cy="36" r="27" fill="none" stroke="#dfe9f5" stroke-width="7"/>
+          <circle cx="36" cy="36" r="27" fill="none" stroke="#003d82" stroke-width="7"
+                  stroke-linecap="round" stroke-dasharray="127 43" transform="rotate(115 36 36)"/>
+          <circle cx="36" cy="31" r="7" fill="#003d82"/>
+          <path d="M24.5 49.5a11.5 11.5 0 0 1 23 0z" fill="#003d82"/>
+        </svg>
+      </div>
+      <h3>Personal Care</h3>
+      <p class="price">$250/міс</p>
+      <p class="desc">Комплексний медичний супровід з персональним куратором</p>
+      <ul><li>Персональний медичний куратор</li><li>Консультації спеціалістів</li><li>Моніторинг показників</li></ul>
+      <a class="btn" href="#">Детальніше</a>
+    </div>
+
+    <div class="card featured">
+      <div class="badge">Рекомендуємо</div>
+      <div class="icon">
+        <svg width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="Integrated Care">
+          <g stroke="#003d82" stroke-width="2.6" stroke-linecap="round">
+            <path d="M36 27v-9M27.5 35.5l-8-5M44.5 35.5l8-5M31 45l-5.5 8M41 45l5.5 8"/>
+          </g>
+          <circle cx="36" cy="13" r="5.5" fill="#bcd3ea"/>
+          <circle cx="14" cy="26" r="5.5" fill="#bcd3ea"/>
+          <circle cx="58" cy="26" r="5.5" fill="#bcd3ea"/>
+          <circle cx="21" cy="57" r="5.5" fill="#bcd3ea"/>
+          <circle cx="51" cy="57" r="5.5" fill="#bcd3ea"/>
+          <circle cx="36" cy="36" r="9.5" fill="#003d82"/>
+        </svg>
+      </div>
+      <h3>Integrated Care</h3>
+      <p class="price">$500/міс</p>
+      <p class="desc">Розширений супровід для складних і хронічних станів</p>
+      <ul><li>Усе з пакету Personal Care</li><li>Мультидисциплінарні сесії</li><li>Пріоритетна підтримка</li></ul>
+      <a class="btn" href="#">Детальніше</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">
+        <svg width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="HealthCheckup">
+          <rect x="16" y="14" width="40" height="46" rx="4" fill="#dfe9f5"/>
+          <rect x="28" y="7" width="16" height="9" rx="3" fill="#003d82"/>
+          <g fill="none" stroke="#003d82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 38h6l3.5-8 5 15 3.5-7h8"/>
+          </g>
+          <path d="M26 50h20" stroke="#003d82" stroke-width="2.6" stroke-linecap="round" opacity=".4"/>
+        </svg>
+      </div>
+      <h3>HealthCheckup</h3>
+      <p class="price">$100 одноразово</p>
+      <p class="desc">Комплексна оцінка стану здоров'я з планом дій</p>
+      <ul><li>Комплексний аналіз здоров'я</li><li>Персональний звіт</li><li>Консультація за результатами</li></ul>
+      <a class="btn" href="#">Детальніше</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ НАПРЯМОК 3 ============ -->
+<section>
+  <div class="head"><span class="num">Напрямок 3</span><h2>Плашка</h2></div>
+  <p class="note">Та сама лінійна графіка, але посаджена в кольорову плашку зі скругленням 8px — тим самим, що й у картки. Це дає іконці «тіло»: три картки читаються як один ряд об'єктів, а не як три тексти з візерунком угорі. У виділеної картки плашка суцільна синя — виділення працює без жодного додаткового елемента.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="icon">
+        <svg width="88" height="88" viewBox="0 0 88 88" role="img" aria-label="Personal Care">
+          <rect x="0" y="0" width="88" height="88" rx="8" fill="#eaf0f8"/>
+          <g fill="none" stroke="#003d82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 44a24 24 0 0 1 48 0"/>
+            <path d="M68 44a24 24 0 0 1-8 17.9M20 44a24 24 0 0 0 8 17.9"/>
+            <circle cx="44" cy="39" r="7.5"/>
+            <path d="M32 60a12 12 0 0 1 24 0"/>
+          </g>
+          <circle cx="64.5" cy="59" r="3.4" fill="#003d82"/>
+        </svg>
+      </div>
+      <h3>Personal Care</h3>
+      <p class="price">$250/міс</p>
+      <p class="desc">Комплексний медичний супровід з персональним куратором</p>
+      <ul><li>Персональний медичний куратор</li><li>Консультації спеціалістів</li><li>Моніторинг показників</li></ul>
+      <a class="btn" href="#">Детальніше</a>
+    </div>
+
+    <div class="card featured">
+      <div class="badge">Рекомендуємо</div>
+      <div class="icon">
+        <svg width="88" height="88" viewBox="0 0 88 88" role="img" aria-label="Integrated Care">
+          <rect x="0" y="0" width="88" height="88" rx="8" fill="#003d82"/>
+          <g fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M44 36v-8M36.5 43l-7-4.5M51.5 43l7-4.5M39.5 51.5l-5 7M48.5 51.5l5 7"/>
+            <circle cx="44" cy="44" r="8"/>
+            <circle cx="44" cy="23" r="4.6"/>
+            <circle cx="24" cy="34" r="4.6"/>
+            <circle cx="64" cy="34" r="4.6"/>
+            <circle cx="30" cy="63" r="4.6"/>
+            <circle cx="58" cy="63" r="4.6"/>
+          </g>
+        </svg>
+      </div>
+      <h3>Integrated Care</h3>
+      <p class="price">$500/міс</p>
+      <p class="desc">Розширений супровід для складних і хронічних станів</p>
+      <ul><li>Усе з пакету Personal Care</li><li>Мультидисциплінарні сесії</li><li>Пріоритетна підтримка</li></ul>
+      <a class="btn" href="#">Детальніше</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">
+        <svg width="88" height="88" viewBox="0 0 88 88" role="img" aria-label="HealthCheckup">
+          <rect x="0" y="0" width="88" height="88" rx="8" fill="#eaf0f8"/>
+          <g fill="none" stroke="#003d82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="26" y="20" width="36" height="48" rx="4"/>
+            <path d="M38 20v-3a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v3"/>
+            <path d="M32 44h5l3-7 4.5 13 3-6h7"/>
+            <path d="M34 57h20"/>
+          </g>
+        </svg>
+      </div>
+      <h3>HealthCheckup</h3>
+      <p class="price">$100 одноразово</p>
+      <p class="desc">Комплексна оцінка стану здоров'я з планом дій</p>
+      <ul><li>Комплексний аналіз здоров'я</li><li>Персональний звіт</li><li>Консультація за результатами</li></ul>
+      <a class="btn" href="#">Детальніше</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h2>Що потрібно від вас</h2>
+  <ul>
+    <li>Назвати номер напрямку — 1, 2 або 3. Можна змішати: наприклад, графіка з 1-го у плашці з 3-го.</li>
+    <li>Якщо якийсь конкретний знак не читається — скажіть який, перемалюю саме його, не чіпаючи решту.</li>
+  </ul>
+  <h2 style="margin-top:28px">Що буде далі</h2>
+  <ul>
+    <li>Обраний варіант стає трьома SVG-файлами у <code>public/img/services/</code> — вага близько 1 КБ кожен, різкість на будь-якому екрані, колір керується з CSS.</li>
+    <li>Ті самі знаки підуть на три внутрішні сторінки послуг, щоб картка і сторінка не розходилися.</li>
+    <li>Після заміни можна знімати підключення FontAwesome, якщо він більше ніде не потрібен — це мінус один зовнішній запит на кожній сторінці сайту.</li>
+  </ul>
+</footer>
+
+</div>
+</body>
+</html>

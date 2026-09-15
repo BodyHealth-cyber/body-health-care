@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="72" height="72" role="img" aria-label="Integrated Care">
+  <g stroke="#003d82" stroke-width="2.6" stroke-linecap="round">
+    <path d="M36 27v-9M27.5 35.5l-8-5M44.5 35.5l8-5M31 45l-5.5 8M41 45l5.5 8"/>
+  </g>
+  <circle cx="36" cy="13" r="5.5" fill="#bcd3ea"/>
+  <circle cx="14" cy="26" r="5.5" fill="#bcd3ea"/>
+  <circle cx="58" cy="26" r="5.5" fill="#bcd3ea"/>
+  <circle cx="21" cy="57" r="5.5" fill="#bcd3ea"/>
+  <circle cx="51" cy="57" r="5.5" fill="#bcd3ea"/>
+  <circle cx="36" cy="36" r="9.5" fill="#003d82"/>
+</svg>
