@@ -498,7 +498,14 @@ function createScrollToTopButton() {
     window.addEventListener('scroll', sync, { passive: true });
 }
 
-createScrollToTopButton();
+// На части страниц этот скрипт подключён выше блока .float-contacts, поэтому
+// на момент вызова стека ещё нет в DOM и кнопка уходила в запасную ветку —
+// системная серая кнопка вставала поверх WhatsApp. Ждём готовности документа.
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', createScrollToTopButton);
+} else {
+    createScrollToTopButton();
+}
 
 // ===== FORM INPUT ENHANCEMENTS =====
 document.addEventListener('DOMContentLoaded', function() {

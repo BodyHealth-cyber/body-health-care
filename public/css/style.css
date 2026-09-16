@@ -5619,3 +5619,88 @@ button.footer-link {
         flex-direction: column;
     }
 }
+
+/* ===== ЦЕНА: гривна на виду, доллар — в подсказке по наведению =====
+   Сумма в гривне остаётся единственным текстом цены, поэтому карточка не
+   разъезжается на две строки. Приблизительный эквивалент в долларах живёт в
+   атрибуте data-usd и показывается только там, где есть настоящее наведение
+   мышью, и только на украинской и русской версиях: англоязычному посетителю
+   пересчёт не нужен. */
+.service-price[data-usd],
+.compare-price[data-usd] {
+    position: relative;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .service-price[data-usd]::after,
+    .compare-price[data-usd]::after {
+        content: attr(data-usd);
+        position: absolute;
+        left: 50%;
+        top: calc(100% + 0.4rem);
+        transform: translateX(-50%) translateY(-3px);
+        padding: 0.2rem 0.55rem;
+        border: 1px solid rgba(30, 79, 168, 0.14);
+        border-radius: 8px;
+        background: #ffffff;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        color: #5b6577;
+        font-size: 0.78rem;
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.15s ease, transform 0.15s ease;
+        z-index: 5;
+    }
+
+    .service-price[data-usd]:hover::after,
+    .compare-price[data-usd]:hover::after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    /* англоязычная версия обходится без пересчёта */
+    html[lang="en"] .service-price[data-usd]::after,
+    html[lang="en"] .compare-price[data-usd]::after {
+        content: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .service-price[data-usd]::after,
+    .compare-price[data-usd]::after {
+        transition: none;
+    }
+}
+
+/* Запасная отрисовка кнопки «догори», если на странице нет стека контактов:
+   без неё браузер показывал системную серую кнопку поверх WhatsApp. */
+.scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border: none;
+    border-radius: 50%;
+    background-color: #1e4fa8;
+    color: #ffffff;
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.scroll-to-top[hidden] {
+    display: none;
+}
+
+.scroll-to-top:hover {
+    background-color: #163a80;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+}
