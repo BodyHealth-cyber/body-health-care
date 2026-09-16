@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BodyHealth — первый экран</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--brand:#003d82;--ink:#1a1a1a;--text:#333;--muted:#6b7280;--faint:#9aa3b2;--line:#e5e7eb;--line-soft:#eef1f6;--bg:#f5f7fa}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px 96px}
+.doc-head{padding:56px 0 28px}
+.doc-kicker{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);font-weight:600}
+.doc-head h1{font-size:2rem;font-weight:700;color:var(--ink);line-height:1.25;margin:.5rem 0 .6rem}
+.doc-head p{color:var(--muted);max-width:70ch}
+section{margin-top:48px}
+.sec-head{display:flex;align-items:center;gap:.75rem;padding-bottom:.9rem;border-bottom:1px solid var(--line);margin-bottom:22px}
+.sec-num{width:28px;height:28px;flex:0 0 28px;border-radius:8px;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:600}
+.sec-head h2{font-size:1.35rem;font-weight:600;color:var(--ink)}
+.lead{color:var(--muted);margin-bottom:20px;max-width:78ch}
+.lead b{color:var(--text);font-weight:600}
+table.m{width:100%;border-collapse:collapse;font-size:.88rem;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+table.m th{text-align:left;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);font-weight:700;padding:10px 14px;background:#fcfdff;border-bottom:1px solid var(--line)}
+table.m td{padding:9px 14px;border-bottom:1px solid var(--line-soft)}
+table.m tr:last-child td{border-bottom:0}
+.num{font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink)}
+.warn{color:#b45309;font-weight:600}
+.opt{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:18px;overflow:hidden}
+.opt.rec{border-color:#c3d6ef;box-shadow:0 0 0 3px rgba(0,61,130,.06)}
+.opt-head{display:flex;align-items:center;gap:.7rem;padding:14px 20px;border-bottom:1px solid var(--line-soft);background:#fcfdff}
+.tag{font-size:.72rem;font-weight:700;letter-spacing:.06em;color:var(--brand);border:1px solid #c3d6ef;border-radius:6px;padding:2px 8px;background:#f3f8ff}
+.opt-head h3{font-size:1rem;font-weight:600;color:var(--ink)}
+.rec-badge{margin-left:auto;font-size:.72rem;font-weight:600;color:#0f7a4f;background:#e8f6ef;border:1px solid #bfe5d2;border-radius:6px;padding:2px 8px}
+.opt-body{padding:22px 20px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.note{padding:12px 20px 18px;font-size:.87rem;color:var(--muted);display:grid;gap:.3rem}
+.note .plus::before{content:"+ ";color:#0f7a4f;font-weight:700}
+.note .minus::before{content:"− ";color:#b45309;font-weight:700}
+/* макет экрана */
+.screen{border:1px solid #d7dde7;border-radius:10px;overflow:hidden;background:#fff}
+.screen .cap{font-size:.72rem;color:var(--faint);padding:6px 10px;background:#f8fafc;border-bottom:1px solid var(--line-soft);display:flex;justify-content:space-between}
+.view{position:relative;height:300px;overflow:hidden;background:#fff}
+.hdr{height:22px;border-bottom:1px solid var(--line-soft);display:flex;align-items:center;padding:0 10px;gap:8px;background:#fff}
+.hdr b{font-size:.6rem;color:var(--brand)}
+.hdr i{font-style:normal;font-size:.52rem;color:#9aa3b2}
+.hdr .r{margin-left:auto;display:flex;gap:4px}
+.pill{height:11px;border-radius:2px;background:var(--brand)}
+.pill.o{background:#fff;border:1px solid #d8e4f2}
+.heroBox{background:#fff;border-bottom:1px solid var(--line-soft);padding:14px 12px;display:flex;flex-direction:column;justify-content:center}
+.h1{font-size:.92rem;font-weight:700;color:var(--ink);line-height:1.2}
+.p{font-size:.6rem;color:#6b7280;margin-top:5px;line-height:1.5}
+.btns{display:flex;gap:6px;margin-top:9px}
+.b1{background:var(--brand);color:#fff;font-size:.55rem;padding:5px 9px;border-radius:3px}
+.b2{border:1px solid var(--brand);color:var(--brand);font-size:.55rem;padding:5px 9px;border-radius:3px}
+.nextBox{background:#f8f9fa;padding:16px 12px;text-align:center}
+.nextBox .t{font-size:.78rem;font-weight:600;color:var(--ink)}
+.nextBox .s{font-size:.58rem;color:#6b7280;margin-top:3px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:11px}
+.card{border:1px solid var(--line);border-radius:5px;background:#fff;height:78px;padding:7px;text-align:center}
+.card .ic{width:16px;height:16px;border-radius:50%;background:#dfe9f5;margin:0 auto 5px}
+.card .n{font-size:.55rem;font-weight:600;color:var(--ink)}
+.card .pr{font-size:.6rem;font-weight:700;color:var(--brand);margin-top:2px}
+.cut{position:absolute;left:0;right:0;bottom:0;height:2px;background:repeating-linear-gradient(90deg,#f59e0b 0 6px,transparent 6px 12px)}
+.label{position:absolute;right:6px;bottom:6px;font-size:.55rem;background:#fef4e7;border:1px solid #f4d9b0;color:#b45309;border-radius:4px;padding:1px 5px;font-weight:600}
+.label.ok{background:#e8f6ef;border-color:#bfe5d2;color:#0f7a4f}
+.cue{position:absolute;left:50%;transform:translateX(-50%);bottom:5px;font-size:.6rem;color:#9aa3b2}
+.decide{margin-top:44px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px}
+.decide h2{font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:12px}
+.decide ol{margin-left:1.1rem;color:var(--muted);display:grid;gap:.45rem}
+.decide b{color:var(--text)}
+@media(max-width:820px){.opt-body{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc-head">
+  <div class="doc-kicker">body-health.care · мокап № 6 на утверждение</div>
+  <h1>Первый экран: почему «две страницы сливаются в одну»</h1>
+  <p>Вы описали это точно. Замерил — и вот что происходит на самом деле.</p>
+</header>
+
+<section>
+  <div class="sec-head"><span class="sec-num">1</span><h2>Что показали замеры</h2></div>
+  <p class="lead">Первый блок на каждой странице имеет <b>фиксированную высоту</b> и не зависит от высоты окна. Поэтому сколько именно следующей секции попадёт на первый экран — вопрос случая: на одном мониторе это 22 пикселя, на другом 714. На вашем широком экране под первым блоком видно <b>466 px</b> следующей секции — как раз половина карточек услуг, обрезанных по нижнему краю.</p>
+  <table class="m">
+    <tr><th>Страница</th><th>Высота первого блока</th><th>Видно под ним · 1280×800</th><th>1440×900</th><th>1920×1080</th></tr>
+    <tr><td>Главная</td><td class="num">543 px</td><td class="num">186</td><td class="num">286</td><td class="num warn">466</td></tr>
+    <tr><td>Послуги</td><td class="num">295 px</td><td class="num warn">434</td><td class="num warn">534</td><td class="num warn">714</td></tr>
+    <tr><td>Для компаній</td><td class="num">707 px</td><td class="num warn">22</td><td class="num">122</td><td class="num">302</td></tr>
+    <tr><td>Блог</td><td class="num">486 px</td><td class="num">243</td><td class="num">343</td><td class="num warn">523</td></tr>
+    <tr><td>Personal Care</td><td class="num">442 px</td><td class="num">287</td><td class="num">387</td><td class="num warn">567</td></tr>
+    <tr><td>Оферта</td><td class="num">525 px</td><td class="num">204</td><td class="num">304</td><td class="num warn">484</td></tr>
+  </table>
+  <p class="lead" style="margin-top:16px">Отсюда и ощущение: на «Для компаній» следующая секция почти не видна, а на «Послугах» её видно больше, чем сам первый блок. Ни одна страница не ведёт себя предсказуемо.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">2</span><h2>Три решения</h2></div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">СЕЙЧАС</span><h3>Фиксированная высота</h3></div>
+    <div class="opt-body">
+      <div class="screen"><div class="cap"><span>1440 × 900</span><span>видно 286 px следующей секции</span></div>
+        <div class="view">
+          <div class="hdr"><b>BodyHealth</b><i>Послуги</i><i>Для компаній</i><div class="r"><span class="pill o" style="width:26px"></span><span class="pill" style="width:52px"></span></div></div>
+          <div class="heroBox" style="height:150px">
+            <div class="h1">Ваше здоров'я під наглядом лікаря — щодня, а не раз на рік</div>
+            <div class="p">Команда з 70+ спеціалістів бачить зміни у ваших показниках раніше за симптоми</div>
+            <div class="btns"><span class="b1">Записатись на розмову</span><span class="b2">Подивитись тарифи</span></div>
+          </div>
+          <div class="nextBox">
+            <div class="t">Скільки уваги вам потрібно</div><div class="s">Оберіть підходящий вам пакет</div>
+            <div class="cards"><div class="card"><div class="ic"></div><div class="n">Personal Care</div><div class="pr">11 000 ₴</div></div>
+              <div class="card"><div class="ic"></div><div class="n">Integrated Care</div><div class="pr">22 000 ₴</div></div>
+              <div class="card"><div class="ic"></div><div class="n">HealthCheckup</div><div class="pr">4 500 ₴</div></div></div>
+          </div>
+          <div class="cut"></div><div class="label">карточки обрезаны</div>
+        </div>
+      </div>
+      <div class="screen"><div class="cap"><span>1920 × 1080</span><span>видно 466 px</span></div>
+        <div class="view">
+          <div class="hdr"><b>BodyHealth</b><i>Послуги</i><i>Для компаній</i><div class="r"><span class="pill o" style="width:26px"></span><span class="pill" style="width:52px"></span></div></div>
+          <div class="heroBox" style="height:118px">
+            <div class="h1">Ваше здоров'я під наглядом лікаря — щодня, а не раз на рік</div>
+            <div class="p">Команда з 70+ спеціалістів бачить зміни у ваших показниках раніше за симптоми</div>
+            <div class="btns"><span class="b1">Записатись на розмову</span><span class="b2">Подивитись тарифи</span></div>
+          </div>
+          <div class="nextBox">
+            <div class="t">Скільки уваги вам потрібно</div><div class="s">Оберіть підходящий вам пакет</div>
+            <div class="cards"><div class="card" style="height:110px"><div class="ic"></div><div class="n">Personal Care</div><div class="pr">11 000 ₴</div></div>
+              <div class="card" style="height:110px"><div class="ic"></div><div class="n">Integrated Care</div><div class="pr">22 000 ₴</div></div>
+              <div class="card" style="height:110px"><div class="ic"></div><div class="n">HealthCheckup</div><div class="pr">4 500 ₴</div></div></div>
+          </div>
+          <div class="cut"></div><div class="label">чем шире экран — тем сильнее</div>
+        </div>
+      </div>
+    </div>
+    <div class="note"><span class="minus">Первый экран — это «полтора экрана»: конец одного блока и середина другого. Взгляду не за что зацепиться.</span>
+      <span class="minus">Поведение разное на каждой странице и на каждом мониторе.</span></div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">Э-А</span><h3>Первый блок занимает ровно экран</h3></div>
+    <div class="opt-body">
+      <div class="screen"><div class="cap"><span>1440 × 900</span><span>следующей секции не видно</span></div>
+        <div class="view">
+          <div class="hdr"><b>BodyHealth</b><i>Послуги</i><i>Для компаній</i><div class="r"><span class="pill o" style="width:26px"></span><span class="pill" style="width:52px"></span></div></div>
+          <div class="heroBox" style="height:278px">
+            <div class="h1">Ваше здоров'я під наглядом лікаря — щодня, а не раз на рік</div>
+            <div class="p">Команда з 70+ спеціалістів бачить зміни у ваших показниках раніше за симптоми. Ви дізнаєтесь про ризик тоді, коли його ще можна прибрати</div>
+            <div class="btns"><span class="b1">Записатись на розмову</span><span class="b2">Подивитись тарифи</span></div>
+          </div>
+          <div class="cue">↓ прокрутіть</div><div class="label ok">чистый первый экран</div>
+        </div>
+      </div>
+      <div class="screen"><div class="cap"><span>1920 × 1080</span><span>то же самое</span></div>
+        <div class="view">
+          <div class="hdr"><b>BodyHealth</b><i>Послуги</i><i>Для компаній</i><div class="r"><span class="pill o" style="width:26px"></span><span class="pill" style="width:52px"></span></div></div>
+          <div class="heroBox" style="height:278px">
+            <div class="h1">Ваше здоров'я під наглядом лікаря — щодня, а не раз на рік</div>
+            <div class="p">Команда з 70+ спеціалістів бачить зміни у ваших показниках раніше за симптоми. Ви дізнаєтесь про ризик тоді, коли його ще можна прибрати</div>
+            <div class="btns"><span class="b1">Записатись на розмову</span><span class="b2">Подивитись тарифи</span></div>
+          </div>
+          <div class="cue">↓ прокрутіть</div><div class="label ok">чистый первый экран</div>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <span class="plus">Одинаково на любом мониторе: первый экран — это всегда один блок и ничего больше.</span>
+      <span class="plus">Заголовок и кнопки стоят по центру экрана, а не прижаты к верху.</span>
+      <span class="minus">Не видно, что дальше что-то есть. Часть людей не прокручивает — придётся ставить стрелку-подсказку.</span>
+    </div>
+  </div>
+
+  <div class="opt rec">
+    <div class="opt-head"><span class="tag">Э-Б</span><h3>Экран плюс приглашение прокрутить</h3><span class="rec-badge">рекомендую</span></div>
+    <div class="opt-body">
+      <div class="screen"><div class="cap"><span>1440 × 900</span><span>видно ровно 96 px — заголовок секции</span></div>
+        <div class="view">
+          <div class="hdr"><b>BodyHealth</b><i>Послуги</i><i>Для компаній</i><div class="r"><span class="pill o" style="width:26px"></span><span class="pill" style="width:52px"></span></div></div>
+          <div class="heroBox" style="height:220px">
+            <div class="h1">Ваше здоров'я під наглядом лікаря — щодня, а не раз на рік</div>
+            <div class="p">Команда з 70+ спеціалістів бачить зміни у ваших показниках раніше за симптоми. Ви дізнаєтесь про ризик тоді, коли його ще можна прибрати</div>
+            <div class="btns"><span class="b1">Записатись на розмову</span><span class="b2">Подивитись тарифи</span></div>
+          </div>
+          <div class="nextBox" style="padding-top:20px"><div class="t">Скільки уваги вам потрібно</div><div class="s">Оберіть підходящий вам пакет</div></div>
+          <div class="label ok">видно заголовок, не обрезки</div>
+        </div>
+      </div>
+      <div class="screen"><div class="cap"><span>1920 × 1080</span><span>снова ровно 96 px</span></div>
+        <div class="view">
+          <div class="hdr"><b>BodyHealth</b><i>Послуги</i><i>Для компаній</i><div class="r"><span class="pill o" style="width:26px"></span><span class="pill" style="width:52px"></span></div></div>
+          <div class="heroBox" style="height:220px">
+            <div class="h1">Ваше здоров'я під наглядом лікаря — щодня, а не раз на рік</div>
+            <div class="p">Команда з 70+ спеціалістів бачить зміни у ваших показниках раніше за симптоми. Ви дізнаєтесь про ризик тоді, коли його ще можна прибрати</div>
+            <div class="btns"><span class="b1">Записатись на розмову</span><span class="b2">Подивитись тарифи</span></div>
+          </div>
+          <div class="nextBox" style="padding-top:20px"><div class="t">Скільки уваги вам потрібно</div><div class="s">Оберіть підходящий вам пакет</div></div>
+          <div class="label ok">одинаково на любом экране</div>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <span class="plus">Человек сразу видит, что страница продолжается, — и видит <b>заголовок</b> следующего раздела, а не половину карточки. Обрезков не бывает никогда.</span>
+      <span class="plus">На всех страницах одинаково: 96 px — это верхний отступ секции, он у нас везде один.</span>
+      <span class="plus">Работает на любой высоте окна: и на 1080, и на 800, и когда вы сворачиваете окно.</span>
+      <span class="plus">Стрелка-подсказка не нужна — приглашение прокрутить встроено в саму композицию.</span>
+      <span class="minus">На очень низких окнах (меньше 600 px высотой) первый блок станет тесным — там ставим нижнюю границу и разрешаем прокрутку.</span>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">Э-В</span><h3>Высоту не трогаем, разводим секции визуально</h3></div>
+    <div class="opt-body">
+      <div class="screen"><div class="cap"><span>1440 × 900</span><span>высота прежняя</span></div>
+        <div class="view">
+          <div class="hdr"><b>BodyHealth</b><i>Послуги</i><i>Для компаній</i><div class="r"><span class="pill o" style="width:26px"></span><span class="pill" style="width:52px"></span></div></div>
+          <div class="heroBox" style="height:150px">
+            <div class="h1">Ваше здоров'я під наглядом лікаря — щодня, а не раз на рік</div>
+            <div class="p">Команда з 70+ спеціалістів бачить зміни у ваших показниках раніше за симптоми</div>
+            <div class="btns"><span class="b1">Записатись на розмову</span><span class="b2">Подивитись тарифи</span></div>
+          </div>
+          <div class="nextBox" style="background:#eef2f7;padding-top:26px"><div class="t">Скільки уваги вам потрібно</div><div class="s">Оберіть підходящий вам пакет</div>
+            <div class="cards" style="margin-top:14px"><div class="card"><div class="ic"></div><div class="n">Personal Care</div><div class="pr">11 000 ₴</div></div>
+              <div class="card"><div class="ic"></div><div class="n">Integrated Care</div><div class="pr">22 000 ₴</div></div>
+              <div class="card"><div class="ic"></div><div class="n">HealthCheckup</div><div class="pr">4 500 ₴</div></div></div></div>
+          <div class="cut"></div><div class="label">карточки всё равно обрезаны</div>
+        </div>
+      </div>
+      <div style="align-self:center;color:var(--muted);font-size:.9rem;padding:0 6px">
+        Меняем только фон и верхний отступ следующей секции, чтобы она читалась как отдельный блок, а не как продолжение первого экрана.
+      </div>
+    </div>
+    <div class="note">
+      <span class="plus">Самая дешёвая правка, ничего не может сломаться.</span>
+      <span class="minus">Главную причину не убирает: карточки по-прежнему обрезаются по нижнему краю, и на каждом мониторе по-разному.</span>
+    </div>
+  </div>
+</section>
+
+<div class="decide">
+  <h2>Что жду от вас</h2>
+  <ol>
+    <li>Первый экран: Э-А, <b>Э-Б</b> или Э-В. Применю сразу ко всем шести типам страниц — главная, послуги, для компаній, блог, страницы тарифов, юридические.</li>
+  </ol>
+  <p style="margin-top:14px;color:var(--muted);font-size:.9rem">Мобильную и планшетную версию уже поправил отдельно — там первый блок и так занимает экран, менять его не нужно.</p>
+</div>
+
+</div>
+</body>
+</html>
