@@ -3,6 +3,12 @@ set -e
 rm -rf dist && mkdir dist
 # Copy HTML views (exclude blade.php files)
 rsync -a --exclude="*.php" --exclude="legal/" --exclude="partials/" resources/views/ dist/
+# Приём заявок. Cloudflare Pages читает функции из каталога functions/ внутри
+# опубликованной папки, поэтому копируем их рядом со страницами.
+if [ -d functions ]; then
+  rsync -a functions/ dist/functions/
+fi
+
 # Copy public assets
 # translations.js is no longer loaded in the browser — locales are pre-rendered.
 # It stays in the repo as the origin of the i18n catalogs, but is not shipped.

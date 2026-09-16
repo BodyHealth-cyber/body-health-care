@@ -497,7 +497,7 @@
                     </div>
 
                     <div class="form-container">
-                        <form class="b2b-form" id="b2bForm" data-make-webhook="https://hook.eu1.make.com/2e9lvba2ypntnv4e4q40i6b7l1epsvgo">
+                        <form class="b2b-form" id="b2bForm" data-endpoint="/api/enquiry">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="companyName" data-i18n="b2b_label_company">Назва компанії *</label>
@@ -727,8 +727,8 @@
         if (!form) return;
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            var webhookUrl = form.dataset.makeWebhook || '';
-            var webhookReady = /^https?:\/\//.test(webhookUrl);
+            var webhookUrl = form.dataset.endpoint || '';
+            var webhookReady = /^(https?:\/\/|\/)/.test(webhookUrl);
             var fd = new FormData(form);
             var obj = {};
             var goals = [];
@@ -739,9 +739,18 @@
             obj.subject = 'BodyHealth B2B — ' + (obj.companyName || 'Заявка від компанії');
             obj.timestamp = new Date().toISOString();
             obj.source_page = window.location.href;
+            obj.turnstile_token = (typeof turnstileToken === 'function') ? turnstileToken(form) : '';
 
             var summary = [obj.companyName, obj.contactName, obj.email, obj.phone,
                            obj.employees, obj.industry, obj.message].filter(Boolean).join('\n').trim();
+
+            if (!obj.turnstile_token) {
+                // Перевірка не пройдена — сервер заявку все одно не прийме.
+                var tmsg = (typeof getContactMessages === 'function') ? getContactMessages().turnstile : '';
+                if (typeof showNotification === 'function' && tmsg) showNotification(tmsg, 'error');
+                if (typeof resetTurnstile === 'function') resetTurnstile(form);
+                return;
+            }
 
             var btn = form.querySelector('button[type="submit"]');
             var origText = btn.textContent;
@@ -770,7 +779,11 @@
                     if (typeof offerDirectContact === 'function') offerDirectContact(summary);
                     else if (typeof showNotification === 'function') showNotification(t.error, 'error');
                 })
-                .finally(function() { btn.textContent = origText; btn.disabled = false; });
+                .finally(function() {
+                    btn.textContent = origText;
+                    btn.disabled = false;
+                    if (typeof resetTurnstile === 'function') resetTurnstile(form);
+                });
         });
     })();
     </script>
@@ -785,7 +798,7 @@
         <button type="button" class="enquiry-close" data-enquiry-close aria-label="Закрити" data-i18n-aria="aria_close">&times;</button>
         <p class="enquiry-title" id="enquiryTitle" data-i18n="form_title">Залишити заявку</p>
         <p class="enquiry-sub" data-i18n="form_sub">Координатор зв'яжеться з вами протягом робочого дня.</p>
-        <form class="contact-form contact-form--compact" id="contactFormModal" data-make-webhook="https://hook.eu1.make.com/2e9lvba2ypntnv4e4q40i6b7l1epsvgo">
+        <form class="contact-form contact-form--compact" id="contactFormModal" data-endpoint="/api/enquiry">
           <div class="form-row">
             <div class="form-group">
               <label for="firstName-m" data-i18n="label_fname">Ім'я *</label>

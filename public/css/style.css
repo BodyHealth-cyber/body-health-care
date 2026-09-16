@@ -6426,3 +6426,15 @@ button.footer-link {
 .b2b-hero .hero-benefits {
     margin-bottom: 1rem;
 }
+
+/* Віджет перевірки стоїть над кнопкою відправки. Ширина за контейнером, щоб
+   у вузькому вікні заявки він не вилазив за краї. */
+.turnstile-holder {
+    margin: 0 0 1rem;
+    min-height: 65px;
+}
+
+.turnstile-holder:empty {
+    min-height: 0;
+    margin: 0;
+}

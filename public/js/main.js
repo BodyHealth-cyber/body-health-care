@@ -199,6 +199,85 @@ document.addEventListener('click', function (e) {
     });
 });
 
+// ===== ЗАХИСТ АНКЕТ =====
+// Раніше форма надсилала заявку просто на адресу вебхука Make, і цей адрес
+// лежав у коді кожної сторінки. Тепер заявка йде на власний /api/enquiry,
+// а сюди додається відповідь Turnstile — без неї заявка до Make не доходить.
+// Ключ нижче публічний: він і має бути видимим у коді сторінки.
+var TURNSTILE_SITE_KEY = '0x4AAAAAAE45eeqvjGYGCqDh';
+
+var turnstileWidgets = new WeakMap();
+var turnstileLoaded = false;
+var turnstileQueue = [];
+
+window.__turnstileReady = function () {
+    turnstileLoaded = true;
+    turnstileQueue.forEach(function (pair) { renderTurnstile(pair[0], pair[1]); });
+    turnstileQueue = [];
+};
+
+function loadTurnstileScript() {
+    if (document.getElementById('turnstile-api')) return;
+    var sc = document.createElement('script');
+    sc.id = 'turnstile-api';
+    sc.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=__turnstileReady&render=explicit';
+    sc.async = true;
+    sc.defer = true;
+    document.head.appendChild(sc);
+}
+
+function renderTurnstile(form, holder) {
+    if (!window.turnstile) return;
+    var lang = (document.documentElement.lang || 'uk').slice(0, 2);
+    var id = window.turnstile.render(holder, {
+        sitekey: TURNSTILE_SITE_KEY,
+        action: form.id || 'form',
+        language: lang,
+        size: 'flexible'
+    });
+    turnstileWidgets.set(form, id);
+}
+
+function mountTurnstile(form) {
+    if (turnstileWidgets.has(form) || form.dataset.turnstileMounted === '1') return;
+    var submit = form.querySelector('button[type="submit"]');
+    if (!submit) return;
+    form.dataset.turnstileMounted = '1';
+
+    var holder = document.createElement('div');
+    holder.className = 'turnstile-holder';
+    submit.parentNode.insertBefore(holder, submit);
+
+    if (turnstileLoaded) renderTurnstile(form, holder);
+    else turnstileQueue.push([form, holder]);
+}
+
+function turnstileToken(form) {
+    var id = turnstileWidgets.get(form);
+    if (!window.turnstile || id === undefined) return '';
+    return window.turnstile.getResponse(id) || '';
+}
+
+// Відповідь одноразова: після кожної спроби віджет треба скинути, інакше
+// друга відправка піде зі вже використаною відповіддю і не пройде перевірку.
+function resetTurnstile(form) {
+    var id = turnstileWidgets.get(form);
+    if (window.turnstile && id !== undefined) window.turnstile.reset(id);
+}
+
+function initTurnstile() {
+    var forms = document.querySelectorAll('form[data-endpoint]');
+    if (!forms.length) return;
+    loadTurnstileScript();
+    Array.prototype.forEach.call(forms, mountTurnstile);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTurnstile);
+} else {
+    initTurnstile();
+}
+
 // ===== CONTACT FORM HANDLING =====
 // Every page is served in one language, so the form speaks that language too —
 // no runtime lookup and no "Введіть ім'я / Enter first name" double-barrelled
@@ -216,6 +295,7 @@ var FORM_MESSAGES = {
         invalidPhone: 'Номер телефону некоректний',
         missingPhone: 'Вкажіть номер телефону — ми зателефонуємо',
         badPhone: 'Перевірте номер: український мобільний має вигляд +380 XX XXX XX XX',
+        turnstile: 'Перевірка не пройдена. Оновіть сторінку і спробуйте ще раз.',
     },
     en: {
         sending: 'Sending…',
@@ -229,6 +309,7 @@ var FORM_MESSAGES = {
         invalidPhone: 'Phone number is not valid',
         missingPhone: 'Please give us a phone number — we will call you',
         badPhone: 'Check the number: a Ukrainian mobile looks like +380 XX XXX XX XX',
+        turnstile: 'The check did not pass. Reload the page and try again.',
     },
     ru: {
         sending: 'Отправляем…',
@@ -242,6 +323,7 @@ var FORM_MESSAGES = {
         invalidPhone: 'Номер телефона некорректный',
         missingPhone: 'Укажите номер телефона — мы позвоним',
         badPhone: 'Проверьте номер: украинский мобильный выглядит как +380 XX XXX XX XX',
+        turnstile: 'Проверка не пройдена. Обновите страницу и попробуйте ещё раз.',
     },
 };
 
@@ -332,6 +414,15 @@ function bindContactForm(form) {
             return;
         }
 
+        // Без пройденої перевірки заявку навіть не надсилаємо: сервер її все одно
+        // не прийме, а людина отримає незрозумілу помилку замість підказки.
+        const turnstileResponse = turnstileToken(form);
+        if (!turnstileResponse) {
+            showNotification(contactFormMessages.turnstile, 'error');
+            resetTurnstile(form);
+            return;
+        }
+
         // Show loading state
         const submitButton = this.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
@@ -342,8 +433,8 @@ function bindContactForm(form) {
         // literal placeholder, which would resolve as a relative URL against this
         // page and quietly 404 — so the enquiry is handed to a working channel
         // instead of being lost behind an error box.
-        const MAKE_WEBHOOK_URL = this.dataset.makeWebhook || '';
-        const webhookReady = /^https?:\/\//.test(MAKE_WEBHOOK_URL);
+        const ENDPOINT_URL = form.dataset.endpoint || '';
+        const webhookReady = /^(https?:\/\/|\/)/.test(ENDPOINT_URL);
 
         const serviceLabel = selectedServiceLabel(form) || formObject.service || '';
 
@@ -376,13 +467,14 @@ function bindContactForm(form) {
                 // то же самое словами, на языке страницы — для письма человеку
                 service_label: serviceLabel,
                 message: formObject.message || '—',
+                turnstile_token: turnstileResponse,
                 timestamp: sentAt.toISOString(),
                 // то же время по Києву и в привычном виде — для письма человеку
                 submitted_at: localTimestamp(sentAt),
                 source_page: window.location.href
             };
 
-            const response = await fetch(MAKE_WEBHOOK_URL, {
+            const response = await fetch(ENDPOINT_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -390,13 +482,17 @@ function bindContactForm(form) {
                 body: JSON.stringify(payload)
             });
 
-            // Make.com webhooks return 200 with "Accepted" on success
             if (response.ok) {
                 showNotification(contactFormMessages.success, 'success');
                 this.reset();
                 trackEvent('form_submit_success', { service: formObject.service });
+            } else if (response.status === 400) {
+                // Перевірка не пройдена. Це не збій зв'язку, і пропонувати
+                // запасні канали тут не треба — достатньо спробувати ще раз.
+                showNotification(contactFormMessages.turnstile, 'error');
+                trackEvent('form_submit_turnstile', { status: 400 });
             } else {
-                throw new Error('Webhook error ' + response.status);
+                throw new Error('Endpoint error ' + response.status);
             }
         } catch (err) {
             console.error('Form submission error:', err);
@@ -406,6 +502,7 @@ function bindContactForm(form) {
         } finally {
             submitButton.textContent = originalText;
             submitButton.disabled = false;
+            resetTurnstile(form);
         }
     });
 }
@@ -1197,7 +1294,7 @@ document.addEventListener('click', function(e) {
     }
 
     function initNewsletterForms() {
-        var forms = document.querySelectorAll('form.newsletter-form[data-make-webhook], form.newsletter-form-large[data-make-webhook]');
+        var forms = document.querySelectorAll('form.newsletter-form[data-endpoint], form.newsletter-form-large[data-endpoint]');
         Array.prototype.forEach.call(forms, function (form) {
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
@@ -1205,14 +1302,21 @@ document.addEventListener('click', function(e) {
                 var t = newsletterMessages();
                 var input = form.querySelector('input[type="email"]');
                 var email = input ? String(input.value || '').trim() : '';
-                var webhookUrl = form.dataset.makeWebhook || '';
+                var endpointUrl = form.dataset.endpoint || '';
 
                 if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                     showNotification(t.invalidEmail, 'error');
                     return;
                 }
-                if (!/^https?:\/\//.test(webhookUrl)) {
+                if (!/^(https?:\/\/|\/)/.test(endpointUrl)) {
                     showNotification(t.error, 'error');
+                    return;
+                }
+
+                var nlToken = turnstileToken(form);
+                if (!nlToken) {
+                    showNotification(getContactMessages().turnstile, 'error');
+                    resetTurnstile(form);
                     return;
                 }
 
@@ -1220,13 +1324,14 @@ document.addEventListener('click', function(e) {
                 var originalText = btn ? btn.textContent : '';
                 if (btn) { btn.textContent = t.sending; btn.disabled = true; }
 
-                fetch(webhookUrl, {
+                fetch(endpointUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         form_type: 'newsletter',
                         subject: 'BodyHealth — підписка на розсилку',
                         email: email,
+                        turnstile_token: nlToken,
                         timestamp: new Date().toISOString(),
                         source_page: window.location.href
                     })
@@ -1242,6 +1347,7 @@ document.addEventListener('click', function(e) {
                     if (typeof trackEvent === 'function') trackEvent('newsletter_error', { error: err.message });
                 }).then(function () {
                     if (btn) { btn.textContent = originalText; btn.disabled = false; }
+                    resetTurnstile(form);
                 });
             });
         });
