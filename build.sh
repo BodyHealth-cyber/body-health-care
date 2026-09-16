@@ -29,4 +29,8 @@ python3 check-forms.py
 
 # Generate sitemap from the pages that were actually built
 python3 generate-sitemap.py
+
+# Штамп версии на style.css и main.js. Без него браузер продолжает брать
+# скрипт из кэша по той же ссылке, и правки не доезжают до посетителей.
+python3 stamp-assets.py
 echo "Build complete: $(find dist -name "*.html" | wc -l) HTML files"
