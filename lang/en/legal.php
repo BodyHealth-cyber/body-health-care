@@ -29,7 +29,7 @@ return [
             'meta_description' => 'Body Health public offer for the provision of information and consultation services in telemedicine.',
             'title' => 'Public Offer',
             'summary' => 'Terms for the provision of Body Health information and consultation services in the field of telemedicine.',
-            'revision_date' => 'March 16, 2026',
+            'revision_date' => 'September 16, 2026',
             'content_view' => 'legal.content.terms-en',
         ],
         'refund' => [
@@ -37,7 +37,7 @@ return [
             'meta_description' => 'Body Health refund and cancellation policy.',
             'title' => 'Refund Policy',
             'summary' => 'Official rules for service cancellation, refunds, and related request handling at Body Health.',
-            'revision_date' => 'March 16, 2026',
+            'revision_date' => 'September 16, 2026',
             'content_view' => 'legal.content.refund-en',
         ],
         'contact_information' => [
@@ -45,7 +45,7 @@ return [
             'meta_description' => 'Official contact information and company details for Body Health.',
             'title' => 'Contact Information and Company Details',
             'summary' => 'Official registration, banking, and contact details of the Body Health service provider.',
-            'revision_date' => 'March 16, 2026',
+            'revision_date' => 'September 16, 2026',
             'details' => [
                 [
                     'label' => 'Service provider',

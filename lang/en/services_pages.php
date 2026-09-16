@@ -114,7 +114,7 @@ return [
         'benefit_2_title' => 'We detect changes earlier',
         'benefit_2_desc' => 'AI algorithms analyze your data and warn about issues before symptoms appear.',
         'benefit_3_title' => 'We take responsibility',
-        'benefit_3_desc' => 'Your health is our job. Relax and trust professionals with 15 years of experience.',
+        'benefit_3_desc' => 'Your health is our job. Relax and trust the experienced professionals on our team.',
         'how_title' => 'How Healthcare works',
         'how_subtitle' => 'A simple process to receive high-quality medical care',
         'step_1_title' => 'Registration and questionnaire',

@@ -1,17 +1,18 @@
 <div class="legal-rich-content">
     <section class="legal-section-block">
         <h2>1. General Provisions</h2>
-        <p>1.1. This document constitutes an official offer (public offer) by Body Health (the "Provider") to enter into an agreement for the provision of information and consultation services in the field of telemedicine (the "Agreement") with any individual who accepts this offer, hereinafter referred to as the "Client" or "Patient".</p>
+        <p>1.1. This document constitutes an official offer (public offer) by Sofiia Ihorivna Yablonska, a sole proprietor (physical person&ndash;entrepreneur) registered in the Unified State Register of Legal Entities, Individual Entrepreneurs and Public Formations of Ukraine (EDRPOU/ITN: 3752503564, record dated 15.12.2025), hereinafter the "Provider", operating under the brand name "Body Health" (the "Brand"), to enter into an agreement for the provision of information and consultation services in the field of telemedicine (the "Agreement") with any individual who accepts this offer, hereinafter referred to as the "Client" or "Patient".</p>
         <p>1.2. This Public Offer has been developed in accordance with the principles of international contract law, applicable consumer protection legislation, electronic commerce regulations, data protection law including GDPR (Regulation (EU) 2016/679), and telemedicine standards.</p>
         <p>1.3. Unconditional acceptance of the terms of this Offer shall be deemed to occur when the Client makes payment for the Services on the Provider's website. By making payment, the Client confirms that they have read the terms of the Offer, understand their content, and the legal consequences of concluding the Agreement.</p>
         <p>1.4. The Agreement concluded on the basis of acceptance of this Offer constitutes a contract of adhesion. The Client confirms that they have read the terms of the Offer, understand their content, and the legal consequences of concluding the Agreement.</p>
+        <p>1.5. This Offer is published in Ukrainian, English and Russian. In the event of any discrepancy between the language versions, the version in the language in which the Client accepted the Offer shall prevail. The relations of the Parties are governed by the law determined in accordance with the rules of private international law; the mandatory provisions of the consumer's country of residence remain in force.</p>
     </section>
 
     <section class="legal-section-block">
         <h2>2. Definitions</h2>
         <p>2.1. In this Offer, the following terms shall have the meanings set out below:</p>
         <ul>
-            <li><strong>Provider</strong> - Body Health, providing Services through the Website under the trademark "Body Health".</li>
+            <li><strong>Provider</strong> - Sofiia Ihorivna Yablonska, sole proprietor (EDRPOU/ITN 3752503564), providing Services through the Website under the brand name "Body Health".</li>
             <li><strong>Client (Patient)</strong> - a legally capable individual aged 18 or over who has registered on the Website and accepted the Offer.</li>
             <li><strong>Website (Platform)</strong> - https://body-health.care, the official source of information and platform for the provision of Services.</li>
             <li><strong>Services</strong> - a set of informational and consultation services of a medical nature (telemedicine), provided remotely using information and communication technologies.</li>
@@ -27,7 +28,7 @@
         <p>3.1. The Provider undertakes to provide the Client with paid information and consultation services in the field of healthcare (Health Tech / Telehealth) in accordance with the selected tariff plan, and the Client undertakes to accept and pay for such services.</p>
         <p>3.2. Services are provided exclusively remotely. The scope of services is strictly regulated and depends on the selected Package:</p>
 
-        <h3>3.2.1. Package "Healthcare"</h3>
+        <h3>3.2.1. Package "Personal Care"</h3>
         <p>Cost: <strong>$250/month</strong></p>
         <p>Basic package for regular medical supervision and preventive care.</p>
         <ul>
@@ -41,7 +42,7 @@
             <li><strong>Health Monitoring:</strong> Remote monitoring of key health indicators entered by the Client.</li>
         </ul>
 
-        <h3>3.2.2. Package "Ambulance"</h3>
+        <h3>3.2.2. Package "Integrated Care"</h3>
         <p>Cost: <strong>$500/month</strong></p>
         <p>Extended package for complex clinical cases, chronic conditions, and priority support.</p>
         <ul>
@@ -68,7 +69,7 @@
             <li><strong>Lifestyle Recommendations:</strong> Personalised guidance on nutrition, physical activity, sleep hygiene, and stress management.</li>
             <li><strong>PDF Medical Report:</strong> Detailed written health assessment report delivered within 48 hours.</li>
             <li><strong>Follow-Up Consultation:</strong> 30-minute follow-up consultation to discuss the report.</li>
-            <li><strong>20% discount</strong> on a subsequent "Healthcare" or "Ambulance" subscription purchase.</li>
+            <li><strong>20% discount</strong> on a subsequent "Personal Care" or "Integrated Care" subscription purchase.</li>
         </ul>
     </section>
 
@@ -103,7 +104,7 @@
 
     <section class="legal-section-block">
         <h2>7. Subscription and Automatic Charges</h2>
-        <p>7.1. The "Healthcare" and "Ambulance" packages are provided on a subscription basis with automatic monthly renewal.</p>
+        <p>7.1. The "Personal Care" and "Integrated Care" packages are provided on a subscription basis with automatic monthly renewal.</p>
         <p>7.2. By making the first subscription payment and agreeing to the terms of this Offer, the Client grants the Provider and the payment system explicit consent for automatic charges from their bank card in the amount of the applicable tariff each subsequent billing month.</p>
         <p>7.3. The charge date corresponds to the date of the first payment. The Client receives an email notification 3 days before each charge. If a scheduled charge fails, the system will make 3 retry attempts at 24-hour intervals.</p>
         <p>7.4. After the third failed attempt, access is suspended and the subscription is considered cancelled.</p>
@@ -161,6 +162,8 @@
         <h2>15. Term and Amendments</h2>
         <p>15.1. This Offer comes into force from the moment it is published on the Website and remains in effect until the Parties have fully performed their obligations.</p>
         <p>15.2. The Provider reserves the right to amend the terms of this Offer unilaterally, notifying the Client via the Website at least 7 days before the changes take effect. Continued use of Services constitutes acceptance of the updated terms.</p>
+        <p>15.3. The packages "Healthcare" and "Ambulance" referred to in previous revisions of this Offer are identical to the packages "Personal Care" and "Integrated Care" respectively. The scope of services and the rights and obligations of the Parties under agreements concluded before this revision took effect are retained in full.</p>
+        <p>15.4. All revisions of this Offer are retained by the Provider with their effective dates and are made available to the Client on request.</p>
     </section>
 
     <section class="legal-section-block">
@@ -174,10 +177,16 @@
         <h2>17. Contact Information</h2>
         <div class="legal-requisites">
             <p>
-                <strong>Company:</strong> Body Health<br>
+                <strong>Provider:</strong> Sofiia Ihorivna Yablonska, sole proprietor<br>
+                <strong>Brand:</strong> Body Health<br>
+                <strong>EDRPOU/ITN:</strong> 3752503564<br>
+                <strong>Date of registration:</strong> 15.12.2025<br>
+                <strong>Registered address:</strong> 204b Zelena St., office 223, Lviv, Lviv region, Ukraine<br>
                 <strong>Website:</strong> https://body-health.care<br>
-                <strong>Email:</strong> info@body-health.care<br>
-                <strong>Phone:</strong> +38 096 267 50 52
+                <strong>Phone:</strong> +38 096 267 50 52<br>
+                <strong>General enquiries:</strong> info@body-health.care<br>
+                <strong>Refunds and subscription cancellation:</strong> billing@body-health.care<br>
+                <strong>Formal claims and legally significant notices:</strong> info@body-health.care
             </p>
         </div>
     </section>
