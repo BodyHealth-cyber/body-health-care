@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BodyHealth — автоматические письма</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--brand:#003d82;--ink:#1a1a1a;--text:#333;--muted:#6b7280;--faint:#9aa3b2;
+  --line:#e5e7eb;--line-soft:#eef1f6;--bg:#f5f7fa}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 96px}
+.doc-head{padding:56px 0 32px}
+.doc-kicker{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);font-weight:600}
+.doc-head h1{font-size:2rem;font-weight:700;color:var(--ink);line-height:1.25;margin:.5rem 0 .6rem}
+.doc-head p{color:var(--muted);max-width:66ch}
+section{margin-top:52px}
+.sec-head{display:flex;align-items:center;gap:.75rem;padding-bottom:.9rem;border-bottom:1px solid var(--line);margin-bottom:24px}
+.sec-num{width:28px;height:28px;flex:0 0 28px;border-radius:8px;background:var(--brand);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:600}
+.sec-head h2{font-size:1.35rem;font-weight:600;color:var(--ink)}
+.sec-head .sub{margin-left:auto;font-size:.85rem;color:var(--faint)}
+.lead{color:var(--muted);margin-bottom:22px;max-width:74ch}
+.lead b{color:var(--text);font-weight:600}
+.opt{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:18px;overflow:hidden}
+.opt.rec{border-color:#c3d6ef;box-shadow:0 0 0 3px rgba(0,61,130,.06)}
+.opt-head{display:flex;align-items:center;gap:.7rem;padding:14px 20px;border-bottom:1px solid var(--line-soft);background:#fcfdff}
+.tag{font-size:.72rem;font-weight:700;letter-spacing:.06em;color:var(--brand);border:1px solid #c3d6ef;
+  border-radius:6px;padding:2px 8px;background:#f3f8ff}
+.opt-head h3{font-size:1rem;font-weight:600;color:var(--ink)}
+.rec-badge{margin-left:auto;font-size:.72rem;font-weight:600;color:#0f7a4f;background:#e8f6ef;
+  border:1px solid #bfe5d2;border-radius:6px;padding:2px 8px}
+.opt-body{padding:22px 20px}
+.note{padding:12px 20px 18px;font-size:.87rem;color:var(--muted);display:grid;gap:.3rem}
+.note .plus::before{content:"+ ";color:#0f7a4f;font-weight:700}
+.note .minus::before{content:"− ";color:#b45309;font-weight:700}
+/* схема шлюза */
+.flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.fbox{flex:1 1 150px;min-width:140px;border:1px solid var(--line-soft);border-radius:10px;padding:12px 14px;background:#fcfdff}
+.fbox b{display:block;font-size:.88rem;color:var(--ink);font-weight:600;margin-bottom:.15rem}
+.fbox span{font-size:.8rem;color:var(--muted)}
+.fbox.new{border-color:#bfe5d2;background:#f4fbf7}
+.farr{align-self:center;padding:0 10px;color:#b9cee9;font-size:1.3rem;line-height:1}
+/* конверт письма */
+.mail{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.mail-meta{padding:12px 16px;background:#f8fafc;border-bottom:1px solid var(--line-soft);font-size:.82rem;color:var(--muted)}
+.mail-meta div{display:flex;gap:8px;padding:1px 0}
+.mail-meta i{font-style:normal;color:var(--faint);min-width:58px}
+.mail-meta b{color:var(--ink);font-weight:600}
+.mail-body{padding:0;background:#eef2f7}
+/* ===== сам шаблон письма ===== */
+.em{max-width:600px;margin:0 auto;background:#fff}
+.em-top{background:#003d82;padding:20px 28px;color:#fff;font-weight:700;letter-spacing:.02em}
+.em-in{padding:26px 28px}
+.em h1{font-size:1.25rem;font-weight:600;color:#1a1a1a;margin-bottom:12px;line-height:1.35}
+.em p{font-size:.92rem;color:#333;margin-bottom:12px}
+.em .muted{color:#6b7280;font-size:.86rem}
+.em .panel{border:1px solid #e3eaf4;border-radius:8px;padding:14px 16px;margin:16px 0;background:#fbfcfe}
+.em .panel h2{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:#6b7280;font-weight:700;margin-bottom:8px}
+.em .kv{display:grid;grid-template-columns:130px 1fr;gap:4px 12px;font-size:.88rem}
+.em .kv span{color:#6b7280}
+.em .kv b{color:#1a1a1a;font-weight:600}
+.em ol.steps{margin:6px 0 0 0;padding:0;list-style:none;counter-reset:s}
+.em ol.steps li{counter-increment:s;position:relative;padding-left:30px;margin-bottom:10px;font-size:.89rem}
+.em ol.steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;
+  background:#eaf2ff;color:#003d82;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.em .cta{display:inline-block;background:#003d82;color:#fff!important;text-decoration:none;
+  padding:11px 22px;border-radius:6px;font-size:.9rem;font-weight:500;margin:6px 0 4px}
+.em .em-foot{border-top:1px solid #e9edf3;padding:18px 28px;font-size:.78rem;color:#6b7280;line-height:1.6}
+.em .em-foot a{color:#003d82}
+.em a{color:#003d82}
+.badge-ok{display:inline-block;background:#e8f6ef;border:1px solid #bfe5d2;color:#0f7a4f;
+  font-size:.75rem;font-weight:600;padding:3px 10px;border-radius:6px;margin-bottom:12px}
+.decide{margin-top:48px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px}
+.decide h2{font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:12px}
+.decide ol{margin-left:1.1rem;color:var(--muted);display:grid;gap:.45rem}
+.decide b{color:var(--text)}
+@media(max-width:760px){.flow{flex-direction:column}.farr{transform:rotate(90deg);padding:6px 0}
+  .em .kv{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc-head">
+  <div class="doc-kicker">body-health.care · мокап № 4 на утверждение</div>
+  <h1>Автоматические письма после заявки и после оплаты</h1>
+  <p>Сначала — какие есть решения и что для этого нужно подключить. Дальше — четыре письма в том виде, в каком их увидит человек в почте.</p>
+</header>
+
+<section>
+  <div class="sec-head"><span class="sec-num">1</span><h2>Как это устроено технически</h2><span class="sub">два шлюза</span></div>
+  <p class="lead">Проверил обе стороны. Хорошая новость: <b>ничего нового подключать не надо</b> — оба шлюза уже стоят, просто в каждом не хватает одного шага.</p>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">ШЛЮЗ 1</span><h3>Заявки с сайта → письмо человеку</h3></div>
+    <div class="opt-body">
+      <div class="flow">
+        <div class="fbox"><b>Форма на сайте</b><span>заявка, анкета компании, подписка</span></div>
+        <div class="farr">→</div>
+        <div class="fbox"><b>Make · вебхук</b><span>уже принимает все три формы</span></div>
+        <div class="farr">→</div>
+        <div class="fbox"><b>Gmail → команде</b><span>уже есть, уведомляет вас</span></div>
+        <div class="farr">→</div>
+        <div class="fbox new"><b>Gmail → клиенту</b><span>этого шага нет — его и добавляем</span></div>
+        <div class="farr">→</div>
+        <div class="fbox"><b>Google Sheets</b><span>уже пишет в три вкладки</span></div>
+      </div>
+    </div>
+    <div class="note">
+      <span class="plus">Сценарий в Make уже разветвлён на три ветки: заявка, компания, подписка. Значит письма сразу будут разные по типу формы.</span>
+      <span class="plus">Отправитель — <b>info@body-health.care</b> через уже подключённый Gmail. Отдельный ящик заводить не нужно, но если хотите «support@» — это алиас, 5 минут в Workspace.</span>
+      <span class="plus">Работы примерно на час: три модуля и три шаблона.</span>
+    </div>
+  </div>
+
+  <div class="opt rec">
+    <div class="opt-head"><span class="tag">ШЛЮЗ 2</span><h3>Оплата → письмо человеку</h3><span class="rec-badge">рекомендую</span></div>
+    <div class="opt-body">
+      <div class="flow">
+        <div class="fbox"><b>Оплата на WayForPay</b><span>кнопка на сайте</span></div>
+        <div class="farr">→</div>
+        <div class="fbox new"><b>Service URL</b><span>ссылка на вебхук Make — вписывается в кабинете</span></div>
+        <div class="farr">→</div>
+        <div class="fbox new"><b>Make</b><span>определяет пакет по сумме</span></div>
+        <div class="farr">→</div>
+        <div class="fbox new"><b>Gmail → клиенту</b><span>подтверждение и следующие шаги</span></div>
+      </div>
+      <p class="lead" style="margin:16px 0 0">Настраивается в кабинете: <b>Налаштування магазину → Повідомлення → Service URL</b>. Туда вписывается адрес вебхука Make, и после каждой подтверждённой оплаты WayForPay сам постучится к нам с данными платежа.</p>
+    </div>
+    <div class="note">
+      <span class="plus"><b>Квитанцию об оплате WayForPay отправляет сам</b> — «клієнти при оплаті отримуватимуть електронні квитанції». То есть чек у человека уже будет, отдельно его делать не нужно.</span>
+      <span class="plus">Но квитанция — это только факт платежа. Подтверждение <b>условий услуги</b> после оплаты требует закон (ст. 13 ч. 3 ЗУ «Про захист прав споживачів»), и если его нет, срок на отказ от договора растягивается с 14 до 90 дней. Юрист это отмечал. Наше письмо закрывает именно это.</span>
+      <span class="plus">Письмо приходит по факту <b>подтверждённой</b> оплаты, а не по факту нажатия кнопки — человек не получит подтверждение, если платёж не прошёл.</span>
+      <span class="minus">Чтобы вписать Service URL, нужно зайти в кабинет WayForPay — сессия разлогинилась, вход делаете вы.</span>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">АЛЬТ.</span><h3>Что ещё рассматривал и почему не беру</h3></div>
+    <div class="note" style="padding-top:18px">
+      <span class="minus"><b>Встроенная связка WayForPay + SendPulse</b> по событию «успішний платіж». Быстрее настроить, но письма живут в третьем сервисе: ещё один аккаунт, ещё одно место, где текст может разойтись с офертой. При том, что Make уже стоит и уже отправляет письма.</span>
+      <span class="minus"><b>Автописьма Healthie.</b> У платформы есть свои Order confirmation, но оплата у нас идёт через кнопки WayForPay, а не через Healthie — до него событие оплаты просто не доходит.</span>
+      <span class="minus"><b>Письмо прямо со страницы сайта.</b> Сайт статический, отправить письмо он не может физически: нужен сервер или сервис. Поэтому только через Make.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">2</span><h2>Письмо после заявки на супровід</h2><span class="sub">форма на главной и в модалке</span></div>
+  <p class="lead">Задача письма — снять тревогу «дошло ли». Человек должен понять три вещи за пять секунд: заявка получена, когда с ним свяжутся и что делать, если не связались.</p>
+  <div class="mail">
+    <div class="mail-meta">
+      <div><i>От кого</i><b>BodyHealth &lt;info@body-health.care&gt;</b></div>
+      <div><i>Кому</i>{email клиента}</div>
+      <div><i>Тема</i><b>Ми отримали вашу заявку — що далі</b></div>
+    </div>
+    <div class="mail-body">
+      <div class="em">
+        <div class="em-top">BodyHealth</div>
+        <div class="em-in">
+          <span class="badge-ok">✓ Заявку отримано</span>
+          <h1>{Ім'я}, ми отримали вашу заявку</h1>
+          <p>Куратор подивиться її та зв'яжеться з вами <b>протягом 24 годин</b> у робочі дні. Якщо ви залишили заявку ввечері п'ятниці — у понеділок до обіду.</p>
+
+          <div class="panel">
+            <h2>Що ви нам написали</h2>
+            <div class="kv">
+              <span>Послуга</span><b>{Personal Care}</b>
+              <span>Телефон</span><b>{+380 …}</b>
+              <span>Надіслано</span><b>{16.09.2026, 14:20}</b>
+            </div>
+          </div>
+
+          <p><b>Що буде далі</b></p>
+          <ol class="steps">
+            <li>Куратор телефонує або пише вам у зручний спосіб — як вам зручніше, скажіть у розмові.</li>
+            <li>15 хвилин розмови: розберемо вашу ситуацію і скажемо, який пакет справді потрібен. Без зобов'язань.</li>
+            <li>Якщо все підходить — надішлемо посилання на оплату та коротку медичну анкету.</li>
+          </ol>
+
+          <p class="muted" style="margin-top:16px">Якщо за 24 години ми не вийшли на зв'язок — напишіть на <a href="mailto:info@body-health.care">info@body-health.care</a> або в <a href="https://t.me/bodyhealthclinic">Telegram</a>, і ми відповімо того ж дня. Це не нормальна ситуація, і ми хочемо про неї знати.</p>
+
+          <a href="https://body-health.care/services.html" class="cta">Подивитись, що входить у пакети</a>
+        </div>
+        <div class="em-foot">
+          ФОП Яблонська Софія Ігорівна · торгова марка «Body Health»<br>
+          <a href="mailto:info@body-health.care">info@body-health.care</a> · +380 98 150 14 98 ·
+          <a href="https://t.me/bodyhealthclinic">Telegram</a><br>
+          Цей лист надіслано автоматично у відповідь на заявку з сайту body-health.care
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="opt" style="margin-top:16px">
+    <div class="note" style="padding-top:18px">
+      <span class="plus">«Протягом 24 годин у робочі дні» с оговоркой про пятницу — обещание, которое реально выполнимо. Обещать «за 15 хвилин» нельзя: одно невыполненное обещание стоит дороже, чем отсутствие обещания.</span>
+      <span class="plus">Блок «если не связались» — то, что вы просили: человек знает, куда идти, и не чувствует себя брошенным.</span>
+      <span class="plus">Кнопка ведёт на страницу услуг, а не на оплату: он ещё не решил, давить рано.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">3</span><h2>Письмо после оплаты</h2><span class="sub">главное · закрывает требование юриста</span></div>
+  <p class="lead">Здесь нужно и подтверждение платежа, и ясность что дальше, и юридически обязательное подтверждение условий. Всё одним письмом, как вы и говорили.</p>
+  <div class="mail">
+    <div class="mail-meta">
+      <div><i>От кого</i><b>BodyHealth &lt;info@body-health.care&gt;</b></div>
+      <div><i>Кому</i>{email из платежа}</div>
+      <div><i>Тема</i><b>Оплату підтверджено — HealthCheckup. Що далі</b></div>
+    </div>
+    <div class="mail-body">
+      <div class="em">
+        <div class="em-top">BodyHealth</div>
+        <div class="em-in">
+          <span class="badge-ok">✓ Оплату підтверджено</span>
+          <h1>{Ім'я}, дякуємо. Оплата пройшла</h1>
+          <p>Ми отримали платіж і вже працюємо над вашим замовленням. Нижче — умови послуги та що відбувається далі.</p>
+
+          <div class="panel">
+            <h2>Ваше замовлення</h2>
+            <div class="kv">
+              <span>Послуга</span><b>HealthCheckup — разова комплексна оцінка стану здоров'я</b>
+              <span>Сума</span><b>4 500 ₴</b>
+              <span>Оплачено</span><b>{16.09.2026, 14:20}</b>
+              <span>Номер платежу</span><b>{orderReference}</b>
+              <span>Виконавець</span><b>ФОП Яблонська Софія Ігорівна, ЄДРПОУ/ІПН 3752503564, торгова марка «Body Health»</b>
+            </div>
+          </div>
+
+          <p><b>Що буде далі</b></p>
+          <ol class="steps">
+            <li><b>Сьогодні.</b> Адміністратор надішле вам посилання на медичну анкету. Заповнення — близько 15 хвилин.</li>
+            <li><b>Протягом 24 годин після анкети.</b> Куратор зв'яжеться з вами та уточнить деталі, якщо чогось бракує.</li>
+            <li><b>До 5 робочих днів.</b> Команда аналізує дані та готує підсумковий звіт. Ми надішлемо його на цю адресу.</li>
+            <li><b>Після звіту.</b> Консультація за результатами — узгодимо зручний час.</li>
+          </ol>
+
+          <p style="margin-top:16px"><b>Що варто підготувати зараз</b><br>
+          <span class="muted">Якщо у вас є результати аналізів за останній рік, виписки або висновки лікарів — тримайте їх під рукою. Це не обов'язково, але робить звіт точнішим.</span></p>
+
+          <div class="panel">
+            <h2>Про повернення коштів</h2>
+            <p class="muted" style="margin:0">Ви можете скасувати замовлення і отримати повне повернення коштів <b>у будь-який момент до того, як ми надішлемо звіт</b>. Після надсилання звіту послуга вважається наданою в повному обсязі — відповідно до п. 1 ч. 5 ст. 13 Закону України «Про захист прав споживачів». Запит на скасування: <a href="mailto:billing@body-health.care">billing@body-health.care</a>.</p>
+          </div>
+
+          <p class="muted">Якщо протягом доби з вами ніхто не зв'язався — напишіть на <a href="mailto:info@body-health.care">info@body-health.care</a>, зателефонуйте на <b>+380 98 150 14 98</b> або напишіть у <a href="https://t.me/bodyhealthclinic">Telegram</a>. Ми розберемось того ж дня.</p>
+
+          <p class="muted">Квитанцію про оплату ви отримаєте окремим листом від платіжної системи WayForPay.</p>
+        </div>
+        <div class="em-foot">
+          Повні умови: <a href="https://body-health.care/terms-and-conditions.html">Публічна оферта</a> ·
+          <a href="https://body-health.care/refund-policy.html">Політика повернення коштів</a> ·
+          <a href="https://body-health.care/privacy.html">Політика конфіденційності</a><br>
+          ФОП Яблонська Софія Ігорівна · <a href="mailto:info@body-health.care">info@body-health.care</a> · +380 98 150 14 98
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="opt" style="margin-top:16px">
+    <div class="note" style="padding-top:18px">
+      <span class="plus">Все реквизиты, условия и ссылки на документы в одном письме — это ровно то, что закон называет надлежащим подтверждением. Без него срок на отказ 90 дней вместо 14.</span>
+      <span class="plus">Шаги с привязкой ко времени («сьогодні», «до 5 робочих днів») дают человеку контроль: он знает, когда пора беспокоиться.</span>
+      <span class="plus">Отдельная строка про квитанцию — чтобы второе письмо от WayForPay не выглядело подозрительным.</span>
+      <span class="plus">Для подписок Personal Care и Integrated Care письмо то же, меняются два блока: вместо «звіт за 5 днів» — «куратор і перша відеоконсультація», и добавляется строка о ежемесячном списании и о том, как его остановить.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">4</span><h2>Ещё два письма</h2><span class="sub">компании и подписка</span></div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">4.1</span><h3>После анкеты компании</h3></div>
+    <div class="opt-body">
+      <div class="mail">
+        <div class="mail-meta">
+          <div><i>Тема</i><b>Отримали запит від {Назва компанії} — готуємо пропозицію</b></div>
+        </div>
+        <div class="mail-body">
+          <div class="em">
+            <div class="em-top">BodyHealth</div>
+            <div class="em-in">
+              <span class="badge-ok">✓ Запит отримано</span>
+              <h1>{Ім'я}, дякуємо за запит</h1>
+              <p>Ми отримали анкету від <b>{Назва компанії}</b> і вже рахуємо пропозицію під ваш розмір і цілі.</p>
+              <div class="panel">
+                <h2>Що ви вказали</h2>
+                <div class="kv">
+                  <span>Компанія</span><b>{Назва}, {галузь}</b>
+                  <span>Співробітників</span><b>{51–100}</b>
+                  <span>Цілі</span><b>{Зниження витрат, Менше лікарняних}</b>
+                </div>
+              </div>
+              <p><b>Що буде далі</b></p>
+              <ol class="steps">
+                <li><b>Протягом 2 робочих днів</b> надішлемо комерційну пропозицію з розрахунком на вашу кількість співробітників.</li>
+                <li>За потреби призначимо 30-хвилинну зустріч із демонстрацією платформи.</li>
+                <li>Після узгодження — договір і технічна інтеграція, орієнтовно 2–3 тижні.</li>
+              </ol>
+              <p class="muted" style="margin-top:14px">Якщо потрібно швидше або є додаткові вимоги — просто відповідайте на цей лист, він приходить живій людині.</p>
+            </div>
+            <div class="em-foot">ФОП Яблонська Софія Ігорівна · <a href="mailto:info@body-health.care">info@body-health.care</a> · +380 98 150 14 98</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">4.2</span><h3>После подписки на рассылку</h3></div>
+    <div class="opt-body">
+      <div class="mail">
+        <div class="mail-meta">
+          <div><i>Тема</i><b>Ви підписані. Ось що приходитиме</b></div>
+        </div>
+        <div class="mail-body">
+          <div class="em">
+            <div class="em-top">BodyHealth</div>
+            <div class="em-in">
+              <span class="badge-ok">✓ Підписку підтверджено</span>
+              <h1>Дякуємо, що підписались</h1>
+              <p>Раз на два тижні надсилатимемо розбір однієї теми: що показують аналізи, на що справді варто звертати увагу і що з цим робити. Пише команда лікарів, без реклами добавок.</p>
+              <p class="muted">Відписатись можна в один клік у будь-якому листі.</p>
+              <a href="https://body-health.care/blog.html" class="cta">Почати з найпопулярнішої статті</a>
+            </div>
+            <div class="em-foot">ФОП Яблонська Софія Ігорівна · <a href="mailto:info@body-health.care">info@body-health.care</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <span class="plus">Это письмо — первая ступень воронки В-3: оно возвращает человека на сайт, а не просто подтверждает адрес.</span>
+    </div>
+  </div>
+</section>
+
+<div class="decide">
+  <h2>Что жду от вас</h2>
+  <ol>
+    <li>Тексты писем: принять целиком или отметить, что поправить.</li>
+    <li>Отправитель: <b>info@body-health.care</b> или завести отдельный <b>support@</b>.</li>
+    <li>Для второго шлюза нужен ваш вход в кабинет WayForPay — сессия разлогинилась. Как зайдёте, я впишу Service URL и проверю тестовым платежом на минимальную сумму.</li>
+  </ol>
+  <p style="margin-top:14px;color:var(--muted);font-size:.9rem">После вашего «ок» настраиваю Make, собираю шаблоны и прогоняю каждое письмо тестом — проверю, как оно выглядит в Gmail и на телефоне.</p>
+</div>
+
+</div>
+</body>
+</html>
