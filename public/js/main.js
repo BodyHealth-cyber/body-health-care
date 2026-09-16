@@ -523,28 +523,39 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Phone number formatting
-    const phoneInput = document.getElementById('phone');
-    if (phoneInput) {
-        phoneInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            let formatted = '';
-
-            if (value.length > 0) {
-                if (value[0] === '7' || value[0] === '8') {
-                    formatted = '+7 '; value = value.substring(1);
-                } else if (value[0] === '1') {
-                    formatted = '+1 '; value = value.substring(1);
-                } else {
-                    formatted = '+';
-                }
-            }
-            if (value.length >= 3) { formatted += '(' + value.substring(0, 3) + ') '; value = value.substring(3); }
-            if (value.length >= 3) { formatted += value.substring(0, 3) + '-'; value = value.substring(3); }
-            if (value.length > 0) { formatted += value.substring(0, 4); }
-            e.target.value = formatted;
-        });
+    // Форматування телефону.
+    // Стара маска була розрахована на десятизначний номер (+(XXX) XXX-XXXX) і
+    // обрізала все зайве: український +380 98 150 14 98 перетворювався на
+    // +(380) 981-5014, тобто дві останні цифри просто зникали і заявка
+    // приходила з неправильним номером. Нова маска нічого не відкидає:
+    // українські номери групує звично, будь-які інші лишає як +цифри.
+    function formatPhoneValue(raw) {
+        var d = String(raw || '').replace(/\D/g, '');
+        if (!d) return '';
+        if (d.charAt(0) === '0') d = '38' + d;          // 098… → 38098…
+        if (d.indexOf('380') === 0 && d.length <= 12) {
+            var rest = d.slice(3);
+            var parts = ['+380'];
+            if (rest.length) parts.push(rest.slice(0, 2));
+            if (rest.length > 2) parts.push(rest.slice(2, 5));
+            if (rest.length > 5) parts.push(rest.slice(5, 7));
+            if (rest.length > 7) parts.push(rest.slice(7, 9));
+            return parts.join(' ');
+        }
+        return '+' + d;
     }
+
+    document.querySelectorAll('input[type="tel"]').forEach(function (input) {
+        if (input.dataset.phoneBound === '1') return;
+        input.dataset.phoneBound = '1';
+        input.addEventListener('input', function (e) {
+            var atEnd = e.target.selectionStart === e.target.value.length;
+            var next = formatPhoneValue(e.target.value);
+            if (next === e.target.value) return;
+            e.target.value = next;
+            if (atEnd) e.target.setSelectionRange(next.length, next.length);
+        });
+    });
 });
 
 // ===== SCROLL ANIMATIONS =====
