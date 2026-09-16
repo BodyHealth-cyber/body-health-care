@@ -78,7 +78,7 @@
                 <strong>Website:</strong> https://body-health.care<br>
                 <strong>Refunds and subscription cancellation:</strong> billing@body-health.care<br>
                 <strong>Formal claims and legally significant notices:</strong> info@body-health.care<br>
-                <strong>Phone:</strong> +38 096 267 50 52<br>
+                <strong>Phone:</strong> +380 98 150 14 98<br>
                 <strong>Note:</strong> the packages "Healthcare" and "Ambulance" from earlier revisions are identical to "Personal Care" and "Integrated Care" respectively.
             </p>
         </div>

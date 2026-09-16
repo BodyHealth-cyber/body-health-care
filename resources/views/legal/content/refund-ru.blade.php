@@ -76,7 +76,7 @@
                 <strong>Веб-сайт:</strong> https://body-health.care<br>
                 <strong>Возвраты и отмена подписки:</strong> billing@body-health.care<br>
                 <strong>Официальные претензии и юридически значимые уведомления:</strong> info@body-health.care<br>
-                <strong>Телефон:</strong> +38 096 267 50 52<br>
+                <strong>Телефон:</strong> +380 98 150 14 98<br>
                 <strong>Примечание:</strong> пакеты "Healthcare" и "Ambulance" из предыдущих редакций тождественны пакетам "Personal Care" и "Integrated Care" соответственно.
             </p>
         </div>

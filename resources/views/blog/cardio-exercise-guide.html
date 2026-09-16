@@ -39,13 +39,8 @@
                 </div>
 
                 <ul class="nav-menu">
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link" data-i18n="nav_services">Послуги</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/services/healthcare.html">Personal Care ($250/міс)</a></li>
-                            <li><a href="/services/ambulance.html">Integrated Care ($500/міс)</a></li>
-                            <li><a href="/services/checkup.html">HealthCheckup ($100)</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a href="/services.html" class="nav-link" data-i18n="nav_services">Послуги</a>
                     </li>
                     <li class="nav-item">
                         <a href="/for-companies.html" class="nav-link" data-i18n="nav_companies">Для компаній</a>
@@ -163,6 +158,23 @@
                 </div>
             </div>
         </section>
+
+        <!-- Newsletter CTA -->
+        <section class="newsletter-cta">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2>Підписуйтесь на нові статті</h2>
+                    <p>Отримуйте експертні матеріали про здоров'я прямо на пошту</p>
+
+                    <form class="newsletter-form-large" id="articleNewsletter" data-make-webhook="https://hook.eu1.make.com/2e9lvba2ypntnv4e4q40i6b7l1epsvgo">
+                        <input type="email" name="email" placeholder="Ваш email" required>
+                        <button type="submit" class="btn btn-primary">Підписатися</button>
+                    </form>
+
+                    <p class="newsletter-privacy">Без спаму, лише якісний контент. Відписка в один клік.</p>
+                </div>
+            </div>
+        </section>
     </main>
     <footer class="footer">
         <div class="container">
@@ -213,6 +225,7 @@
                         <li><a href="/privacy.html" data-i18n="footer_privacy">Політика конфіденційності</a></li>
                         <li><a href="/terms-and-conditions.html" data-i18n="footer_terms">Умови та положення</a></li>
                         <li><a href="/refund-policy.html" data-i18n="footer_refund">Політика повернення коштів</a></li>
+                        <li><a href="/legal-archive.html" data-i18n="footer_archive">Архів редакцій</a></li>
                     </ul>
                 </div>
             </div>
@@ -220,7 +233,7 @@
             <div class="footer-bottom">
                 <div class="footer-legal">
                     <p data-i18n="footer_legal">&copy; 2024–2026 BodyHealth. Всі права захищені.</p>
-                    <p data-i18n="footer_compliance">Медичні дані зберігаються на сертифікованій платформі Healthie (HITRUST CSF, SOC 2, ONC Health IT).</p>
+                    <p data-i18n="footer_compliance">Медичні дані захищені шифруванням та лікарською таємницею відповідно до законодавства України.</p>
                 </div>
                 <!-- Social links: add real URLs when available -->
                 <div class="footer-social">

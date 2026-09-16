@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сторінку не знайдено | BodyHealth</title>
+    <link rel="canonical" href="https://body-health.care/services.html">
+    <title>Наші послуги | BodyHealth</title>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://body-health.care/services.html">
+    <meta property="og:title" content="Наші послуги | BodyHealth">
+    <meta property="og:description" content="Три формати медичного супроводу BodyHealth: Personal Care, Integrated Care та разова оцінка HealthCheckup. Порівняння складу послуг і цін.">
+    <meta property="og:site_name" content="BodyHealth">
+    <meta property="og:locale" content="uk_UA">
     <meta property="og:image" content="https://body-health.care/img/og-card-uk.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -12,14 +19,14 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#003d82">
-    <meta name="description" content="Сторінку не знайдено. Поверніться на головну BodyHealth або скористайтесь меню, щоб знайти потрібний розділ.">
-    <meta name="robots" content="noindex">
+    <meta name="description" content="Три формати медичного супроводу BodyHealth: Personal Care, Integrated Care та разова оцінка HealthCheckup. Порівняння складу послуг і цін.">
+
     <link rel="stylesheet" href="/css/style.css?v=20260915183901">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
 </head>
 <body>
-<header class="header">
+    <header class="header">
         <div class="container">
             <nav class="nav">
                 <div class="nav-brand">
@@ -64,36 +71,149 @@
     </header>
 
     <main>
-        <section class="error-page">
+        <!-- Hero -->
+        <section class="services-hero">
             <div class="container">
-                <div style="max-width:640px; margin:0 auto; padding-block:4rem 5rem; text-align:center;">
-                    <p class="error-code">404</p>
-                    <h1 style="margin:0 0 1rem;">Сторінку не знайдено</h1>
-                    <p style="font-size:1.05rem; line-height:1.6; opacity:0.75; margin:0 0 2rem;">
-                        Можливо, адресу введено з помилкою або сторінку було переміщено.
-                        Скористайтесь меню вище або поверніться на головну.
-                    </p>
-                    <div style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center;">
-                        <a href="/" class="btn btn-primary btn-large">На головну</a>
-                        <a href="/#contact-form" class="btn btn-outline btn-large">Зв'язатись з нами</a>
+                <p class="legal-eyebrow">Медичний супровід</p>
+                <h1>Наші послуги</h1>
+                <p class="services-hero-sub">Три формати супроводу: щомісячна підписка з персональним куратором, розширений супровід для складних станів і разова оцінка стану здоров'я. Усі послуги надаються дистанційно.</p>
+            </div>
+        </section>
+
+        <!-- Карточки -->
+        <section class="services">
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="/img/services/personal-care.svg" alt="Personal Care" width="72" height="72">
+                        </div>
+                        <h3>Personal Care</h3>
+                        <p class="service-price">$250/міс</p>
+                        <p class="service-description">Комплексний медичний супровід з персональним куратором та доступом до міждисциплінарної команди спеціалістів</p>
+                        <ul class="service-features">
+                            <li>Персональний медичний куратор</li>
+                            <li>Консультації спеціалістів</li>
+                            <li>Моніторинг показників здоров'я</li>
+                            <li>Індивідуальні рекомендації</li>
+                            <li>Телемедичні консультації 24/7</li>
+                        </ul>
+                        <a href="/services/healthcare.html" class="btn btn-primary">Детальніше</a>
                     </div>
 
-                    <div class="error-links">
-                        <h2>Популярні розділи</h2>
-                        <ul>
-                            <li><a href="/services/healthcare.html">Personal Care — $250/міс</a></li>
-                            <li><a href="/services/ambulance.html">Integrated Care — $500/міс</a></li>
-                            <li><a href="/services/checkup.html">HealthCheckup — $100</a></li>
-                            <li><a href="/for-companies.html">Для компаній</a></li>
-                            <li><a href="/blog.html">Блог про здоров'я</a></li>
+                    <div class="service-card featured">
+                        <div class="service-badge">Рекомендуємо</div>
+                        <div class="service-icon">
+                            <img src="/img/services/integrated-care.svg" alt="Integrated Care" width="72" height="72">
+                        </div>
+                        <h3>Integrated Care</h3>
+                        <p class="service-price">$500/міс</p>
+                        <p class="service-description">Розширений медичний супровід для пацієнтів із хронічними захворюваннями та комплексними станами</p>
+                        <ul class="service-features">
+                            <li>Усе з пакету Personal Care</li>
+                            <li>Мультидисциплінарні сесії</li>
+                            <li>Протоколи екстреної допомоги</li>
+                            <li>Пріоритетна підтримка</li>
+                            <li>Координація з лікуючими лікарями</li>
                         </ul>
+                        <a href="/services/ambulance.html" class="btn btn-primary">Детальніше</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="/img/services/health-checkup.svg" alt="HealthCheckup" width="72" height="72">
+                        </div>
+                        <h3>HealthCheckup</h3>
+                        <p class="service-price">$100 одноразово</p>
+                        <p class="service-description">Комплексна оцінка стану здоров'я з персональними рекомендаціями та планом дій</p>
+                        <ul class="service-features">
+                            <li>Комплексний аналіз здоров'я</li>
+                            <li>Персональний звіт</li>
+                            <li>Рекомендації спеціалістів</li>
+                            <li>План профілактичних заходів</li>
+                            <li>Консультація за результатами</li>
+                        </ul>
+                        <a href="/services/checkup.html" class="btn btn-primary">Детальніше</a>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Сравнение -->
+        <section class="services-compare">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Що входить у кожен пакет</h2>
+                    <p>Склад послуг відповідає Публічній оферті</p>
+                </div>
+
+                <div class="compare-wrap">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Послуга</th>
+                                <th scope="col">Personal Care<span class="compare-price">$250/міс</span></th>
+                                <th scope="col" class="is-featured">Integrated Care<span class="compare-price">$500/міс</span></th>
+                                <th scope="col">HealthCheckup<span class="compare-price">$100 разово</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Персональний медичний куратор</th><td class="y">Так</td><td class="y is-featured">Так</td><td class="n">—</td></tr>
+                            <tr><th scope="row">Телемедичні консультації</th><td class="y">Так</td><td class="y is-featured">Так</td><td class="t">Одна відеоконсультація 45 хв</td></tr>
+                            <tr><th scope="row">Підтримка в чаті</th><td class="t">Цілодобово</td><td class="t is-featured">Цілодобово, відповідь до 15 хв</td><td class="n">—</td></tr>
+                            <tr><th scope="row">Моніторинг показників здоров'я</th><td class="t">Основні показники</td><td class="t is-featured">Розширений моніторинг</td><td class="n">—</td></tr>
+                            <tr><th scope="row">Мультидисциплінарні консиліуми</th><td class="n">—</td><td class="y is-featured">Так</td><td class="n">—</td></tr>
+                            <tr><th scope="row">Протоколи екстреної допомоги</th><td class="n">—</td><td class="y is-featured">Так</td><td class="n">—</td></tr>
+                            <tr><th scope="row">Координація з вашими лікарями</th><td class="n">—</td><td class="y is-featured">Так</td><td class="n">—</td></tr>
+                            <tr><th scope="row">Медична анкета та аналіз історії</th><td class="y">Так</td><td class="y is-featured">Так</td><td class="y">Так</td></tr>
+                            <tr><th scope="row">Письмовий звіт про стан здоров'я</th><td class="n">—</td><td class="n is-featured">—</td><td class="t">Протягом 48 годин</td></tr>
+                            <tr><th scope="row">Знижка на підписку</th><td class="n">—</td><td class="n is-featured">—</td><td class="t">20%</td></tr>
+                            <tr><th scope="row">Формат оплати</th><td class="t">Підписка, автопродовження</td><td class="t is-featured">Підписка, автопродовження</td><td class="t">Разовий платіж</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="compare-note">Послуги мають інформаційно-консультаційний характер. Діагнози, встановлені дистанційно, є попередніми. Повні умови — у <a href="/terms-and-conditions.html">Публічній оферті</a>.</p>
+            </div>
+        </section>
+
+        <!-- Как выбрать -->
+        <section class="services-choose">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Як обрати</h2>
+                    <p>Якщо сумніваєтесь — почніть із разової оцінки</p>
+                </div>
+                <div class="choose-grid">
+                    <div class="choose-card">
+                        <span class="choose-num">1</span>
+                        <h3>Вперше у нас</h3>
+                        <p>Візьміть <strong>HealthCheckup</strong>. Ви отримаєте письмовий звіт про стан здоров'я і зрозумієте, чи потрібен постійний супровід. Знижка 20% на підписку зберігається.</p>
+                    </div>
+                    <div class="choose-card">
+                        <span class="choose-num">2</span>
+                        <h3>Потрібен постійний нагляд</h3>
+                        <p><strong>Personal Care</strong> — куратор веде вас щомісяця: планові консультації, моніторинг показників, зв'язок із лікарем у будь-який час.</p>
+                    </div>
+                    <div class="choose-card">
+                        <span class="choose-num">3</span>
+                        <h3>Складний або хронічний стан</h3>
+                        <p><strong>Integrated Care</strong> — те саме, плюс консиліуми кількох лікарів, протоколи екстреної допомоги і координація з вашими лікарями офлайн.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="services-cta">
+            <div class="container">
+                <h2>Не знаєте, що обрати?</h2>
+                <p>Залиште заявку — ми зв'яжемося і допоможемо підібрати формат супроводу.</p>
+                <a href="/#contact-form" class="btn btn-primary btn-large">Залишити заявку</a>
+            </div>
+        </section>
     </main>
 
-<footer class="footer">
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -162,11 +282,11 @@
         </div>
     </footer>
 
+    <script src="/js/main.js?v=20260915183901"></script>
 <div class="float-contacts">
         <a href="https://t.me/bodyhealthclinic" target="_blank" rel="noopener" class="float-btn float-tg" title="Telegram"><i class="fab fa-telegram"></i></a>
         <a href="https://wa.me/380981501498" target="_blank" rel="noopener" class="float-btn float-wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     </div>
-    <script src="/js/main.js?v=20260915183901"></script>
 
     <!-- Enquiry dialog. Every "start care" button on the site used to point at
          #contact-form, which exists only on the home page - so from any inner
