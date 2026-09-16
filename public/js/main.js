@@ -279,6 +279,40 @@ function initContactForms() {
     forms.forEach(bindContactForm);
 }
 
+// В письме клиенту стояло «Послуга: personal-care» и «Надіслано:
+// 2026-09-16T14:12:10.319Z» — машинный код и время по Гринвичу. Человеку это
+// читается как техническая ошибка. Название услуги берём прямо из выбранного
+// пункта списка: оно уже на языке страницы, и второго словаря заводить не надо.
+function selectedServiceLabel(form) {
+    var select = form.querySelector('[name="service"]');
+    if (!select || select.selectedIndex < 0) return '';
+    var option = select.options[select.selectedIndex];
+    if (!option) return '';
+    var label = (option.textContent || '').trim();
+    // В списке пункт подписан целиком: «Personal Care — постійний куратор і
+    // команда спеціалістів». В теме письма и в строке «Послуга» нужно короткое
+    // имя пакета, иначе тема не помещается в почтовой программе.
+    var dash = label.indexOf(' — ');
+    return dash > 0 ? label.slice(0, dash).trim() : label;
+}
+
+// Время киевское и в привычном виде. Если браузер старый и часовых поясов не
+// знает — отдаём как есть, лучше машинная строка, чем пустое место в письме.
+function localTimestamp(date) {
+    try {
+        return new Intl.DateTimeFormat('uk-UA', {
+            timeZone: 'Europe/Kyiv',
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        }).format(date);
+    } catch (e) {
+        return date.toISOString();
+    }
+}
+
 function bindContactForm(form) {
     if (form.dataset.contactBound === '1') return;
     form.dataset.contactBound = '1';
@@ -311,11 +345,13 @@ function bindContactForm(form) {
         const MAKE_WEBHOOK_URL = this.dataset.makeWebhook || '';
         const webhookReady = /^https?:\/\//.test(MAKE_WEBHOOK_URL);
 
+        const serviceLabel = selectedServiceLabel(form) || formObject.service || '';
+
         const enquirySummary = [
             (formObject.firstName || '') + ' ' + (formObject.lastName || ''),
             formObject.email,
             formObject.phone,
-            formObject.service,
+            serviceLabel,
             formObject.message,
         ].filter(Boolean).join('\n').trim();
 
@@ -328,16 +364,21 @@ function bindContactForm(form) {
         }
 
         try {
+            const sentAt = new Date();
             const payload = {
                 form_type: formObject.form_type || 'client',
-                subject: 'BodyHealth — ' + (formObject.service || 'Заявка'),
+                subject: 'BodyHealth — ' + (serviceLabel || 'Заявка'),
                 first_name: formObject.firstName,
                 last_name: formObject.lastName,
                 email: formObject.email,
                 phone: formObject.phone || '—',
                 service: formObject.service,
+                // то же самое словами, на языке страницы — для письма человеку
+                service_label: serviceLabel,
                 message: formObject.message || '—',
-                timestamp: new Date().toISOString(),
+                timestamp: sentAt.toISOString(),
+                // то же время по Києву и в привычном виде — для письма человеку
+                submitted_at: localTimestamp(sentAt),
                 source_page: window.location.href
             };
 
