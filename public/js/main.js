@@ -289,8 +289,8 @@ function selectedServiceLabel(form) {
     var option = select.options[select.selectedIndex];
     if (!option) return '';
     var label = (option.textContent || '').trim();
-    // В списке пункт подписан целиком: «Personal Care — постійний куратор і
-    // команда спеціалістів». В теме письма и в строке «Послуга» нужно короткое
+    // В списке пункт подписан целиком: «Personal Care — ваш спеціаліст і
+    // команда лікарів». В теме письма и в строке «Послуга» нужно короткое
     // имя пакета, иначе тема не помещается в почтовой программе.
     var dash = label.indexOf(' — ');
     return dash > 0 ? label.slice(0, dash).trim() : label;

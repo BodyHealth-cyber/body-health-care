@@ -17,7 +17,7 @@
             <li><strong>Website (Platform)</strong> - https://body-health.care, the official source of information and platform for the provision of Services.</li>
             <li><strong>Services</strong> - a set of informational and consultation services of a medical nature (telemedicine), provided remotely using information and communication technologies.</li>
             <li><strong>Telemedicine</strong> - a set of organisational, technological, and financial measures ensuring the delivery of medical assistance and medical services remotely.</li>
-            <li><strong>Medical Curator</strong> - a qualified specialist with a medical degree who coordinates the delivery of Services to the Client.</li>
+            <li><strong>Personal Specialist</strong> - a qualified specialist with a medical degree who coordinates the delivery of Services to the Client.</li>
             <li><strong>Subscription</strong> - a service format providing access to the service for a defined period (month) with automatic renewal.</li>
             <li><strong>Automatic Charge (Recurring Payment)</strong> - regular automated charges from the Client's bank card for subscription renewal.</li>
         </ul>
@@ -133,7 +133,7 @@
     <section class="legal-section-block">
         <h2>11. Confidentiality of Medical Data</h2>
         <p>11.1. The Client's medical data constitutes special category data within the meaning of Article 9 of GDPR and applicable data protection legislation. Such data is stored in encrypted form using modern data protection technologies.</p>
-        <p>11.2. Access to medical data is restricted exclusively to the personal Medical Curator and specialist physicians engaged in the Client's case. All specialists sign strict non-disclosure agreements.</p>
+        <p>11.2. Access to medical data is restricted exclusively to the Personal Specialist and specialist physicians engaged in the Client's case. All specialists sign strict non-disclosure agreements.</p>
         <p>11.3. Technical measures prevent downloading or storing medical data on personal devices. Medical data is retained for the duration of the Agreement and for 3 years following its termination, after which it is anonymised or deleted.</p>
     </section>
 
