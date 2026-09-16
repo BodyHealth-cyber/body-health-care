@@ -1294,5 +1294,16 @@
   "У межах пакета Integrated Care черговий лікар відповідає на екстрене звернення протягом 15 хвилин. Також активуються персональні протоколи екстреної допомоги та сповіщаються ваші лікуючі лікарі.": "Within the Integrated Care plan the on-call doctor answers an urgent request within 15 minutes. Your personal emergency protocols are activated and your treating doctors are notified.",
   "Ми ведемо ваш випадок": "We carry your case",
   "Ваш випадок веде закріплена команда: куратор, профільні лікарі та аналітики, які бачать вашу історію цілком.": "Your case is carried by a dedicated team: a coordinator, specialist doctors and analysts who see your history as a whole.",
-  "Ваше здоров'я веде команда, а не ви самі": "Your health is carried by a team, not by you alone"
+  "Ваше здоров'я веде команда, а не ви самі": "Your health is carried by a team, not by you alone",
+  "Ми звіряємо ваші показники щодня і попереджаємо лікаря про зміни ще до появи симптомів": "We check your readings every day and alert the doctor to changes before symptoms appear",
+  "Ми звіряємо ваші показники щодня і попереджаємо лікаря про зміни ще до появи симптомів.": "We check your readings every day and alert the doctor to changes before symptoms appear.",
+  "На що звернув увагу ваш куратор": "What your coordinator noticed",
+  "Пульс у спокої вищий, ніж зазвичай для вас. Я записала вас на розмову з кардіологом — підтвердіть зручний час.": "Your resting heart rate is higher than usual for you. I have booked you a call with a cardiologist — please confirm a time that suits you.",
+  "Сон став гіршим на 15% за тиждень. Поки що спостерігаємо; якщо не вирівняється — розберемо причини разом.": "Your sleep is 15% worse over the week. We are watching it for now; if it does not level out, we will look into the reasons together.",
+  "За місяць показники покращились на 12%. Те, що ви робите, працює — продовжуйте.": "Over the month your readings improved by 12%. What you are doing is working — keep going.",
+  "Відхилення у показниках підсвічує алгоритм. Читає їх і вирішує, що робити, — лікар.": "An algorithm flags the deviations in your readings. A doctor reads them and decides what to do.",
+  "Показники під наглядом": "Readings under watch",
+  "Система звіряє ваші дані з вашою ж історією і підсвічує лікарю те, що змінилось": "The system checks your data against your own history and shows the doctor what has changed",
+  "Щоденний контроль показників": "Daily monitoring of your readings",
+  "Щоденний аналіз": "Daily analysis"
 }

@@ -18,7 +18,7 @@ SITE = 'https://body-health.care'
 PHONE = '+380981501498'
 EMAIL = 'info@body-health.care'
 SAME_AS = ['https://www.linkedin.com/company/bodyhealthcare',
-           'https://www.instagram.com/bodyhealth.care',
+           'https://www.instagram.com/bodyhealth.ukraine',
            'https://www.facebook.com/bodyhealthcare']
 
 PLAN_PRICE = {'healthcare': '250', 'ambulance': '500', 'checkup': '100'}

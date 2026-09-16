@@ -24,7 +24,7 @@
     <meta name="theme-color" content="#003d82">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/style.css?v=20260916100305">
+    <link rel="stylesheet" href="/css/style.css?v=20260916101439">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -230,27 +230,22 @@
             <div class="container">
                 <div class="section-header">
                     <h2 data-i18n="mon_h2">Ви спите — показники дивиться лікар</h2>
-                    <p data-i18n="mon_sub">Інтегрований моніторинг показників здоров'я з персональною аналітикою та рекомендаціями спеціалістів</p>
+                    <p data-i18n="mon_sub">Ми звіряємо ваші показники щодня і попереджаємо лікаря про зміни ще до появи симптомів</p>
                 </div>
 
                 <div class="monitoring-dashboard">
-                    <div class="monitoring-intro">
-                        <h3 data-i18n="mon_title">Ваше здоров'я під контролем</h3>
-                        <p data-i18n="mon_p">Ми автоматично відстежуємо ключові показники вашого організму через інтегровані пристрої та попереджаємо про будь-які відхилення ще до появи симптомів.</p>
-
-                        <div class="monitoring-benefits">
-                            <div class="benefit-point">
-                                <i class="fas fa-shield-alt"></i>
-                                <span data-i18n="mon_b1">Раннє виявлення відхилень</span>
-                            </div>
-                            <div class="benefit-point">
-                                <i class="fas fa-bell"></i>
-                                <span data-i18n="mon_b2">Персональні сповіщення</span>
-                            </div>
-                            <div class="benefit-point">
-                                <i class="fas fa-chart-line"></i>
-                                <span data-i18n="mon_b3">Аналітика та прогнози</span>
-                            </div>
+                    <div class="monitoring-points">
+                        <div class="point-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <span data-i18n="mon_b1">Раннє виявлення відхилень</span>
+                        </div>
+                        <div class="point-card">
+                            <i class="fas fa-bell"></i>
+                            <span data-i18n="mon_b2">Персональні сповіщення</span>
+                        </div>
+                        <div class="point-card">
+                            <i class="fas fa-chart-line"></i>
+                            <span data-i18n="mon_b3">Аналітика та прогнози</span>
                         </div>
                     </div>
 
@@ -344,25 +339,26 @@
                             </div>
                         </div>
 
-                        <div class="ai-recommendations">
-                            <div class="ai-header">
-                                <i class="fas fa-robot"></i>
-                                <h4 data-i18n="ai_rec_h">Персональні рекомендації ШІ</h4>
+                        <div class="curator-notes">
+                            <div class="curator-header">
+                                <i class="fas fa-user-md"></i>
+                                <h4 data-i18n="cur_h">На що звернув увагу ваш куратор</h4>
                             </div>
-                            <div class="recommendations-list">
-                                <div class="recommendation priority-high">
-                                    <i class="fas fa-exclamation-circle"></i>
-                                    <span data-i18n="ai_rec_1">Підвищений пульс у стані спокою. Рекомендуємо консультацію кардіолога протягом 24 годин.</span>
+                            <div class="curator-list">
+                                <div class="curator-note note-alert">
+                                    <span class="note-dot"></span>
+                                    <span data-i18n="cur_1">Пульс у спокої вищий, ніж зазвичай для вас. Я записала вас на розмову з кардіологом — підтвердіть зручний час.</span>
                                 </div>
-                                <div class="recommendation priority-medium">
-                                    <i class="fas fa-info-circle"></i>
-                                    <span data-i18n="ai_rec_2">Зниження якості сну на 15%. Спробуйте лягати спати на 30 хвилин раніше.</span>
+                                <div class="curator-note note-watch">
+                                    <span class="note-dot"></span>
+                                    <span data-i18n="cur_2">Сон став гіршим на 15% за тиждень. Поки що спостерігаємо; якщо не вирівняється — розберемо причини разом.</span>
                                 </div>
-                                <div class="recommendation priority-low">
-                                    <i class="fas fa-lightbulb"></i>
-                                    <span data-i18n="ai_rec_3">Чудовий тиждень! Ваші показники покращились на 12% порівняно з минулим місяцем.</span>
+                                <div class="curator-note note-good">
+                                    <span class="note-dot"></span>
+                                    <span data-i18n="cur_3">За місяць показники покращились на 12%. Те, що ви робите, працює — продовжуйте.</span>
                                 </div>
                             </div>
+                            <p class="curator-foot" data-i18n="cur_foot">Відхилення у показниках підсвічує алгоритм. Читає їх і вирішує, що робити, — лікар.</p>
                         </div>
                     </div>
                 </div>
@@ -378,10 +374,10 @@
 
                     <div class="feature-item">
                         <div class="feature-icon">
-                            <i class="fas fa-brain"></i>
+                            <i class="fas fa-wave-square"></i>
                         </div>
-                        <h4 data-i18n="mon_f2_h">ШІ-аналіз даних</h4>
-                        <p data-i18n="mon_f2_p">Алгоритми машинного навчання виявляють паттерни та прогнозують зміни у стані здоров'я</p>
+                        <h4 data-i18n="mon_f2_h">Показники під наглядом</h4>
+                        <p data-i18n="mon_f2_p">Система звіряє ваші дані з вашою ж історією і підсвічує лікарю те, що змінилось</p>
                     </div>
 
                     <div class="feature-item">
@@ -477,8 +473,8 @@
 
                             <div class="care-layer ai">
                                 <div class="care-item">
-                                    <i class="fas fa-robot"></i>
-                                    <span data-i18n="care_ai">ШІ-аналіз</span>
+                                    <i class="fas fa-chart-line"></i>
+                                    <span data-i18n="care_ai">Щоденний аналіз</span>
                                 </div>
                             </div>
 
@@ -775,7 +771,7 @@
                 <!-- Social links: add real URLs when available -->
                 <div class="footer-social">
                     <a href="https://www.linkedin.com/company/bodyhealthcare" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.instagram.com/bodyhealth.care" class="social-link" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/bodyhealth.ukraine" class="social-link" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.facebook.com/bodyhealthcare" class="social-link" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                 </div>
             </div>
@@ -789,7 +785,7 @@
     </div>
 
     <!-- JavaScript (translations.js already loaded in <head>) -->
-    <script src="/js/main.js?v=20260916100305"></script>
+    <script src="/js/main.js?v=20260916101439"></script>
 
     <!-- Enquiry dialog. Every "start care" button on the site used to point at
          #contact-form, which exists only on the home page - so from any inner
