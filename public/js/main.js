@@ -255,11 +255,33 @@ var contactFormMessages = getContactMessages();
 // Two forms share this handler: the one at the foot of the home page and the
 // one inside the enquiry dialog, which exists on every page. Everything below
 // reads `this`, never a captured element, so both behave identically.
-const contactForms = [
-    document.getElementById('contactForm'),
-    document.getElementById('contactFormModal')
-].filter(Boolean);
-contactForms.forEach(function (form) {
+// Страховка на уровне документа: ни одна анкета не должна уходить обычной
+// GET-отправкой. Именно это и происходило с анкетой во всплывающем окне —
+// страница перезагружалась, имя, телефон и почта человека оказывались в
+// адресной строке, а заявка не уходила никуда. Перехват в фазе погружения
+// срабатывает раньше любого обработчика формы и не мешает ему отработать.
+document.addEventListener('submit', function (e) {
+    var form = e.target;
+    if (form && form.hasAttribute && form.hasAttribute('data-make-webhook')) {
+        e.preventDefault();
+    }
+}, true);
+
+// Разметка анкеты во всплывающем окне стоит в подвале страницы, ниже main.js,
+// поэтому на момент загрузки скрипта её ещё нет в документе: getElementById
+// возвращал null, и обработчик отправки не вешался ни на одной странице сайта.
+// Ждём документ, как это уже сделано для меню, диалогов и подписки.
+function initContactForms() {
+    var forms = [
+        document.getElementById('contactForm'),
+        document.getElementById('contactFormModal')
+    ].filter(Boolean);
+    forms.forEach(bindContactForm);
+}
+
+function bindContactForm(form) {
+    if (form.dataset.contactBound === '1') return;
+    form.dataset.contactBound = '1';
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         contactFormMessages = getContactMessages(); // refresh for current language
@@ -345,7 +367,13 @@ contactForms.forEach(function (form) {
             submitButton.disabled = false;
         }
     });
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initContactForms);
+} else {
+    initContactForms();
+}
 
 // ===== FORM VALIDATION =====
 function validateForm(data, form) {
