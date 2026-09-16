@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BodyHealth — блок моніторингу</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--brand:#003d82;--ink:#1a1a1a;--text:#333;--muted:#6b7280;--faint:#9aa3b2;
+ --line:#e5e7eb;--line-soft:#eef1f6;--bg:#f5f7fa;--mint:#66ffcc}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+ background:var(--bg);color:var(--text);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px 96px}
+.doc-head{padding:56px 0 30px}
+.doc-kicker{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);font-weight:600}
+.doc-head h1{font-size:2rem;font-weight:700;color:var(--ink);line-height:1.25;margin:.5rem 0 .6rem}
+.doc-head p{color:var(--muted);max-width:68ch}
+section{margin-top:52px}
+.sec-head{display:flex;align-items:center;gap:.75rem;padding-bottom:.9rem;border-bottom:1px solid var(--line);margin-bottom:24px}
+.sec-num{width:28px;height:28px;flex:0 0 28px;border-radius:8px;background:var(--brand);color:#fff;
+ display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:600}
+.sec-head h2{font-size:1.35rem;font-weight:600;color:var(--ink)}
+.sec-head .sub{margin-left:auto;font-size:.85rem;color:var(--faint)}
+.lead{color:var(--muted);margin-bottom:20px;max-width:76ch}
+.lead b{color:var(--text);font-weight:600}
+.opt{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:18px;overflow:hidden}
+.opt.rec{border-color:#c3d6ef;box-shadow:0 0 0 3px rgba(0,61,130,.06)}
+.opt-head{display:flex;align-items:center;gap:.7rem;padding:14px 20px;border-bottom:1px solid var(--line-soft);background:#fcfdff}
+.tag{font-size:.72rem;font-weight:700;letter-spacing:.06em;color:var(--brand);border:1px solid #c3d6ef;
+ border-radius:6px;padding:2px 8px;background:#f3f8ff}
+.opt-head h3{font-size:1rem;font-weight:600;color:var(--ink)}
+.rec-badge{margin-left:auto;font-size:.72rem;font-weight:600;color:#0f7a4f;background:#e8f6ef;
+ border:1px solid #bfe5d2;border-radius:6px;padding:2px 8px}
+.note{padding:12px 20px 18px;font-size:.87rem;color:var(--muted);display:grid;gap:.3rem}
+.note .plus::before{content:"+ ";color:#0f7a4f;font-weight:700}
+.note .minus::before{content:"− ";color:#b45309;font-weight:700}
+.opt-body{padding:0}
+
+/* ===== тёмная секция как на сайте ===== */
+.mon{background:linear-gradient(135deg,#0f0f23 0%,#1a1a2e 50%,#16213e 100%);color:#fff;padding:40px 32px;position:relative;overflow:hidden}
+.mon::before{content:'';position:absolute;inset:0;pointer-events:none;
+ background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.05) 0,transparent 50%),
+            radial-gradient(circle at 80% 80%,rgba(102,255,204,.1) 0,transparent 50%)}
+.mon>*{position:relative;z-index:1}
+.mon .center{text-align:center;margin-bottom:34px}
+.mon h2{font-size:2rem;color:#fff;line-height:1.25;margin-bottom:.6rem;font-weight:700}
+.mon .sub{color:#a0a0a0;font-size:1rem;max-width:62ch;margin:0 auto}
+.mon h3{font-size:1.5rem;color:#fff;margin-bottom:.7rem;font-weight:600}
+.mon p.txt{color:#a0a0a0;margin-bottom:1.2rem}
+.bp{display:flex;align-items:center;gap:.7rem;color:#fff;font-size:.95rem;margin-bottom:.7rem}
+.bp .ic{color:var(--mint);width:20px;text-align:center;font-size:1rem}
+.panel{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:22px}
+.ph{display:flex;justify-content:space-between;align-items:center;padding-bottom:.8rem;
+ border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:1.1rem}
+.ph h4{font-size:1.05rem;color:#fff;font-weight:600}
+.live{display:inline-flex;align-items:center;gap:.4rem;color:var(--mint);font-size:.78rem}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--mint)}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mc{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px}
+.mch{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem}
+.ml{color:#c9cdd6;font-size:.85rem}
+.ms{font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:6px;letter-spacing:.04em;text-transform:uppercase}
+.ms.ok{background:rgba(16,185,129,.18);color:#4ade9b}
+.ms.good{background:rgba(59,130,246,.18);color:#7db3ff}
+.ms.exc{background:rgba(168,85,247,.18);color:#c99bff}
+.ms.norm{background:rgba(16,185,129,.18);color:#4ade9b}
+.mv{text-align:center;margin:.4rem 0 .6rem}
+.mv .big{font-size:1.35rem;font-weight:700;color:#fff}
+.mi{color:#98a0ad;font-size:.8rem;line-height:1.5;text-align:center}
+.bar{height:8px;border-radius:5px;background:rgba(255,255,255,.12);overflow:hidden;margin:.5rem 0 .8rem}
+.bar i{display:block;height:100%;width:78%;background:linear-gradient(90deg,#3b82f6,#4ade9b)}
+/* блок наблюдений */
+.obs{margin-top:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px}
+.obs-h{display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem}
+.obs-h h4{font-size:1rem;color:#fff;font-weight:600}
+.obs-h .who{margin-left:auto;font-size:.75rem;color:#98a0ad}
+.rec{display:flex;gap:.7rem;padding:11px 13px;border-radius:8px;margin-bottom:9px;font-size:.87rem;line-height:1.5}
+.rec .ic{flex:0 0 16px;text-align:center}
+.r1{background:rgba(239,68,68,.12);border-left:3px solid #ef4444;color:#ffc9c9}
+.r2{background:rgba(245,158,11,.12);border-left:3px solid #f59e0b;color:#ffe2b3}
+.r3{background:rgba(16,185,129,.12);border-left:3px solid #10b981;color:#b6f0d5}
+.foot-note{margin-top:.7rem;font-size:.78rem;color:#98a0ad}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}
+.bp-card{display:flex;align-items:center;gap:.7rem;background:rgba(255,255,255,.04);
+ border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px 14px;color:#fff;font-size:.9rem}
+.split{display:grid;grid-template-columns:1fr 2fr;gap:36px;align-items:start}
+.split-b{display:grid;grid-template-columns:5fr 7fr;gap:36px;align-items:center}
+.cta-dark{display:inline-block;margin-top:1rem;background:var(--mint);color:#0f2c22;font-weight:600;
+ text-decoration:none;padding:11px 22px;border-radius:6px;font-size:.92rem}
+.bad{outline:2px dashed #f59e0b;outline-offset:4px}
+.mark{display:inline-block;background:#fef4e7;border:1px solid #f4d9b0;color:#b45309;font-size:.72rem;
+ font-weight:700;border-radius:6px;padding:2px 8px;margin-left:.4rem}
+.decide{margin-top:44px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px}
+.decide h2{font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:12px}
+.decide ol{margin-left:1.1rem;color:var(--muted);display:grid;gap:.45rem}
+.decide b{color:var(--text)}
+@media(max-width:880px){.split,.split-b{grid-template-columns:1fr}.mg,.row3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc-head">
+  <div class="doc-kicker">body-health.care · мокап № 5 на утверждение</div>
+  <h1>Блок моніторингу: раскладка и разговор про ИИ</h1>
+  <p>Две правки в одной секции главной страницы. Сначала — что делать с «рекомендаціями ШІ», потом — как переставить саму секцию, чтобы она перестала выглядеть разъехавшейся.</p>
+</header>
+
+<!-- ===== 1 ===== -->
+<section>
+  <div class="sec-head"><span class="sec-num">1</span><h2>Рекомендации «ШІ»</h2><span class="sub">3 варианта</span></div>
+  <p class="lead">Согласен с вами, и есть вторая причина, более серьёзная. Сейчас блок подписан «Персональні рекомендації ШІ», а внутри стоит фраза <b>«Підвищений пульс у стані спокою. Рекомендуємо консультацію кардіолога протягом 24 годин»</b>. Это медицинская рекомендация, выданная от имени алгоритма. Юрист вычищал из оферты всё, что похоже на медицинские обещания, — а здесь алгоритм прямо советует идти к кардиологу. Менять нужно в любом случае, не только из-за недоверия.</p>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">СЕЙЧАС</span><h3>Как выглядит на сайте</h3></div>
+    <div class="opt-body"><div class="mon">
+      <div class="obs bad">
+        <div class="obs-h"><span style="color:var(--mint);font-size:1.2rem">🤖</span><h4>Персональні рекомендації ШІ</h4></div>
+        <div class="rec r1"><span class="ic">!</span><span>Підвищений пульс у стані спокою. Рекомендуємо консультацію кардіолога протягом 24 годин.</span></div>
+        <div class="rec r2"><span class="ic">i</span><span>Зниження якості сну на 15%. Спробуйте лягати спати на 30 хвилин раніше.</span></div>
+        <div class="rec r3"><span class="ic">✓</span><span>Чудовий тиждень! Ваші показники покращились на 12% порівняно з минулим місяцем.</span></div>
+      </div>
+    </div></div>
+    <div class="note">
+      <span class="minus">Медицинский совет от алгоритма — юридический риск и повод для недоверия одновременно.</span>
+      <span class="minus">Иконка робота ставит машину на место врача ровно в том разделе, где вы продаёте живую команду.</span>
+      <span class="minus">«Спробуйте лягати спати раніше» — обезличенный совет из приложения, а не то, за что платят 11 000 ₴.</span>
+    </div>
+  </div>
+
+  <div class="opt rec">
+    <div class="opt-head"><span class="tag">И-А</span><h3>Блок остаётся, но говорит куратор</h3><span class="rec-badge">рекомендую</span></div>
+    <div class="opt-body"><div class="mon">
+      <div class="obs">
+        <div class="obs-h"><span style="color:var(--mint);font-size:1.1rem">◎</span><h4>На що звернув увагу ваш куратор</h4><span class="who">Олена Марчук, лікар-куратор</span></div>
+        <div class="rec r1"><span class="ic">!</span><span>Пульс у спокої вищий, ніж зазвичай для вас. Я записала вас на розмову з кардіологом — підтвердіть зручний час.</span></div>
+        <div class="rec r2"><span class="ic">i</span><span>Сон став гіршим на 15% за тиждень. Поки що спостерігаємо; якщо не вирівняється — розберемо причини разом.</span></div>
+        <div class="rec r3"><span class="ic">✓</span><span>За місяць показники покращились на 12%. Те, що ви робите, працює — продовжуйте.</span></div>
+        <p class="foot-note">Відхилення у показниках підсвічує алгоритм. Читає їх і вирішує, що робити, — лікар.</p>
+      </div>
+    </div></div>
+    <div class="note">
+      <span class="plus">Ровно то позиционирование, которое вы описали: алгоритм — инструмент, решение принимает человек. И сказано это одной строкой, без лекций.</span>
+      <span class="plus">Юридический риск снимается: это не «алгоритм рекомендует к кардиологу», а куратор уже записала на разговор.</span>
+      <span class="plus">Имя и должность под заголовком — самый сильный сигнал доверия в разделе, где всё остальное это цифры.</span>
+      <span class="plus">Блок остаётся единственным местом, где видно, что с данными действительно кто-то работает. Это ваш главный аргумент против обычного фитнес-трекера.</span>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">И-Б</span><h3>Убрать блок совсем</h3></div>
+    <div class="opt-body"><div class="mon">
+      <div class="panel" style="text-align:center;color:#98a0ad;padding:34px">
+        Блок «Персональні рекомендації ШІ» видалено.<br>
+        Секція закінчується карточками показників.
+      </div>
+    </div></div>
+    <div class="note">
+      <span class="plus">Самое быстрое и безопасное: никакого ИИ на главной, никаких медицинских формулировок.</span>
+      <span class="minus">Вместе с блоком уходит единственное место, где видно, что данные кто-то читает и отвечает. Остаются просто красивые цифры — как в любом трекере.</span>
+      <span class="minus">Секция становится заметно короче и заканчивается обрывом, без перехода к следующему разделу.</span>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">И-В</span><h3>Заменить на «що ми зробили з цими даними»</h3></div>
+    <div class="opt-body"><div class="mon">
+      <div class="obs">
+        <div class="obs-h"><span style="color:var(--mint);font-size:1.1rem">◎</span><h4>Що ми зробили з цими даними цього тижня</h4></div>
+        <div class="rec r1"><span class="ic">1</span><span>Помітили зміну пульсу в спокої — куратор зв'язався з вами того ж дня.</span></div>
+        <div class="rec r2"><span class="ic">2</span><span>Передали показники сну кардіологу перед плановою консультацією.</span></div>
+        <div class="rec r3"><span class="ic">3</span><span>Оновили план: додали контроль тиску вранці на два тижні.</span></div>
+      </div>
+    </div></div>
+    <div class="note">
+      <span class="plus">Ни слова про технологии — только действия людей. Максимально консервативно.</span>
+      <span class="minus">Теряется идея, что отклонения замечаются автоматически и круглосуточно, — а это часть ценности пакета.</span>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">+</span><h3>Остальные упоминания «ШІ» на сайте</h3></div>
+    <div class="note" style="padding-top:18px">
+      <span class="plus">Нашёл ещё четыре места. Предлагаю в любом выбранном варианте переписать их одинаково:</span>
+      <span class="minus">«ШІ-аналіз даних. Алгоритми машинного навчання виявляють паттерни…» → <b>«Показники під наглядом. Система звіряє ваші дані з вашою ж історією і підсвічує лікарю те, що змінилось»</b></span>
+      <span class="minus">«Алгоритми ШІ аналізують ваші дані та попереджають про проблеми ще до появи симптомів» (сторінка Personal Care) → <b>«Ми звіряємо ваші показники щодня і попереджаємо лікаря про зміни ще до появи симптомів»</b></span>
+      <span class="minus">«ШІ-асистент» у списку можливостей → <b>«Щоденний контроль показників»</b></span>
+      <span class="minus">Іконка робота в обох місцях → нейтральна іконка графіка.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2 ===== -->
+<section>
+  <div class="sec-head"><span class="sec-num">2</span><h2>Раскладка секции</h2><span class="sub">3 варианта</span></div>
+  <p class="lead">Вы правы, что выглядит странно, и вот почему: в секции <b>два заголовка подряд</b> — «Ви спите — показники дивиться лікар» по центру и сразу под ним «Ваше здоров'я під контролем» слева. Читатель дважды получает вход в один и тот же раздел. Плюс левая колонка в два раза уже правой, текст в ней заканчивается на трёх пунктах, и ниже остаётся пустая шахта высотой в пол-экрана, пока справа идёт длинная панель.</p>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">СЕЙЧАС</span><h3>Два заголовка и пустая колонка</h3></div>
+    <div class="opt-body"><div class="mon">
+      <div class="center"><h2>Ви спите — показники дивиться лікар</h2>
+        <p class="sub">Інтегрований моніторинг показників здоров'я з персональною аналітикою та рекомендаціями спеціалістів</p></div>
+      <div class="split">
+        <div class="bad">
+          <h3>Ваше здоров'я під контролем</h3>
+          <p class="txt">Ми автоматично відстежуємо ключові показники вашого організму через інтегровані пристрої та попереджаємо про будь-які відхилення ще до появи симптомів.</p>
+          <div class="bp"><span class="ic">◈</span> Раннє виявлення відхилень</div>
+          <div class="bp"><span class="ic">◔</span> Персональні сповіщення</div>
+          <div class="bp"><span class="ic">◲</span> Аналітика та прогнози</div>
+        </div>
+        <div class="panel">
+          <div class="ph"><h4>Приклад звіту за сьогодні</h4><span class="live"><span class="dot"></span>Live-моніторинг</span></div>
+          <div class="mg">
+            <div class="mc"><div class="mch"><span class="ml">Навантаження</span><span class="ms ok">Оптимальне</span></div>
+              <div class="mv"><span class="big">14.2</span></div><div class="mi">Ваш рівень навантаження в нормі.</div></div>
+            <div class="mc"><div class="mch"><span class="ml">Відновлення</span><span class="ms good">Добре</span></div>
+              <div class="bar"><i></i></div><div class="mi">Організм добре відновлюється.</div></div>
+            <div class="mc"><div class="mch"><span class="ml">Якість сну</span><span class="ms exc">Відмінно</span></div>
+              <div class="mv"><span class="big">7г 42хв</span></div><div class="mi">Глибокий сон склав 22%.</div></div>
+            <div class="mc"><div class="mch"><span class="ml">Варіабельність ЧСС</span><span class="ms norm">Норма</span></div>
+              <div class="mv"><span class="big">52ms</span></div><div class="mi">Стабільна варіабельність.</div></div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <div class="note"><span class="minus">Обведено то, что создаёт ощущение «сбоку и странно»: второй заголовок и колонка, которая заканчивается раньше соседней почти на пол-экрана.</span></div>
+  </div>
+
+  <div class="opt rec">
+    <div class="opt-head"><span class="tag">Р-А</span><h3>Один заголовок, панель во всю ширину</h3><span class="rec-badge">рекомендую</span></div>
+    <div class="opt-body"><div class="mon">
+      <div class="center"><h2>Ви спите — показники дивиться лікар</h2>
+        <p class="sub">Ми звіряємо ваші показники щодня і попереджаємо лікаря про зміни ще до появи симптомів</p></div>
+      <div class="row3">
+        <div class="bp-card"><span class="ic" style="color:var(--mint)">◈</span> Раннє виявлення відхилень</div>
+        <div class="bp-card"><span class="ic" style="color:var(--mint)">◔</span> Персональні сповіщення</div>
+        <div class="bp-card"><span class="ic" style="color:var(--mint)">◲</span> Аналітика та прогнози</div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h4>Приклад звіту за сьогодні</h4><span class="live"><span class="dot"></span>Live-моніторинг</span></div>
+        <div class="mg" style="grid-template-columns:repeat(4,1fr)">
+          <div class="mc"><div class="mch"><span class="ml">Навантаження</span></div><div class="mv"><span class="big">14.2</span></div>
+            <div style="text-align:center;margin-bottom:.5rem"><span class="ms ok">Оптимальне</span></div><div class="mi">Рівень навантаження в нормі.</div></div>
+          <div class="mc"><div class="mch"><span class="ml">Відновлення</span></div><div class="mv"><span class="big">78%</span></div>
+            <div style="text-align:center;margin-bottom:.5rem"><span class="ms good">Добре</span></div><div class="mi">Організм добре відновлюється.</div></div>
+          <div class="mc"><div class="mch"><span class="ml">Якість сну</span></div><div class="mv"><span class="big">7г 42хв</span></div>
+            <div style="text-align:center;margin-bottom:.5rem"><span class="ms exc">Відмінно</span></div><div class="mi">Глибокий сон склав 22%.</div></div>
+          <div class="mc"><div class="mch"><span class="ml">Варіабельність ЧСС</span></div><div class="mv"><span class="big">52ms</span></div>
+            <div style="text-align:center;margin-bottom:.5rem"><span class="ms norm">Норма</span></div><div class="mi">Гарна адаптація до стресу.</div></div>
+        </div>
+        <div class="obs">
+          <div class="obs-h"><span style="color:var(--mint);font-size:1.1rem">◎</span><h4>На що звернув увагу ваш куратор</h4><span class="who">Олена Марчук, лікар-куратор</span></div>
+          <div class="rec r1"><span class="ic">!</span><span>Пульс у спокої вищий, ніж зазвичай для вас. Я записала вас на розмову з кардіологом.</span></div>
+          <div class="rec r3"><span class="ic">✓</span><span>За місяць показники покращились на 12%. Те, що ви робите, працює.</span></div>
+          <p class="foot-note">Відхилення підсвічує алгоритм. Читає їх і вирішує, що робити, — лікар.</p>
+        </div>
+      </div>
+    </div></div>
+    <div class="note">
+      <span class="plus">Один вход в раздел вместо двух. Второй заголовок не нужен — его смысл переезжает в подзаголовок.</span>
+      <span class="plus">Панель получает всю ширину: четыре показателя встают в ряд и перестают тесниться по двое.</span>
+      <span class="plus">Пустой шахты нет в принципе — нет узкой колонки, которая кончается раньше соседней.</span>
+      <span class="plus">Три преимущества читаются как строка фактов, а не как список в углу.</span>
+      <span class="minus">Секция становится выше примерно на 80 px.</span>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">Р-Б</span><h3>Заголовок слева, панель справа</h3></div>
+    <div class="opt-body"><div class="mon">
+      <div class="split-b">
+        <div>
+          <h2 style="font-size:1.9rem">Ви спите — показники дивиться лікар</h2>
+          <p class="txt" style="margin-top:.8rem">Ми звіряємо ваші показники щодня і попереджаємо лікаря про зміни ще до появи симптомів.</p>
+          <div class="bp"><span class="ic">◈</span> Раннє виявлення відхилень</div>
+          <div class="bp"><span class="ic">◔</span> Персональні сповіщення</div>
+          <div class="bp"><span class="ic">◲</span> Аналітика та прогнози</div>
+          <a href="#" class="cta-dark">Подивитись, як це працює</a>
+        </div>
+        <div class="panel">
+          <div class="ph"><h4>Приклад звіту за сьогодні</h4><span class="live"><span class="dot"></span>Live</span></div>
+          <div class="mg">
+            <div class="mc"><div class="mch"><span class="ml">Навантаження</span><span class="ms ok">Оптимальне</span></div>
+              <div class="mv"><span class="big">14.2</span></div><div class="mi">Рівень в нормі.</div></div>
+            <div class="mc"><div class="mch"><span class="ml">Відновлення</span><span class="ms good">Добре</span></div>
+              <div class="bar"><i></i></div><div class="mi">Добре відновлюється.</div></div>
+            <div class="mc"><div class="mch"><span class="ml">Якість сну</span><span class="ms exc">Відмінно</span></div>
+              <div class="mv"><span class="big">7г 42хв</span></div><div class="mi">Глибокий сон 22%.</div></div>
+            <div class="mc"><div class="mch"><span class="ml">ЧСС</span><span class="ms norm">Норма</span></div>
+              <div class="mv"><span class="big">52ms</span></div><div class="mi">Гарна адаптація.</div></div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <div class="note">
+      <span class="plus">Один заголовок, колонки выровнены по центру — пустоты снизу нет.</span>
+      <span class="plus">Появляется кнопка — секция перестаёт быть тупиком и ведёт дальше.</span>
+      <span class="minus">Панель остаётся в две колонки, показатели по-прежнему тесноваты.</span>
+      <span class="minus">Заголовок уходит из центра — на фоне остальных секций сайта, где заголовки по центру, выбивается.</span>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">Р-В</span><h3>Минимальная правка: убрать второй заголовок</h3></div>
+    <div class="opt-body"><div class="mon">
+      <div class="center"><h2>Ви спите — показники дивиться лікар</h2>
+        <p class="sub">Ми звіряємо ваші показники щодня і попереджаємо лікаря про зміни ще до появи симптомів</p></div>
+      <div class="split-b">
+        <div>
+          <p class="txt">Ключові показники організму зчитуються з ваших пристроїв автоматично. Відхилення бачить лікар, а не ви серед графіків.</p>
+          <div class="bp"><span class="ic">◈</span> Раннє виявлення відхилень</div>
+          <div class="bp"><span class="ic">◔</span> Персональні сповіщення</div>
+          <div class="bp"><span class="ic">◲</span> Аналітика та прогнози</div>
+        </div>
+        <div class="panel">
+          <div class="ph"><h4>Приклад звіту за сьогодні</h4><span class="live"><span class="dot"></span>Live</span></div>
+          <div class="mg">
+            <div class="mc"><div class="mch"><span class="ml">Навантаження</span><span class="ms ok">Оптимальне</span></div>
+              <div class="mv"><span class="big">14.2</span></div><div class="mi">Рівень в нормі.</div></div>
+            <div class="mc"><div class="mch"><span class="ml">Відновлення</span><span class="ms good">Добре</span></div>
+              <div class="bar"><i></i></div><div class="mi">Добре відновлюється.</div></div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <div class="note">
+      <span class="plus">Самая дешёвая правка: удаляем один заголовок и выравниваем колонки по центру.</span>
+      <span class="minus">Соотношение колонок остаётся неровным, и при длинной панели пустота внизу слева вернётся.</span>
+    </div>
+  </div>
+</section>
+
+<div class="decide">
+  <h2>Что жду от вас</h2>
+  <ol>
+    <li>Блок рекомендаций: <b>И-А</b> (говорит куратор), И-Б (убрать совсем) или И-В (что мы сделали с данными).</li>
+    <li>Раскладка секции: <b>Р-А</b>, Р-Б или Р-В.</li>
+    <li>Остальные четыре упоминания «ШІ» переписываю в любом случае — если согласны с формулировками из блока «+».</li>
+  </ol>
+  <p style="margin-top:14px;color:var(--muted);font-size:.9rem">Жирным — мои рекомендации. Имя куратора «Олена Марчук» в макете условное — подставим реального человека или уберём подпись.</p>
+</div>
+
+</div>
+</body>
+</html>
