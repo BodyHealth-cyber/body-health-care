@@ -120,19 +120,82 @@ if (document.readyState === 'loading') {
     initMobileNavigation();
 }
 
+// ===== ВЫСОТА ПЕРВОГО ЭКРАНА =====
+// Первый блок занимает экран минус шапка минус 96 px (верхний отступ каждого
+// раздела) — так снизу всегда виден край следующего раздела и никогда
+// обрезанная карточка. Высота шапки зависит от ширины экрана и немного от
+// языка, поэтому берём её с живой страницы, а не прописываем в CSS числом.
+(function () {
+    function syncHeaderHeight() {
+        var header = document.querySelector('.header');
+        if (!header) return;
+        var h = Math.round(header.getBoundingClientRect().height);
+        if (h > 0) document.documentElement.style.setProperty('--header-h', h + 'px');
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', syncHeaderHeight);
+    } else {
+        syncHeaderHeight();
+    }
+    window.addEventListener('load', syncHeaderHeight);
+    window.addEventListener('resize', syncHeaderHeight);
+})();
+
+// ===== УДЕРЖАНИЕ МЕСТА ПРИ ОТКРЫТИИ ОКНА =====
+// Человек должен остаться ровно там, где нажал кнопку. Браузер иногда сам
+// подтягивает страницу под открывшееся окно — из-за фокуса в поле, из-за
+// пересчёта высоты, из-за скрытой полосы прокрутки. Замеров «на глаз» тут
+// мало: запоминаем место до открытия и возвращаем страницу на него в течение
+// первой четверти секунды. scroll-behavior на время возврата выключаем, иначе
+// правка была бы видна как плавный отъезд и обратно.
+function holdScrollPosition() {
+    var keepY = window.scrollY || window.pageYOffset || 0;
+
+    function restore() {
+        var now = window.scrollY || window.pageYOffset || 0;
+        if (Math.abs(now - keepY) < 2) return;
+        var html = document.documentElement;
+        var previous = html.style.scrollBehavior;
+        html.style.scrollBehavior = 'auto';
+        window.scrollTo(0, keepY);
+        html.style.scrollBehavior = previous;
+    }
+
+    requestAnimationFrame(restore);
+    setTimeout(restore, 80);
+    setTimeout(restore, 260);
+    return keepY;
+}
+
 // ===== SMOOTH SCROLLING =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href === '#') return;
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+// Якоря, за которыми стоит анкета, сюда не попадают. Раньше этот обработчик
+// висел прямо на ссылке и срабатывал раньше диалога: человек нажимал кнопку в
+// первом экране, страница уезжала на несколько тысяч пикселей вниз, и только
+// потом поверх открывалась анкета. Закрыв её, он оказывался не там, где нажал.
+// Теперь прокрутка остаётся только для настоящей навигации по странице.
+var DIALOG_ANCHORS = ['#contact-form', '#b2b-form'];
+
+function anchorOpensDialog(href) {
+    for (var i = 0; i < DIALOG_ANCHORS.length; i++) {
+        if (href.indexOf(DIALOG_ANCHORS[i]) !== -1) return true;
+    }
+    return false;
+}
+
+// Делегирование, а не подписка на каждую ссылку: main.js на части страниц
+// подключён выше разметки, и подписка на момент загрузки находила не все якоря.
+document.addEventListener('click', function (e) {
+    var anchor = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!anchor) return;
+    var href = anchor.getAttribute('href');
+    if (!href || href === '#' || anchorOpensDialog(href)) return;
+    var target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
     });
 });
 
@@ -800,10 +863,11 @@ document.addEventListener('click', function(e) {
         lastFocused = document.activeElement;
         sheetEl.hidden = false;
         document.body.style.overflow = 'hidden';
+        holdScrollPosition();
         // next frame, so the opacity transition actually runs
         requestAnimationFrame(function () { sheetEl.classList.add('is-open'); });
         var first = sheetEl.querySelector('.contact-option');
-        if (first) first.focus();
+        if (first && first.focus) first.focus({ preventScroll: true });
         document.addEventListener('keydown', onKeydown);
     }
 
@@ -813,7 +877,7 @@ document.addEventListener('click', function(e) {
         document.body.style.overflow = '';
         document.removeEventListener('keydown', onKeydown);
         setTimeout(function () { if (sheetEl) sheetEl.hidden = true; }, 180);
-        if (lastFocused && lastFocused.focus) lastFocused.focus();
+        if (lastFocused && lastFocused.focus) lastFocused.focus({ preventScroll: true });
     }
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -854,9 +918,13 @@ document.addEventListener('click', function(e) {
         lastFocused = document.activeElement;
         dialog.hidden = false;
         document.body.style.overflow = 'hidden';
+        holdScrollPosition();
         requestAnimationFrame(function () { dialog.classList.add('is-open'); });
         var first = dialog.querySelector('input, select, textarea');
-        if (first) first.focus();
+        // preventScroll обязателен: без него браузер, ставя курсор в поле,
+        // подтягивает страницу под окно — человек закрывал анкету и оказывался
+        // на 200-400 px ниже того места, где нажал кнопку.
+        if (first && first.focus) first.focus({ preventScroll: true });
         document.addEventListener('keydown', onKeydown);
         trackEvent('enquiry_dialog_open', { page: window.location.pathname });
     }
@@ -866,7 +934,7 @@ document.addEventListener('click', function(e) {
         document.body.style.overflow = '';
         document.removeEventListener('keydown', onKeydown);
         setTimeout(function () { dialog.hidden = true; }, 180);
-        if (lastFocused && lastFocused.focus) lastFocused.focus();
+        if (lastFocused && lastFocused.focus) lastFocused.focus({ preventScroll: true });
     }
 
     function onKeydown(e) {
@@ -910,6 +978,138 @@ document.addEventListener('click', function(e) {
             }, 1200);
         });
     }
+    }
+})();
+
+// ===== B2B ENQUIRY DIALOG =====
+// Пять кнопок на странице для компаний вели к анкете в самом низу страницы:
+// человек нажимал в первом экране, а его уносило на 6 500 px вниз. Теперь
+// анкета открывается там, где нажали. Форма не копируется, а переезжает в окно
+// и возвращается на своё место при закрытии — поэтому её id, обработчик
+// отправки и переводы остаются те же, и внизу страницы анкета не пропадает.
+(function () {
+    var CLOSE_LABEL = { uk: 'Закрити', ru: 'Закрыть', en: 'Close' };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initB2bDialog);
+    } else {
+        initB2bDialog();
+    }
+
+    function initB2bDialog() {
+        var form = document.getElementById('b2bForm');
+        var section = document.getElementById('b2b-form');
+        if (!form || !section) return;
+
+        var lang = (document.documentElement.lang || 'uk').slice(0, 2);
+        var home = document.createComment('b2b-form');
+        var dialog = null;
+        var panel = null;
+        var lastFocused = null;
+
+        function build() {
+            var heading = section.querySelector('.form-info h2');
+            var sub = section.querySelector('.form-info h2 + p');
+
+            var d = document.createElement('div');
+            d.className = 'enquiry-backdrop';
+            d.hidden = true;
+            d.setAttribute('role', 'dialog');
+            d.setAttribute('aria-modal', 'true');
+
+            panel = document.createElement('div');
+            panel.className = 'enquiry-panel enquiry-panel--wide';
+
+            var close = document.createElement('button');
+            close.type = 'button';
+            close.className = 'enquiry-close';
+            close.setAttribute('aria-label', CLOSE_LABEL[lang] || CLOSE_LABEL.uk);
+            close.innerHTML = '&times;';
+            close.addEventListener('click', closeDialog);
+            panel.appendChild(close);
+
+            if (heading) {
+                var title = document.createElement('p');
+                title.className = 'enquiry-title';
+                title.textContent = heading.textContent;
+                panel.appendChild(title);
+                d.setAttribute('aria-label', heading.textContent);
+            }
+            if (sub) {
+                var subtitle = document.createElement('p');
+                subtitle.className = 'enquiry-sub';
+                subtitle.textContent = sub.textContent;
+                panel.appendChild(subtitle);
+            }
+
+            d.appendChild(panel);
+            d.addEventListener('click', function (e) { if (e.target === d) closeDialog(); });
+            document.body.appendChild(d);
+            return d;
+        }
+
+        function onKeydown(e) {
+            if (e.key === 'Escape' || e.keyCode === 27) { closeDialog(); return; }
+            if (e.key !== 'Tab' || !panel) return;
+            var f = panel.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])');
+            if (!f.length) return;
+            var first = f[0], last = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+
+        function openDialog(wantsDemo) {
+            if (!dialog) dialog = build();
+            if (form.parentNode !== panel) {
+                form.parentNode.insertBefore(home, form);
+                panel.appendChild(form);
+            }
+            if (wantsDemo) {
+                var demo = form.querySelector('#demo-request');
+                if (demo) demo.checked = true;
+            }
+            lastFocused = document.activeElement;
+            dialog.hidden = false;
+            document.body.style.overflow = 'hidden';
+            holdScrollPosition();
+            requestAnimationFrame(function () { dialog.classList.add('is-open'); });
+            var firstField = form.querySelector('input, select, textarea');
+            if (firstField && firstField.focus) firstField.focus({ preventScroll: true });
+            document.addEventListener('keydown', onKeydown);
+            if (typeof trackEvent === 'function') {
+                trackEvent('b2b_dialog_open', { page: window.location.pathname });
+            }
+        }
+
+        function closeDialog() {
+            if (!dialog) return;
+            dialog.classList.remove('is-open');
+            document.body.style.overflow = '';
+            document.removeEventListener('keydown', onKeydown);
+            setTimeout(function () {
+                dialog.hidden = true;
+                if (home.parentNode) home.parentNode.insertBefore(form, home);
+            }, 180);
+            if (lastFocused && lastFocused.focus) lastFocused.focus({ preventScroll: true });
+        }
+
+        document.addEventListener('click', function (e) {
+            var a = e.target.closest ? e.target.closest('a[href*="#b2b-form"]') : null;
+            if (!a) return;
+            e.preventDefault();
+            // «Замовити демонстрацію» сразу ставит галочку про демонстрацию:
+            // человек уже сказал, чего хочет, спрашивать второй раз незачем.
+            openDialog((a.getAttribute('data-i18n') || '') === 'b2b_btn_demo');
+        });
+
+        // успешная отправка закрывает окно за человеком
+        form.addEventListener('submit', function () {
+            var email = form.querySelector('[name="email"]');
+            var was = email ? email.value : '';
+            setTimeout(function () {
+                if (email && email.value !== was) closeDialog();
+            }, 1200);
+        });
     }
 })();
 

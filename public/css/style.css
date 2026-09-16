@@ -5647,6 +5647,17 @@ button.footer-link {
     box-shadow: none;
 }
 
+/* Корпоративная анкета шире обычной заявки: в ней две колонки полей и строка
+   с целями, в 520 px они складываются в лесенку. */
+.enquiry-panel--wide { max-width: 680px; }
+
+.enquiry-panel .b2b-form {
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+}
+
 /* Оглавление статьи прыгает к заголовку, а шапка сайта закреплена сверху —
    без этого отступа заголовок уезжает под неё и читатель видит середину
    абзаца вместо начала раздела. */
@@ -6164,5 +6175,151 @@ button.footer-link {
 
     .highlight-item {
         min-width: 0;
+    }
+}
+
+
+/* ===== ПЕРШИЙ ЕКРАН: висота і вирівнювання ===== */
+/* Заміряно до правки: висоту першого блока задавав лише його вміст, а екран у
+   всіх різний. На «Послугах» під блоком лишалося 714 px наступного розділу —
+   обрізані картки читались як друга сторінка; на «Для компаній» лише 22 px, і
+   екран здавався порожнім. Тепер перший блок займає екран мінус шапка мінус
+   96 px. 96 px — це верхній відступ усіх розділів, тож знизу завжди видно
+   рівно смугу відступу і початок заголовка, і ніколи обрізану картку.
+   min-height, а не height: якщо тексту більше, блок росте, нічого не ріжеться.
+   --header-h уточнює main.js за реальною висотою шапки: вона різна на різних
+   ширинах і трохи різна в різних мовах. */
+:root {
+    --header-h: 71px;
+    --next-peek: 96px;
+}
+
+@media (min-width: 769px) {
+    .hero,
+    .services-hero,
+    .b2b-hero,
+    .blog-hero,
+    .service-hero {
+        min-height: calc(100vh - var(--header-h) - var(--next-peek));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .hero > .container,
+    .services-hero > .container,
+    .b2b-hero > .container,
+    .blog-hero > .container,
+    .service-hero > .container {
+        width: 100%;
+    }
+}
+
+/* Тексти першого екрана — по центру, як і заголовки всіх наступних розділів.
+   Нижче 1024 px екран уже був в одну колонку; тепер так само на десктопі. */
+.hero .hero-content {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+}
+
+.hero .hero-text {
+    max-width: 920px;
+}
+
+.hero .hero-subtitle {
+    max-width: 62ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero .hero-actions {
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+}
+
+.hero .hero-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    gap: 1.5rem;
+}
+
+/* display:flex сюди дістається з правил для .dashboard-stats — там .stat-item
+   це рядок «іконка + число». У першому екрані картка інша: число над
+   підписом, усе по центру. Тому тут повертаємо блок і власні відступи. */
+.hero .stat-item {
+    display: block;
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 320px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.hero .stat-number {
+    margin-bottom: 0.4rem;
+}
+
+/* На невисоких екранах (ноутбуки 1280×800) вміст першого блока інколи вищий за
+   мету, і смуга наступного розділу стискається: заміряно 22 px на «Для
+   компаній» і 69 px на російській головній замість 96 px. Там, де екран
+   низький, стискаємо власні відступи першого блока — вміст не ріжеться, а
+   край наступного розділу видно так само, як на великому моніторі. */
+@media (min-width: 769px) and (max-height: 880px) {
+    .hero,
+    .b2b-hero,
+    .blog-hero {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .services-hero {
+        padding-top: 48px;
+        padding-bottom: 32px;
+    }
+}
+
+/* На телефоні три картки показників в один рядок дають по 116 px: «92 %» рве
+   навпіл, а підписи ламаються посеред слова («Сертиф ікова них»). Тому вузьких
+   екранах ставимо їх одна під одною — цифра над підписом, слова цілі. */
+@media (max-width: 640px) {
+    .hero .hero-stats {
+        flex-direction: column;
+    }
+
+    .hero .stat-item {
+        width: 100%;
+        max-width: none;
+    }
+
+    .hero .stat-number,
+    .hero .stat-label {
+        overflow-wrap: normal;
+        word-break: normal;
+    }
+}
+
+/* На 360 px сторінка HealthCheckup виїжджала вбік на 13 px (рос.) і 4 px
+   (англ.): блоки зразка звіту не вміли стискатися вужче за свій вміст. */
+@media (max-width: 1024px) {
+    .report-preview,
+    .report-sections,
+    .report-section,
+    .report-sample,
+    .report-header,
+    .report-content,
+    .health-score,
+    .report-section > div {
+        min-width: 0;
+    }
+
+    .report-section h3,
+    .report-section p,
+    .report-header h4,
+    .report-header p {
+        overflow-wrap: anywhere;
     }
 }
