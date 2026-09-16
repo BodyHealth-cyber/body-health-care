@@ -4662,46 +4662,14 @@ a:hover {
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
-    .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 10000;
-        overflow: visible;
-    }
-
-    body {
-        padding-top: 64px;
-    }
-
-    .nav {
-        min-height: 64px;
-        gap: 0.5rem;
-    }
-
-    .nav-brand {
-        min-width: 0;
-    }
-
-    .nav-brand .logo {
-        max-width: calc(100vw - 72px);
-        font-size: 1.1rem;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-
-    .nav-brand .logo img {
-        height: 42px !important;
-        width: auto;
-    }
-
-    .nav-brand .logo span {
-        margin-left: 4px !important;
-        margin-right: 4px !important;
-    }
-
+/* ===== ШАПКА: бургер вмикається з 1024 px, а не з 768 =====
+   Заміряно: між 769 і ~1030 px десктопна шапка не вміщується — логотип, меню,
+   перемикач мови та дві кнопки разом ширші за контейнер, і сторінка їхала
+   вбік. На 900 px це 31 зайвий піксель, на 820 px — вже 108, і так на всіх
+   дванадцяти сторінках у трьох мовах. Тому правила мобільної навігації
+   перенесені сюди: нижче 1024 px показуємо бургер, який і так уже
+   працює. Раніше ці правила лежали всередині блоку 768 px. */
+@media (max-width: 1024px) {
     .nav-menu {
         display: none;
         position: fixed;
@@ -4757,6 +4725,48 @@ a:hover {
 
     .mobile-lang-menu {
         z-index: 10012;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10000;
+        overflow: visible;
+    }
+
+    body {
+        padding-top: 64px;
+    }
+
+    .nav {
+        min-height: 64px;
+        gap: 0.5rem;
+    }
+
+    .nav-brand {
+        min-width: 0;
+    }
+
+    .nav-brand .logo {
+        max-width: calc(100vw - 72px);
+        font-size: 1.1rem;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .nav-brand .logo img {
+        height: 42px !important;
+        width: auto;
+    }
+
+    .nav-brand .logo span {
+        margin-left: 4px !important;
+        margin-right: 4px !important;
     }
 
     .hero-content {
@@ -6018,5 +6028,141 @@ button.footer-link {
 @media (max-width: 768px) {
     .monitoring-points {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Підпис помилки під конкретним полем. Повідомлення згори екрана людина
+   часто не бачить і не розуміє, яке саме поле заповнене не так. */
+.field-error {
+    margin: 0.25rem 0 0;
+    color: #b91c1c;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.form-group input.is-invalid,
+.form-group select.is-invalid,
+.form-group textarea.is-invalid {
+    border-color: #dc2626;
+}
+
+.form-group input.is-invalid:focus,
+.form-group select.is-invalid:focus,
+.form-group textarea.is-invalid:focus {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+/* ===== МАЛЕНЬКІ ЕКРАНИ: 360–414 px =====
+   Заміряно: на 390 px сторінка їхала вбік на 33 px, на 360 px — на 63 px.
+   Причина — колонки контактної секції: елемент ґрату за замовчуванням має
+   min-width:auto, тому довгий нерозривний рядок (пошта, кнопка) розпирав
+   колонку до 407 px при екрані 360. Плюс кнопка з довгим підписом не
+   переносилася. */
+@media (max-width: 480px) {
+    .contact-content > *,
+    .contact-form,
+    .contact-info,
+    .form-row > *,
+    .form-group {
+        min-width: 0;
+    }
+
+    .contact-form,
+    .contact-info {
+        padding: 1.25rem;
+    }
+
+    .btn-large {
+        padding: 0.9rem 1.25rem;
+        font-size: 0.95rem;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.35;
+    }
+
+    .form-submit .btn,
+    .hero-actions .btn,
+    .cta-actions .btn {
+        width: 100%;
+    }
+
+    .contact-item,
+    .footer-links a {
+        overflow-wrap: anywhere;
+    }
+}
+
+/* ===== ПАЛЬЦЕВІ ЦІЛІ НА СЕНСОРНИХ ЕКРАНАХ =====
+   Посилання в підвалі, контакти та бейджі застосунків мали висоту 18–24 px:
+   пальцем у них важко влучити. Рекомендований мінімум — 44 px. */
+@media (max-width: 1024px) {
+    .footer-links a,
+    .footer-links button,
+    .footer-link,
+    .contact-item a,
+    .contact-item,
+    .social-links a,
+    .app-badges a,
+    .contact-option {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+    }
+
+    .contact-item {
+        gap: 0.6rem;
+    }
+
+    .footer-section ul a,
+    .breadcrumb a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 40px;
+    }
+}
+
+/* Посилання всередині суцільного тексту — «політикою конфіденційності»,
+   «Публічній оферті», назви статей у картках — навмисно лишаються як є:
+   розтягувати їх до 44 px не можна, це розірве рядок. */
+
+/* ===== ПЛАНШЕТ 769–1024 px: перший екран =====
+   Заміряно: на 820 px сторінка їхала вбік на 70 px. Причина — перший екран
+   лишався у дві колонки (2fr 1fr), і вузька права колонка з картками
+   показників не вміщувалася: текст у них не переносився. Нижче 1024 px
+   перший екран стає в одну колонку, а картки стають рядком — так само, як
+   це вже працює на телефоні. */
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .hero-stats {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .stat-item {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .stat-label,
+    .stat-number {
+        overflow-wrap: anywhere;
+    }
+}
+
+/* Останній залишок горизонтальної прокрутки: на 820 px сітка переваг
+   всередині вузької колонки не вміщувалася на 6 px. */
+@media (max-width: 1024px) {
+    .service-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .highlight-item {
+        min-width: 0;
     }
 }

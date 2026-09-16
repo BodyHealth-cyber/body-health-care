@@ -151,6 +151,8 @@ var FORM_MESSAGES = {
         missingService: 'Оберіть послугу',
         missingPrivacy: 'Потрібна згода з політикою конфіденційності',
         invalidPhone: 'Номер телефону некоректний',
+        missingPhone: 'Вкажіть номер телефону — ми зателефонуємо',
+        badPhone: 'Перевірте номер: український мобільний має вигляд +380 XX XXX XX XX',
     },
     en: {
         sending: 'Sending…',
@@ -162,6 +164,8 @@ var FORM_MESSAGES = {
         missingService: 'Select a service',
         missingPrivacy: 'Consent to the privacy policy is required',
         invalidPhone: 'Phone number is not valid',
+        missingPhone: 'Please give us a phone number — we will call you',
+        badPhone: 'Check the number: a Ukrainian mobile looks like +380 XX XXX XX XX',
     },
     ru: {
         sending: 'Отправляем…',
@@ -173,6 +177,8 @@ var FORM_MESSAGES = {
         missingService: 'Выберите услугу',
         missingPrivacy: 'Требуется согласие с политикой конфиденциальности',
         invalidPhone: 'Номер телефона некорректный',
+        missingPhone: 'Укажите номер телефона — мы позвоним',
+        badPhone: 'Проверьте номер: украинский мобильный выглядит как +380 XX XXX XX XX',
     },
 };
 
@@ -203,7 +209,7 @@ contactForms.forEach(function (form) {
         });
 
         // Basic validation
-        if (!validateForm(formObject)) {
+        if (!validateForm(formObject, this)) {
             return;
         }
 
@@ -279,19 +285,28 @@ contactForms.forEach(function (form) {
 });
 
 // ===== FORM VALIDATION =====
-function validateForm(data) {
+function validateForm(data, form) {
     const errors = [];
+    const field = function (name) {
+        return form ? form.querySelector('[name="' + name + '"]') : null;
+    };
+    ['firstName', 'lastName', 'email', 'phone'].forEach(function (n) {
+        clearFieldError(field(n));
+    });
 
     if (!data.firstName || data.firstName.trim().length < 2) {
         errors.push(contactFormMessages.invalidFirstName);
+        setFieldError(field('firstName'), contactFormMessages.invalidFirstName);
     }
 
     if (!data.lastName || data.lastName.trim().length < 2) {
         errors.push(contactFormMessages.invalidLastName);
+        setFieldError(field('lastName'), contactFormMessages.invalidLastName);
     }
 
     if (!data.email || !isValidEmail(data.email)) {
         errors.push(contactFormMessages.invalidEmail);
+        setFieldError(field('email'), contactFormMessages.invalidEmail);
     }
 
     if (!data.service) {
@@ -302,8 +317,12 @@ function validateForm(data) {
         errors.push(contactFormMessages.missingPrivacy);
     }
 
-    if (data.phone && !isValidPhone(data.phone)) {
-        errors.push(contactFormMessages.invalidPhone);
+    if (!data.phone || !data.phone.trim()) {
+        errors.push(contactFormMessages.missingPhone);
+        setFieldError(field('phone'), contactFormMessages.missingPhone);
+    } else if (!isValidPhone(data.phone)) {
+        errors.push(contactFormMessages.badPhone);
+        setFieldError(field('phone'), contactFormMessages.badPhone);
     }
 
     if (errors.length > 0) {
@@ -320,10 +339,80 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
-function isValidPhone(phone) {
-    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-    return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+// Стара перевірка пропускала будь-що: регулярний вираз ^[+]?[1-9]\d{0,15}$
+// приймав навіть «5» або «1234». Через неї в заявки потрапляли порожні та
+// вигадані номери, і передзвонити не було куди.
+//
+// Тепер: український номер — це 380 і ще дев'ять цифр, де перші дві є
+// справжнім кодом оператора. Іноземний — від 8 до 15 цифр (стандарт E.164).
+// Окремо відсіюємо очевидні підробки на кшталт +380 11 111 11 11.
+var UA_OPERATOR_CODES = [
+    '39', '50', '63', '66', '67', '68', '73', '89',
+    '91', '92', '93', '94', '95', '96', '97', '98', '99'
+];
+
+function phoneDigits(phone) {
+    return String(phone || '').replace(/\D/g, '');
 }
+
+// Свідомо тільки одне правило — усі цифри однакові (+380 11 111 11 11).
+// Спочатку тут були ще «123456789» і повтор пари, але на них спіткнувся
+// справжній польський номер +48 123 456 789. Краще пропустити рідкісну
+// підробку, ніж відмовити живому клієнту.
+function looksFake(digits) {
+    return /^(\d)\1+$/.test(digits.slice(-9));
+}
+
+function isValidPhone(phone) {
+    var d = phoneDigits(phone);
+    if (!d) return false;
+    if (d.charAt(0) === '0') d = '38' + d;                    // 098… → 38098…
+    if (looksFake(d)) return false;
+    if (d.indexOf('380') === 0) {
+        return d.length === 12 && UA_OPERATOR_CODES.indexOf(d.substr(3, 2)) !== -1;
+    }
+    return d.length >= 8 && d.length <= 15;
+}
+
+// Підпис помилки під самим полем: повідомлення згори екрана легко пропустити,
+// і людина не розуміє, яке саме поле не так заповнене.
+function setFieldError(input, message) {
+    if (!input) return;
+    input.classList.add('is-invalid');
+    input.setAttribute('aria-invalid', 'true');
+    var holder = input.parentElement;
+    var box = holder.querySelector('.field-error');
+    if (!box) {
+        box = document.createElement('p');
+        box.className = 'field-error';
+        holder.appendChild(box);
+    }
+    box.textContent = message;
+}
+
+function clearFieldError(input) {
+    if (!input) return;
+    input.classList.remove('is-invalid');
+    input.removeAttribute('aria-invalid');
+    var box = input.parentElement.querySelector('.field-error');
+    if (box) box.remove();
+}
+
+// Поле очищується від помилки, щойно людина почала його виправляти.
+document.addEventListener('input', function (e) {
+    if (e.target && e.target.classList && e.target.classList.contains('is-invalid')) {
+        clearFieldError(e.target);
+    }
+});
+
+// Телефон перевіряємо ще й при виході з поля — щоб не чекати відправки.
+document.addEventListener('blur', function (e) {
+    var el = e.target;
+    if (!el || el.type !== 'tel' || !el.value.trim()) return;
+    var msgs = getContactMessages();
+    if (!isValidPhone(el.value)) setFieldError(el, msgs.badPhone);
+    else clearFieldError(el);
+}, true);
 
 // ===== NOTIFICATION SYSTEM =====
 // ===== WHEN A FORM CANNOT BE SUBMITTED =====

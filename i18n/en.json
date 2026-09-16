@@ -1305,5 +1305,6 @@
   "Показники під наглядом": "Readings under watch",
   "Система звіряє ваші дані з вашою ж історією і підсвічує лікарю те, що змінилось": "The system checks your data against your own history and shows the doctor what has changed",
   "Щоденний контроль показників": "Daily monitoring of your readings",
-  "Щоденний аналіз": "Daily analysis"
+  "Щоденний аналіз": "Daily analysis",
+  "Телефон *": "Phone *"
 }
