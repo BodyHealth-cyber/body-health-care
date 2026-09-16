@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BodyHealth — связи, нейромаркетинг, воронки</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--brand:#003d82;--ink:#1a1a1a;--text:#333;--muted:#6b7280;--faint:#9aa3b2;
+  --line:#e5e7eb;--line-soft:#eef1f6;--conn:#b9cee9;--bg:#f5f7fa;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px 96px}
+.doc-head{padding:56px 0 32px}
+.doc-kicker{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);font-weight:600}
+.doc-head h1{font-size:2rem;font-weight:700;color:var(--ink);line-height:1.25;margin:.5rem 0 .6rem}
+.doc-head p{color:var(--muted);max-width:66ch}
+section{margin-top:56px}
+.sec-head{display:flex;align-items:center;gap:.75rem;padding-bottom:.9rem;border-bottom:1px solid var(--line);margin-bottom:26px}
+.sec-num{width:28px;height:28px;flex:0 0 28px;border-radius:8px;background:var(--brand);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:600}
+.sec-head h2{font-size:1.35rem;font-weight:600;color:var(--ink)}
+.sec-head .sub{margin-left:auto;font-size:.85rem;color:var(--faint)}
+.lead{color:var(--muted);margin-bottom:22px;max-width:74ch}
+.lead b{color:var(--text);font-weight:600}
+.opt{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:18px;overflow:hidden}
+.opt.rec{border-color:#c3d6ef;box-shadow:0 0 0 3px rgba(0,61,130,.06)}
+.opt-head{display:flex;align-items:center;gap:.7rem;padding:14px 20px;border-bottom:1px solid var(--line-soft);background:#fcfdff}
+.tag{font-size:.72rem;font-weight:700;letter-spacing:.06em;color:var(--brand);border:1px solid #c3d6ef;
+  border-radius:6px;padding:2px 8px;background:#f3f8ff}
+.opt-head h3{font-size:1rem;font-weight:600;color:var(--ink)}
+.rec-badge{margin-left:auto;font-size:.72rem;font-weight:600;color:#0f7a4f;background:#e8f6ef;
+  border:1px solid #bfe5d2;border-radius:6px;padding:2px 8px}
+.opt-body{padding:22px 20px}
+.note{padding:12px 20px 18px;font-size:.87rem;color:var(--muted);display:grid;gap:.3rem}
+.note .plus::before{content:"+ ";color:#0f7a4f;font-weight:700}
+.note .minus::before{content:"− ";color:#b45309;font-weight:700}
+.sub-t{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--faint);margin:6px 0 14px}
+
+/* ---------- имитация блоков сайта ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.step{text-align:center;padding:1.25rem .5rem;position:relative}
+.num{width:60px;height:60px;background:var(--brand);color:#fff;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;margin:0 auto 1.25rem}
+.step h4{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.4rem}
+.step p{font-size:.85rem;color:#666}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.card{background:#f8f9fa;border:1px solid #e5e5e5;border-radius:8px;padding:1.25rem .9rem;text-align:center;position:relative}
+.dur{display:inline-block;margin-top:.7rem;padding:.2rem .7rem;border-radius:20px;background:#e6f3ff;
+  color:var(--brand);font-size:.75rem;font-weight:600}
+.tl{display:flex;flex-direction:column;gap:2rem;max-width:640px}
+.tl-item{display:flex;gap:2rem;align-items:flex-start;position:relative}
+.tl-content{flex:1;background:#f8f9fa;border-radius:8px;padding:1.1rem 1.25rem}
+.tl-content h4{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.3rem}
+.tl-content p{font-size:.85rem;color:#666}
+
+/* ---------- ВАРИАНТЫ СОЕДИНЕНИЯ ---------- */
+/* общий каркас: линия идёт от края кружка до края следующего */
+.conn .step:not(:last-child)::after,
+.conn .card:not(:last-child)::after{content:"";position:absolute;height:12px;top:calc(1.25rem + 24px)}
+.conn .step:not(:last-child)::after{left:calc(50% + 38px);width:calc(100% - 44px)}
+
+/* А — пунктир со стрелкой */
+.cA .step:not(:last-child)::after{
+  background:
+   url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='12' viewBox='0 0 8 12'%3E%3Cpath d='M1 1l5 5-5 5' fill='none' stroke='%23b9cee9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right center/8px 12px no-repeat,
+   repeating-linear-gradient(to right,var(--conn) 0 5px,transparent 5px 11px) left center/calc(100% - 12px) 2px no-repeat;}
+/* Б — сплошная линия со стрелкой */
+.cB .step:not(:last-child)::after{
+  background:
+   url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='12' viewBox='0 0 8 12'%3E%3Cpath d='M1 1l5 5-5 5' fill='none' stroke='%23b9cee9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right center/8px 12px no-repeat,
+   linear-gradient(var(--conn),var(--conn)) left center/calc(100% - 12px) 2px no-repeat;}
+/* В — сплошная дорожка без стрелок */
+.cV .step:not(:last-child)::after{
+  background:linear-gradient(var(--conn),var(--conn)) left center/100% 2px no-repeat;}
+/* Г — только шеврон в промежутке */
+.cG .step:not(:last-child)::after{left:auto;right:-1rem;width:12px;transform:translateX(50%);
+  background:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='14' viewBox='0 0 10 14'%3E%3Cpath d='M2 1l6 6-6 6' fill='none' stroke='%23b9cee9' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/10px 14px no-repeat;}
+
+/* карточки: стрелка живёт только в промежутке, линию через рамку не тянем */
+.conn .card:not(:last-child)::after{left:auto;right:-1rem;width:12px;transform:translateX(50%);
+  background:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='14' viewBox='0 0 10 14'%3E%3Cpath d='M2 1l6 6-6 6' fill='none' stroke='%23b9cee9' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/10px 14px no-repeat;}
+
+/* вертикальная таймлайн-связь */
+.tlc .tl-item:not(:last-child)::after{content:"";position:absolute;left:29px;top:64px;bottom:-2rem;width:2px}
+.tlA .tl-item:not(:last-child)::after{background:repeating-linear-gradient(var(--conn) 0 5px,transparent 5px 11px)}
+.tlB .tl-item:not(:last-child)::after{background:linear-gradient(var(--conn),var(--conn))}
+.tlB .tl-item:not(:last-child)::before{content:"";position:absolute;left:24px;bottom:calc(-2rem + 2px);width:12px;height:8px;z-index:1;
+  background:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b9cee9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px 8px no-repeat}
+.tlV .tl-item:not(:last-child)::after{background:linear-gradient(var(--conn),var(--conn))}
+.tlG .tl-item:not(:last-child)::after{top:auto;bottom:-1.6rem;left:24px;width:12px;height:8px;
+  background:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b9cee9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px 8px no-repeat}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+@media(max-width:900px){.two{grid-template-columns:1fr}.steps,.cards{grid-template-columns:1fr 1fr}
+  .conn .step::after,.conn .card::after{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc-head">
+  <div class="doc-kicker">body-health.care · мокап № 3 на утверждение</div>
+  <h1>Связи между шагами, продающий текст и рабочие воронки</h1>
+  <p>Три темы в одном документе. Первая — как соединить нумерованные шаги, чтобы они читались как один путь. Вторая — какие слова на украинской версии работают против продажи. Третья — воронки, которых сейчас фактически нет.</p>
+</header>
+
+<section>
+  <div class="sec-head"><span class="sec-num">1</span><h2>Соединяем шаги</h2><span class="sub">4 варианта · 3 места на сайте</span></div>
+  <p class="lead">Нашёл <b>три блока с нумерацией</b>: «Як це працює» на главной (4 шага в ряд), «Як працює Personal Care» на странице тарифа (4 карточки в ряд) и «Етапи впровадження» на корпоративной странице (5 шагов вертикально). Сейчас они не связаны ничем — мозг читает четыре отдельных объекта вместо одного пути. Ниже четыре способа связать; выбранный лягут на все три блока одинаково.</p>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">С-А</span><h3>Пунктир со стрелкой</h3></div>
+    <div class="opt-body">
+      <div class="sub-t">Главная · «Як це працює»</div>
+      <div class="steps conn cA">
+        <div class="step"><div class="num">1</div><h4>Реєстрація</h4><p>Анкета та вибір пакета</p></div>
+        <div class="step"><div class="num">2</div><h4>Куратор</h4><p>Персональний лікар-куратор</p></div>
+        <div class="step"><div class="num">3</div><h4>План</h4><p>Індивідуальний план</p></div>
+        <div class="step"><div class="num">4</div><h4>Супровід</h4><p>Консультації 24/7</p></div>
+      </div>
+      <div class="sub-t" style="margin-top:26px">Корпоративная · «Етапи впровадження»</div>
+      <div class="tl tlc tlA">
+        <div class="tl-item"><div class="num" style="margin:0">1</div><div class="tl-content"><h4>Консультація та аналіз потреб</h4><p>Вивчення специфіки компанії</p></div></div>
+        <div class="tl-item"><div class="num" style="margin:0">2</div><div class="tl-content"><h4>Розробка пропозиції</h4><p>Програма під розмір і бюджет</p></div></div>
+        <div class="tl-item"><div class="num" style="margin:0">3</div><div class="tl-content"><h4>Технічна інтеграція</h4><p>Підключення систем</p></div></div>
+      </div>
+    </div>
+    <div class="note">
+      <span class="plus">Самый лёгкий по весу — почти не добавляет графики на экран.</span>
+      <span class="minus">Пунктир подсознательно читается как «связь под вопросом», «черновик» — для медицины это лишний оттенок.</span>
+    </div>
+  </div>
+
+  <div class="opt rec">
+    <div class="opt-head"><span class="tag">С-Б</span><h3>Сплошная линия со стрелкой</h3><span class="rec-badge">рекомендую</span></div>
+    <div class="opt-body">
+      <div class="sub-t">Главная · «Як це працює»</div>
+      <div class="steps conn cB">
+        <div class="step"><div class="num">1</div><h4>Реєстрація</h4><p>Анкета та вибір пакета</p></div>
+        <div class="step"><div class="num">2</div><h4>Куратор</h4><p>Персональний лікар-куратор</p></div>
+        <div class="step"><div class="num">3</div><h4>План</h4><p>Індивідуальний план</p></div>
+        <div class="step"><div class="num">4</div><h4>Супровід</h4><p>Консультації 24/7</p></div>
+      </div>
+      <div class="sub-t" style="margin-top:26px">Страница тарифа · карточки с длительностью</div>
+      <div class="cards conn cB">
+        <div class="card"><div class="num">1</div><h4>Анкета</h4><div class="dur">15 хвилин</div></div>
+        <div class="card"><div class="num">2</div><h4>Куратор</h4><div class="dur">24 години</div></div>
+        <div class="card"><div class="num">3</div><h4>Консультація</h4><div class="dur">60 хвилин</div></div>
+        <div class="card"><div class="num">4</div><h4>Супровід</h4><div class="dur">Постійно</div></div>
+      </div>
+      <div class="sub-t" style="margin-top:26px">Корпоративная · «Етапи впровадження»</div>
+      <div class="tl tlc tlB">
+        <div class="tl-item"><div class="num" style="margin:0">1</div><div class="tl-content"><h4>Консультація та аналіз потреб</h4><p>Вивчення специфіки компанії</p></div></div>
+        <div class="tl-item"><div class="num" style="margin:0">2</div><div class="tl-content"><h4>Розробка пропозиції</h4><p>Програма під розмір і бюджет</p></div></div>
+        <div class="tl-item"><div class="num" style="margin:0">3</div><div class="tl-content"><h4>Технічна інтеграція</h4><p>Підключення систем</p></div></div>
+      </div>
+    </div>
+    <div class="note">
+      <span class="plus">Линия даёт целостность, стрелка — направление: видно, откуда и куда движется человек.</span>
+      <span class="plus">Между карточками линию через рамку не тянем — там только стрелка в промежутке, поэтому карточки остаются карточками.</span>
+      <span class="plus">Цвет линии светлее текста и светлее кружков: связь читается, но не спорит с цифрами за внимание.</span>
+      <span class="plus">Вертикальная версия работает тем же приёмом — линия плюс стрелка вниз.</span>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">С-В</span><h3>Сплошная дорожка без стрелок</h3></div>
+    <div class="opt-body">
+      <div class="sub-t">Главная · «Як це працює»</div>
+      <div class="steps conn cV">
+        <div class="step"><div class="num">1</div><h4>Реєстрація</h4><p>Анкета та вибір пакета</p></div>
+        <div class="step"><div class="num">2</div><h4>Куратор</h4><p>Персональний лікар-куратор</p></div>
+        <div class="step"><div class="num">3</div><h4>План</h4><p>Індивідуальний план</p></div>
+        <div class="step"><div class="num">4</div><h4>Супровід</h4><p>Консультації 24/7</p></div>
+      </div>
+      <div class="sub-t" style="margin-top:26px">Корпоративная · «Етапи впровадження»</div>
+      <div class="tl tlc tlV">
+        <div class="tl-item"><div class="num" style="margin:0">1</div><div class="tl-content"><h4>Консультація та аналіз потреб</h4><p>Вивчення специфіки компанії</p></div></div>
+        <div class="tl-item"><div class="num" style="margin:0">2</div><div class="tl-content"><h4>Розробка пропозиції</h4><p>Програма під розмір і бюджет</p></div></div>
+        <div class="tl-item"><div class="num" style="margin:0">3</div><div class="tl-content"><h4>Технічна інтеграція</h4><p>Підключення систем</p></div></div>
+      </div>
+    </div>
+    <div class="note">
+      <span class="plus">Максимальная целостность при минимуме графики — кружки буквально сидят на одной нити.</span>
+      <span class="minus">Нет направления. Вы просили, чтобы было понятно, откуда и куда движется, — здесь это теряется.</span>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">С-Г</span><h3>Только шевроны в промежутках</h3></div>
+    <div class="opt-body">
+      <div class="sub-t">Главная · «Як це працює»</div>
+      <div class="steps conn cG">
+        <div class="step"><div class="num">1</div><h4>Реєстрація</h4><p>Анкета та вибір пакета</p></div>
+        <div class="step"><div class="num">2</div><h4>Куратор</h4><p>Персональний лікар-куратор</p></div>
+        <div class="step"><div class="num">3</div><h4>План</h4><p>Індивідуальний план</p></div>
+        <div class="step"><div class="num">4</div><h4>Супровід</h4><p>Консультації 24/7</p></div>
+      </div>
+      <div class="sub-t" style="margin-top:26px">Корпоративная · «Етапи впровадження»</div>
+      <div class="tl tlc tlG">
+        <div class="tl-item"><div class="num" style="margin:0">1</div><div class="tl-content"><h4>Консультація та аналіз потреб</h4><p>Вивчення специфіки компанії</p></div></div>
+        <div class="tl-item"><div class="num" style="margin:0">2</div><div class="tl-content"><h4>Розробка пропозиції</h4><p>Програма під розмір і бюджет</p></div></div>
+        <div class="tl-item"><div class="num" style="margin:0">3</div><div class="tl-content"><h4>Технічна інтеграція</h4><p>Підключення систем</p></div></div>
+      </div>
+    </div>
+    <div class="note">
+      <span class="plus">Направление есть, экран не перегружен совсем.</span>
+      <span class="minus">Связи как таковой нет: между кружками остаётся пустота, целостность возникает слабее, чем в С-Б.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">2</span><h2>Слова, которые работают против продажи</h2><span class="sub">украинская версия</span></div>
+  <p class="lead">Прошёл по всем заголовкам и кнопкам украинской версии. Главная проблема одна и повторяется везде: <b>сайт говорит о себе, а не о посетителе</b>, и просит обязательства раньше, чем даёт ценность. «Розпочати супровід» стоит на сайте <b>21 раз</b>, «Надіслати заявку» — <b>21 раз</b>, «Детальніше» — <b>8 раз</b>. Ни одна из этих кнопок не обещает результата.</p>
+
+  <div class="opt rec">
+    <div class="opt-head"><span class="tag">2.1</span><h3>Первый экран</h3><span class="rec-badge">главное</span></div>
+    <div class="opt-body">
+      <table class="cmp">
+        <tr><th>Сейчас</th><th>Предлагаю</th><th>Почему</th></tr>
+        <tr>
+          <td class="was">Ми беремо на себе турботу про Ваше здоров'я</td>
+          <td class="now">Ваше здоров'я під наглядом лікаря — щодня, а не раз на рік</td>
+          <td>«Ми беремо на себе» — предложение о нас. Новая версия — о нём и о конкретной перемене в его жизни. «Щодня, а не раз на рік» даёт контраст, на котором мозг достраивает выгоду сам.</td>
+        </tr>
+        <tr>
+          <td class="was">Більше не потрібно пам'ятати про ліки, аналізи та візити до лікаря…</td>
+          <td class="now">Команда з 70+ лікарів бачить зміни у ваших показниках раніше за симптоми. Ви дізнаєтесь про ризик тоді, коли його ще можна прибрати</td>
+          <td>Сильная часть («до появи симптомів») спрятана в конец второго предложения — туда никто не дочитывает. Выносим вперёд.</td>
+        </tr>
+        <tr>
+          <td class="was">Кнопка: <b>Розпочати супровід</b></td>
+          <td class="now">Кнопка: <b>Пройти чек здоров'я — 2 хвилини</b></td>
+          <td>«Розпочати супровід» — это «подпишись на 11 000 ₴/міс» на первом же экране, для холодного человека барьер максимальный. Замена даёт быстрый результат без обязательств — это и есть дофаминовый вход в воронку.</td>
+        </tr>
+        <tr>
+          <td class="was">Вторая кнопка: <b>Стати партнером</b></td>
+          <td class="now">Вторая кнопка: <b>Подивитись тарифи</b></td>
+          <td>Партнёрство ищут единицы, а кнопка забирает половину внимания на первом экране и уводит 95% людей не туда. Партнёрам хватит ссылки в подвале.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">2.2</span><h3>Кнопки по всему сайту</h3></div>
+    <div class="opt-body">
+      <table class="cmp">
+        <tr><th>Сейчас</th><th>Предлагаю</th><th>Почему</th></tr>
+        <tr><td class="was">Надіслати заявку <span class="cnt">×21</span></td><td class="now">Записатись на безкоштовну розмову</td>
+          <td>«Заявка» — язык учреждения: человек подаёт и ждёт решения. «Розмова» — язык человека: он получает внимание, а не рассмотрение.</td></tr>
+        <tr><td class="was">Розпочати супровід <span class="cnt">×21</span></td><td class="now">Обрати свій пакет</td>
+          <td>В шапке и в конце страниц это кнопка для того, кто уже решил. «Обрати» — действие с контролем на стороне клиента, а не обязательство.</td></tr>
+        <tr><td class="was">Детальніше <span class="cnt">×8</span></td><td class="now">Що входить у пакет</td>
+          <td>«Детальніше» не обещает ничего, поэтому кликают реже. Кнопка должна называть содержимое следующего экрана.</td></tr>
+        <tr><td class="was">Підписатися <span class="cnt">×8</span></td><td class="now">Отримувати розбори лікарів</td>
+          <td>«Підписатися» описывает действие пользователя в пользу компании. Новая формулировка описывает, что он получит.</td></tr>
+        <tr><td class="was">Обговорити</td><td class="now">Розрахувати для нашої компанії</td>
+          <td>«Обговорити» звучит как долгие переговоры. «Розрахувати» обещает цифру.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">2.3</span><h3>Заголовки разделов</h3></div>
+    <div class="opt-body">
+      <table class="cmp">
+        <tr><th>Сейчас</th><th>Предлагаю</th><th>Почему</th></tr>
+        <tr><td class="was">Ми несемо відповідальність за Ваше здоров'я</td><td class="now">Що ми робимо, поки ви живете своїм життям</td>
+          <td><b>Это ещё и юридический риск:</b> юрист вычищал из оферты любые формулировки, похожие на гарантию результата, а на главной осталась прямая фраза об ответственности за здоровье. Заменить нужно в любом случае.</td></tr>
+        <tr><td class="was">Доказова медицина</td><td class="now">Чому ми впевнені в тому, що радимо</td>
+          <td>«Доказова медицина» — термин для врачей. Для пациента это звучит как раздел для специалистов, и он его пролистывает.</td></tr>
+        <tr><td class="was">Ми стежимо за Вашим здоров'ям 24/7</td><td class="now">Ви спите — показники дивиться лікар</td>
+          <td>Та же мысль, но образом. Образ запоминается, декларация — нет.</td></tr>
+        <tr><td class="was">Наші послуги</td><td class="now">Скільки уваги вам потрібно</td>
+          <td>«Наші послуги» ставит в центр компанию. Новый заголовок сразу помогает выбрать пакет — это и есть работа раздела.</td></tr>
+        <tr><td class="was">Простий шлях до якісного медичного супроводу</td><td class="now">Від анкети до першої консультації — 24 години</td>
+          <td>«Простий» и «якісний» — оценочные слова, мозг их отфильтровывает. Цифра времени — нет.</td></tr>
+      </table>
+    </div>
+    <div class="note">
+      <span class="plus">Отдельно: по всему сайту «Ви / Ваше» с большой буквы. В украинском это официальный регистр переписки — он держит дистанцию ровно там, где нужна близость. Предлагаю везде строчную.</span>
+      <span class="minus">Все замены — только украинская версия. Английскую и русскую переведу после того, как утвердите украинскую, чтобы не переделывать дважды.</span>
+    </div>
+  </div>
+</section>
+<style>
+table.cmp{width:100%;border-collapse:collapse;font-size:.88rem}
+table.cmp th{text-align:left;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);
+  font-weight:700;padding:0 12px 10px 0;border-bottom:1px solid var(--line)}
+table.cmp td{padding:12px 12px 12px 0;border-bottom:1px solid var(--line-soft);vertical-align:top}
+table.cmp tr:last-child td{border-bottom:0}
+table.cmp th:nth-child(1),table.cmp td:nth-child(1){width:26%}
+table.cmp th:nth-child(2),table.cmp td:nth-child(2){width:30%}
+td.was{color:#9aa3b2;text-decoration:line-through}
+td.now{color:var(--ink);font-weight:600}
+.cnt{display:inline-block;margin-left:.3rem;font-size:.72rem;font-weight:700;color:#b45309;
+  background:#fef4e7;border:1px solid #f4d9b0;border-radius:6px;padding:1px 6px;text-decoration:none}
+@media(max-width:760px){table.cmp,table.cmp tbody,table.cmp tr,table.cmp td,table.cmp th{display:block;width:auto!important}
+  table.cmp th{display:none}table.cmp td{padding:6px 0}table.cmp tr{border-bottom:1px solid var(--line-soft);padding:10px 0}}
+</style>
+
+<section>
+  <div class="sec-head"><span class="sec-num">3</span><h2>Воронки</h2><span class="sub">что есть · что предлагаю</span></div>
+  <p class="lead">Проверил, что на сайте реально работает как путь к деньгам. Точек входа ровно три: форма заявки, кнопка оплаты и подписка на рассылку. <b>Все три требуют от человека решения сразу</b> — либо оставь контакты, либо заплати 4 500–22 000 ₴. Для того, кто пришёл из соцсетей и видит бренд впервые, входа нет вообще. Это и есть «воронки вроде есть, но не рабочие».</p>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">СЕЙЧАС</span><h3>Три входа — и все для горячих</h3></div>
+    <div class="opt-body">
+      <div class="fun now-fun">
+        <div class="fstep"><b>Форма заявки</b><span>имя, фамилия, email, телефон, услуга — 6 полей до любой ценности</span></div>
+        <div class="fstep"><b>Оплата</b><span>сразу 4 500 ₴ или 11 000 ₴/міс, без пробного шага</span></div>
+        <div class="fstep"><b>Подписка на статьи</b><span>письма уходят, но ни одно не ведёт обратно к услуге</span></div>
+      </div>
+    </div>
+    <div class="note">
+      <span class="minus">Нет ни одного шага, где человек получает пользу, ничего не отдавая. Холодный трафик из соцсетей уходит без следа.</span>
+      <span class="minus">Подписка ни к чему не ведёт: она собирает адреса, но не превращает их в клиентов.</span>
+      <span class="minus">Между «прочитал статью» и «заплатил 11 000 ₴» нет ни одной ступени.</span>
+      <span class="minus">Нет разметки источников: невозможно понять, какая соцсеть привела платящего.</span>
+    </div>
+  </div>
+
+  <div class="opt rec">
+    <div class="opt-head"><span class="tag">В-1</span><h3>Холодный трафик: «Чек здоров'я за 2 хвилини»</h3><span class="rec-badge">основная</span></div>
+    <div class="opt-body">
+      <div class="fun">
+        <div class="fstep e"><span class="fnum">1</span><b>Вход</b><span>Реклама или пост в соцсети → первый экран сайта, кнопка «Пройти чек здоров'я — 2 хвилини»</span></div>
+        <div class="fstep"><span class="fnum">2</span><b>Квиз, 7 вопросов</b><span>Возраст, сон, энергия, давление, что беспокоит, когда последний раз сдавали анализы, что хочется изменить. Без email до последнего шага</span></div>
+        <div class="fstep"><span class="fnum">3</span><b>Результат на экране</b><span>«3 зони, які варто перевірити першими» — конкретно, по его ответам. Ценность отдана до того, как что-то попросили</span></div>
+        <div class="fstep"><span class="fnum">4</span><b>Email за расширенный разбор</b><span>«Надіслати повний розбір і план перевірок» — вот здесь и только здесь просим контакт</span></div>
+        <div class="fstep m"><span class="fnum">5</span><b>Предложение</b><span>HealthCheckup 4 500 ₴ — «перевірити все, що показав чек». Малая цена как первый платёж, а не подписка</span></div>
+        <div class="fstep p"><span class="fnum">6</span><b>Апсейл</b><span>После отчёта — Personal Care 11 000 ₴/міс: «щоб не перевіряти раз на рік, а бачити щодня»</span></div>
+      </div>
+    </div>
+    <div class="note">
+      <span class="plus">Порядок «сначала польза, потом контакт» — это то, что превращает холодный трафик в базу. По данным платформы Interact (более 100 млн собранных лидов) квизы дают в среднем <b>40,1% из начавших до оставленного контакта</b> и <b>65% доходимости до конца</b> — форма заявки таких чисел не даёт и близко.</span>
+      <span class="plus">Ответы на квиз — это готовая сегментация: человек сам сказал, что его беспокоит. Дальше письма и звонок куратора говорят на его языке, а не общими словами.</span>
+      <span class="plus">HealthCheckup за 4 500 ₴ становится тем, чем должен быть — первой ступенькой, а не альтернативой подписке.</span>
+      <span class="minus">Нужно собрать сам квиз: 7 экранов, логика результата и письмо. Это примерно день работы.</span>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">В-2</span><h3>Тёплый трафик: «15 хвилин з куратором»</h3></div>
+    <div class="opt-body">
+      <div class="fun">
+        <div class="fstep e"><span class="fnum">1</span><b>Вход</b><span>Страница тарифа или сравнение пакетов — человек уже смотрит на цену</span></div>
+        <div class="fstep"><span class="fnum">2</span><b>Мягкий шаг вместо заявки</b><span>«Безкоштовна розмова 15 хвилин — розберемо вашу ситуацію і скажемо, який пакет потрібен. Без зобов'язань»</span></div>
+        <div class="fstep"><span class="fnum">3</span><b>Короткая форма</b><span>Имя, телефон, удобное время. Три поля вместо шести — остальное куратор спросит в разговоре</span></div>
+        <div class="fstep m"><span class="fnum">4</span><b>Разговор</b><span>Куратор рекомендует пакет и отправляет ссылку на оплату прямо в чат</span></div>
+      </div>
+    </div>
+    <div class="note">
+      <span class="plus">Убирает главный страх дорогой покупки: «я не понимаю, что именно я куплю за 11 000 ₴».</span>
+      <span class="plus">Три поля вместо шести — каждое лишнее поле в форме стоит части заявок.</span>
+      <span class="plus">Продажу делает человек, а не страница: для медицины на такие суммы это почти всегда сильнее.</span>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">В-3</span><h3>Блог как воронка, а не как библиотека</h3></div>
+    <div class="opt-body">
+      <div class="fun">
+        <div class="fstep e"><span class="fnum">1</span><b>Вход</b><span>Поиск или соцсети → статья</span></div>
+        <div class="fstep"><span class="fnum">2</span><b>Связанное предложение внутри статьи</b><span>В статье про давление — блок «Перевірте свій ризик за 2 хвилини», а не общая подписка</span></div>
+        <div class="fstep"><span class="fnum">3</span><b>Письма с продолжением</b><span>Сейчас подписка ведёт в никуда. Нужны 4 письма: разбор темы → история пациента → что показывает чек → приглашение на разговор</span></div>
+        <div class="fstep m"><span class="fnum">4</span><b>Возврат на сайт</b><span>Каждое письмо ведёт на квиз или на разговор с куратором</span></div>
+      </div>
+    </div>
+    <div class="note">
+      <span class="plus">Шесть статей уже написаны и уже собирают адреса — сейчас этот ресурс просто не используется.</span>
+      <span class="plus">Блок внутри статьи по теме статьи работает в разы лучше общей формы подписки в конце.</span>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">В-4</span><h3>Компании: калькулятор вместо анкеты</h3></div>
+    <div class="opt-body">
+      <div class="fun">
+        <div class="fstep e"><span class="fnum">1</span><b>Вход</b><span>LinkedIn, рассылка по HR, страница «Для компаній»</span></div>
+        <div class="fstep"><span class="fnum">2</span><b>Расчёт на экране</b><span>Два поля — сколько сотрудников и сколько сейчас тратите. Сразу показываем вилку экономии и стоимость программы. Без контактов</span></div>
+        <div class="fstep"><span class="fnum">3</span><b>Анкета уже осмысленная</b><span>«Надіслати розрахунок і комерційну пропозицію» — человек уже увидел цифру и понимает, зачем заполняет</span></div>
+        <div class="fstep m"><span class="fnum">4</span><b>Встреча</b><span>Демонстрация и договор</span></div>
+      </div>
+    </div>
+    <div class="note">
+      <span class="plus">HR-директор не заполняет анкету на 11 полей ради «пропозиції» — он заполняет её, когда уже увидел свою цифру.</span>
+      <span class="plus">Анкету мы только что сделали компактной; калькулятор перед ней — последнее, чего ей не хватает.</span>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-head"><span class="tag">В-5</span><h3>Что нужно, чтобы всё это было измеримо</h3></div>
+    <div class="note" style="padding-top:18px">
+      <span class="plus">Разметка источников в ссылках из соцсетей: у каждой воронки своя метка, чтобы было видно, какая сеть приводит платящих, а не просто клики.</span>
+      <span class="plus">Одно событие на каждый шаг: начал квиз, дошёл до результата, оставил email, записался на разговор, оплатил. Без этого воронка не настраивается, а угадывается.</span>
+      <span class="plus">Все заявки уже уходят в один сценарий Make — туда же добавляем источник и шаг, и в таблице сразу видно, где люди отваливаются.</span>
+      <span class="minus">Сейчас не видно ничего: в таблице заявок нет ни источника, ни того, что человек делал до заявки.</span>
+    </div>
+  </div>
+</section>
+
+<div class="decide">
+  <h2>Что жду от вас</h2>
+  <ol>
+    <li>Соединение шагов: С-А, <b>С-Б</b>, С-В или С-Г. Ложится сразу на все три блока.</li>
+    <li>Текст украинской версии: принять <b>целиком</b> (2.1 + 2.2 + 2.3), только первый экран (2.1), или отметить построчно, что оставить.</li>
+    <li>Воронки: с какой начинаем. Рекомендую <b>В-1</b> (квиз) — он единственный открывает холодный трафик, и на нём же держатся В-3 и часть В-2.</li>
+  </ol>
+  <p style="margin-top:14px;color:var(--muted);font-size:.9rem">Жирным — мои рекомендации. Соединения и текст сделаю сегодня же, квиз — отдельной задачей, это примерно день.</p>
+</div>
+
+<style>
+.fun{display:grid;gap:10px}
+.fstep{position:relative;display:grid;grid-template-columns:28px 190px 1fr;gap:12px;align-items:baseline;
+  padding:12px 14px;border:1px solid var(--line-soft);border-radius:10px;background:#fcfdff}
+.fstep b{color:var(--ink);font-size:.92rem;font-weight:600}
+.fstep span:last-child{font-size:.87rem;color:var(--muted)}
+.fnum{width:22px;height:22px;border-radius:50%;background:#eaf2ff;color:var(--brand);font-size:.75rem;
+  font-weight:700;display:flex;align-items:center;justify-content:center;align-self:center}
+.fstep.e{border-color:#c3d6ef;background:#f6faff}
+.fstep.m{border-color:#bfe5d2;background:#f4fbf7}
+.fstep.p{border-color:#f4d9b0;background:#fffaf3}
+.now-fun .fstep{grid-template-columns:190px 1fr}
+.decide{margin-top:48px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px}
+.decide h2{font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:12px}
+.decide ol{margin-left:1.1rem;color:var(--muted);display:grid;gap:.45rem}
+.decide b{color:var(--text)}
+@media(max-width:760px){.fstep,.now-fun .fstep{grid-template-columns:1fr;gap:4px}.fnum{display:none}}
+</style>
+
+</div>
+</body>
+</html>
