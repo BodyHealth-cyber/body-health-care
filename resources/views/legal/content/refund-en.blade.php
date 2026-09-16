@@ -1,7 +1,7 @@
 <div class="legal-rich-content">
     <section class="legal-section-block">
         <h2>1. General Provisions</h2>
-        <p>1.1. This Refund and Cancellation Policy (the "Policy") is an official document of Sofiia Ihorivna Yablonska, a sole proprietor registered in Ukraine (EDRPOU/ITN 3752503564, record dated 15.12.2025), operating under the brand name "Body Health" (the "Provider"), governing the procedure and conditions for refunding payments made by the Client for Services.</p>
+        <p>1.1. This Refund and Cancellation Policy (the "Policy") is an official document of Sofiia Ihorivna Yablonska, a sole proprietor registered in Ukraine (EDRPOU/ITN 3752503564, record dated 15.12.2025), operating under the brand name "BodyHealth UA" (the "Provider"), governing the procedure and conditions for refunding payments made by the Client for Services.</p>
         <p>1.2. This Policy has been developed in compliance with international consumer protection standards, including EU Directive 2011/83/EU on consumer rights, GDPR, and applicable regulations governing digital services and telemedicine.</p>
         <p>1.3. By accepting the Public Offer and making payment for Services, the Client confirms that they have carefully read and agree to this Policy.</p>
     </section>
@@ -73,7 +73,7 @@
         <div class="legal-requisites">
             <p>
                 <strong>Provider:</strong> Sofiia Ihorivna Yablonska, sole proprietor<br>
-                <strong>Brand:</strong> Body Health<br>
+                <strong>Brand:</strong> BodyHealth UA<br>
                 <strong>EDRPOU/ITN:</strong> 3752503564<br>
                 <strong>Website:</strong> https://body-health.care<br>
                 <strong>Refunds and subscription cancellation:</strong> billing@body-health.care<br>

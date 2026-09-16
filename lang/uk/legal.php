@@ -17,34 +17,34 @@ return [
     ],
     'terms_index' => [
         'meta_title' => 'Умови та положення | BodyHealth',
-        'meta_description' => 'Оберіть мовну версію умов та положень Body Health.',
+        'meta_description' => 'Оберіть мовну версію умов та положень BodyHealth UA.',
         'title' => 'Умови та положення',
-        'summary' => 'Оберіть мовну версію публічної оферти та умов надання послуг Body Health.',
+        'summary' => 'Оберіть мовну версію публічної оферти та умов надання послуг BodyHealth UA.',
         'open_version' => 'Відкрити версію',
         'version_links_label' => 'Мовні версії умов',
     ],
     'documents' => [
         'terms' => [
             'meta_title' => 'Публічна оферта | BodyHealth',
-            'meta_description' => 'Публічна оферта Body Health щодо надання інформаційно-консультаційних послуг у сфері телемедицини.',
+            'meta_description' => 'Публічна оферта BodyHealth UA щодо надання інформаційно-консультаційних послуг у сфері телемедицини.',
             'title' => 'Публічна оферта',
-            'summary' => 'Умови надання інформаційно-консультаційних послуг у сфері телемедицини для сервісу Body Health.',
+            'summary' => 'Умови надання інформаційно-консультаційних послуг у сфері телемедицини для сервісу BodyHealth UA.',
             'revision_date' => '16 вересня 2026 року',
             'content_view' => 'legal.content.terms-uk',
         ],
         'refund' => [
             'meta_title' => 'Політика повернення коштів | BodyHealth',
-            'meta_description' => 'Політика повернення коштів та скасування послуг Body Health.',
+            'meta_description' => 'Політика повернення коштів та скасування послуг BodyHealth UA.',
             'title' => 'Політика повернення коштів та скасування послуг',
-            'summary' => 'Офіційні правила скасування підписок, повернення коштів та обробки відповідних звернень у Body Health.',
+            'summary' => 'Офіційні правила скасування підписок, повернення коштів та обробки відповідних звернень у BodyHealth UA.',
             'revision_date' => '16 вересня 2026 року',
             'content_view' => 'legal.content.refund-uk',
         ],
         'contact_information' => [
             'meta_title' => 'Контактна інформація та реквізити | BodyHealth',
-            'meta_description' => 'Офіційна контактна інформація та реквізити Body Health.',
+            'meta_description' => 'Офіційна контактна інформація та реквізити BodyHealth UA.',
             'title' => 'Контактна інформація та реквізити',
-            'summary' => 'Офіційні реєстраційні, банківські та контактні дані виконавця послуг Body Health.',
+            'summary' => 'Офіційні реєстраційні, банківські та контактні дані виконавця послуг BodyHealth UA.',
             'revision_date' => '16 вересня 2026 року',
             'details' => [
                 [
@@ -53,7 +53,7 @@ return [
                 ],
                 [
                     'label' => 'Торгова марка',
-                    'value' => 'Body Health',
+                    'value' => 'BodyHealth UA',
                 ],
                 [
                     'label' => 'ІПН/ЄДРПОУ',

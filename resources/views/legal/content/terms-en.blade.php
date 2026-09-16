@@ -1,7 +1,7 @@
 <div class="legal-rich-content">
     <section class="legal-section-block">
         <h2>1. General Provisions</h2>
-        <p>1.1. This document constitutes an official offer (public offer) by Sofiia Ihorivna Yablonska, a sole proprietor (physical person&ndash;entrepreneur) registered in the Unified State Register of Legal Entities, Individual Entrepreneurs and Public Formations of Ukraine (EDRPOU/ITN: 3752503564, record dated 15.12.2025), hereinafter the "Provider", operating under the brand name "Body Health" (the "Brand"), to enter into an agreement for the provision of information and consultation services in the field of telemedicine (the "Agreement") with any individual who accepts this offer, hereinafter referred to as the "Client" or "Patient".</p>
+        <p>1.1. This document constitutes an official offer (public offer) by Sofiia Ihorivna Yablonska, a sole proprietor (physical person&ndash;entrepreneur) registered in the Unified State Register of Legal Entities, Individual Entrepreneurs and Public Formations of Ukraine (EDRPOU/ITN: 3752503564, record dated 15.12.2025), hereinafter the "Provider", operating under the brand name "BodyHealth UA" (the "Brand"), to enter into an agreement for the provision of information and consultation services in the field of telemedicine (the "Agreement") with any individual who accepts this offer, hereinafter referred to as the "Client" or "Patient".</p>
         <p>1.2. This Public Offer has been developed in accordance with the principles of international contract law, applicable consumer protection legislation, electronic commerce regulations, data protection law including GDPR (Regulation (EU) 2016/679), and telemedicine standards.</p>
         <p>1.3. Unconditional acceptance of the terms of this Offer shall be deemed to occur when the Client makes payment for the Services on the Provider's website. By making payment, the Client confirms that they have read the terms of the Offer, understand their content, and the legal consequences of concluding the Agreement.</p>
         <p>1.4. The Agreement concluded on the basis of acceptance of this Offer constitutes a contract of adhesion. The Client confirms that they have read the terms of the Offer, understand their content, and the legal consequences of concluding the Agreement.</p>
@@ -12,7 +12,7 @@
         <h2>2. Definitions</h2>
         <p>2.1. In this Offer, the following terms shall have the meanings set out below:</p>
         <ul>
-            <li><strong>Provider</strong> - Sofiia Ihorivna Yablonska, sole proprietor (EDRPOU/ITN 3752503564), providing Services through the Website under the brand name "Body Health".</li>
+            <li><strong>Provider</strong> - Sofiia Ihorivna Yablonska, sole proprietor (EDRPOU/ITN 3752503564), providing Services through the Website under the brand name "BodyHealth UA".</li>
             <li><strong>Client (Patient)</strong> - a legally capable individual aged 18 or over who has registered on the Website and accepted the Offer.</li>
             <li><strong>Website (Platform)</strong> - https://body-health.care, the official source of information and platform for the provision of Services.</li>
             <li><strong>Services</strong> - a set of informational and consultation services of a medical nature (telemedicine), provided remotely using information and communication technologies.</li>
@@ -178,7 +178,7 @@
         <div class="legal-requisites">
             <p>
                 <strong>Provider:</strong> Sofiia Ihorivna Yablonska, sole proprietor<br>
-                <strong>Brand:</strong> Body Health<br>
+                <strong>Brand:</strong> BodyHealth UA<br>
                 <strong>EDRPOU/ITN:</strong> 3752503564<br>
                 <strong>Date of registration:</strong> 15.12.2025<br>
                 <strong>Registered address:</strong> 204b Zelena St., office 223, Lviv, Lviv region, Ukraine<br>
