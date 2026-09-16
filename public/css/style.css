@@ -6323,3 +6323,106 @@ button.footer-link {
         overflow-wrap: anywhere;
     }
 }
+
+/* Перший екран «Для компаній» — так само по центру, як на головній.
+   Список переваг лишається вирівняним по лівому краю всередині себе, але сам
+   блок стоїть по центру: інакше іконки «розбігаються» по рядках різної
+   довжини і список читається як сходинки. */
+.b2b-hero .b2b-hero-content {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+}
+
+/* Ширше за текстову колонку головної: три переваги в рядку разом з іконками
+   займають близько 920 px і при вужчій колонці переносяться «2 + 1». */
+.b2b-hero .hero-text {
+    max-width: 1100px;
+}
+
+.b2b-hero .hero-subtitle {
+    max-width: 62ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Три переваги короткі — ставимо їх у рядок, а не стовпчиком: так блок
+   стає на 66 px нижчим і смуга наступного розділу лишається на місці. */
+.b2b-hero .hero-benefits {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 2rem;
+}
+
+@media (max-width: 768px) {
+    .b2b-hero .hero-benefits {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.b2b-hero .hero-actions {
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+}
+
+.b2b-hero .hero-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    gap: 1.5rem;
+}
+
+.b2b-hero .stat-card {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 320px;
+}
+
+@media (max-width: 640px) {
+    .b2b-hero .hero-stats {
+        flex-direction: column;
+    }
+
+    .b2b-hero .stat-card {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* В одну колонку блок став вищим за екран (заміряно: −26 px на 1440×900 і
+   −46 px на 1280×800 — край наступного розділу зникав). Стискаємо власні
+   проміжки блока, а не вміст: нічого не ріжеться, усе лишається на місці. */
+.b2b-hero .b2b-hero-content {
+    gap: 2rem;
+}
+
+.b2b-hero .hero-text h1 {
+    margin-bottom: 1rem;
+}
+
+.b2b-hero .hero-subtitle {
+    margin-bottom: 1.5rem;
+}
+
+.b2b-hero .hero-benefits {
+    margin-bottom: 1.25rem;
+}
+
+@media (min-width: 769px) and (max-height: 880px) {
+    .b2b-hero .hero-text h1 {
+        font-size: 2.4rem;
+    }
+}
+
+/* Останні 20 px до рівних 96 px смуги наступного розділу. */
+.b2b-hero .stat-card {
+    padding: 1.5rem;
+}
+
+.b2b-hero .hero-benefits {
+    margin-bottom: 1rem;
+}
