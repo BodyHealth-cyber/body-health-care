@@ -5893,3 +5893,81 @@ button.footer-link {
         min-height: 3.2em;
     }
 }
+
+/* ===== СВЯЗИ МЕЖДУ ПРОНУМЕРОВАННЫМИ ШАГАМИ =====
+   Три блока с нумерацией — «Як це працює» на главной, «Як працює Personal Care»
+   на странице тарифа и «Етапи впровадження» на корпоративной — читались как
+   набор отдельных объектов. Линия со стрелкой связывает их в один путь и
+   показывает направление. Цвет светлее и текста, и кружков: связь видна, но не
+   спорит с цифрами за внимание.
+
+   Горизонтальные связи включаются только там, где все четыре шага гарантированно
+   стоят в одну строку: сетка auto-fit при более узком контейнере переносит их, и
+   линия уходила бы в пустоту. Порог 1200 px посчитан от ширины контейнера:
+   4 × 250 + 3 × 32 = 1096 px минимально нужной ширины. */
+:root {
+    --step-link: #b9cee9;
+}
+
+.steps-grid .step-item,
+.process-steps .step-item,
+.timeline-item {
+    position: relative;
+}
+
+@media (min-width: 1200px) {
+    /* фиксируем четыре колонки, чтобы геометрия связи была предсказуемой */
+    .steps-grid,
+    .process-steps {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* линия со стрелкой между открытыми шагами (главная) */
+    .steps-grid .step-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: calc(2rem + 24px);
+        left: calc(50% + 38px);
+        width: calc(100% - 44px);
+        height: 12px;
+        background:
+            url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='12' viewBox='0 0 8 12'%3E%3Cpath d='M1 1l5 5-5 5' fill='none' stroke='%23b9cee9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right center / 8px 12px no-repeat,
+            linear-gradient(var(--step-link), var(--step-link)) left center / calc(100% - 12px) 2px no-repeat;
+    }
+
+    /* между карточками линию через рамку не тянем — только стрелка в промежутке */
+    .process-steps .step-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: calc(2rem + 23px);
+        right: -1rem;
+        transform: translateX(50%);
+        width: 10px;
+        height: 14px;
+        background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='14' viewBox='0 0 10 14'%3E%3Cpath d='M2 1l6 6-6 6' fill='none' stroke='%23b9cee9' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 10px 14px no-repeat;
+    }
+}
+
+/* вертикальная связь на корпоративной странице */
+@media (min-width: 769px) {
+    .timeline-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        left: 29px;
+        top: 64px;
+        bottom: -2rem;
+        width: 2px;
+        background-color: var(--step-link);
+    }
+
+    .timeline-item:not(:last-child)::before {
+        content: "";
+        position: absolute;
+        left: 24px;
+        bottom: calc(-2rem + 1px);
+        width: 12px;
+        height: 8px;
+        z-index: 1;
+        background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b9cee9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px 8px no-repeat;
+    }
+}
