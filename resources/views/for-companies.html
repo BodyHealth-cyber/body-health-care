@@ -20,7 +20,7 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#003d82">
     <meta name="description" content="Корпоративні програми медичного супроводу співробітників. Економія до 40% на витратах, підвищення продуктивності, зниження лікарняних">
-    <link rel="stylesheet" href="/css/style.css?v=20260916080837">
+    <link rel="stylesheet" href="/css/style.css?v=20260916083617">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
 </head>
@@ -519,7 +519,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="employeeCount" data-i18n="b2b_label_employees">Кількість співробітників *</label>
+                                    <label for="employeeCount" data-i18n="b2b_label_employees">Співробітників *</label>
                                     <select id="employeeCount" name="employeeCount" required>
                                         <option value="">Оберіть розмір</option>
                                         <option value="25-50">25–50 співробітників</option>
@@ -531,7 +531,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="currentBudget" data-i18n="b2b_label_budget">Поточний бюджет на охорону здоров'я (місяць)</label>
+                                    <label for="currentBudget" data-i18n="b2b_label_budget">Бюджет на здоров'я / міс</label>
                                     <select id="currentBudget" name="currentBudget">
                                         <option value="">Оберіть діапазон</option>
                                         <option value="5000-15000">$5 000 – $15 000</option>
@@ -562,41 +562,49 @@
                                     <input type="tel" id="phone" name="phone">
                                 </div>
                             </div>
+
+                            <div class="form-divider"></div>
+
                             <div class="form-group">
-                                <label data-i18n="b2b_label_goals">Основні цілі програми здоров'я</label>
-                                <div class="checkbox-group goals-checkboxes">
-                                    <label><input type="checkbox" name="goals" value="reduce-costs"> Зниження медичних витрат</label>
-                                    <label><input type="checkbox" name="goals" value="reduce-sick-days"> Скорочення лікарняних</label>
-                                    <label><input type="checkbox" name="goals" value="increase-productivity"> Підвищення продуктивності</label>
-                                    <label><input type="checkbox" name="goals" value="improve-retention"> Покращення утримання кадрів</label>
-                                    <label><input type="checkbox" name="goals" value="wellness-culture"> Розвиток культури здоров'я</label>
-                                    <label><input type="checkbox" name="goals" value="compliance"> Відповідність вимогам</label>
+                                <span class="form-legend" data-i18n="b2b_label_goals">Цілі програми</span><span class="form-optional" data-i18n="b2b_optional">необов'язково</span>
+                                <div class="goals-chips">
+                                    <label class="chip"><input type="checkbox" name="goals" value="reduce-costs"><span>Зниження витрат</span></label>
+                                    <label class="chip"><input type="checkbox" name="goals" value="reduce-sick-days"><span>Менше лікарняних</span></label>
+                                    <label class="chip"><input type="checkbox" name="goals" value="increase-productivity"><span>Продуктивність</span></label>
+                                    <label class="chip"><input type="checkbox" name="goals" value="improve-retention"><span>Утримання кадрів</span></label>
+                                    <label class="chip"><input type="checkbox" name="goals" value="wellness-culture"><span>Культура здоров'я</span></label>
+                                    <label class="chip"><input type="checkbox" name="goals" value="compliance"><span>Відповідність вимогам</span></label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="challenges" data-i18n="b2b_label_challenges">Виклики у сфері здоров'я співробітників</label>
-                                <textarea id="challenges" name="challenges" rows="3" data-i18n-placeholder="b2b_ph_challenges" placeholder="Опишіть поточні проблеми та завдання"></textarea>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="challenges" data-i18n="b2b_label_challenges">Виклики у сфері здоров'я</label>
+                                    <textarea id="challenges" name="challenges" rows="2" data-i18n-placeholder="b2b_ph_challenges" placeholder="Коротко про поточні задачі"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="timeline" data-i18n="b2b_label_timeline">Терміни впровадження</label>
+                                    <select id="timeline" name="timeline">
+                                        <option value="">Оберіть терміни</option>
+                                        <option value="immediate">Негайно</option>
+                                        <option value="1-3-months">1–3 місяці</option>
+                                        <option value="3-6-months">3–6 місяців</option>
+                                        <option value="6-12-months">6–12 місяців</option>
+                                        <option value="planning">На стадії планування</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="timeline" data-i18n="b2b_label_timeline">Плановані терміни впровадження</label>
-                                <select id="timeline" name="timeline">
-                                    <option value="">Оберіть терміни</option>
-                                    <option value="immediate">Негайно</option>
-                                    <option value="1-3-months">1–3 місяці</option>
-                                    <option value="3-6-months">3–6 місяців</option>
-                                    <option value="6-12-months">6–12 місяців</option>
-                                    <option value="planning">На стадії планування</option>
-                                </select>
-                            </div>
+
+                            <div class="form-divider"></div>
+
                             <div class="form-group checkbox-group">
                                 <input type="checkbox" id="privacy-b2b" name="privacy" required>
                                 <label for="privacy-b2b" data-i18n-html="b2b_label_privacy">Я погоджуюсь з <a href="/privacy.html" target="_blank">політикою конфіденційності</a> та обробкою корпоративних даних *</label>
                             </div>
-                            <div class="form-group checkbox-group">
-                                <input type="checkbox" id="demo-request" name="demoRequest">
-                                <label for="demo-request" data-i18n="b2b_label_demo_req">Запросити демонстрацію платформи</label>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary" data-i18n="b2b_btn_submit">Отримати пропозицію</button>
+                                <label class="checkbox-inline" for="demo-request"><input type="checkbox" id="demo-request" name="demoRequest"><span data-i18n="b2b_label_demo_req">Запросити демонстрацію</span></label>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-large" data-i18n="b2b_btn_submit">Отримати комерційну пропозицію</button>
                         </form>
                     </div>
                 </div>
@@ -684,7 +692,7 @@
         </a>
     </div>
 
-    <script src="/js/main.js?v=20260916080837"></script>
+    <script src="/js/main.js?v=20260916083617"></script>
     <script>
     // B2B form messages. Each page is served in one language (build-locales.py
     // generates /en/ and /ru/), so the table is keyed off <html lang> rather than
