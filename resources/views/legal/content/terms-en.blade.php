@@ -29,7 +29,7 @@
         <p>3.2. Services are provided exclusively remotely. The scope of services is strictly regulated and depends on the selected Package:</p>
 
         <h3>3.2.1. Package "Personal Care"</h3>
-        <p>Cost: <strong>$250/month</strong></p>
+        <p>Cost: <strong>11 000 UAH/month</strong></p>
         <p>Basic package for regular medical supervision and preventive care.</p>
         <ul>
             <li><strong>Initial Assessment (once upon entry):</strong> 60-minute consultation with a General Practitioner, detailed analysis of previous examinations and medical history, development of an individual care plan, and referral for additional examinations as necessary.</li>
@@ -43,7 +43,7 @@
         </ul>
 
         <h3>3.2.2. Package "Integrated Care"</h3>
-        <p>Cost: <strong>$500/month</strong></p>
+        <p>Cost: <strong>22 000 UAH/month</strong></p>
         <p>Extended package for complex clinical cases, chronic conditions, and priority support.</p>
         <ul>
             <li><strong>Initial Assessment (once upon entry):</strong> Extended 60-minute GP consultation, comprehensive anamnesis collection, in-depth risk assessment, and strategic care plan development.</li>
@@ -58,7 +58,7 @@
         </ul>
 
         <h3>3.2.3. Service "HealthCheckup"</h3>
-        <p>Cost: <strong>$100 (one-time payment)</strong></p>
+        <p>Cost: <strong>4 500 UAH (one-time payment)</strong></p>
         <p>Comprehensive one-time health assessment and future strategy development.</p>
         <ul>
             <li><strong>Initial GP Consultation:</strong> 40-60 minutes. Detailed medical history, complaint assessment, lifestyle analysis, and risk factor identification.</li>

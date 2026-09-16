@@ -15,7 +15,7 @@
 
     <section class="legal-section-block">
         <h2>3. Refund Conditions for "HealthCheckup"</h2>
-        <p>3.1. The "HealthCheckup" service costs $100 and is paid as a one-time fee. After payment, the medical team immediately begins processing the patient's data.</p>
+        <p>3.1. The "HealthCheckup" service costs UAH 4,500 and is paid as a one-time fee. After payment, the medical team immediately begins processing the patient's data.</p>
         <p>3.2. <strong>A full refund is made</strong> if the Client submits a cancellation request within 24 (twenty-four) hours of payment and the final report has not yet been sent to the Client.</p>
         <p>3.3. <strong>A full refund is also made at any time before the final report is sent to the Client</strong>, regardless of how much time has passed since payment, where the service has not in fact been provided.</p>
         <p>3.4. Once the final report has been sent to the Client, the service is deemed fully performed and no refund is made.</p>

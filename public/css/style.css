@@ -5601,3 +5601,21 @@ button.footer-link {
   .services-hero h1{font-size:1.95rem}
   .services-compare,.services-choose,.services-cta{padding:44px 0}
 }
+
+/* Кнопки на карточках услуг (страница /services.html) */
+.services-grid .card-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.services-grid .card-actions .btn {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .services-grid .card-actions {
+        flex-direction: column;
+    }
+}
