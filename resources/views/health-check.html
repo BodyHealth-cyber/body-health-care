@@ -339,6 +339,12 @@
             </table>
           </div>
 
+          <div class="qz-sect qz-refine" id="qzRefine">
+            <h3 class="qz-sect-h">Уточнити харчування</h3>
+            <p class="qz-lead">Зараз харчування оцінено приблизно, за п'ятьма ознаками. Шістнадцять коротких запитань замінять цю оцінку на ту, яку Американська кардіологічна асоціація рекомендує для окремої людини.</p>
+            <button type="button" class="btn btn-outline" id="qzRefineBtn">Уточнити за хвилину</button>
+          </div>
+
           <div class="qz-sect">
             <h3 class="qz-sect-h">Три найближчі кроки</h3>
             <ol class="qz-steps" id="qzSteps"></ol>
@@ -388,6 +394,148 @@
           </div>
         </section>
 
+
+        <!-- Уточнення харчування · опитувальник MEPA -->
+        <section class="qz-screen" data-screen="mepa" hidden>
+          <div class="qz-eyebrow"><span>Уточнення харчування</span><span class="qz-eyebrow-r">MEPA · 16</span></div>
+          <h2 class="qz-q">Шістнадцять коротких запитань про їжу</h2>
+          <p class="qz-hint">Опитувальник MEPA — той, який Американська кардіологічна асоціація рекомендує для індивідуальної оцінки харчування. Відповідайте «так», якщо описане справджується у звичайний тиждень.</p>
+          <div class="qz-items">
+            <div class="qz-item" data-k="m1">
+              <p class="qz-item-q">Оливкова олія — 2 і більше столових ложок на день?</p>
+              <p class="qz-item-h">Разом із тією, що йде на заправку салатів і на готування.</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m2">
+              <p class="qz-item-q">Зелень і листові овочі — практично щодня?</p>
+              <p class="qz-item-h">Шпинат, салат, рукола, зелень — 7 і більше порцій на тиждень.</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m3">
+              <p class="qz-item-q">Інші овочі — 2 і більше порцій на день?</p>
+              <p class="qz-item-h">Порція — приблизно 100 г.</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m4">
+              <p class="qz-item-q">Ягоди — 2 і більше разів на тиждень?</p>
+              <p class="qz-item-h">Свіжі або заморожені, порція — приблизно 100 г.</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m5">
+              <p class="qz-item-q">Фрукти, крім ягід — щодня?</p>
+              <p class="qz-item-h">Одна порція на день і більше.</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m6">
+              <p class="qz-item-q">Червоне м'ясо, бекон, ковбаси — не більше 3 разів на тиждень?</p>
+              <p class="qz-item-h">Порція — приблизно 85 г.</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m7">
+              <p class="qz-item-q">Риба, не смажена — раз на тиждень і частіше?</p>
+              <p class="qz-item-h">Запечена, відварена, на парі.</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m8">
+              <p class="qz-item-q">Курка, не смажена — не більше 5 разів на тиждень?</p>
+              <p class="qz-item-h">Порція — приблизно 85 г.</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m9">
+              <p class="qz-item-q">Жирний або вершковий сир — не більше 4 разів на тиждень?</p>
+              <p class="qz-item-h">Порція — приблизно 30 г.</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m10">
+              <p class="qz-item-q">Вершкове масло або вершки — не більше 5 разів на тиждень?</p>
+              <p class="qz-item-h">Порція — столова ложка.</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m11">
+              <p class="qz-item-q">Бобові — 3 і більше разів на тиждень?</p>
+              <p class="qz-item-h">Квасоля, сочевиця, нут, горох.</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m12">
+              <p class="qz-item-q">Цільнозернові — 3 і більше порцій на день?</p>
+              <p class="qz-item-h">Хліб, каші та паста з цільного зерна.</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m13">
+              <p class="qz-item-q">Промислові солодощі та випічка — не більше 4 разів на тиждень?</p>
+              <p class="qz-item-h">Батончики, печиво, тістечка, торти.</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m14">
+              <p class="qz-item-q">Горіхи — 4 і більше разів на тиждень?</p>
+              <p class="qz-item-h">Порція — приблизно 30 г.</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m15">
+              <p class="qz-item-q">Фастфуд — не більше одного разу на тиждень?</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+            <div class="qz-item" data-k="m16">
+              <p class="qz-item-q">Алкоголь — не вживаєте зовсім або не більше 1 порції на день для жінок і 2 для чоловіків?</p>
+              <div class="qz-opts qz-opts-row">
+                <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
+                <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+              </div>
+            </div>
+          </div>
+          <div class="qz-note">У самому опитувальнику бал за алкоголь дають лише тим, хто п'є помірно, а тим, хто не вживає його зовсім, — нуль. На сайті клініки це читалося б як заохочення, тому ми зарахували бал і непитущим. Це наше відступлення від оригіналу, і ми поставили це питання лікарям.</div>
+          <div class="qz-nav">
+            <button type="button" class="btn btn-outline" id="qzMepaBack">Назад до результату</button>
+            <span class="qz-count" id="qzMepaCount"></span>
+            <button type="button" class="btn btn-primary" id="qzMepaDone" disabled>Перерахувати</button>
+          </div>
+        </section>
+
         <!-- Навігація між запитаннями -->
         <div class="qz-nav" id="qzNav" hidden>
           <button type="button" class="btn btn-outline" id="qzBack">Назад</button>
@@ -421,6 +569,8 @@
         <span data-t="u_glu">HbA1c</span>
         <span data-t="u_bp">тиск</span>
         <span data-t="n_none">не виміряно</span>
+        <span data-t="n_diet_mepa">опитувальник MEPA, {n} із 16</span>
+        <span data-t="m_mepa_count">Відповіли на {n} із 16</span>
         <span data-t="n_diet">приблизна оцінка за п'ятьма ознаками</span>
         <span data-t="n_pa">{n} хв на тиждень · норма ВООЗ ≥150</span>
         <span data-t="n_shs">мінус 20 за куріння в домі</span>

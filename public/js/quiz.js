@@ -78,11 +78,29 @@
     var S = {};        // відповіді-вибори за data-id екрана
     var N = {};        // числові поля за data-num
     var DIET = ['d_veg', 'd_fish', 'd_grain', 'd_sugar', 'd_meat'];
+    var MEPA = {};     // уточнення харчування, 16 ознак; порожнє — не проходили
+    var MEPA_N = 16;
+
+    // Опитувальник MEPA, 0–16 ознак, і опублікована AHA відповідність балам LE8.
+    function mepaPoints(score) {
+        if (score >= 15) return 100;
+        if (score >= 12) return 80;
+        if (score >= 8) return 50;
+        if (score >= 4) return 25;
+        return 0;
+    }
+    function mepaScore() {
+        var n = 0;
+        for (var k in MEPA) if (MEPA[k] === 'yes') n++;
+        return n;
+    }
+    function mepaDone() { return Object.keys(MEPA).length === MEPA_N; }
 
     var screens = Array.prototype.slice.call(root.querySelectorAll('.qz-screen'));
     var questions = screens.filter(function (s) { return s.getAttribute('data-screen') === 'q'; });
     var intro = screens.filter(function (s) { return s.getAttribute('data-screen') === 'intro'; })[0];
     var result = screens.filter(function (s) { return s.getAttribute('data-screen') === 'result'; })[0];
+    var mepa = screens.filter(function (s) { return s.getAttribute('data-screen') === 'mepa'; })[0];
 
     var bar = document.getElementById('qzBar');
     var nav = document.getElementById('qzNav');
@@ -159,6 +177,12 @@
             bar.style.width = '0%';
             return;
         }
+        if (idx === 'mepa') {
+            mepa.hidden = false;
+            nav.hidden = true;
+            bar.style.width = '100%';
+            return;
+        }
         if (idx >= questions.length) {
             renderResult();
             result.hidden = false;
@@ -189,6 +213,17 @@
     root.addEventListener('click', function (e) {
         var opt = e.target.closest ? e.target.closest('.qz-opt') : null;
         if (opt && root.contains(opt)) {
+            var item = opt.closest('.qz-item');
+            if (item) {
+                MEPA[item.getAttribute('data-k')] = opt.getAttribute('data-v');
+                Array.prototype.forEach.call(item.querySelectorAll('.qz-opt'), function (b) {
+                    b.setAttribute('aria-pressed', b === opt ? 'true' : 'false');
+                });
+                document.getElementById('qzMepaDone').disabled = !mepaDone();
+                document.getElementById('qzMepaCount').textContent =
+                    t('m_mepa_count', { n: Object.keys(MEPA).length });
+                return;
+            }
             var screen = opt.closest('.qz-screen');
             var key = id(screen);
             S[key] = opt.getAttribute('data-v');
@@ -243,10 +278,17 @@
         var week = parseInt(S.paDays, 10) * (S.paMin ? parseInt(S.paMin, 10) : 0);
 
         var dietScore = 0;
-        DIET.forEach(function (k) { dietScore += pointsOf(k, S[k]); });
+        var dietNote = t('n_diet');
+        if (mepaDone()) {
+            var mScore = mepaScore();
+            dietScore = mepaPoints(mScore);
+            dietNote = t('n_diet_mepa', { n: mScore });
+        } else {
+            DIET.forEach(function (k) { dietScore += pointsOf(k, S[k]); });
+        }
 
         var rows = [
-            { key: 'diet', name: t('c_diet'), p: dietScore, note: t('n_diet') },
+            { key: 'diet', name: t('c_diet'), p: dietScore, note: dietNote },
             { key: 'pa', name: t('c_pa'), p: paPoints(week), note: t('n_pa', { n: week }) },
             { key: 'nic', name: t('c_nic'), p: nicotinePoints(), note: S.shs === 'yes' ? t('n_shs') : '' },
             { key: 'sleep', name: t('c_sleep'), p: pointsOf('sleep', S.sleep), note: t('n_sleep', { l: labelOf('sleep', S.sleep) }) },
@@ -299,6 +341,8 @@
         var badge = document.getElementById('qzBadge');
         badge.textContent = level;
         badge.className = 'qz-badge qz-' + cls;
+
+        if (refine) refine.hidden = mepaDone();
 
         var partial = document.getElementById('qzPartial');
         if (missing.length) {
@@ -391,6 +435,18 @@
         // й аналізи лишаються на цій сторінці та нікуди не надсилаються.
         summary = t('m_sum', { n: index, l: level.toLowerCase(), v: known.length }) + ' ' +
             rows.map(function (r) { return r.name + ': ' + (r.p === null ? '—' : r.p); }).join(' · ');
+    }
+
+    /* ---------- уточнення харчування ---------- */
+    var refine = document.getElementById('qzRefine');
+    var refineBtn = document.getElementById('qzRefineBtn');
+    if (refineBtn) {
+        refineBtn.addEventListener('click', function () { go('mepa'); });
+        document.getElementById('qzMepaBack').addEventListener('click', function () { go(questions.length); });
+        document.getElementById('qzMepaDone').addEventListener('click', function () {
+            if (!mepaDone()) return;
+            go(questions.length);
+        });
     }
 
     /* ---------- заявка ---------- */
