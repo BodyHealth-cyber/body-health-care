@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://body-health.care/health-check.html">
+    <title>Чек здоров'я за 2 хвилини | BodyHealth</title>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://body-health.care/health-check.html">
+    <meta property="og:title" content="Чек здоров'я за 2 хвилини | BodyHealth">
+    <meta property="og:description" content="Шістнадцять запитань і ваш індекс здоров'я за методикою Life's Essential 8 Американської кардіологічної асоціації. Без реєстрації, відповіді залишаються у вашому браузері.">
+    <meta property="og:site_name" content="BodyHealth">
+    <meta property="og:locale" content="uk_UA">
+    <meta property="og:image" content="https://body-health.care/img/og-card-uk.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#003d82">
+    <meta name="description" content="Шістнадцять запитань і ваш індекс здоров'я за методикою Life's Essential 8 Американської кардіологічної асоціації. Без реєстрації, відповіді залишаються у вашому браузері.">
+    <link rel="stylesheet" href="/css/style.css?v=20260916102112">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-brand">
+                    <a href="/" class="logo" aria-label="BodyHealth">
+                        <img src="/img/logo_no_bg.png" alt="BodyHealth" class="logo-img" style="height:55px;"/>
+                        <span style="margin-right:8px; margin-left:8px">BodyHealth</span>
+                    </a>
+                </div>
+
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="/services.html" class="nav-link" data-i18n="nav_services">Послуги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/for-companies.html" class="nav-link" data-i18n="nav_companies">Для компаній</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/blog.html" class="nav-link" data-i18n="nav_blog">Блог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/health-check.html" class="nav-link" data-i18n="nav_check">Чек здоров'я</a>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    <div class="language-switcher">
+                        <button class="current-lang" id="langToggle" aria-label="Мова / Language">UK</button>
+                        <ul class="lang-menu">
+                            <li><a href="#" data-lang="uk">UK</a></li>
+                            <li><a href="#" data-lang="en">EN</a></li>
+                            <li><a href="#" data-lang="ru">RU</a></li>
+                        </ul>
+                    </div>
+                    <a href="/login.html" class="btn btn-white" data-i18n="nav_login">Вхід</a>
+                    <a href="/#contact-form" class="btn btn-primary" data-i18n="nav_start">Обрати свій пакет</a>
+                </div>
+
+                <button class="nav-toggle" aria-label="Меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+    <div class="container qz-container">
+      <div class="qz" id="quiz">
+        <div class="qz-progress"><i id="qzBar"></i></div>
+        <div class="qz-pad">
+
+        <!-- ЕКРАН 0 · вступ -->
+        <section class="qz-screen" data-screen="intro">
+          <div class="qz-eyebrow"><span>BodyHealth</span><span class="qz-eyebrow-r">16 · ~2 хв</span></div>
+          <h1 class="qz-h1">Чек здоров'я за 2 хвилини</h1>
+          <p class="qz-lead">Шістнадцять запитань про те, як ви живете зараз. У відповідь — індекс за методикою Life's Essential 8 Американської кардіологічної асоціації: вісім показників, які найсильніше впливають на те, скільки років людина проживає без хвороб.</p>
+          <p class="qz-lead">Відповіді залишаються у вашому браузері. Ми нічого не надсилаємо, доки ви самі цього не попросите.</p>
+          <div class="qz-note">Це не діагноз і не заміна обстеженню. Опитувальник показує, на що звернути увагу, — рішення ухвалює лікар.</div>
+          <div class="qz-nav">
+            <span class="qz-foot">Без реєстрації</span>
+            <button type="button" class="btn btn-primary" data-qz-next>Почати</button>
+          </div>
+        </section>
+
+        <!-- 1 · стать і вік -->
+        <section class="qz-screen" data-screen="q" data-id="profile" hidden>
+          <h2 class="qz-q">Кілька слів про вас</h2>
+          <p class="qz-hint">Стать і вік потрібні, щоб порівняти ваші показники з українськими даними.</p>
+          <div class="qz-opts qz-opts-row">
+            <button type="button" class="qz-opt" data-v="f"><span>Жінка</span></button>
+            <button type="button" class="qz-opt" data-v="m"><span>Чоловік</span></button>
+          </div>
+          <div class="qz-fields">
+            <div class="qz-field">
+              <label for="qz-age">Вік, років</label>
+              <input type="number" id="qz-age" data-num="age" inputmode="numeric" min="18" max="100" placeholder="—">
+            </div>
+          </div>
+        </section>
+
+        <!-- 2 · зріст і вага -->
+        <section class="qz-screen" data-screen="q" data-id="body" hidden>
+          <h2 class="qz-q">Зріст і вага</h2>
+          <p class="qz-hint">Потрібні для індексу маси тіла.</p>
+          <div class="qz-fields">
+            <div class="qz-field">
+              <label for="qz-h">Зріст, см</label>
+              <input type="number" id="qz-h" data-num="h" inputmode="numeric" placeholder="—">
+            </div>
+            <div class="qz-field">
+              <label for="qz-w">Вага, кг</label>
+              <input type="number" id="qz-w" data-num="w" inputmode="decimal" placeholder="—">
+            </div>
+          </div>
+          <p class="qz-live" data-live="bmi"></p>
+        </section>
+
+        <!-- 3 · дні активності -->
+        <section class="qz-screen" data-screen="q" data-id="paDays" hidden>
+          <h2 class="qz-q">Скільки днів на тиждень ви маєте навантаження помірної або високої інтенсивності?</h2>
+          <p class="qz-hint">Помірне — це коли дихання пришвидшується, але ви ще можете говорити: швидка хода, велосипед, прибирання в темпі, робота в саду.</p>
+          <div class="qz-grid">
+            <button type="button" class="qz-opt qz-num" data-v="0">0</button>
+            <button type="button" class="qz-opt qz-num" data-v="1">1</button>
+            <button type="button" class="qz-opt qz-num" data-v="2">2</button>
+            <button type="button" class="qz-opt qz-num" data-v="3">3</button>
+            <button type="button" class="qz-opt qz-num" data-v="4">4</button>
+            <button type="button" class="qz-opt qz-num" data-v="5">5</button>
+            <button type="button" class="qz-opt qz-num" data-v="6">6</button>
+            <button type="button" class="qz-opt qz-num" data-v="7">7</button>
+          </div>
+        </section>
+
+        <!-- 4 · хвилини активності -->
+        <section class="qz-screen" data-screen="q" data-id="paMin" hidden>
+          <h2 class="qz-q">Скільки хвилин у такий день?</h2>
+          <p class="qz-hint">Оберіть найближче значення.</p>
+          <div class="qz-grid">
+            <button type="button" class="qz-opt qz-num" data-v="10">10</button>
+            <button type="button" class="qz-opt qz-num" data-v="20">20</button>
+            <button type="button" class="qz-opt qz-num" data-v="30">30</button>
+            <button type="button" class="qz-opt qz-num" data-v="40">40</button>
+            <button type="button" class="qz-opt qz-num" data-v="50">50</button>
+            <button type="button" class="qz-opt qz-num" data-v="60">60</button>
+            <button type="button" class="qz-opt qz-num" data-v="90">90</button>
+            <button type="button" class="qz-opt qz-num" data-v="120">120</button>
+            <button type="button" class="qz-opt qz-num" data-v="150">150+</button>
+          </div>
+          <p class="qz-live" data-live="pa"></p>
+        </section>
+
+        <!-- 5 · сон -->
+        <section class="qz-screen" data-screen="q" data-id="sleep" hidden>
+          <h2 class="qz-q">Скільки годин ви зазвичай спите на добу?</h2>
+          <p class="qz-hint">За звичайний робочий тиждень, а не в найкращу ніч.</p>
+          <div class="qz-opts">
+            <button type="button" class="qz-opt" data-v="lt4" data-p="0"><span>Менше 4 годин</span></button>
+            <button type="button" class="qz-opt" data-v="4-5" data-p="20"><span>4–5 годин</span></button>
+            <button type="button" class="qz-opt" data-v="5-6" data-p="40"><span>5–6 годин</span></button>
+            <button type="button" class="qz-opt" data-v="6-7" data-p="70"><span>6–7 годин</span></button>
+            <button type="button" class="qz-opt" data-v="7-9" data-p="100"><span>7–9 годин</span></button>
+            <button type="button" class="qz-opt" data-v="9-10" data-p="90"><span>9–10 годин</span></button>
+            <button type="button" class="qz-opt" data-v="10+" data-p="40"><span>10 годин і більше</span></button>
+          </div>
+        </section>
+
+        <!-- 6 · нікотин -->
+        <section class="qz-screen" data-screen="q" data-id="nic" hidden>
+          <h2 class="qz-q">Тютюн і нікотин</h2>
+          <p class="qz-hint">Вейпи, системи нагрівання та нікотинові пакетики рахуються так само, як сигарети.</p>
+          <div class="qz-opts">
+            <button type="button" class="qz-opt" data-v="never" data-p="100"><span>Ніколи не курив і не курила</span></button>
+            <button type="button" class="qz-opt" data-v="q5" data-p="80"><span>Кинув або кинула 5 і більше років тому</span></button>
+            <button type="button" class="qz-opt" data-v="q1" data-p="50"><span>Кинув або кинула 1–5 років тому</span></button>
+            <button type="button" class="qz-opt" data-v="q0" data-p="25"><span>Кинув або кинула менше року тому, або вейп чи нагрівач</span></button>
+            <button type="button" class="qz-opt" data-v="now" data-p="0"><span>Курю зараз</span></button>
+          </div>
+        </section>
+
+        <!-- 7 · пасивне куріння -->
+        <section class="qz-screen" data-screen="q" data-id="shs" hidden>
+          <h2 class="qz-q">Чи курить хтось у приміщенні, де ви живете?</h2>
+          <p class="qz-hint">Постійне вдихання чужого диму вдома знижує показник так само, як власна звичка.</p>
+          <div class="qz-opts qz-opts-row">
+            <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+            <button type="button" class="qz-opt" data-v="yes" data-p="-20"><span>Так</span></button>
+          </div>
+        </section>
+
+        <!-- 8–12 · харчування -->
+        <section class="qz-screen" data-screen="q" data-id="d_veg" hidden>
+          <h2 class="qz-q">Овочі та фрукти — щонайменше 5 порцій на день?</h2>
+          <p class="qz-hint">Порція — приблизно жменя або один середній плід.</p>
+          <div class="qz-opts qz-opts-row">
+            <button type="button" class="qz-opt" data-v="yes" data-p="20"><span>Так</span></button>
+            <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+          </div>
+        </section>
+
+        <section class="qz-screen" data-screen="q" data-id="d_fish" hidden>
+          <h2 class="qz-q">Риба або морепродукти — 2 і більше разів на тиждень?</h2>
+          <p class="qz-hint">Будь-яка риба, свіжа або заморожена, рахується.</p>
+          <div class="qz-opts qz-opts-row">
+            <button type="button" class="qz-opt" data-v="yes" data-p="20"><span>Так</span></button>
+            <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+          </div>
+        </section>
+
+        <section class="qz-screen" data-screen="q" data-id="d_grain" hidden>
+          <h2 class="qz-q">Цільнозернові щодня — вівсянка, гречка, бурий рис, хліб із цільного борошна?</h2>
+          <p class="qz-hint">Білий хліб, манка та біла паста сюди не належать.</p>
+          <div class="qz-opts qz-opts-row">
+            <button type="button" class="qz-opt" data-v="yes" data-p="20"><span>Так</span></button>
+            <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+          </div>
+        </section>
+
+        <section class="qz-screen" data-screen="q" data-id="d_sugar" hidden>
+          <h2 class="qz-q">Солодкі напої — обходитесь без них або не більше однієї склянки на тиждень?</h2>
+          <p class="qz-hint">Соки, солодка газована вода, енергетики, кава з сиропом.</p>
+          <div class="qz-opts qz-opts-row">
+            <button type="button" class="qz-opt" data-v="yes" data-p="20"><span>Так</span></button>
+            <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+          </div>
+        </section>
+
+        <section class="qz-screen" data-screen="q" data-id="d_meat" hidden>
+          <h2 class="qz-q">Перероблене м'ясо — не більше 2 разів на тиждень?</h2>
+          <p class="qz-hint">Ковбаса, сосиски, шинка, бекон.</p>
+          <div class="qz-opts qz-opts-row">
+            <button type="button" class="qz-opt" data-v="yes" data-p="20"><span>Так</span></button>
+            <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
+          </div>
+        </section>
+
+        <!-- 13 · тиск -->
+        <section class="qz-screen" data-screen="q" data-id="bp" hidden>
+          <h2 class="qz-q">Артеріальний тиск</h2>
+          <p class="qz-hint">Якщо не знаєте — так і скажіть. Це нормальна відповідь, і вона теж інформативна.</p>
+          <div class="qz-opts">
+            <button type="button" class="qz-opt" data-v="know"><span>Знаю свої цифри</span></button>
+            <button type="button" class="qz-opt" data-v="med"><span>Знаю, що підвищений — приймаю ліки</span></button>
+            <button type="button" class="qz-opt" data-v="no"><span>Не знаю</span></button>
+          </div>
+          <div class="qz-fields" data-reveal="know med" hidden>
+            <div class="qz-field">
+              <label for="qz-sys">Верхній, систолічний</label>
+              <input type="number" id="qz-sys" data-num="sys" inputmode="numeric" placeholder="120">
+            </div>
+            <div class="qz-field">
+              <label for="qz-dia">Нижній, діастолічний</label>
+              <input type="number" id="qz-dia" data-num="dia" inputmode="numeric" placeholder="80">
+            </div>
+          </div>
+        </section>
+
+        <!-- 14 · холестерин -->
+        <section class="qz-screen" data-screen="q" data-id="lip" hidden>
+          <h2 class="qz-q">Холестерин</h2>
+          <p class="qz-hint">Значення з останнього ліпідного профілю. Індекс рахує не-ЛПВЩ холестерин: загальний мінус ЛПВЩ.</p>
+          <div class="qz-opts">
+            <button type="button" class="qz-opt" data-v="full"><span>Знаю загальний холестерин і ЛПВЩ</span></button>
+            <button type="button" class="qz-opt" data-v="total"><span>Знаю лише загальний холестерин</span></button>
+            <button type="button" class="qz-opt" data-v="med"><span>Приймаю статини</span></button>
+            <button type="button" class="qz-opt" data-v="no"><span>Не знаю</span></button>
+          </div>
+          <div class="qz-fields" data-reveal="full total med" hidden>
+            <div class="qz-field">
+              <label for="qz-tc">Загальний, ммоль/л</label>
+              <input type="number" id="qz-tc" data-num="tc" step="0.1" inputmode="decimal" placeholder="5,0">
+            </div>
+            <div class="qz-field" data-reveal="full" hidden>
+              <label for="qz-hdl">ЛПВЩ, ммоль/л</label>
+              <input type="number" id="qz-hdl" data-num="hdl" step="0.1" inputmode="decimal" placeholder="1,3">
+            </div>
+          </div>
+        </section>
+
+        <!-- 15 · цукор -->
+        <section class="qz-screen" data-screen="q" data-id="glu" hidden>
+          <h2 class="qz-q">Цукор крові</h2>
+          <p class="qz-hint">Глюкоза натще або глікований гемоглобін HbA1c з останнього аналізу.</p>
+          <div class="qz-opts">
+            <button type="button" class="qz-opt" data-v="norm" data-p="100"><span>У межах норми</span></button>
+            <button type="button" class="qz-opt" data-v="pre" data-p="60"><span>Предіабет, HbA1c 5,7–6,4 %</span></button>
+            <button type="button" class="qz-opt" data-v="d7" data-p="40"><span>Діабет, HbA1c до 7 %</span></button>
+            <button type="button" class="qz-opt" data-v="d79" data-p="30"><span>Діабет, HbA1c 7–7,9 %</span></button>
+            <button type="button" class="qz-opt" data-v="d89" data-p="20"><span>Діабет, HbA1c 8–8,9 %</span></button>
+            <button type="button" class="qz-opt" data-v="d99" data-p="10"><span>Діабет, HbA1c 9–9,9 %</span></button>
+            <button type="button" class="qz-opt" data-v="d10" data-p="0"><span>Діабет, HbA1c 10 % і вище</span></button>
+            <button type="button" class="qz-opt" data-v="no"><span>Не знаю</span></button>
+          </div>
+        </section>
+
+        <!-- 16 · самооцінка -->
+        <section class="qz-screen" data-screen="q" data-id="srh" hidden>
+          <h2 class="qz-q">Як ви оцінюєте своє здоров'я загалом?</h2>
+          <p class="qz-hint">Одне це запитання — один із найсильніших відомих предикторів у популяційних дослідженнях. Відповідайте першим відчуттям.</p>
+          <div class="qz-opts">
+            <button type="button" class="qz-opt" data-v="5"><span>Відмінне</span></button>
+            <button type="button" class="qz-opt" data-v="4"><span>Дуже добре</span></button>
+            <button type="button" class="qz-opt" data-v="3"><span>Добре</span></button>
+            <button type="button" class="qz-opt" data-v="2"><span>Задовільне</span></button>
+            <button type="button" class="qz-opt" data-v="1"><span>Погане</span></button>
+          </div>
+        </section>
+
+        <!-- РЕЗУЛЬТАТ -->
+        <section class="qz-screen" data-screen="result" hidden>
+          <div class="qz-eyebrow"><span>Результат</span><span class="qz-eyebrow-r">Life's Essential 8 · AHA 2022</span></div>
+          <div class="qz-score">
+            <span class="qz-num" id="qzScore">—</span>
+            <span class="qz-den">/ 100</span>
+            <span class="qz-badge" id="qzBadge"></span>
+          </div>
+          <div class="qz-partial" id="qzPartial" hidden></div>
+
+          <div class="qz-sect">
+            <h3 class="qz-sect-h">Вісім показників</h3>
+            <table class="qz-table">
+              <thead><tr><th>Показник</th><th class="qz-r">Бали</th></tr></thead>
+              <tbody id="qzRows"></tbody>
+            </table>
+          </div>
+
+          <div class="qz-sect">
+            <h3 class="qz-sect-h">Три найближчі кроки</h3>
+            <ol class="qz-steps" id="qzSteps"></ol>
+          </div>
+
+          <div class="qz-sect">
+            <h3 class="qz-sect-h">Для порівняння · Україна, дослідження ВООЗ STEPS 2019</h3>
+            <div class="qz-bench" id="qzBench"></div>
+          </div>
+
+          <div class="qz-note qz-note-lg">
+            <strong>Це не діагноз.</strong> Індекс Life's Essential 8 описує стан здоров'я та спосіб життя, а не наявність хвороби, і не замінює обстеження. У людей з індексом 80 і вище очікувана тривалість життя у 50 років приблизно на 8 років більша, ніж у людей з індексом нижче 50, — але це статистика по групах, а не прогноз для конкретної людини. Що означають ваші цифри, скаже лікар.
+          </div>
+
+          <div class="qz-sect qz-cta">
+            <h3 class="qz-sect-h">Отримати розбір</h3>
+            <p class="qz-lead">Надішлемо цей результат на пошту разом із поясненням, що означає кожен показник, і запропонуємо час для безкоштовної розмови з координатором.</p>
+            <form class="contact-form contact-form--compact" id="quizForm" data-endpoint="/api/enquiry">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="qz-name">Ім'я *</label>
+                  <input type="text" id="qz-name" name="firstName" placeholder="Ваше ім'я" required>
+                </div>
+                <div class="form-group">
+                  <label for="qz-email">Email *</label>
+                  <input type="email" id="qz-email" name="email" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="qz-phone">Телефон</label>
+                <input type="tel" id="qz-phone" name="phone" placeholder="+380 XX XXX XX XX">
+              </div>
+              <div class="form-group checkbox-group">
+                <input type="checkbox" id="qz-consent" name="consent" required>
+                <label for="qz-consent">Погоджуюсь на обробку вказаних мною даних про здоров'я з метою підготовки розбору. Згоду можна відкликати в будь-який момент *</label>
+              </div>
+              <div class="form-group checkbox-group">
+                <input type="checkbox" id="qz-privacy" name="privacy" required>
+                <label for="qz-privacy">Я погоджуюсь з <a href="/privacy.html" target="_blank">політикою конфіденційності</a> та обробкою персональних даних *</label>
+              </div>
+              <div class="form-submit">
+                <button type="submit" class="btn btn-primary btn-large">Отримати розбір</button>
+                <p class="form-reassure">Надсилаються лише ваші контакти та підсумкові бали. Відповіді на окремі запитання залишаються у браузері.</p>
+              </div>
+            </form>
+            <p class="qz-foot qz-sources">Джерела: Lloyd-Jones та ін., Life's Essential 8, Circulation 2022 · Exercise Vital Sign, Am J Prev Med 2021 · ВООЗ STEPS Україна 2019 · NHANES і UK Biobank, AHA 2023</p>
+          </div>
+        </section>
+
+        <!-- Навігація між запитаннями -->
+        <div class="qz-nav" id="qzNav" hidden>
+          <button type="button" class="btn btn-outline" id="qzBack">Назад</button>
+          <span class="qz-count" id="qzCount"></span>
+          <button type="button" class="btn btn-primary" id="qzNext" disabled>Далі</button>
+        </div>
+
+        </div>
+      </div>
+
+      <!-- Рядки, які збираються під час підрахунку. Живуть у розмітці, а не в
+           скрипті, щоб складальник локалей перекладав їх, як будь-який текст
+           сторінки. {n}, {v} і {l} підставляються під час показу результату. -->
+      <div class="qz-strings" hidden aria-hidden="true">
+        <span data-t="cnt">Запитання {n} з 16</span>
+        <span data-t="bmi_live">Індекс маси тіла: {v}</span>
+        <span data-t="pa_live">Разом виходить {n} хв на тиждень. Рекомендація ВООЗ — щонайменше 150.</span>
+        <span data-t="lvl_hi">Високий рівень</span>
+        <span data-t="lvl_mid">Середній рівень</span>
+        <span data-t="lvl_low">Низький рівень</span>
+        <span data-t="partial">Попередній результат: {n} показників із 8. Не виміряно: {l}. Це саме та половина картини, яку не видно з дому.</span>
+        <span data-t="c_diet">Харчування</span>
+        <span data-t="c_pa">Рух</span>
+        <span data-t="c_nic">Нікотин</span>
+        <span data-t="c_sleep">Сон</span>
+        <span data-t="c_bmi">Вага</span>
+        <span data-t="c_lip">Холестерин</span>
+        <span data-t="c_glu">Цукор крові</span>
+        <span data-t="c_bp">Тиск</span>
+        <span data-t="u_lip">ліпідний профіль</span>
+        <span data-t="u_glu">HbA1c</span>
+        <span data-t="u_bp">тиск</span>
+        <span data-t="n_none">не виміряно</span>
+        <span data-t="n_diet">приблизна оцінка за п'ятьма ознаками</span>
+        <span data-t="n_pa">{n} хв на тиждень · норма ВООЗ ≥150</span>
+        <span data-t="n_shs">мінус 20 за куріння в домі</span>
+        <span data-t="n_sleep">{l} · оптимум 7–9</span>
+        <span data-t="n_bmi">ІМТ {v}</span>
+        <span data-t="n_lip">не-ЛПВЩ {v} ммоль/л</span>
+        <span data-t="n_lip_approx">ЛПВЩ прийнято 1,3</span>
+        <span data-t="n_med">мінус 20 на терапії</span>
+        <span data-t="n_pts">{n} балів</span>
+        <span data-t="a_diet">Розібрати щоденний раціон із дієтологом — почати з овочів і цільнозернових, це найдешевший крок.</span>
+        <span data-t="a_pa">Додати дві-три прогулянки по 30 хвилин у темпі, за якого важко співати. Ціль — 150 хвилин на тиждень.</span>
+        <span data-t="a_nic">Обговорити з лікарем план відмови. Через п'ять років без куріння показник повертається майже до вихідного.</span>
+        <span data-t="a_sleep">Сон 7–9 годин — єдиний показник, який відчутно змінюється за тиждень. Почати з фіксованого часу підйому.</span>
+        <span data-t="a_bmi">Вага рухається слідом за харчуванням і сном, а не сама по собі. Потрібен вимір складу тіла, а не лише цифра на вагах.</span>
+        <span data-t="a_lip">Здати ліпідний профіль і показати його лікарю — не-ЛПВЩ холестерин важливіший за загальний.</span>
+        <span data-t="a_glu">Здати HbA1c. Предіабет роками не має симптомів і саме на цьому етапі оборотний.</span>
+        <span data-t="a_bp">Виміряти тиск сім днів поспіль вранці та ввечері й принести записи лікарю.</span>
+        <span data-t="b_bmi_ok">українців мають надлишкову вагу — ви не серед них</span>
+        <span data-t="b_bmi_no">українців мають індекс маси тіла 25 і вище — ви серед них</span>
+        <span data-t="b_veg_ok">українців їдять менше 5 порцій овочів і фруктів на день — ви серед решти 34 %</span>
+        <span data-t="b_veg_no">українців їдять менше 5 порцій овочів і фруктів на день — ви серед них</span>
+        <span data-t="b_nic_ok">дорослих в Україні курять — ви не серед них</span>
+        <span data-t="b_nic_no">дорослих в Україні курять — ви серед них</span>
+        <span data-t="b_bp">дорослих в Україні мають підвищений тиск, і більшість про це не знає</span>
+        <span data-t="m_subject">Чек здоров'я за 2 хвилини</span>
+        <span data-t="m_sum">Індекс Life's Essential 8: {n} із 100, {l}. Пораховано показників: {v} із 8.</span>
+        <span data-t="m_consent">Спочатку позначте обидві згоди.</span>
+        <span data-t="m_turnstile">Перевірка не пройдена. Оновіть сторінку і спробуйте ще раз.</span>
+        <span data-t="m_sending">Надсилаємо…</span>
+        <span data-t="m_ok">Дякуємо! Розбір надішлемо на вказану пошту, а координатор запропонує час для розмови.</span>
+        <span data-t="m_err">Помилка при відправці. Спробуйте ще раз або напишіть нам напряму.</span>
+      </div>
+    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <a href="/" class="logo" aria-label="BodyHealth">
+                            <img src="/img/logo_no_bg.png" alt="BodyHealth" style="height:40px; filter:brightness(0) invert(1);"/>
+                            <span style="margin-left:8px; color:#fff; font-weight:600;">BodyHealth</span>
+                        </a>
+                        <div class="footer-links">
+                            <button type="button" class="footer-link fl-phone" data-contact-open aria-haspopup="dialog">
+                                <span class="fl-icon"><i class="fas fa-phone"></i></span>
+                                <span data-i18n="footer_cta_call_sub">Зв'язатись зараз</span>
+                            </button>
+                            <a href="https://apps.apple.com/us/app/healthie/id1112029170" target="_blank" rel="noopener" class="footer-link fl-apple">
+                                <span class="fl-icon"><i class="fab fa-apple"></i></span>
+                                <span>App Store</span>
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.healthie.app.healthie" target="_blank" rel="noopener" class="footer-link fl-gp">
+                                <span class="fl-icon"><i class="fab fa-google-play"></i></span>
+                                <span>Google Play</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-i18n="footer_services">Послуги</h4>
+                    <ul>
+                        <li><a href="/services/healthcare.html">Personal Care</a></li>
+                        <li><a href="/services/ambulance.html">Integrated Care</a></li>
+                        <li><a href="/services/checkup.html">HealthCheckup</a></li>
+                        <li><a href="/health-check.html">Чек здоров'я за 2 хвилини</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-i18n="footer_company">Компанія</h4>
+                    <ul>
+                        <li><a href="/for-companies.html" data-i18n="footer_companies">Для компаній</a></li>
+                        <li><a href="/blog.html" data-i18n="footer_blog">Блог</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-i18n="footer_support">Підтримка</h4>
+                    <ul>
+                        <li><a href="/privacy.html" data-i18n="footer_privacy">Політика конфіденційності</a></li>
+                        <li><a href="/terms-and-conditions.html" data-i18n="footer_terms">Умови та положення</a></li>
+                        <li><a href="/refund-policy.html" data-i18n="footer_refund">Політика повернення коштів</a></li>
+                        <li><a href="/legal-archive.html" data-i18n="footer_archive">Архів редакцій</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <p data-i18n="footer_legal">&copy; 2024–2026 BodyHealth. Всі права захищені.</p>
+                    <p data-i18n="footer_compliance">Медичні дані захищені шифруванням та лікарською таємницею відповідно до законодавства України.</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/company/bodyhealthcare" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/bodyhealth.ukraine" class="social-link" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/bodyhealthcare" class="social-link" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js?v=20260916102112"></script>
+    <script src="/js/quiz.js?v=20260916102112"></script>
+
+    <div class="float-contacts">
+        <a href="https://t.me/bodyhealthclinic" target="_blank" rel="noopener" class="float-btn float-tg" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://wa.me/380981501498" target="_blank" rel="noopener" class="float-btn float-wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <div class="enquiry-backdrop" id="enquiryDialog" hidden role="dialog" aria-modal="true" aria-labelledby="enquiryTitle">
+      <div class="enquiry-panel">
+        <button type="button" class="enquiry-close" data-enquiry-close aria-label="Закрити" data-i18n-aria="aria_close">&times;</button>
+        <p class="enquiry-title" id="enquiryTitle" data-i18n="form_title">Залишити заявку</p>
+        <p class="enquiry-sub" data-i18n="form_sub">Координатор зв'яжеться з вами протягом робочого дня.</p>
+        <form class="contact-form contact-form--compact" id="contactFormModal" data-endpoint="/api/enquiry">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName-m" data-i18n="label_fname">Ім'я *</label>
+              <input type="text" id="firstName-m" name="firstName" data-i18n-placeholder="ph_fname" placeholder="Ваше ім'я" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName-m" data-i18n="label_lname">Прізвище *</label>
+              <input type="text" id="lastName-m" name="lastName" data-i18n-placeholder="ph_lname" placeholder="Ваше прізвище" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email-m" data-i18n="label_email">Email *</label>
+              <input type="email" id="email-m" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone-m" data-i18n="label_phone_req">Телефон *</label>
+              <input type="tel" id="phone-m" name="phone" required data-i18n-placeholder="ph_phone" placeholder="+380 XX XXX XX XX">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="service-m" data-i18n="label_service">Послуга, що цікавить *</label>
+            <select id="service-m" name="service" required>
+              <option value="" disabled selected hidden data-i18n="opt_select">Оберіть послугу</option>
+              <option value="personal-care" data-i18n="opt_pc">Personal Care — ваш спеціаліст і команда лікарів</option>
+              <option value="integrated-care" data-i18n="opt_ic">Integrated Care — для хронічних і складних станів</option>
+              <option value="checkup" data-i18n="opt_ch">HealthCheckup — разова оцінка стану здоров'я</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message-m" data-i18n="label_message">Додаткова інформація</label>
+            <textarea id="message-m" name="message" rows="3" data-i18n-placeholder="ph_message" placeholder="Розкажіть про свої потреби або поставте запитання"></textarea>
+          </div>
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="privacy-m" name="privacy" required>
+            <label for="privacy-m" data-i18n-html="label_privacy">Я погоджуюсь з <a href="/privacy.html" target="_blank">політикою конфіденційності</a> та обробкою персональних даних *</label>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary btn-large" data-i18n="btn_submit">Записатись на безкоштовну розмову</button>
+            <p class="form-reassure" data-i18n="form_reassure">Перша розмова — щоб зрозуміти, з чого почати</p>
+          </div>
+        </form>
+      </div>
+    </div>
+</body>
+
+</html>

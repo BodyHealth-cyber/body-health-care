@@ -14,7 +14,7 @@ import re
 import sys
 
 DIST = 'dist'
-ASSETS = ['css/style.css', 'js/main.js']
+ASSETS = ['css/style.css', 'js/main.js', 'js/quiz.js']
 
 
 def fingerprint(path):
@@ -51,8 +51,8 @@ def main():
                     fh.write(text)
                 changed += 1
 
-    print('assets: %s -> ?v=%s, %s -> ?v=%s, страниц обновлено: %d'
-          % (ASSETS[0], stamps[ASSETS[0]], ASSETS[1], stamps[ASSETS[1]], changed))
+    print('assets: %s, страниц обновлено: %d'
+          % (', '.join('%s -> ?v=%s' % (rel, stamps[rel]) for rel in ASSETS), changed))
     return 0
 
 

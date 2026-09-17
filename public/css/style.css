@@ -6438,3 +6438,158 @@ button.footer-link {
     min-height: 0;
     margin: 0;
 }
+
+/* ===== ЧЕК ЗДОРОВ'Я ЗА 2 ХВИЛИНИ =====
+   Опитувальник живе на окремій сторінці /health-check.html. Класи з префіксом
+   qz-, щоб нічого не зачепити в решті сайту. Кольори — ті самі, що й у макеті:
+   фірмовий #003d82, стани — зелений / бурштиновий / цегляний. */
+.qz-container { max-width: 760px; padding-block: 2.5rem 4rem; }
+
+.qz {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.qz-progress { height: 3px; background: #e2e8f0; position: relative; }
+.qz-progress i {
+    position: absolute; inset: 0 auto 0 0; width: 0;
+    background: #003d82; transition: width .25s ease;
+}
+.qz-pad { padding: 2rem 2rem 1.5rem; }
+@media (max-width: 560px) { .qz-pad { padding: 1.5rem 1.15rem 1.25rem; } }
+
+.qz-eyebrow {
+    display: flex; justify-content: space-between; gap: 1rem;
+    font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    color: #7c8b99; margin-bottom: 1rem;
+}
+.qz-h1 { font-size: 1.85rem; line-height: 1.22; margin-bottom: 1rem; }
+.qz-q {
+    font-size: 1.28rem; line-height: 1.32; font-weight: 600;
+    color: #1a1a1a; margin-bottom: 0.35rem;
+}
+.qz-hint { font-size: 0.87rem; color: #5a6b7c; margin-bottom: 1.1rem; }
+.qz-lead { font-size: 0.98rem; color: #4a5a6a; margin-bottom: 0.9rem; }
+.qz-live { font-size: 0.87rem; color: #003d82; margin: 0.9rem 0 0; min-height: 1.2rem; }
+.qz-foot { font-size: 0.78rem; color: #7c8b99; }
+
+.qz-note {
+    border: 1px solid #e2e8f0; background: #f7f9fb; border-radius: 8px;
+    padding: 0.85rem 0.95rem; font-size: 0.83rem; color: #4a5a6a; line-height: 1.55;
+}
+.qz-note-lg { margin-top: 1.75rem; font-size: 0.85rem; }
+.qz-note strong { color: #1a1a1a; }
+
+.qz-opts { display: flex; flex-direction: column; gap: 0.5rem; }
+.qz-opts-row { flex-direction: row; flex-wrap: wrap; }
+.qz-opts-row .qz-opt { flex: 1 1 140px; }
+.qz-opt {
+    display: block; width: 100%; text-align: left; font: inherit;
+    font-size: 0.95rem; color: #1a1a1a; background: #f7f9fb;
+    border: 1px solid #e2e8f0; border-radius: 8px;
+    padding: 0.8rem 0.9rem; cursor: pointer;
+    transition: border-color .12s ease, background-color .12s ease;
+}
+.qz-opt:hover { border-color: #b9c6d3; }
+.qz-opt[aria-pressed="true"] {
+    border-color: #003d82; background: #eaf0f8; font-weight: 500;
+}
+.qz-opt:focus-visible { outline: 2px solid #003d82; outline-offset: 2px; }
+
+.qz-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+@media (max-width: 420px) { .qz-grid { grid-template-columns: repeat(3, 1fr); } }
+.qz-num { text-align: center; font-variant-numeric: tabular-nums; padding: 0.9rem 0.25rem; }
+
+.qz-fields { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem; }
+.qz-field { flex: 1 1 150px; min-width: 0; }
+.qz-field label {
+    display: block; font-size: 0.72rem; letter-spacing: 0.05em;
+    text-transform: uppercase; color: #7c8b99; margin-bottom: 0.35rem;
+}
+.qz-field input {
+    width: 100%; font: inherit; font-size: 1.05rem; color: #1a1a1a;
+    background: #f7f9fb; border: 1px solid #e2e8f0; border-radius: 8px;
+    padding: 0.65rem 0.75rem; font-variant-numeric: tabular-nums;
+}
+.qz-field input:focus-visible { outline: 2px solid #003d82; outline-offset: 1px; }
+
+.qz-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 0.75rem; margin-top: 1.5rem;
+}
+.qz-count { font-size: 0.78rem; color: #7c8b99; font-variant-numeric: tabular-nums; }
+
+/* ---- результат ---- */
+.qz-score { display: flex; align-items: flex-end; gap: 0.9rem; flex-wrap: wrap; }
+.qz-num-big { font-variant-numeric: tabular-nums; }
+.qz-score .qz-num {
+    font-size: 3.9rem; font-weight: 700; line-height: 0.9;
+    letter-spacing: -0.03em; font-variant-numeric: tabular-nums;
+}
+.qz-score .qz-den { font-size: 1.1rem; color: #7c8b99; padding-bottom: 0.4rem; }
+.qz-badge {
+    margin-left: auto; font-size: 0.68rem; letter-spacing: 0.08em;
+    text-transform: uppercase; border: 1px solid currentColor;
+    border-radius: 8px; padding: 0.25rem 0.6rem; white-space: nowrap;
+}
+.qz-partial {
+    margin-top: 1rem; font-size: 0.87rem; color: #4a5a6a; line-height: 1.55;
+    border-left: 3px solid #a8720a; padding: 0.5rem 0 0.5rem 0.8rem;
+}
+.qz-partial strong { color: #1a1a1a; }
+
+.qz-sect { margin-top: 1.9rem; }
+.qz-sect-h {
+    font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    color: #7c8b99; font-weight: 500; margin-bottom: 0.8rem;
+}
+.qz-table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+.qz-table th {
+    text-align: left; font-size: 0.66rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: #7c8b99; font-weight: 500;
+    padding: 0 0 0.5rem;
+}
+.qz-table th.qz-r, .qz-table td.qz-r { text-align: right; }
+.qz-table td {
+    padding: 0.7rem 0; border-top: 1px solid #e9eef3; vertical-align: middle;
+}
+.qz-table td.qz-r { font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 600; }
+.qz-cname { font-weight: 500; color: #1a1a1a; }
+.qz-cnote { font-size: 0.78rem; color: #7c8b99; }
+.qz-bar {
+    display: block; height: 4px; border-radius: 2px;
+    background: #e9eef3; margin-top: 0.45rem; overflow: hidden;
+}
+.qz-bar i { display: block; height: 100%; border-radius: 2px; }
+
+.qz-steps { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; margin: 0; padding: 0; }
+.qz-steps li { display: flex; gap: 0.7rem; font-size: 0.95rem; color: #333; align-items: flex-start; }
+.qz-steps .qz-n {
+    font-size: 0.75rem; color: #003d82; border: 1px solid #c2cdd8;
+    border-radius: 8px; padding: 0.1rem 0.45rem; flex: 0 0 auto; margin-top: 0.15rem;
+    font-variant-numeric: tabular-nums;
+}
+.qz-steps strong { color: #1a1a1a; }
+
+.qz-bench { display: flex; flex-direction: column; gap: 0.55rem; }
+.qz-bench div { font-size: 0.92rem; color: #4a5a6a; display: flex; gap: 0.6rem; align-items: baseline; }
+.qz-bench b { color: #1a1a1a; font-weight: 600; flex: 0 0 auto; font-variant-numeric: tabular-nums; }
+
+.qz-cta .contact-form { margin-top: 1rem; }
+.qz-sources { display: block; margin-top: 1.25rem; line-height: 1.7; }
+
+.qz-good { color: #1f7a4d; }
+.qz-mid  { color: #a8720a; }
+.qz-low  { color: #b23b3b; }
+.qz-none { color: #9aa7b4; }
+.qz-bar .qz-fill-good { background: #1f7a4d; }
+.qz-bar .qz-fill-mid  { background: #a8720a; }
+.qz-bar .qz-fill-low  { background: #b23b3b; }
+.qz-bar .qz-fill-none { background: #e9eef3; }
+
+/* .qz-nav и .qz-fields объявлены как display:flex, а это правило сильнее, чем
+   браузерное [hidden]{display:none}. Без строки ниже кнопки «Назад/Далі»
+   остаются на экране результата, а поля ввода тиска и холестерина видны ещё
+   до того, как человек выбрал, знает ли он свои цифры. */
+.qz [hidden] { display: none !important; }
