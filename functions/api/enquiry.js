@@ -132,17 +132,47 @@ function esc(v) {
 const TITLES = {
     client: '🩺 Нова заявка з сайту',
     b2b: '🏢 Заявка від компанії',
+    newsletter: '✉️ Підписка на розсилку',
 };
+
+// Откуда пришла заявка — администратору это первое, что нужно знать.
+const SOURCES = {
+    '/health-check': 'Індекс здоров\'я',
+    '/for-companies': 'Сторінка для компаній',
+    '/blog': 'Блог',
+    '/services': 'Послуги',
+    '/': 'Головна',
+};
+
+function sourceLabel(url) {
+    if (!url) return '';
+    let path = '';
+    try { path = new URL(url).pathname.replace(/\.html$/, '').replace(/\/+$/, '') || '/'; }
+    catch (e) { return ''; }
+    return SOURCES[path] || path;
+}
+
+function kyivTime(iso) {
+    const d = iso ? new Date(iso) : new Date();
+    if (isNaN(d.getTime())) return '';
+    try {
+        return new Intl.DateTimeFormat('uk-UA', {
+            timeZone: 'Europe/Kyiv', day: '2-digit', month: '2-digit', year: 'numeric',
+            hour: '2-digit', minute: '2-digit',
+        }).format(d);
+    } catch (e) { return d.toISOString(); }
+}
 
 async function notifyTelegram(env, payload) {
     if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) return;
 
-    // Подписка на рассылку — не заявка, звонить по ней некому.
     const type = payload.form_type || 'client';
-    if (type === 'newsletter') return;
 
     const name = [payload.first_name, payload.last_name]
         .filter((v) => v && v !== '—').join(' ').trim();
+
+    const where = sourceLabel(payload.source_page);
+    const when = payload.submitted_at || kyivTime(payload.timestamp);
 
     const lines = [];
     lines.push('<b>' + esc(TITLES[type] || TITLES.client) + '</b>');
@@ -150,11 +180,14 @@ async function notifyTelegram(env, payload) {
     lines.push('');
     if (name) lines.push("Ім'я: <b>" + esc(name) + '</b>');
     if (payload.company) lines.push('Компанія: ' + esc(payload.company));
-    if (payload.phone && payload.phone !== '—') lines.push('Телефон: ' + esc(payload.phone));
+    if (payload.phone && payload.phone !== '—') lines.push('Телефон: <b>' + esc(payload.phone) + '</b>');
     if (payload.email) lines.push('Пошта: ' + esc(payload.email));
-    if (payload.submitted_at) lines.push('Час: ' + esc(payload.submitted_at));
+    if (where) lines.push('Звідки: ' + esc(where));
+    if (when) lines.push('Час: ' + esc(when));
     lines.push('');
-    lines.push('Деталі — у пошті info@body-health.care та в таблиці заявок.');
+    lines.push(type === 'newsletter'
+        ? 'Це підписка на розсилку, не заявка на консультацію.'
+        : 'Деталі — у пошті info@body-health.care та в таблиці заявок.');
 
     try {
         const res = await fetch(
