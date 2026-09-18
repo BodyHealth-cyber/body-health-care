@@ -1550,5 +1550,7 @@
   "Заявку надіслано": "Request sent",
   "Лист із розбором уже йде на Вашу пошту. Координатор зв'яжеться протягом 24 годин у робочі дні.": "The email with your breakdown is already on its way. A coordinator will be in touch within 24 hours on working days.",
   "Якщо листа немає за кілька хвилин — подивіться в теці «Спам».": "If it hasn't arrived within a few minutes, check your Spam folder.",
-  "Подивитись пакети": "See the packages"
+  "Подивитись пакети": "See the packages",
+  "Зберегти результат": "Save the result",
+  "Відкриється вікно друку — оберіть «Зберегти як PDF».": "A print window will open — choose “Save as PDF”."
 }

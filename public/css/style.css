@@ -6724,3 +6724,22 @@ body { overflow-wrap: break-word; }
 .qz-done-hint { font-size: 0.85rem; color: #7c8b99; margin: 0.6rem 0 1.4rem; }
 .qz-done-btns { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; }
 .qz-done-btns .btn { flex: 0 1 auto; }
+
+/* ---- друк результату квізу ---- */
+@media print {
+    header.header, footer, .footer,
+    .float-contacts, .float-btn, .scroll-top, .back-to-top,
+    .cookie-banner, .notification, .notification-container,
+    main > *:not(.qz-container) { display: none !important; }
+    .qz-container > *:not(.qz) { display: none !important; }
+    .qz-cta, .qz-done, .qz-progress, .qz-nav, .qz-refine { display: none !important; }
+    .qz-screen[hidden] { display: none !important; }
+    .qz { border: 0; box-shadow: none; padding: 0; max-width: none; }
+    .qz-container { padding: 0 !important; margin: 0 !important; }
+    main { padding-top: 0 !important; margin-top: 0 !important; }
+    .qz-sect { page-break-inside: avoid; }
+    .qz-table { width: 100%; }
+    a[href]::after { content: ""; }
+    .qz-note, .qz-foot, .qz-hint { color: #333 !important; }
+    body { background: #fff !important; }
+}

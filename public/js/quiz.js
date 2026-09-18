@@ -291,6 +291,11 @@
         go(idx <= 0 ? -1 : step(idx, -1));
     });
 
+    /* Зберегти результат — вікном друку браузера: жодної бібліотеки,
+       жодних даних про здоров'я нікуди не йде, файл робить сам браузер. */
+    var printBtn = document.getElementById('qzPrint');
+    if (printBtn) printBtn.addEventListener('click', function () { window.print(); });
+
     /* ---------- підрахунок ---------- */
     function nicotinePoints() {
         var base = pointsOf('nic', S.nic);
