@@ -531,7 +531,7 @@ a:hover {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -626,7 +626,7 @@ a:hover {
 
 .steps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -665,7 +665,7 @@ a:hover {
 
 .evidence-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 2rem;
     margin-bottom: 4rem;
 }
@@ -729,7 +729,7 @@ a:hover {
 
 .partner-types {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -1375,7 +1375,7 @@ a:hover {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -1436,7 +1436,7 @@ a:hover {
 
 .audience-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -1475,7 +1475,7 @@ a:hover {
 
 .process-steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -1627,7 +1627,7 @@ a:hover {
 
 .stories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -1672,7 +1672,7 @@ a:hover {
 
 .checkup-process {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 2rem;
     margin-bottom: 4rem;
 }
@@ -2020,7 +2020,7 @@ a:hover {
 
 .programs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -2141,7 +2141,7 @@ a:hover {
 
 .roi-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -2246,7 +2246,7 @@ a:hover {
 
 .cases-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -2389,7 +2389,7 @@ a:hover {
 
 .goals-checkboxes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
     gap: 1rem;
     margin-top: 0.5rem;
 }
@@ -2691,7 +2691,7 @@ a:hover {
 
 .posts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -3190,7 +3190,7 @@ a:hover {
 
 .lifestyle-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 2rem;
     margin: 2rem 0;
 }
@@ -3445,7 +3445,7 @@ a:hover {
 
 .related-articles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -3520,7 +3520,7 @@ a:hover {
 
 .blog-posts-preview {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -3949,7 +3949,7 @@ a:hover {
 
 .monitoring-features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 2rem;
     margin-bottom: 4rem;
     position: relative;
@@ -5690,7 +5690,7 @@ button.footer-link {
 .compare-note a{color:#003d82}
 
 .services-choose{padding:64px 0;background:#f8f9fa}
-.choose-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:20px}
+.choose-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(272px, 100%), 1fr));gap:20px}
 .choose-card{background:#fff;border:1px solid #e5e5e5;border-radius:10px;padding:26px 24px}
 .choose-num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:#003d82;color:#fff;font-weight:700;font-size:.92rem;margin-bottom:14px}
 .choose-card h3{font-size:1.1rem;color:#1a1a1a;margin:0 0 10px}
@@ -6621,3 +6621,71 @@ button.footer-link {
 .qz-band p:last-of-type { font-size: 0.95rem; color: #5a6b7c; margin-bottom: 0; max-width: 60ch; }
 .qz-band .btn { flex: 0 0 auto; }
 @media (max-width: 640px) { .qz-band { padding: 2rem 0; } .qz-band h2 { font-size: 1.35rem; } }
+
+/* ===== СЕТКИ НА ПРОМЕЖУТОЧНЫХ ШИРИНАХ =====
+   auto-fit сам решает, сколько колонок помещается, и на окне «между» телефоном и
+   полным экраном раскладывал три карточки в две колонки, а четыре — в три. Последний
+   ряд оставался с дырой: три шага в ряд, четвёртый один под ними. Ровно это видно на
+   скриншоте владельца. Ниже число колонок задано явно, и оно всегда делит количество
+   карточек нацело: 3 → 3 или 1, 4 → 4, 2 или 1, 6 → 3, 2 или 1. */
+
+/* Три карточки */
+@media (min-width: 980px) {
+    .services-grid, .programs-grid, .cases-grid, .stories-grid,
+    .partner-types, .evidence-stats, .blog-posts-preview, .choose-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 979px) {
+    .services-grid, .programs-grid, .cases-grid, .stories-grid,
+    .partner-types, .evidence-stats, .blog-posts-preview, .choose-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Четыре карточки */
+@media (min-width: 1120px) {
+    .steps-grid, .monitoring-features, .audience-grid, .process-steps, .checkup-process {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (min-width: 620px) and (max-width: 1119px) {
+    .steps-grid, .monitoring-features, .audience-grid, .process-steps, .checkup-process {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 619px) {
+    .steps-grid, .monitoring-features, .audience-grid, .process-steps, .checkup-process {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Шесть карточек */
+@media (min-width: 980px) { .roi-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 620px) and (max-width: 979px) { .roi-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 619px) { .roi-grid { grid-template-columns: 1fr; } }
+
+/* Логотипы партнёров сжимались до 92 px в колонке — на такой ширине от логотипа
+   остаётся пятно. Даём им минимум и позволяем переноситься свободно. */
+.logos-grid { grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); }
+
+/* Длинные слова и адреса в юридических текстах выталкивали страницу вбок
+   на узких экранах: вёрстка целая, а строка не переносится. */
+body { overflow-wrap: break-word; }
+.container, .content, .section, p, li, td, h1, h2, h3, h4 { overflow-wrap: break-word; }
+
+/* Декоративные кружки вокруг картинки первого экрана позиционированы абсолютно
+   и на очень узком экране вылезали за край. Ниже 420 px их просто нет. */
+@media (max-width: 420px) { .care-item, .care-layer { display: none; } }
+
+/* Элемент грида по умолчанию не сжимается уже своего содержимого (min-width: auto).
+   На экране 320 px карточки тарифов и включённых услуг из-за этого оставались
+   шире колонки и выталкивали страницу вбок на 20–30 px. */
+.services-grid > *, .steps-grid > *, .evidence-stats > *, .partner-types > *,
+.features-grid > *, .audience-grid > *, .process-steps > *, .stories-grid > *,
+.checkup-process > *, .report-sections > *, .programs-grid > *, .roi-grid > *,
+.cases-grid > *, .goals-checkboxes > *, .posts-grid > *, .lifestyle-grid > *,
+.related-articles-grid > *, .blog-posts-preview > *, .choose-grid > *,
+.monitoring-features > *, .logos-grid > *, .metrics-grid > *, .hero-stats > * {
+    min-width: 0;
+}
