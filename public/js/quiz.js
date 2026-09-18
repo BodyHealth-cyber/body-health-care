@@ -499,6 +499,21 @@
                 notify(t('m_consent'), 'error');
                 return;
             }
+
+            // Телефон обязателен: разбор человеку отдаёт координатор голосом, а
+            // прочерк в письме вместо номера выглядел как сбой отправки.
+            var phoneEl = form.querySelector('#qz-phone');
+            var phone = (phoneEl.value || '').trim();
+            if (!phone) {
+                notify(t('m_phone'), 'error');
+                phoneEl.focus();
+                return;
+            }
+            if (typeof isValidPhone === 'function' && !isValidPhone(phone)) {
+                notify(t('m_phone_bad'), 'error');
+                phoneEl.focus();
+                return;
+            }
             var button = form.querySelector('button[type="submit"]');
             var original = button.textContent;
             button.textContent = t('m_sending');
@@ -525,7 +540,7 @@
                 first_name: (form.querySelector('#qz-name').value || '').trim(),
                 last_name: '—',
                 email: (form.querySelector('#qz-email').value || '').trim(),
-                phone: (form.querySelector('#qz-phone').value || '').trim() || '—',
+                phone: phone,
                 service: 'health-check',
                 service_label: t('m_subject'),
                 message: summary || '—',
