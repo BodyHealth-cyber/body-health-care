@@ -799,7 +799,7 @@
   "Мінімум 25 співробітників": "Minimum 25 employees",
   "Мінімум 2–3 вимірювання з інтервалом 1–2 хвилини": "At least 2–3 readings, 1–2 minutes apart",
   "Міцні соціальні зв'язки — один із найнадійніших предикторів довголіття та психічного здоров'я. Надавати перевагу живому спілкуванню, а не пасивному гортанню соцмереж, — практична профілактична стратегія.": "Strong social ties are one of the most robust predictors of longevity and mental health. Prioritizing in-person connection — not passive social media scrolling — is a practical preventive strategy.",
-  "На головну": "Go to home page",
+  "На головну": "Home",
   "На діабет 2 типу хворіє понад 537 мільйонів дорослих у світі, і ця цифра зростає. Втім, дослідження Diabetes Prevention Program показало, що зміна способу життя знижує захворюваність на 58% — перевершуючи метформін — у людей із предіабетом. Профілактика не просто можлива; вона надзвичайно ефективна.": "Type 2 diabetes affects over 537 million adults worldwide and the figure is rising. Yet the Diabetes Prevention Program trial showed lifestyle intervention cut incidence by 58% — outperforming metformin — in people with prediabetes. Prevention is not just possible; it is highly effective.",
   "На стадії планування": "Still planning",
   "На що звернув увагу ваш спеціаліст": "What your specialist noticed",
@@ -1546,5 +1546,9 @@
   "Практично ніколи": "Almost never",
   "жодного такого дня": "no such days",
   "Скільки хвилин у такий день": "How many minutes on such a day",
-  "Нуль — теж відповідь. Рекомендація ВООЗ — щонайменше 150 хв на тиждень.": "Zero is an answer too. The WHO recommends at least 150 minutes a week."
+  "Нуль — теж відповідь. Рекомендація ВООЗ — щонайменше 150 хв на тиждень.": "Zero is an answer too. The WHO recommends at least 150 minutes a week.",
+  "Заявку надіслано": "Request sent",
+  "Лист із розбором уже йде на Вашу пошту. Координатор зв'яжеться протягом 24 годин у робочі дні.": "The email with your breakdown is already on its way. A coordinator will be in touch within 24 hours on working days.",
+  "Якщо листа немає за кілька хвилин — подивіться в теці «Спам».": "If it hasn't arrived within a few minutes, check your Spam folder.",
+  "Подивитись пакети": "See the packages"
 }

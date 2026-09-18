@@ -510,8 +510,10 @@
     /* ---------- заявка ---------- */
     var form = document.getElementById('quizForm');
     if (form) {
+        var sent = false;
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
+            if (sent) return;
             var consent = form.querySelector('#qz-consent');
             var privacy = form.querySelector('#qz-privacy');
             if (!consent.checked || !privacy.checked) {
@@ -577,7 +579,20 @@
                 if (res.ok) {
                     notify(t('m_ok'), 'success');
                     form.reset();
+                    /* Анкета зроблена — прибираємо її, щоб людина не гадала,
+                       чи треба надсилати ще раз, і не надсилала вдруге. */
+                    sent = true;
+                    var cta = document.getElementById('qzCta');
+                    var done = document.getElementById('qzDone');
+                    if (cta && done) {
+                        cta.hidden = true;
+                        done.hidden = false;
+                        var y = done.getBoundingClientRect().top + (window.scrollY || window.pageYOffset || 0);
+                        var hdr = document.querySelector('header.header');
+                        window.scrollTo({ top: Math.max(0, y - ((hdr ? hdr.getBoundingClientRect().height : 0) + 16)), behavior: 'smooth' });
+                    }
                     if (typeof trackEvent === 'function') trackEvent('quiz_submit_success', { index: payload.message.slice(0, 40) });
+                    return;
                 } else if (res.status === 400) {
                     notify(t('m_turnstile'), 'error');
                 } else {
@@ -587,6 +602,7 @@
                 console.error('quiz submit:', err);
                 notify(t('m_err'), 'error');
             }).then(function () {
+                if (sent) return;
                 button.textContent = original;
                 button.disabled = false;
                 if (typeof resetTurnstile === 'function') resetTurnstile(form);

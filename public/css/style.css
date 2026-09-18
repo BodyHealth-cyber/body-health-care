@@ -6712,3 +6712,15 @@ body { overflow-wrap: break-word; }
     width: auto; flex: 0 0 auto; text-align: center;
     font-variant-numeric: tabular-nums; padding: 0.6rem 0.95rem; font-size: 0.95rem;
 }
+
+/* ---- анкета зроблена ---- */
+.qz-done { text-align: center; }
+.qz-done-mark {
+    width: 52px; height: 52px; margin: 0 auto 0.9rem; border-radius: 50%;
+    background: #e8f4ed; color: #1f6b45; border: 1px solid #b9dcc8;
+    font-size: 1.6rem; line-height: 50px;
+}
+.qz-done .qz-lead { max-width: 46ch; margin-left: auto; margin-right: auto; }
+.qz-done-hint { font-size: 0.85rem; color: #7c8b99; margin: 0.6rem 0 1.4rem; }
+.qz-done-btns { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; }
+.qz-done-btns .btn { flex: 0 1 auto; }
