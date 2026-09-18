@@ -84,11 +84,11 @@
 
         <!-- ЕКРАН 0 · вступ -->
         <section class="qz-screen" data-screen="intro">
-          <div class="qz-eyebrow"><span>BodyHealth</span><span class="qz-eyebrow-r">16 · ~5 хв</span></div>
+          <div class="qz-eyebrow"><span>BodyHealth</span><span class="qz-eyebrow-r">18 · ~5 хв</span></div>
           <h1 class="qz-h1">Індекс здоров'я за 5 хвилин</h1>
-          <p class="qz-lead">Шістнадцять запитань про те, як ви живете зараз. У відповідь — індекс за методикою Life's Essential 8 Американської кардіологічної асоціації: вісім показників, які найсильніше впливають на те, скільки років людина проживає без хвороб.</p>
-          <p class="qz-lead">Відповіді залишаються у вашому браузері. Ми нічого не надсилаємо, доки ви самі цього не попросите.</p>
-          <div class="qz-note">Це не діагноз і не заміна обстеженню. Опитувальник показує, на що звернути увагу, — рішення ухвалює лікар.</div>
+          <p class="qz-lead">Вісімнадцять запитань про те, як Ви живете зараз. У відповідь — індекс за методикою Life's Essential 8 Американської кардіологічної асоціації: 8 головних факторів, які визначають здоров'я серця та тривалість життя без хвороб.</p>
+          <p class="qz-lead">Відповіді залишаються у Вашому браузері. Ми нічого не надсилаємо, доки Ви самі цього не попросите.</p>
+          <div class="qz-note">Це тестування не є клінічною діагностикою. Це форма первинного збору даних, яка дає Вам і нашій медичній команді змогу оцінити загальний стан Вашого фізичного та емоційного благополуччя. Рішення ухвалює лікар.</div>
           <div class="qz-nav">
             <span class="qz-foot">Без реєстрації</span>
             <button type="button" class="btn btn-primary" data-qz-next>Почати</button>
@@ -98,7 +98,7 @@
         <!-- 1 · стать і вік -->
         <section class="qz-screen" data-screen="q" data-id="profile" hidden>
           <h2 class="qz-q">Кілька слів про вас</h2>
-          <p class="qz-hint">Стать і вік потрібні, щоб порівняти ваші показники з українськими даними.</p>
+          <p class="qz-hint">Стать і вік потрібні, щоб порівняти Ваші показники з українськими даними.</p>
           <div class="qz-opts qz-opts-row">
             <button type="button" class="qz-opt" data-v="f"><span>Жінка</span></button>
             <button type="button" class="qz-opt" data-v="m"><span>Чоловік</span></button>
@@ -130,8 +130,8 @@
 
         <!-- 3 · дні активності -->
         <section class="qz-screen" data-screen="q" data-id="paDays" hidden>
-          <h2 class="qz-q">Скільки днів на тиждень ви маєте навантаження помірної або високої інтенсивності?</h2>
-          <p class="qz-hint">Помірне — це коли дихання пришвидшується, але ви ще можете говорити: швидка хода, велосипед, прибирання в темпі, робота в саду.</p>
+          <h2 class="qz-q">Скільки днів на тиждень Ви маєте навантаження помірної або високої інтенсивності?</h2>
+          <p class="qz-hint">Помірне — це коли дихання пришвидшується, але Ви ще можете говорити: швидка хода, велосипед, прибирання в темпі, робота в саду.</p>
           <div class="qz-grid">
             <button type="button" class="qz-opt qz-num" data-v="0">0</button>
             <button type="button" class="qz-opt qz-num" data-v="1">1</button>
@@ -164,7 +164,7 @@
 
         <!-- 5 · сон -->
         <section class="qz-screen" data-screen="q" data-id="sleep" hidden>
-          <h2 class="qz-q">Скільки годин ви зазвичай спите на добу?</h2>
+          <h2 class="qz-q">Скільки годин Ви зазвичай спите на добу?</h2>
           <p class="qz-hint">За звичайний робочий тиждень, а не в найкращу ніч.</p>
           <div class="qz-opts">
             <button type="button" class="qz-opt" data-v="lt4" data-p="0"><span>Менше 4 годин</span></button>
@@ -192,7 +192,7 @@
 
         <!-- 7 · пасивне куріння -->
         <section class="qz-screen" data-screen="q" data-id="shs" hidden>
-          <h2 class="qz-q">Чи курить хтось у приміщенні, де ви живете?</h2>
+          <h2 class="qz-q">Чи курить хтось у приміщенні, де Ви живете?</h2>
           <p class="qz-hint">Постійне вдихання чужого диму вдома знижує показник так само, як власна звичка.</p>
           <div class="qz-opts qz-opts-row">
             <button type="button" class="qz-opt" data-v="no" data-p="0"><span>Ні</span></button>
@@ -274,10 +274,9 @@
           <div class="qz-opts">
             <button type="button" class="qz-opt" data-v="full"><span>Знаю загальний холестерин і ЛПВЩ</span></button>
             <button type="button" class="qz-opt" data-v="total"><span>Знаю лише загальний холестерин</span></button>
-            <button type="button" class="qz-opt" data-v="med"><span>Приймаю статини</span></button>
             <button type="button" class="qz-opt" data-v="no"><span>Не знаю</span></button>
           </div>
-          <div class="qz-fields" data-reveal="full total med" hidden>
+          <div class="qz-fields" data-reveal="full total" hidden>
             <div class="qz-field">
               <label for="qz-tc">Загальний, ммоль/л</label>
               <input type="number" id="qz-tc" data-num="tc" step="0.1" inputmode="decimal" placeholder="5,0">
@@ -287,27 +286,31 @@
               <input type="number" id="qz-hdl" data-num="hdl" step="0.1" inputmode="decimal" placeholder="1,3">
             </div>
           </div>
+          <label class="qz-check" data-reveal="full total" hidden>
+            <input type="checkbox" id="qz-statins" data-flag="statins">
+            <span>Приймаю статини</span>
+          </label>
         </section>
 
         <!-- 15 · цукор -->
         <section class="qz-screen" data-screen="q" data-id="glu" hidden>
           <h2 class="qz-q">Цукор крові</h2>
-          <p class="qz-hint">Глюкоза натще або глікований гемоглобін HbA1c з останнього аналізу.</p>
+          <p class="qz-hint">Глюкоза натще або глікований гемоглобін (HbA1c) з останнього аналізу.</p>
           <div class="qz-opts">
             <button type="button" class="qz-opt" data-v="norm" data-p="100"><span>У межах норми</span></button>
-            <button type="button" class="qz-opt" data-v="pre" data-p="60"><span>Предіабет, HbA1c 5,7–6,4 %</span></button>
-            <button type="button" class="qz-opt" data-v="d7" data-p="40"><span>Діабет, HbA1c до 7 %</span></button>
-            <button type="button" class="qz-opt" data-v="d79" data-p="30"><span>Діабет, HbA1c 7–7,9 %</span></button>
-            <button type="button" class="qz-opt" data-v="d89" data-p="20"><span>Діабет, HbA1c 8–8,9 %</span></button>
-            <button type="button" class="qz-opt" data-v="d99" data-p="10"><span>Діабет, HbA1c 9–9,9 %</span></button>
-            <button type="button" class="qz-opt" data-v="d10" data-p="0"><span>Діабет, HbA1c 10 % і вище</span></button>
+            <button type="button" class="qz-opt" data-v="pre" data-p="60"><span>Переддіабет, глікований гемоглобін 5,7–6,4 %</span></button>
+            <button type="button" class="qz-opt" data-v="d7" data-p="40"><span>Діабет, глікований гемоглобін до 7 %</span></button>
+            <button type="button" class="qz-opt" data-v="d79" data-p="30"><span>Діабет, глікований гемоглобін 7–7,9 %</span></button>
+            <button type="button" class="qz-opt" data-v="d89" data-p="20"><span>Діабет, глікований гемоглобін 8–8,9 %</span></button>
+            <button type="button" class="qz-opt" data-v="d99" data-p="10"><span>Діабет, глікований гемоглобін 9–9,9 %</span></button>
+            <button type="button" class="qz-opt" data-v="d10" data-p="0"><span>Діабет, глікований гемоглобін 10 % і вище</span></button>
             <button type="button" class="qz-opt" data-v="no"><span>Не знаю</span></button>
           </div>
         </section>
 
         <!-- 16 · самооцінка -->
         <section class="qz-screen" data-screen="q" data-id="srh" hidden>
-          <h2 class="qz-q">Як ви оцінюєте своє здоров'я загалом?</h2>
+          <h2 class="qz-q">Як Ви оцінюєте своє здоров'я загалом?</h2>
           <p class="qz-hint">Одне це запитання — один із найсильніших відомих предикторів у популяційних дослідженнях. Відповідайте першим відчуттям.</p>
           <div class="qz-opts">
             <button type="button" class="qz-opt" data-v="5"><span>Відмінне</span></button>
@@ -336,6 +339,13 @@
             </table>
           </div>
 
+          <div class="qz-sect" id="qzMoodSect">
+            <h3 class="qz-sect-h">Емоційний стан</h3>
+            <div id="qzMood"></div>
+          </div>
+
+          <div class="qz-note qz-note-lg">Якщо у Вас є хронічні захворювання або симптоми, які Вас турбують, обов'язково проконсультуйтеся з лікарем: при встановлених діагнозах Ваші показники можуть відрізнятися від наведених. Наші спеціалісти готові надати детальнішу оцінку стану та запропонувати індивідуальні варіанти його покращення.</div>
+
           <div class="qz-sect qz-refine" id="qzRefine">
             <h3 class="qz-sect-h">Уточнити харчування</h3>
             <p class="qz-lead">Зараз харчування оцінено приблизно, за п'ятьма ознаками. Шістнадцять коротких запитань замінять цю оцінку на ту, яку Американська кардіологічна асоціація рекомендує для окремої людини.</p>
@@ -353,7 +363,7 @@
           </div>
 
           <div class="qz-note qz-note-lg">
-            <strong>Це не діагноз.</strong> Індекс Life's Essential 8 описує стан здоров'я та спосіб життя, а не наявність хвороби, і не замінює обстеження. У людей з індексом 80 і вище очікувана тривалість життя у 50 років приблизно на 8 років більша, ніж у людей з індексом нижче 50, — але це статистика по групах, а не прогноз для конкретної людини. Що означають ваші цифри, скаже лікар.
+            <strong>Це не діагноз.</strong> Індекс Life's Essential 8 описує стан здоров'я та спосіб життя, а не наявність хвороби, і не замінює обстеження. У людей з індексом 80 і вище очікувана тривалість життя у 50 років приблизно на 8 років більша, ніж у людей з індексом нижче 50, — але це статистика по групах, а не прогноз для конкретної людини (джерело: NHANES, понад 23 000 дорослих). Що означають Ваші цифри, скаже лікар.
           </div>
 
           <div class="qz-sect qz-cta">
@@ -391,6 +401,37 @@
           </div>
         </section>
 
+
+        <!-- Кому опитувальник не підходить -->
+        <section class="qz-screen" data-screen="stop" hidden>
+          <div class="qz-eyebrow"><span>Опитувальник не підходить</span></div>
+          <h2 class="qz-q">Цей опитувальник розрахований на дорослих</h2>
+          <p class="qz-lead">Пороги, за якими рахується індекс, визначені для людей від 18 років — для дітей і підлітків вони інші, і результат був би неправильним.</p>
+          <p class="qz-lead">Якщо у Вас є запитання про здоров'я дитини, напишіть нам на <a href="mailto:info@body-health.care">info@body-health.care</a> — підкажемо, до якого спеціаліста звернутися.</p>
+        </section>
+
+        <!-- 17–18 · емоційний стан, PHQ-2 -->
+        <section class="qz-screen" data-screen="q" data-id="phq1" hidden>
+          <h2 class="qz-q">Як часто протягом останніх двох тижнів Вас турбував знижений інтерес або задоволення від справ, які зазвичай Вам подобаються?</h2>
+          <p class="qz-hint">Два останні запитання — про емоційний стан. Він не входить в індекс, але без нього картина неповна.</p>
+          <div class="qz-opts">
+            <button type="button" class="qz-opt" data-v="0" data-p="0"><span>Зовсім ні</span></button>
+            <button type="button" class="qz-opt" data-v="1" data-p="1"><span>Кілька днів</span></button>
+            <button type="button" class="qz-opt" data-v="2" data-p="2"><span>Більше половини днів</span></button>
+            <button type="button" class="qz-opt" data-v="3" data-p="3"><span>Майже щодня</span></button>
+          </div>
+        </section>
+
+        <section class="qz-screen" data-screen="q" data-id="phq2" hidden>
+          <h2 class="qz-q">А як часто за ці два тижні Вас турбував пригнічений настрій, смуток або відчуття безнадії?</h2>
+          <p class="qz-hint">Відповідайте так, як було насправді. Ці відповіді нікуди не надсилаються.</p>
+          <div class="qz-opts">
+            <button type="button" class="qz-opt" data-v="0" data-p="0"><span>Зовсім ні</span></button>
+            <button type="button" class="qz-opt" data-v="1" data-p="1"><span>Кілька днів</span></button>
+            <button type="button" class="qz-opt" data-v="2" data-p="2"><span>Більше половини днів</span></button>
+            <button type="button" class="qz-opt" data-v="3" data-p="3"><span>Майже щодня</span></button>
+          </div>
+        </section>
 
         <!-- Уточнення харчування · опитувальник MEPA -->
         <section class="qz-screen" data-screen="mepa" hidden>
@@ -525,7 +566,7 @@
               </div>
             </div>
           </div>
-          <div class="qz-note">У самому опитувальнику бал за алкоголь дають лише тим, хто п'є помірно, а тим, хто не вживає його зовсім, — нуль. На сайті клініки це читалося б як заохочення, тому ми зарахували бал і непитущим. Це наше відступлення від оригіналу, і ми поставили це питання лікарям.</div>
+          <div class="qz-note">Останнє запитання ми змінили відносно оригіналу опитувальника, щоб результат був точнішим.</div>
           <div class="qz-nav">
             <button type="button" class="btn btn-outline" id="qzMepaBack">Назад до результату</button>
             <span class="qz-count" id="qzMepaCount"></span>
@@ -547,7 +588,7 @@
            скрипті, щоб складальник локалей перекладав їх, як будь-який текст
            сторінки. {n}, {v} і {l} підставляються під час показу результату. -->
       <div class="qz-strings" hidden aria-hidden="true">
-        <span data-t="cnt">Запитання {n} з 16</span>
+        <span data-t="cnt">Запитання {n} з 18</span>
         <span data-t="bmi_live">Індекс маси тіла: {v}</span>
         <span data-t="pa_live">Разом виходить {n} хв на тиждень. Рекомендація ВООЗ — щонайменше 150.</span>
         <span data-t="lvl_hi">Високий рівень</span>
@@ -563,7 +604,7 @@
         <span data-t="c_glu">Цукор крові</span>
         <span data-t="c_bp">Тиск</span>
         <span data-t="u_lip">ліпідний профіль</span>
-        <span data-t="u_glu">HbA1c</span>
+        <span data-t="u_glu">глікований гемоглобін</span>
         <span data-t="u_bp">тиск</span>
         <span data-t="n_none">не виміряно</span>
         <span data-t="n_diet_mepa">опитувальник MEPA, {n} із 16</span>
@@ -574,17 +615,22 @@
         <span data-t="n_sleep">{l} · оптимум 7–9</span>
         <span data-t="n_bmi">ІМТ {v}</span>
         <span data-t="n_lip">не-ЛПВЩ {v} ммоль/л</span>
-        <span data-t="n_lip_approx">ЛПВЩ прийнято 1,3</span>
-        <span data-t="n_med">мінус 20 на терапії</span>
+                <span data-t="n_med">мінус 20 на терапії</span>
         <span data-t="n_pts">{n} балів</span>
-        <span data-t="a_diet">Розібрати щоденний раціон із дієтологом — почати з овочів і цільнозернових, це найдешевший крок.</span>
-        <span data-t="a_pa">Додати дві-три прогулянки по 30 хвилин у темпі, за якого важко співати. Ціль — 150 хвилин на тиждень.</span>
-        <span data-t="a_nic">Обговорити з лікарем план відмови. Через п'ять років без куріння показник повертається майже до вихідного.</span>
-        <span data-t="a_sleep">Сон 7–9 годин — єдиний показник, який відчутно змінюється за тиждень. Почати з фіксованого часу підйому.</span>
+        <span data-t="a_glu_diabetes">Контроль діабету можливий: перевіряйте рівень глікованого гемоглобіну (HbA1c) кожні 3 місяці та обговоріть сучасні можливості з ендокринологом.</span>
+        <span data-t="a_lip_total">Ідеальний показник загального холестерину для зменшення серцево-судинного ризику — менше 5,0 ммоль/л, проте значення має не лише він, а повний спектр ліпідів. Здайте ліпідограму та проконсультуйтеся з лікарем.</span>
+        <span data-t="n_lip_total">відомий лише загальний холестерин {v} ммоль/л</span>
+        <span data-t="mood_ok">Відповіді не вказують на знижений настрій.</span>
+        <span data-t="mood_low">Схоже, останні два тижні даються Вам непросто. Так буває значно частіше, ніж здається, і це стан, який добре піддається допомозі. Не відкладайте розмову зі спеціалістом: у нашій програмі є зустрічі з психотерапевтом, і вони помітно покращують і самопочуття, і якість життя.</span>
+        <span data-t="mood_note">Два запитання за шкалою PHQ-2. Це не діагноз і не входить в індекс.</span>
+        <span data-t="a_diet">Розберіть щоденний раціон із дієтологом — почніть з овочів і цільнозернових, це найдешевший крок.</span>
+        <span data-t="a_pa">Додайте дві-три прогулянки по 30 хвилин у темпі, за якого важко співати. Ціль — 150 хвилин на тиждень.</span>
+        <span data-t="a_nic">Обговоріть із лікарем план відмови. Через п'ять років без куріння Ваш показник здоров'я повернеться практично до вихідного рівня.</span>
+        <span data-t="a_sleep">Сон 7–9 годин — єдиний показник, який відчутно змінюється за тиждень. Почніть із фіксованого часу підйому.</span>
         <span data-t="a_bmi">Вага рухається слідом за харчуванням і сном, а не сама по собі. Потрібен вимір складу тіла, а не лише цифра на вагах.</span>
-        <span data-t="a_lip">Здати ліпідний профіль і показати його лікарю — не-ЛПВЩ холестерин важливіший за загальний.</span>
-        <span data-t="a_glu">Здати HbA1c. Предіабет роками не має симптомів і саме на цьому етапі оборотний.</span>
-        <span data-t="a_bp">Виміряти тиск сім днів поспіль вранці та ввечері й принести записи лікарю.</span>
+        <span data-t="a_lip">Здайте ліпідограму та покажіть її лікарю — не-ЛПВЩ холестерин важливіший за загальний.</span>
+        <span data-t="a_glu">Здайте глікований гемоглобін (HbA1c). Переддіабет уже є метаболічним порушенням, але його можна врегулювати корекцією харчування та способу життя — і уникнути пожиттєвого прийому препаратів.</span>
+        <span data-t="a_bp">Виміряйте тиск сім днів поспіль вранці та ввечері й принесіть записи лікарю.</span>
         <span data-t="b_bmi_ok">українців мають надлишкову вагу — ви не серед них</span>
         <span data-t="b_bmi_no">українців мають індекс маси тіла 25 і вище — ви серед них</span>
         <span data-t="b_veg_ok">українців їдять менше 5 порцій овочів і фруктів на день — ви серед решти 34 %</span>
@@ -595,7 +641,7 @@
         <span data-t="m_subject">Індекс здоров'я за 5 хвилин</span>
         <span data-t="m_sum">Індекс Life's Essential 8: {n} із 100, {l}. Пораховано показників: {v} із 8.</span>
         <span data-t="m_consent">Спочатку позначте обидві згоди.</span>
-        <span data-t="m_turnstile">Перевірка не пройдена. Оновіть сторінку і спробуйте ще раз.</span>
+        <span data-t="m_turnstile">Перевірка ще не завершилась. Зачекайте кілька секунд і натисніть ще раз.</span>
         <span data-t="m_sending">Надсилаємо…</span>
         <span data-t="m_ok">Дякуємо! Розбір надішлемо на вказану пошту, а координатор запропонує час для розмови.</span>
         <span data-t="m_err">Помилка при відправці. Спробуйте ще раз або напишіть нам напряму.</span>

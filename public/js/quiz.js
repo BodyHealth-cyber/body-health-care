@@ -77,6 +77,7 @@
     /* ---------- стан ---------- */
     var S = {};        // відповіді-вибори за data-id екрана
     var N = {};        // числові поля за data-num
+    var F = {};        // відмітки-галочки за data-flag
     var DIET = ['d_veg', 'd_fish', 'd_grain', 'd_sugar', 'd_meat'];
     var MEPA = {};     // уточнення харчування, 16 ознак; порожнє — не проходили
     var MEPA_N = 16;
@@ -101,6 +102,8 @@
     var intro = screens.filter(function (s) { return s.getAttribute('data-screen') === 'intro'; })[0];
     var result = screens.filter(function (s) { return s.getAttribute('data-screen') === 'result'; })[0];
     var mepa = screens.filter(function (s) { return s.getAttribute('data-screen') === 'mepa'; })[0];
+    var stop = screens.filter(function (s) { return s.getAttribute('data-screen') === 'stop'; })[0];
+    var MIN_AGE = 18;
 
     var bar = document.getElementById('qzBar');
     var nav = document.getElementById('qzNav');
@@ -142,7 +145,7 @@
         if (key === 'lip') {
             if (S.lip === 'no') return true;
             if (S.lip === 'full') return num('tc') !== null && num('hdl') !== null;
-            if (S.lip === 'total' || S.lip === 'med') return num('tc') !== null;
+            if (S.lip === 'total') return num('tc') !== null;
             return false;
         }
         return !!S[key];
@@ -179,6 +182,12 @@
         }
         if (idx === 'mepa') {
             mepa.hidden = false;
+            nav.hidden = true;
+            bar.style.width = '100%';
+            return;
+        }
+        if (idx >= questions.length && num('age') !== null && num('age') < MIN_AGE) {
+            stop.hidden = false;
             nav.hidden = true;
             bar.style.width = '100%';
             return;
@@ -238,6 +247,12 @@
         if (e.target.closest && e.target.closest('[data-qz-next]')) go(step(-1, 1));
     });
 
+    root.addEventListener('change', function (e) {
+        var box = e.target;
+        if (!box.hasAttribute || !box.hasAttribute('data-flag')) return;
+        F[box.getAttribute('data-flag')] = !!box.checked;
+    });
+
     root.addEventListener('input', function (e) {
         var field = e.target;
         if (!field.hasAttribute || !field.hasAttribute('data-num')) return;
@@ -295,18 +310,26 @@
             { key: 'bmi', name: t('c_bmi'), p: bmiPoints(bmi), note: t('n_bmi', { v: dec(bmi) }) }
         ];
 
+        // Вычитать из общего холестерина усреднённый ЛПВЩ врачи признали клинически
+        // неверным: разброс слишком велик. Если известен только общий — показатель
+        // остаётся непосчитанным, а человек получает рекомендацию по общему.
         if (S.lip === 'no') {
             rows.push({ key: 'lip', name: t('c_lip'), p: null, note: t('n_none') });
+        } else if (S.lip === 'total') {
+            rows.push({ key: 'lip', name: t('c_lip'), p: null, advice: 'a_lip_total',
+                        note: t('n_lip_total', { v: dec(num('tc')) }) });
         } else {
-            var nonHDL = S.lip === 'full' ? (num('tc') - num('hdl')) : (num('tc') - 1.3);
+            var nonHDL = num('tc') - num('hdl');
             var parts = [t('n_lip', { v: dec(nonHDL) })];
-            if (S.lip !== 'full') parts.push(t('n_lip_approx'));
-            if (S.lip === 'med') parts.push(t('n_med'));
-            rows.push({ key: 'lip', name: t('c_lip'), p: lipidPoints(nonHDL, S.lip === 'med'), note: parts.join(' · ') });
+            if (F.statins) parts.push(t('n_med'));
+            rows.push({ key: 'lip', name: t('c_lip'), p: lipidPoints(nonHDL, !!F.statins), note: parts.join(' · ') });
         }
 
+        var DIABETES = ['d7', 'd79', 'd89', 'd99', 'd10'];
         if (S.glu === 'no') rows.push({ key: 'glu', name: t('c_glu'), p: null, note: t('n_none') });
-        else rows.push({ key: 'glu', name: t('c_glu'), p: pointsOf('glu', S.glu), note: labelOf('glu', S.glu) });
+        else rows.push({ key: 'glu', name: t('c_glu'), p: pointsOf('glu', S.glu),
+                         note: labelOf('glu', S.glu),
+                         advice: DIABETES.indexOf(S.glu) !== -1 ? 'a_glu_diabetes' : null });
 
         if (S.bp === 'no') {
             rows.push({ key: 'bp', name: t('c_bp'), p: null, note: t('n_none') });
@@ -406,10 +429,26 @@
             var head = document.createElement('strong');
             head.textContent = r.name + ' — ' + (r.p === null ? t('n_none') : t('n_pts', { n: r.p })) + '. ';
             text.appendChild(head);
-            text.appendChild(document.createTextNode(t('a_' + r.key)));
+            text.appendChild(document.createTextNode(t(r.advice || ('a_' + r.key))));
             li.appendChild(text);
             stepsBox.appendChild(li);
         });
+
+        // Эмоциональное состояние — отдельный указатель, в индекс не входит и
+        // никуда не отправляется: это самые чувствительные две строки на странице.
+        var moodBox = document.getElementById('qzMood');
+        if (moodBox) {
+            var mood = pointsOf('phq1', S.phq1) + pointsOf('phq2', S.phq2);
+            moodBox.innerHTML = '';
+            var moodP = document.createElement('p');
+            moodP.className = mood >= 3 ? 'qz-lead qz-mood-low' : 'qz-lead';
+            moodP.textContent = mood >= 3 ? t('mood_low') : t('mood_ok');
+            moodBox.appendChild(moodP);
+            var moodNote = document.createElement('p');
+            moodNote.className = 'qz-foot';
+            moodNote.textContent = t('mood_note');
+            moodBox.appendChild(moodNote);
+        }
 
         var bmi = num('w') / Math.pow(num('h') / 100, 2);
         var bench = [
@@ -452,7 +491,7 @@
     /* ---------- заявка ---------- */
     var form = document.getElementById('quizForm');
     if (form) {
-        form.addEventListener('submit', function (e) {
+        form.addEventListener('submit', async function (e) {
             e.preventDefault();
             var consent = form.querySelector('#qz-consent');
             var privacy = form.querySelector('#qz-privacy');
@@ -460,15 +499,24 @@
                 notify(t('m_consent'), 'error');
                 return;
             }
-            var token = (typeof turnstileToken === 'function') ? turnstileToken(form) : '';
-            if (!token) {
-                notify(t('m_turnstile'), 'error');
-                return;
-            }
             var button = form.querySelector('button[type="submit"]');
             var original = button.textContent;
             button.textContent = t('m_sending');
             button.disabled = true;
+
+            // Ответ Turnstile приходит не мгновенно. Ждём его, а не объявляем
+            // сразу, что проверка не пройдена: человек нажал кнопку и вправе
+            // видеть «надсилаємо», а не ошибку, которой ещё не было.
+            var token = '';
+            if (typeof turnstileTokenWait === 'function') token = await turnstileTokenWait(form, 8000);
+            else if (typeof turnstileToken === 'function') token = turnstileToken(form);
+            if (!token) {
+                notify(t('m_turnstile'), 'error');
+                if (typeof resetTurnstile === 'function') resetTurnstile(form);
+                button.textContent = original;
+                button.disabled = false;
+                return;
+            }
 
             var sentAt = new Date();
             var payload = {

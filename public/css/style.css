@@ -6689,3 +6689,8 @@ body { overflow-wrap: break-word; }
 .monitoring-features > *, .logos-grid > *, .metrics-grid > *, .hero-stats > * {
     min-width: 0;
 }
+
+/* Отметка «приймаю статини» и блок эмоционального состояния */
+.qz-check { display: flex; gap: 0.6rem; align-items: flex-start; margin-top: 0.9rem; font-size: 0.92rem; color: #333; cursor: pointer; }
+.qz-check input { margin-top: 0.25rem; flex: 0 0 auto; }
+.qz-mood-low { border-left: 3px solid #a8720a; padding-left: 0.85rem; }

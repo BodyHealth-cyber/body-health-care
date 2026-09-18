@@ -226,16 +226,54 @@ function loadTurnstileScript() {
     document.head.appendChild(sc);
 }
 
+// Виджет умеет падать: моргнула сеть, VPN, строгие настройки приватности,
+// просроченная попытка. Без обработки человек видит «Помилка перевірки», и
+// дальше для него ничего не происходит — кнопка нажимается, а заявка не уходит.
+// Поэтому: автоповтор самого Cloudflare, обновление просроченного ответа и наш
+// собственный сброс, ограниченный тремя попытками, чтобы не зациклиться.
+var TURNSTILE_MAX_RETRIES = 3;
+var turnstileRetries = new WeakMap();
+
 function renderTurnstile(form, holder) {
     if (!window.turnstile) return;
     var lang = (document.documentElement.lang || 'uk').slice(0, 2);
-    var id = window.turnstile.render(holder, {
+    var id;
+    id = window.turnstile.render(holder, {
         sitekey: TURNSTILE_SITE_KEY,
         action: form.id || 'form',
         language: lang,
-        size: 'flexible'
+        size: 'flexible',
+        retry: 'auto',
+        'retry-interval': 2000,
+        'refresh-expired': 'auto',
+        'error-callback': function (code) {
+            var used = turnstileRetries.get(form) || 0;
+            console.warn('turnstile: ошибка проверки', code, 'попытка', used + 1);
+            if (used >= TURNSTILE_MAX_RETRIES) return false;   // отдаём экран Cloudflare
+            turnstileRetries.set(form, used + 1);
+            setTimeout(function () {
+                try { window.turnstile.reset(id); } catch (e) {}
+            }, 2500);
+            return true;   // свой экран ошибки Cloudflare не показывает
+        },
+        callback: function () { turnstileRetries.set(form, 0); }
     });
     turnstileWidgets.set(form, id);
+}
+
+// Ответ Turnstile появляется не мгновенно. Ждём его короткое время, прежде чем
+// говорить человеку, что проверка не пройдена: почти всегда он приходит за
+// секунду-две, и сообщение об ошибке было бы неправдой.
+function turnstileTokenWait(form, ms) {
+    var deadline = Date.now() + (ms || 6000);
+    return new Promise(function (resolve) {
+        (function tick() {
+            var t = turnstileToken(form);
+            if (t) return resolve(t);
+            if (Date.now() > deadline) return resolve('');
+            setTimeout(tick, 300);
+        })();
+    });
 }
 
 function mountTurnstile(form) {
@@ -295,7 +333,7 @@ var FORM_MESSAGES = {
         invalidPhone: 'Номер телефону некоректний',
         missingPhone: 'Вкажіть номер телефону — ми зателефонуємо',
         badPhone: 'Перевірте номер: український мобільний має вигляд +380 XX XXX XX XX',
-        turnstile: 'Перевірка не пройдена. Оновіть сторінку і спробуйте ще раз.',
+        turnstile: 'Перевірка ще не завершилась. Зачекайте кілька секунд і натисніть ще раз.',
     },
     en: {
         sending: 'Sending…',
@@ -309,7 +347,7 @@ var FORM_MESSAGES = {
         invalidPhone: 'Phone number is not valid',
         missingPhone: 'Please give us a phone number — we will call you',
         badPhone: 'Check the number: a Ukrainian mobile looks like +380 XX XXX XX XX',
-        turnstile: 'The check did not pass. Reload the page and try again.',
+        turnstile: 'Verification has not finished yet. Wait a few seconds and press again.',
     },
     ru: {
         sending: 'Отправляем…',
@@ -323,7 +361,7 @@ var FORM_MESSAGES = {
         invalidPhone: 'Номер телефона некорректный',
         missingPhone: 'Укажите номер телефона — мы позвоним',
         badPhone: 'Проверьте номер: украинский мобильный выглядит как +380 XX XXX XX XX',
-        turnstile: 'Проверка не пройдена. Обновите страницу и попробуйте ещё раз.',
+        turnstile: 'Проверка ещё не завершилась. Подождите несколько секунд и нажмите ещё раз.',
     },
 };
 
@@ -416,7 +454,7 @@ function bindContactForm(form) {
 
         // Без пройденої перевірки заявку навіть не надсилаємо: сервер її все одно
         // не прийме, а людина отримає незрозумілу помилку замість підказки.
-        const turnstileResponse = turnstileToken(form);
+        const turnstileResponse = await turnstileTokenWait(form, 6000);
         if (!turnstileResponse) {
             showNotification(contactFormMessages.turnstile, 'error');
             resetTurnstile(form);
@@ -1296,7 +1334,7 @@ document.addEventListener('click', function(e) {
     function initNewsletterForms() {
         var forms = document.querySelectorAll('form.newsletter-form[data-endpoint], form.newsletter-form-large[data-endpoint]');
         Array.prototype.forEach.call(forms, function (form) {
-            form.addEventListener('submit', function (e) {
+            form.addEventListener('submit', async function (e) {
                 e.preventDefault();
 
                 var t = newsletterMessages();
@@ -1313,7 +1351,7 @@ document.addEventListener('click', function(e) {
                     return;
                 }
 
-                var nlToken = turnstileToken(form);
+                var nlToken = await turnstileTokenWait(form, 6000);
                 if (!nlToken) {
                     showNotification(getContactMessages().turnstile, 'error');
                     resetTurnstile(form);
