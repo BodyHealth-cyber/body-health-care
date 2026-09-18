@@ -119,7 +119,6 @@
        той, хто курить сам, уже отримав нуль, і питання про чужий дим зайве. */
     function skipped(el) {
         var key = id(el);
-        if (key === 'paMin' && S.paDays === '0') return true;
         if (key === 'shs' && S.nic === 'now') return true;
         return false;
     }
@@ -136,6 +135,7 @@
 
     function ready(el) {
         var key = id(el);
+        if (key === 'pa') return !!S.paDays && (S.paDays === '0' || !!S.paMin);
         if (key === 'profile') return !!S.profile && num('age') !== null;
         if (key === 'body') return num('h') !== null && num('w') !== null;
         if (key === 'bp') {
@@ -149,6 +149,19 @@
             return false;
         }
         return !!S[key];
+    }
+
+    /* Хвилини рахуємо від середини діапазону: «3–5 днів» це 4.
+       Нуль днів — питати про хвилини нема про що, блок ховається. */
+    function paWeek() {
+        var d = parseFloat(S.paDays), m = parseFloat(S.paMin);
+        if (isNaN(d) || isNaN(m)) return 0;
+        return Math.round(d * m);
+    }
+    function paReveal(el) {
+        if (id(el) !== 'pa') return;
+        var mins = el.querySelector('[data-sub="paMin"]');
+        if (mins) mins.hidden = (S.paDays === '0');
     }
 
     function reveals(el) {
@@ -167,8 +180,9 @@
             box.textContent = (h && w) ? t('bmi_live', { v: dec(w / Math.pow(h / 100, 2)) }) : '';
         }
         if (kind === 'pa') {
-            var d = parseInt(S.paDays, 10), m = parseInt(S.paMin, 10);
-            box.textContent = (d >= 0 && m >= 0 && S.paMin) ? t('pa_live', { n: d * m }) : '';
+            box.textContent = S.paDays === '0'
+                ? t('pa_live_zero')
+                : (S.paDays && S.paMin) ? t('pa_live', { n: paWeek() }) : '';
         }
     }
 
@@ -203,6 +217,7 @@
         el.hidden = false;
         nav.hidden = false;
         reveals(el);
+        paReveal(el);
         live(el);
         btnNext.disabled = !ready(el);
         count.textContent = t('cnt', { n: idx + 1 });
@@ -234,12 +249,16 @@
                 return;
             }
             var screen = opt.closest('.qz-screen');
-            var key = id(screen);
+            /* Екран активності несе дві групи — підсвічуємо лише свою. */
+            var part = opt.closest('[data-sub]');
+            var scope = part || screen;
+            var key = part ? part.getAttribute('data-sub') : id(screen);
             S[key] = opt.getAttribute('data-v');
-            Array.prototype.forEach.call(screen.querySelectorAll('.qz-opt'), function (b) {
+            Array.prototype.forEach.call(scope.querySelectorAll('.qz-opt'), function (b) {
                 b.setAttribute('aria-pressed', b === opt ? 'true' : 'false');
             });
             reveals(screen);
+            paReveal(screen);
             live(screen);
             btnNext.disabled = !ready(screen);
             return;
@@ -290,7 +309,7 @@
 
     function compute() {
         var bmi = num('w') / Math.pow(num('h') / 100, 2);
-        var week = parseInt(S.paDays, 10) * (S.paMin ? parseInt(S.paMin, 10) : 0);
+        var week = paWeek();
 
         var dietScore = 0;
         var dietNote = t('n_diet');

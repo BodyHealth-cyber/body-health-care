@@ -84,7 +84,7 @@
 
         <!-- ЕКРАН 0 · вступ -->
         <section class="qz-screen" data-screen="intro">
-          <div class="qz-eyebrow"><span>BodyHealth</span><span class="qz-eyebrow-r">18 · ~5 хв</span></div>
+          <div class="qz-eyebrow"><span>BodyHealth</span><span class="qz-eyebrow-r">17 · ~5 хв</span></div>
           <h1 class="qz-h1">Індекс здоров'я за 5 хвилин</h1>
           <p class="qz-lead">Вісімнадцять запитань про те, як Ви живете зараз. У відповідь — індекс за методикою Life's Essential 8 Американської кардіологічної асоціації: 8 головних факторів, які визначають здоров'я серця та тривалість життя без хвороб.</p>
           <p class="qz-lead">Відповіді залишаються у Вашому браузері. Ми нічого не надсилаємо, доки Ви самі цього не попросите.</p>
@@ -129,36 +129,48 @@
         </section>
 
         <!-- 3 · дні активності -->
-        <section class="qz-screen" data-screen="q" data-id="paDays" hidden>
-          <h2 class="qz-q">Скільки днів на тиждень Ви маєте навантаження помірної або високої інтенсивності?</h2>
+        <!-- 3 · активність — дні і хвилини на одному екрані (PAVS) -->
+        <section class="qz-screen" data-screen="q" data-id="pa" hidden>
+          <h2 class="qz-q">Ваше звичайне навантаження за тиждень</h2>
           <p class="qz-hint">Помірне — це коли дихання пришвидшується, але Ви ще можете говорити: швидка хода, велосипед, прибирання в темпі, робота в саду.</p>
-          <div class="qz-grid">
-            <button type="button" class="qz-opt qz-num" data-v="0">0</button>
-            <button type="button" class="qz-opt qz-num" data-v="1">1</button>
-            <button type="button" class="qz-opt qz-num" data-v="2">2</button>
-            <button type="button" class="qz-opt qz-num" data-v="3">3</button>
-            <button type="button" class="qz-opt qz-num" data-v="4">4</button>
-            <button type="button" class="qz-opt qz-num" data-v="5">5</button>
-            <button type="button" class="qz-opt qz-num" data-v="6">6</button>
-            <button type="button" class="qz-opt qz-num" data-v="7">7</button>
-          </div>
-        </section>
 
-        <!-- 4 · хвилини активності -->
-        <section class="qz-screen" data-screen="q" data-id="paMin" hidden>
-          <h2 class="qz-q">Скільки хвилин у такий день?</h2>
-          <p class="qz-hint">Оберіть найближче значення.</p>
-          <div class="qz-grid">
-            <button type="button" class="qz-opt qz-num" data-v="10">10</button>
-            <button type="button" class="qz-opt qz-num" data-v="20">20</button>
-            <button type="button" class="qz-opt qz-num" data-v="30">30</button>
-            <button type="button" class="qz-opt qz-num" data-v="40">40</button>
-            <button type="button" class="qz-opt qz-num" data-v="50">50</button>
-            <button type="button" class="qz-opt qz-num" data-v="60">60</button>
-            <button type="button" class="qz-opt qz-num" data-v="90">90</button>
-            <button type="button" class="qz-opt qz-num" data-v="120">120</button>
-            <button type="button" class="qz-opt qz-num" data-v="150">150+</button>
+          <div class="qz-pa">
+            <div class="qz-pa-part" data-sub="paDays">
+              <span class="qz-pa-lab">Як часто</span>
+              <div class="qz-opts">
+                <button type="button" class="qz-opt qz-opt-2" data-v="6.5">
+                  <span>Майже щодня</span>
+                  <small>6–7 днів на тиждень</small>
+                </button>
+                <button type="button" class="qz-opt qz-opt-2" data-v="4">
+                  <span>Кілька разів на тиждень</span>
+                  <small>3–5 днів</small>
+                </button>
+                <button type="button" class="qz-opt qz-opt-2" data-v="1.5">
+                  <span>Раз або двічі</span>
+                  <small>1–2 дні</small>
+                </button>
+                <button type="button" class="qz-opt qz-opt-2" data-v="0">
+                  <span>Практично ніколи</span>
+                  <small>жодного такого дня</small>
+                </button>
+              </div>
+            </div>
+
+            <div class="qz-pa-part" data-sub="paMin">
+              <span class="qz-pa-lab">Скільки хвилин у такий день</span>
+              <div class="qz-chips">
+                <button type="button" class="qz-opt qz-chip" data-v="15">15</button>
+                <button type="button" class="qz-opt qz-chip" data-v="30">30</button>
+                <button type="button" class="qz-opt qz-chip" data-v="45">45</button>
+                <button type="button" class="qz-opt qz-chip" data-v="60">60</button>
+                <button type="button" class="qz-opt qz-chip" data-v="90">90</button>
+                <button type="button" class="qz-opt qz-chip" data-v="120">120</button>
+                <button type="button" class="qz-opt qz-chip" data-v="150">150+</button>
+              </div>
+            </div>
           </div>
+
           <p class="qz-live" data-live="pa"></p>
         </section>
 
@@ -588,9 +600,10 @@
            скрипті, щоб складальник локалей перекладав їх, як будь-який текст
            сторінки. {n}, {v} і {l} підставляються під час показу результату. -->
       <div class="qz-strings" hidden aria-hidden="true">
-        <span data-t="cnt">Запитання {n} з 18</span>
+        <span data-t="cnt">Запитання {n} з 17</span>
         <span data-t="bmi_live">Індекс маси тіла: {v}</span>
         <span data-t="pa_live">Разом виходить {n} хв на тиждень. Рекомендація ВООЗ — щонайменше 150.</span>
+        <span data-t="pa_live_zero">Нуль — теж відповідь. Рекомендація ВООЗ — щонайменше 150 хв на тиждень.</span>
         <span data-t="lvl_hi">Високий рівень</span>
         <span data-t="lvl_mid">Середній рівень</span>
         <span data-t="lvl_low">Низький рівень</span>
