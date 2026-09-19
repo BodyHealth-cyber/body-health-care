@@ -523,7 +523,6 @@
   "Епідеміологічні дані показують J-подібну залежність: малорухливі люди отримують найбільшу граничну користь навіть від невеликої активності. Перші 150 хвилин помірної активності на тиждень знижують серцево-судинну смертність приблизно на 35%. Кожна наступна година дає менший приріст користі, а дуже великі обсяги в деяких дослідженнях демонструють невизначений ризик.": "Epidemiological data show a J-shaped relationship: sedentary individuals gain the largest marginal benefit from even small amounts of activity. The first 150 minutes per week of moderate activity reduces cardiovascular mortality by roughly 35%. Each additional hour provides smaller incremental benefit, with very high volumes showing uncertain risk in some studies.",
   "Ефект \"білого халата\"": "The white-coat effect",
   "Жирна риба двічі на тиждень забезпечує ЕПК і ДГК, пов'язані із захистом серця": "Fatty fish twice weekly provides EPA and DHA linked to cardiac protection",
-  "Жирний або вершковий сир — не більше 4 разів на тиждень?": "Full-fat or cream cheese — no more than 4 times a week?",
   "Жінка": "Female",
   "Жінкам після 60 років, усім, хто має сімейний анамнез захворювань щитоподібної залози, людям з іншими аутоімунними станами та будь-кому із симптомами, що відповідають дисфункції залози. ТТГ (тиреотропний гормон) — тест першої лінії, один забір крові. За відхилення додають вільний Т4 та антитіла до тканин залози.": "Women over 60, anyone with a family history of thyroid disease, those with other autoimmune conditions, and anyone with symptoms consistent with thyroid dysfunction. TSH (thyroid-stimulating hormone) is the first-line test — a single blood draw. If abnormal, free T4 and thyroid antibodies are added.",
   "За адекватного контролю АТ ризик інсульту знижується на 35–40%, інфаркту міокарда — на 20–25%, серцевої недостатності — на 50%.": "With blood pressure adequately controlled, stroke risk falls by 35–40%, myocardial infarction by 20–25% and heart failure by 50%.",
@@ -558,7 +557,6 @@
   "Запис на консультацію": "Book a Consultation",
   "Запис на консультації без черги": "Consultation booking without a queue",
   "Запис і зберігання консультацій": "Consultations recorded and stored",
-  "Записатись на безкоштовну розмову": "Book a free conversation",
   "Записатись на консультацію": "Book a consultation",
   "Запитання {n} з 16": "Question {n} of 16",
   "Запитати": "Ask",
@@ -1399,7 +1397,6 @@
   "Чат з вашим спеціалістом": "Chat with your specialist",
   "Чат з командою супроводу": "Chat with your care team",
   "Червоне м'ясо та оброблені продукти — компоненти, найсильніше пов'язані зі шкодою": "Red meat and processed foods are the components most strongly associated with harm",
-  "Червоне м'ясо, бекон, ковбаси — не більше 3 разів на тиждень?": "Red meat, bacon, sausage — no more than 3 times a week?",
   "Чи курить хтось у приміщенні, де Ви живете?": "Does anyone smoke indoors where you live?",
   "Чи курить хтось у приміщенні, де ви живете?": "Does anyone smoke indoors where you live?",
   "Чи можна отримати довідки та висновки?": "Can I get medical certificates and reports?",
@@ -1465,7 +1462,6 @@
   "Якщо скасування відбулося": "If cancellation takes place",
   "Якщо сумніваєтесь — почніть із разової оцінки": "If you are unsure, start with the one-off assessment",
   "Якщо у Вас є запитання про здоров'я дитини, напишіть нам на": "If you have questions about a child's health, write to us at",
-  "Якщо у Вас є хронічні захворювання або симптоми, які Вас турбують, обов'язково проконсультуйтеся з лікарем: при встановлених діагнозах Ваші показники можуть відрізнятися від наведених. Наші спеціалісти готові надати детальнішу оцінку стану та запропонувати індивідуальні варіанти його покращення.": "If you have a chronic condition or symptoms that worry you, do consult a doctor: with an established diagnosis your figures can differ from the ones shown here. Our specialists can give a fuller assessment and suggest options suited to you.",
   "Якість сну": "Sleep Quality",
   "Якість харчування важливіша, ніж саме лише обмеження калорій": "Dietary quality matters more than caloric restriction alone",
   "або": "or",
@@ -1553,5 +1549,9 @@
   "Ягоди — принаймні два рази на тиждень?": "Berries — at least twice a week?",
   "Риба, не смажена — принаймні раз на тиждень?": "Fish, not fried — at least once a week?",
   "Бобові — принаймні три рази на тиждень?": "Legumes — at least three times a week?",
-  "Горіхи — принаймні чотири рази на тиждень?": "Nuts — at least four times a week?"
+  "Горіхи — принаймні чотири рази на тиждень?": "Nuts — at least four times a week?",
+  "Записатись на безкоштовну зустріч": "Book a free meeting",
+  "За наявності супутніх хронічних захворювань або появі симптомів, які Вас турбують — обов'язково проконсультуйтеся з лікарем: при встановлених діагнозах Ваші показники можуть відрізнятися від наведених. Наші фахівці готові надати Вам детальнішу оцінку стану та запропонувати індивідуальні оптимальні варіанти для його покращення.": "If you have chronic conditions or symptoms that worry you, be sure to consult a doctor: with an established diagnosis your figures may differ from those shown. Our specialists are ready to give you a more detailed assessment and suggest individual options for improving it.",
+  "Червоне м'ясо, сало, ковбаси — не більше 3 разів на тиждень?": "Red meat, lard, sausages — no more than 3 times a week?",
+  "Твердий або вершковий сир — не більше 4 разів на тиждень?": "Hard or cream cheese — no more than 4 times a week?"
 }
