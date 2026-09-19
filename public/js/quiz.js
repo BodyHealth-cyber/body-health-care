@@ -296,6 +296,26 @@
     var printBtn = document.getElementById('qzPrint');
     if (printBtn) printBtn.addEventListener('click', function () { window.print(); });
 
+    /* На аркуші має бути видно, чий це документ і коли зроблений: сам сайт
+       при друку ховається, тож дату ставимо перед вікном друку. */
+    function stampPrintDate() {
+        var el = document.getElementById('qzPrintDate');
+        if (!el) return;
+        var lang = (document.documentElement.lang || 'uk').slice(0, 2);
+        var loc = lang === 'ru' ? 'ru-RU' : lang === 'en' ? 'en-GB' : 'uk-UA';
+        try {
+            el.textContent = new Intl.DateTimeFormat(loc, {
+                day: '2-digit', month: '2-digit', year: 'numeric'
+            }).format(new Date());
+        } catch (e) { el.textContent = ''; }
+    }
+    if (window.matchMedia) {
+        var mq = window.matchMedia('print');
+        if (mq.addEventListener) mq.addEventListener('change', function (e) { if (e.matches) stampPrintDate(); });
+    }
+    window.addEventListener('beforeprint', stampPrintDate);
+    stampPrintDate();
+
     /* ---------- підрахунок ---------- */
     function nicotinePoints() {
         var base = pointsOf('nic', S.nic);

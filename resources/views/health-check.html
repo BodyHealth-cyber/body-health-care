@@ -78,6 +78,11 @@
 
     <main>
     <div class="container qz-container">
+      <div class="qz-print-head" hidden aria-hidden="true">
+        <span class="qz-print-brand">BodyHealth</span>
+        <span class="qz-print-doc">Індекс здоров'я · Life's Essential 8</span>
+        <span class="qz-print-date" id="qzPrintDate"></span>
+      </div>
       <div class="qz" id="quiz">
         <div class="qz-progress"><i id="qzBar"></i></div>
         <div class="qz-pad">
@@ -223,7 +228,7 @@
         </section>
 
         <section class="qz-screen" data-screen="q" data-id="d_fish" hidden>
-          <h2 class="qz-q">Риба або морепродукти — 2 і більше разів на тиждень?</h2>
+          <h2 class="qz-q">Риба або морепродукти — принаймні два рази на тиждень?</h2>
           <p class="qz-hint">Будь-яка риба, свіжа або заморожена, рахується.</p>
           <div class="qz-opts qz-opts-row">
             <button type="button" class="qz-opt" data-v="yes" data-p="20"><span>Так</span></button>
@@ -487,7 +492,7 @@
               </div>
             </div>
             <div class="qz-item" data-k="m4">
-              <p class="qz-item-q">Ягоди — 2 і більше разів на тиждень?</p>
+              <p class="qz-item-q">Ягоди — принаймні два рази на тиждень?</p>
               <p class="qz-item-h">Свіжі або заморожені, порція — приблизно 100 г.</p>
               <div class="qz-opts qz-opts-row">
                 <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
@@ -511,7 +516,7 @@
               </div>
             </div>
             <div class="qz-item" data-k="m7">
-              <p class="qz-item-q">Риба, не смажена — раз на тиждень і частіше?</p>
+              <p class="qz-item-q">Риба, не смажена — принаймні раз на тиждень?</p>
               <p class="qz-item-h">Запечена, відварена, на парі.</p>
               <div class="qz-opts qz-opts-row">
                 <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
@@ -543,7 +548,7 @@
               </div>
             </div>
             <div class="qz-item" data-k="m11">
-              <p class="qz-item-q">Бобові — 3 і більше разів на тиждень?</p>
+              <p class="qz-item-q">Бобові — принаймні три рази на тиждень?</p>
               <p class="qz-item-h">Квасоля, сочевиця, нут, горох.</p>
               <div class="qz-opts qz-opts-row">
                 <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>
@@ -567,7 +572,7 @@
               </div>
             </div>
             <div class="qz-item" data-k="m14">
-              <p class="qz-item-q">Горіхи — 4 і більше разів на тиждень?</p>
+              <p class="qz-item-q">Горіхи — принаймні чотири рази на тиждень?</p>
               <p class="qz-item-h">Порція — приблизно 30 г.</p>
               <div class="qz-opts qz-opts-row">
                 <button type="button" class="qz-opt" data-v="yes" data-p="1"><span>Так</span></button>

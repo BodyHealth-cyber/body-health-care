@@ -525,7 +525,7 @@ a:hover {
 
 /* ===== SERVICES SECTION ===== */
 .services {
-    padding: 6rem 0;
+    padding: 3.5rem 0 5rem;
     background-color: #ffffff;
 }
 
@@ -568,9 +568,12 @@ a:hover {
 }
 
 .service-icon {
-    font-size: 3rem;
+    /* font-size остался от глифа FontAwesome; теперь внутри <img>, и строчная
+       высота от 3rem рисовала пустоту над и под знаком — обнуляем. */
+    font-size: 0;
+    line-height: 0;
     color: #003d82;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 /* Own duotone marks replace the FontAwesome glyphs on the three service cards.
@@ -6194,23 +6197,19 @@ button.footer-link {
     --next-peek: 96px;
 }
 
+/* Перший екран на всю висоту виправданий тільки на головній: там він і є
+   пропозицією. На внутрішніх сторінках угорі стоять надзаголовок, заголовок
+   і абзац — розтягувати їх на весь екран означає змусити людину гортати,
+   перш ніж вона побачить пакети чи статті. Тому тільки .hero. */
 @media (min-width: 769px) {
-    .hero,
-    .services-hero,
-    .b2b-hero,
-    .blog-hero,
-    .service-hero {
+    .hero {
         min-height: calc(100vh - var(--header-h) - var(--next-peek));
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 
-    .hero > .container,
-    .services-hero > .container,
-    .b2b-hero > .container,
-    .blog-hero > .container,
-    .service-hero > .container {
+    .hero > .container {
         width: 100%;
     }
 }
@@ -6742,4 +6741,18 @@ body { overflow-wrap: break-word; }
     a[href]::after { content: ""; }
     .qz-note, .qz-foot, .qz-hint { color: #333 !important; }
     body { background: #fff !important; }
+}
+
+/* ---- шапка на аркуші друку ---- */
+.qz-print-head { display: none; }
+@media print {
+    .qz-print-head {
+        display: flex !important; align-items: baseline; gap: 0.6rem;
+        padding: 0 0 0.6rem; margin-bottom: 1.4rem;
+        border-bottom: 1px solid #c9d4e0;
+    }
+    .qz-print-head[hidden] { display: flex !important; }
+    .qz-print-brand { font-size: 1.05rem; font-weight: 700; color: #003d82; letter-spacing: -0.01em; }
+    .qz-print-doc { font-size: 0.8rem; color: #566472; }
+    .qz-print-date { margin-left: auto; font-size: 0.8rem; color: #566472; font-variant-numeric: tabular-nums; }
 }
