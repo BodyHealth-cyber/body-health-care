@@ -6756,3 +6756,20 @@ body { overflow-wrap: break-word; }
     .qz-print-doc { font-size: 0.8rem; color: #566472; }
     .qz-print-date { margin-left: auto; font-size: 0.8rem; color: #566472; font-variant-numeric: tabular-nums; }
 }
+
+/* Обов'язкове застереження: сервіс не надає екстреної медичної допомоги.
+   Стоїть унизу кожної сторінки пакета — ТЗ від 21.09.2026. */
+.med-disclaimer-wrap { padding: 2.75rem 0; }
+.med-disclaimer {
+    max-width: 70ch;
+    margin: 0 auto;
+    padding: 1rem 1.25rem;
+    border: 1px solid #e3e6e3;
+    border-left: 3px solid #b4551f;
+    border-radius: 10px;
+    background: #fbf5f1;
+    color: #41505e;
+    font-size: 0.93rem;
+    line-height: 1.6;
+}
+.med-disclaimer strong { color: #8d4318; }
