@@ -29,7 +29,7 @@ return [
             'meta_description' => 'BodyHealth UA public offer for the provision of information and consultation services in telemedicine.',
             'title' => 'Public Offer',
             'summary' => 'Terms for the provision of BodyHealth UA information and consultation services in the field of telemedicine.',
-            'revision_date' => 'September 16, 2026',
+            'revision_date' => 'November 6, 2026',
             'content_view' => 'legal.content.terms-en',
         ],
         'refund' => [
@@ -37,7 +37,7 @@ return [
             'meta_description' => 'BodyHealth UA refund and cancellation policy.',
             'title' => 'Refund Policy',
             'summary' => 'Official rules for service cancellation, refunds, and related request handling at BodyHealth UA.',
-            'revision_date' => 'September 16, 2026',
+            'revision_date' => 'November 6, 2026',
             'content_view' => 'legal.content.refund-en',
         ],
         'contact_information' => [

@@ -29,12 +29,12 @@
         <p>3.2. Services are provided exclusively remotely. The scope of services is strictly regulated and depends on the selected Package:</p>
 
         <h3>3.2.1. Package "Personal Care"</h3>
-        <p>Cost: <strong>11 000 UAH/month</strong></p>
+        <p>Cost: <strong>11 300 UAH/month</strong></p>
         <p>Basic package for regular medical supervision and preventive care.</p>
         <ul>
             <li><strong>Initial Assessment (once upon entry):</strong> 60-minute consultation with a General Practitioner, detailed analysis of previous examinations and medical history, development of an individual care plan, and referral for additional examinations as necessary.</li>
             <li><strong>GP Consultations:</strong> 1-2 scheduled consultations per month, 30-40 minutes each. Includes results analysis, treatment plan adjustment, and lifestyle recommendations.</li>
-            <li><strong>Telemedicine and Support:</strong> Unlimited chat access with the physician and administrator. Guaranteed response time within 2 hours.</li>
+            <li><strong>Telemedicine and Support:</strong> Chat access to the physician and administrator during the team's working hours.</li>
             <li><strong>Health Coordination:</strong> Referrals for in-person specialist examinations, assistance with accessing medical infrastructure, and prescription support.</li>
             <li><strong>Specialist Consultations:</strong> Up to 2 consultations per month with specialists such as a cardiologist, endocrinologist, neurologist, psychotherapist, rehabilitation specialist, and others.</li>
             <li><strong>Medical Council:</strong> 1 multidisciplinary council per month.</li>
@@ -43,22 +43,22 @@
         </ul>
 
         <h3>3.2.2. Package "Integrated Care"</h3>
-        <p>Cost: <strong>22 000 UAH/month</strong></p>
+        <p>Cost: <strong>22 500 UAH/month</strong></p>
         <p>Extended package for complex clinical cases, chronic conditions, and priority support.</p>
         <ul>
             <li><strong>Initial Assessment (once upon entry):</strong> Extended 60-minute GP consultation, comprehensive anamnesis collection, in-depth risk assessment, and strategic care plan development.</li>
             <li><strong>GP Consultations:</strong> 1-2 scheduled consultations per month plus additional consultations as needed.</li>
             <li><strong>Specialist Consultations:</strong> Extended access with up to <strong>5 consultations per month</strong>.</li>
             <li><strong>Medical Councils:</strong> Up to <strong>3 councils per month</strong>.</li>
-            <li><strong>Priority Chat:</strong> Guaranteed response within <strong>1 hour</strong>. Emergency video consultation within 24 hours.</li>
+            <li><strong>Priority Chat:</strong> Priority handling of requests during the team's working hours.</li>
             <li><strong>Weekly Health Monitoring:</strong> With detailed reporting.</li>
             <li><strong>Extended Dietitian Consultation:</strong> Including a nutrition plan.</li>
-            <li><strong>Emergency Protocol Development:</strong> For chronic conditions.</li>
+            <li><strong>Personal Action Plans:</strong> For situations where the Client's condition changes.</li>
             <li><strong>Coordination:</strong> With the Client's treating physicians.</li>
         </ul>
 
         <h3>3.2.3. Service "HealthCheckup"</h3>
-        <p>Cost: <strong>4 500 UAH (one-time payment)</strong></p>
+        <p>Cost: <strong>4 700 UAH (one-time payment)</strong></p>
         <p>Comprehensive one-time health assessment and future strategy development.</p>
         <ul>
             <li><strong>Initial GP Consultation:</strong> 40-60 minutes. Detailed medical history, complaint assessment, lifestyle analysis, and risk factor identification.</li>

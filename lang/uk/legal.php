@@ -29,7 +29,7 @@ return [
             'meta_description' => 'Публічна оферта BodyHealth UA щодо надання інформаційно-консультаційних послуг у сфері телемедицини.',
             'title' => 'Публічна оферта',
             'summary' => 'Умови надання інформаційно-консультаційних послуг у сфері телемедицини для сервісу BodyHealth UA.',
-            'revision_date' => '16 вересня 2026 року',
+            'revision_date' => '6 листопада 2026 року',
             'content_view' => 'legal.content.terms-uk',
         ],
         'refund' => [
@@ -37,7 +37,7 @@ return [
             'meta_description' => 'Політика повернення коштів та скасування послуг BodyHealth UA.',
             'title' => 'Політика повернення коштів та скасування послуг',
             'summary' => 'Офіційні правила скасування підписок, повернення коштів та обробки відповідних звернень у BodyHealth UA.',
-            'revision_date' => '16 вересня 2026 року',
+            'revision_date' => '6 листопада 2026 року',
             'content_view' => 'legal.content.refund-uk',
         ],
         'contact_information' => [
