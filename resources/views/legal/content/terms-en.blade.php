@@ -30,46 +30,59 @@
 
         <h3>3.2.1. Package "Personal Care"</h3>
         <p>Cost: <strong>11 300 UAH/month</strong></p>
-        <p>Basic package for regular medical supervision and preventive care.</p>
+        <p>Personal medical care with an assigned care physician. The scope of consultations and team work is defined.</p>
         <ul>
-            <li><strong>Initial Assessment (once upon entry):</strong> 60-minute consultation with a General Practitioner, detailed analysis of previous examinations and medical history, development of an individual care plan, and referral for additional examinations as necessary.</li>
-            <li><strong>GP Consultations:</strong> 1-2 scheduled consultations per month, 30-40 minutes each. Includes results analysis, treatment plan adjustment, and lifestyle recommendations.</li>
-            <li><strong>Telemedicine and Support:</strong> Chat access to the physician and administrator during the team's working hours.</li>
-            <li><strong>Health Coordination:</strong> Referrals for in-person specialist examinations, assistance with accessing medical infrastructure, and prescription support.</li>
-            <li><strong>Specialist Consultations:</strong> Up to 2 consultations per month with specialists such as a cardiologist, endocrinologist, neurologist, psychotherapist, rehabilitation specialist, and others.</li>
-            <li><strong>Medical Council:</strong> 1 multidisciplinary council per month.</li>
-            <li><strong>Lifestyle Support:</strong> Dietitian and rehabilitation specialist consultations.</li>
-            <li><strong>Health Monitoring:</strong> Remote monitoring of key health indicators entered by the Client.</li>
+            <li>Assignment of a personal care physician who accompanies the Client throughout the subscription.</li>
+            <li>Initial comprehensive health assessment.</li>
+            <li>An individual examination and prevention plan.</li>
+            <li>Referrals for the necessary examinations.</li>
+            <li>Analysis and explanation of examination results.</li>
+            <li>Consultations with profile specialists within the agreed care plan.</li>
+            <li>Multidisciplinary consultations as medically needed, in a defined scope.</li>
+            <li>Up to one psychotherapist consultation per month where there is an established clinical need.</li>
+            <li>An individual list of recommended supplementation and, where necessary, medication support.</li>
+            <li>A personal medical report based on the health assessment.</li>
+            <li>Recommendations on prevention and lifestyle.</li>
+            <li>Regular review of the Client's condition and adjustment of the plan.</li>
+            <li>Communication with the care physician through the platform chat during the team's working hours.</li>
+            <li>Secure storage of medical data.</li>
         </ul>
 
         <h3>3.2.2. Package "Integrated Care"</h3>
         <p>Cost: <strong>22 500 UAH/month</strong></p>
-        <p>Extended package for complex clinical cases, chronic conditions, and priority support.</p>
+        <p>The most complete format of personal care: for prevention, regular monitoring, complex needs and chronic conditions.</p>
         <ul>
-            <li><strong>Initial Assessment (once upon entry):</strong> Extended 60-minute GP consultation, comprehensive anamnesis collection, in-depth risk assessment, and strategic care plan development.</li>
-            <li><strong>GP Consultations:</strong> 1-2 scheduled consultations per month plus additional consultations as needed.</li>
-            <li><strong>Specialist Consultations:</strong> Extended access with up to <strong>5 consultations per month</strong>.</li>
-            <li><strong>Medical Councils:</strong> Up to <strong>3 councils per month</strong>.</li>
-            <li><strong>Priority Chat:</strong> Priority handling of requests during the team's working hours.</li>
-            <li><strong>Weekly Health Monitoring:</strong> With detailed reporting.</li>
-            <li><strong>Extended Dietitian Consultation:</strong> Including a nutrition plan.</li>
-            <li><strong>Personal Action Plans:</strong> For situations where the Client's condition changes.</li>
-            <li><strong>Coordination:</strong> With the Client's treating physicians.</li>
+            <li>All services included in the "Personal Care" package.</li>
+            <li>Unlimited consultations as medically needed and within the service rules.</li>
+            <li>Unlimited multidisciplinary consultations as medically needed.</li>
+            <li>Psychotherapist consultations in the quantity required, where there is an established clinical need.</li>
+            <li>Priority access to the care physician.</li>
+            <li>Priority handling of requests.</li>
+            <li>Extended coordination of profile specialists.</li>
+            <li>In-depth assessment of health status and risk factors.</li>
+            <li>An extended prevention plan.</li>
+            <li>Coordination of examinations, consultations and next steps.</li>
+            <li>Regular updating of the personal medical plan.</li>
+            <li>Personal action plans for changes in symptoms or wellbeing.</li>
+            <li>Extended health monitoring.</li>
+            <li>Coordination of complex clinical situations and obtaining a second medical opinion.</li>
+            <li>Coordination with the Client's own (offline) physicians.</li>
         </ul>
 
         <h3>3.2.3. Service "HealthCheckup"</h3>
         <p>Cost: <strong>4 700 UAH (one-time payment)</strong></p>
-        <p>Comprehensive one-time health assessment and future strategy development.</p>
+        <p>A one-off comprehensive health assessment with personal recommendations and an action plan.</p>
         <ul>
-            <li><strong>Initial GP Consultation:</strong> 40-60 minutes. Detailed medical history, complaint assessment, lifestyle analysis, and risk factor identification.</li>
-            <li><strong>Document Analysis:</strong> Thorough review and professional interpretation of available test results, medical records, and prior consultations.</li>
-            <li><strong>Health Indicators Assessment:</strong> Comprehensive assessment of current status including blood pressure, weight, physical activity level, sleep quality, stress level, and glucose.</li>
-            <li><strong>Risk Screening:</strong> Comprehensive health assessment across 5 key areas: cardiovascular, metabolic, neurological, oncological, and psychosomatic risks.</li>
-            <li><strong>Diagnostic Plan:</strong> Development of a step-by-step examination plan and specialist consultation roadmap.</li>
-            <li><strong>Lifestyle Recommendations:</strong> Personalised guidance on nutrition, physical activity, sleep hygiene, and stress management.</li>
-            <li><strong>PDF Medical Report:</strong> Detailed written health assessment report delivered within 48 hours.</li>
-            <li><strong>Follow-Up Consultation:</strong> 30-minute follow-up consultation to discuss the report.</li>
-            <li><strong>20% discount</strong> on a subsequent "Personal Care" or "Integrated Care" subscription purchase.</li>
+            <li>Analysis of a detailed medical questionnaire (about 30 minutes to complete).</li>
+            <li>Review of the medical history and submitted documents by specialists (within 24 hours).</li>
+            <li>A personal video consultation with a profile specialist (45 minutes).</li>
+            <li>Assessment of cardiovascular, metabolic, neurological and hormonal risk factors.</li>
+            <li>Recommendations on lifestyle and further examinations.</li>
+            <li>A prevention plan.</li>
+            <li>Preparation and delivery of a personal written Health Report (within 48 hours).</li>
+            <li>A follow-up consultation on the Report.</li>
+            <li>Transition to "Personal Care" or "Integrated Care" without re-entering data already provided.</li>
+            <li>A 20% discount on a subsequent "Personal Care" or "Integrated Care" subscription.</li>
         </ul>
     </section>
 
@@ -96,8 +109,8 @@
 
     <section class="legal-section-block">
         <h2>6. Payment Terms</h2>
-        <p>6.1. The cost of Services is determined in accordance with the tariffs set out in Section 3. Payment is made exclusively by non-cash means using Visa/Mastercard bank cards through the integrated payment gateway.</p>
-        <p>6.2. Prices are stated in US dollars (USD). Charges are made in the local currency at the commercial exchange rate of the payment system at the time of the transaction.</p>
+        <p>6.1. The cost of Services is determined in accordance with the tariffs set out in Section 3 of this Offer and on the Website, and is set in Ukrainian hryvnia. Charges are made in hryvnia. Amounts shown in a foreign currency on the Website are an approximate conversion at the official rate of the National Bank of Ukraine and are not the amount charged.</p>
+        <p>6.2. Payment is made exclusively by non-cash means using Visa/Mastercard bank cards through the integrated WayForPay payment gateway.</p>
         <p>6.3. The Provider does not collect or store Client bank card data. Payment data processing is performed on the secure servers of the certified payment system, compliant with the PCI DSS standard.</p>
         <p>6.4. Payment is deemed completed at the moment funds are credited to the Provider's account.</p>
     </section>
