@@ -1416,3 +1416,62 @@ document.addEventListener('click', function(e) {
         return dict[lang] || dict.uk;
     }
 })();
+
+
+/* ------------------------------------------------------------------
+   Ціна в доларах за офіційним курсом НБУ.
+
+   Гривня — єдине джерело суми: вона стоїть у розмітці в data-uah і саме
+   вона списується. Англомовній версії гривня нічого не каже, тому там
+   сума показується в доларах і перераховується на льоту за курсом із
+   /api/rate. На українській і російській версіях гривня лишається, а
+   курс оновлює лише підказку при наведенні.
+
+   Якщо /api/rate не відповів, нічого не відбувається: на сторінці
+   залишається цифра, вшита під час збірки. Порожнього місця або нуля
+   відвідувач не побачить ніколи.
+   ------------------------------------------------------------------ */
+(function () {
+    var nodes = document.querySelectorAll('[data-uah]');
+    if (!nodes.length || typeof fetch !== 'function') return;
+
+    var isEn = (document.documentElement.lang || 'uk').slice(0, 2) === 'en';
+
+    fetch('/api/rate')
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+            var rate = data && data.usd;
+            if (!rate || !(rate > 0)) return;
+
+            Array.prototype.forEach.call(nodes, function (el) {
+                var uah = parseFloat(el.getAttribute('data-uah'));
+                if (!uah) return;
+                var money = '$' + Math.round(uah / rate).toLocaleString('en-US');
+
+                if (!isEn) {
+                    el.setAttribute('data-usd', '\u2248 ' + money);
+                    return;
+                }
+
+                // На англійській версії сума вже в доларах, тож підказка
+                // при наведенні з попереднім перерахунком більше не потрібна
+                // і суперечила б тому, що написано великим.
+                el.removeAttribute('data-usd');
+
+                var once = el.getAttribute('data-period') === 'once';
+                el.textContent = money + (once ? ' one-off' : '/mo');
+
+                if (el.classList.contains('service-price')) {
+                    var sub = document.createElement('span');
+                    sub.className = 'price-sub';
+                    sub.textContent = 'Billed in UAH ' + uah.toLocaleString('en-US')
+                        + ' \u00b7 approximate conversion';
+                    el.appendChild(sub);
+                } else {
+                    el.setAttribute('title', 'Billed in UAH ' + uah.toLocaleString('en-US')
+                        + ' \u00b7 approximate conversion at the official NBU rate');
+                }
+            });
+        })
+        .catch(function () { /* курс не доїхав — лишаємо те, що є */ });
+})();
