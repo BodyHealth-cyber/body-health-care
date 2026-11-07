@@ -26,7 +26,7 @@
     <section class="legal-section-block">
         <h2>3. Subject Matter and Description of Services</h2>
         <p>3.1. The Provider undertakes to provide the Client with paid information and consultation services in the field of healthcare (Health Tech / Telehealth) in accordance with the selected tariff plan, and the Client undertakes to accept and pay for such services.</p>
-        <p>3.2. Services are provided exclusively remotely. The scope of services is strictly regulated and depends on the selected Package:</p>
+        <p>3.2. Services are provided exclusively remotely. The scope of services is strictly regulated and depends on the selected Package. How requests are handled, when the team works and where the limits of the service lie are set out in the Service Rules published on the Website at /service-rules.html, which form an integral part of this Offer:</p>
 
         <h3>3.2.1. Package "Personal Care"</h3>
         <p>Cost: <strong>11 300 UAH/month</strong></p>

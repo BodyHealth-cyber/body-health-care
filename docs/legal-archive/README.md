@@ -15,7 +15,8 @@ bash build.sh
 D=$(date +%Y-%m-%d) && mkdir -p docs/legal-archive/$D
 for f in terms-and-conditions/uk.html terms-and-conditions/en.html terms-and-conditions/ru.html \
          refund-policy.html en/refund-policy.html ru/refund-policy.html \
-         privacy.html en/privacy.html ru/privacy.html; do
+         privacy.html en/privacy.html ru/privacy.html \
+         service-rules.html en/service-rules.html ru/service-rules.html; do
   cp "dist/$f" "docs/legal-archive/$D/$(echo $f | tr '/' '_')"
 done
 ```
@@ -27,6 +28,9 @@ done
 - **2026-11-06** — действующая. Цены в оферте приведены к фактическим (11 300 / 22 500 / 4 700),
   убраны круглосуточная поддержка и гарантированный срок ответа, «протоколы экстренной
   помощи» заменены на персональные алгоритмы действий при изменении самочувствия.
+  Добавлен документ «Правила сервиса» (/service-rules.html): график работы
+  ежедневно 8:00–22:00, каналы обращения, что означает «неограниченно по
+  медицинской необходимости», чего сервис не делает, сроки HealthCheckup.
 - **2026-09-16** — предыдущая. Правки по финальному ответу юриста: сторона договора
   во всех языковых версиях, условия возврата HealthCheckup, переименование пакетов,
   переписанная политика конфиденциальности, даты редакций, блок контактов.
