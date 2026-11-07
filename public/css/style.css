@@ -6773,3 +6773,13 @@ body { overflow-wrap: break-word; }
     line-height: 1.6;
 }
 .med-disclaimer strong { color: #8d4318; }
+
+/* Пояснення під позначкою «Рекомендуємо» — ТЗ від 21.09.2026. */
+.service-rec-note {
+    margin: 0.5rem 0 0;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #5a6775;
+    max-width: 38ch;
+}
+.service-hero .service-rec-note { margin-top: 0.65rem; max-width: 46ch; }
