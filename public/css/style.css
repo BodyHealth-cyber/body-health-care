@@ -6794,3 +6794,14 @@ body { overflow-wrap: break-word; }
     letter-spacing: 0.01em;
     color: #8a94a0;
 }
+
+/* «Необмежено» завжди з умовою й посиланням на правила сервісу: обмеження
+   має бути доступним до покупки, а не лише в договорі. ТЗ від 21.09.2026. */
+.service-fineprint {
+    margin: 0.9rem 0 0;
+    font-size: 0.74rem;
+    line-height: 1.5;
+    color: #8a94a0;
+}
+.service-fineprint a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.service-fineprint a:hover { color: #003d82; }
