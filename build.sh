@@ -12,7 +12,11 @@ fi
 # Copy public assets
 # translations.js is no longer loaded in the browser — locales are pre-rendered.
 # It stays in the repo as the origin of the i18n catalogs, but is not shipped.
-rsync -a --exclude="index.php" --exclude="js/translations.js" public/ dist/
+# .htaccess - это ларавелевский front controller, оставшийся от каркаса
+# (RewriteRule ^ index.php [L]). На Cloudflare Pages он мёртвый файл, но
+# публиковался и отдавался по прямой ссылке; на Apache он отправил бы каждый
+# запрос в несуществующий index.php и положил весь сайт. В сборке ему не место.
+rsync -a --exclude="index.php" --exclude=".htaccess" --exclude="js/translations.js" public/ dist/
 # Fail the build on broken JS rather than shipping a dead language switcher
 for f in dist/js/*.js; do
   node --check "$f" || { echo "SYNTAX ERROR in $f"; exit 1; }
