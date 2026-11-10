@@ -6805,3 +6805,318 @@ body { overflow-wrap: break-word; }
 }
 .service-fineprint a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .service-fineprint a:hover { color: #003d82; }
+
+/* ===== ПАКЕТИ: два тарифи поруч, чекап окремою смугою =====
+   Затверджено ARCH-00 10.11.2026 (варіант 1 мокапу). Старі .services-grid і
+   .service-card лишаються недоторканими: ними користуються інші блоки.
+
+   Чому так, а не трьома однаковими картками. Три картки були комірками grid
+   однакової висоти, а вмісту в них 5, 9 і 5 рядків: під двома лишалося
+   300-400 px порожнечі, і три пари кнопок стояли на трьох різних рівнях.
+   Тепер поруч стоять лише два тарифи з однаковою будовою (назва, ціна,
+   обіцянка, лінія, п'ять пунктів, кнопки, виноска), тому кнопки збігаються
+   без жодних трюків, а разова оцінка винесена у власну горизонтальну смугу:
+   вона інша за природою і в ряду підписок читалася як "найдешевший тариф".
+
+   Радіуси й кнопки лишаються сайтові (8 px картка, 4 px кнопка) - цей блок не
+   повинен виламуватися з решти сторінки. */
+.pkg-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.pkg-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #e3e9f1;
+    border-radius: 8px;
+    padding: 1.875rem 1.75rem 1.75rem;
+}
+
+/* Рекомендований тариф позначений суцільною заливкою, а не рамкою з пігулкою:
+   так його видно з першого погляду, і бейдж більше не висить над межею. */
+.pkg-card.is-rec {
+    background-color: #012a57;
+    border-color: #012a57;
+}
+
+.pkg-card.is-rec h3,
+.pkg-card.is-rec .pkg-list li { color: #ffffff; }
+.pkg-card.is-rec .pkg-promise,
+.pkg-card.is-rec .pkg-fine,
+.pkg-card.is-rec .pkg-note { color: #cddcee; }
+
+.pkg-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1.125rem;
+}
+
+.pkg-top h3 {
+    margin-bottom: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.pkg-kind {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #5b6b7a;
+    border: 1px solid #e3e9f1;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    white-space: nowrap;
+}
+
+.pkg-card.is-rec .pkg-kind {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.35);
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Ціна - головне число блоку, тому вона більша за заголовок розділу.
+   Гривня лишається єдиним джерелом суми (data-uah), одиниця виміру набрана
+   тихо. На англійській версії main.js підміняє весь текст абзаца на долари,
+   тому великий кегль стоїть на самому абзаці, а не на вкладеному span. */
+.pkg-price {
+    font-size: 2.75rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    font-variant-numeric: tabular-nums;
+    color: #003d82;
+    margin-bottom: 0;
+}
+
+.pkg-card.is-rec .pkg-price { color: #ffffff; }
+
+.pkg-per {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: #5b6b7a;
+    white-space: nowrap;
+}
+
+.pkg-card.is-rec .pkg-per { color: #cddcee; }
+
+.pkg-fine {
+    margin: 0.5rem 0 0;
+    font-size: 0.84rem;
+    color: #5b6b7a;
+}
+
+.pkg-promise {
+    margin: 1.125rem 0 0;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    color: #5b6b7a;
+}
+
+.pkg-rule {
+    height: 1px;
+    background-color: #e3e9f1;
+    margin: 1.375rem 0;
+}
+
+.pkg-card.is-rec .pkg-rule { background-color: rgba(255, 255, 255, 0.2); }
+
+.pkg-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.pkg-list li {
+    display: flex;
+    gap: 0.7rem;
+    padding: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #12181f;
+}
+
+.pkg-tick {
+    width: 17px;
+    height: 17px;
+    flex: none;
+    margin-top: 0.25rem;
+    color: #003d82;
+}
+
+.pkg-card.is-rec .pkg-tick { color: #8fc0f2; }
+
+/* Виноска резервує два рядки в обох картках - саме це тримає кнопки на одній
+   лінії, коли текст виноски різної довжини. */
+.pkg-foot {
+    margin-top: auto;
+    padding-top: 1.625rem;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.pkg-foot .btn { width: 100%; }
+
+.pkg-card.is-rec .btn-primary {
+    background-color: #ffffff;
+    color: #003d82;
+    border-color: #ffffff;
+}
+
+.pkg-card.is-rec .btn-primary:hover {
+    background-color: #e8f0fa;
+    color: #003d82;
+}
+
+.pkg-card.is-rec .btn-outline {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+.pkg-card.is-rec .btn-outline:hover {
+    background-color: #ffffff;
+    color: #012a57;
+}
+
+.pkg-note {
+    margin: 0.875rem 0 0;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #5b6b7a;
+    min-height: 3em;
+}
+
+.pkg-note a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* Разова оцінка: горизонтальна смуга. Висоту задає вміст, тож порожнечі
+   не виникає в принципі. */
+.pkg-strip {
+    margin-top: 1.25rem;
+    background-color: #f4f7fb;
+    border: 1px solid #e3e9f1;
+    border-radius: 8px;
+    padding: 1.625rem 1.75rem;
+    display: grid;
+    gap: 1.625rem;
+    grid-template-columns: minmax(12rem, 14.5rem) 1fr minmax(11rem, auto);
+    align-items: center;
+}
+
+.pkg-strip h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.12rem;
+    font-weight: 700;
+}
+
+.pkg-strip .pkg-price { font-size: 2.1rem; }
+
+.pkg-strip-list {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 1.625rem;
+    border-left: 1px solid #e3e9f1;
+    display: grid;
+    gap: 0.56rem 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pkg-strip-list li {
+    display: flex;
+    gap: 0.56rem;
+    padding: 0;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: #12181f;
+}
+
+.pkg-strip-list .pkg-tick {
+    width: 15px;
+    height: 15px;
+    margin-top: 0.18rem;
+}
+
+.pkg-strip-cta {
+    display: grid;
+    gap: 0.625rem;
+}
+
+.pkg-strip-cta .btn { width: 100%; }
+
+/* У місці, де просять гроші, стоять чотири факти про те, як це влаштовано:
+   раніше тут не було жодного. */
+.pkg-trust {
+    margin-top: 2.125rem;
+    padding-top: 1.375rem;
+    border-top: 1px solid #e3e9f1;
+    display: grid;
+    gap: 1.125rem 2rem;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.pkg-trust dt {
+    margin-bottom: 0.19rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #12181f;
+}
+
+.pkg-trust dd {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: #5b6b7a;
+}
+
+/* Підказка з доларом тепер прив'язана до лівого краю: ціна вирівняна ліворуч,
+   а не по центру картки, як було. */
+@media (hover: hover) and (pointer: fine) {
+    .pkg-price[data-usd]::after {
+        left: 0;
+        transform: translateX(0) translateY(-3px);
+    }
+
+    .pkg-price[data-usd]:hover::after {
+        transform: translateX(0) translateY(0);
+    }
+}
+
+@media (max-width: 900px) {
+    .pkg-grid { grid-template-columns: 1fr; }
+    .pkg-note { min-height: 0; }
+    .pkg-strip {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    .pkg-strip-list {
+        border-left: 0;
+        border-top: 1px solid #e3e9f1;
+        padding: 1.125rem 0 0;
+    }
+    .pkg-trust { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 620px) {
+    .pkg-card { padding: 1.5rem 1.25rem; }
+    .pkg-price { font-size: 2.35rem; }
+    .pkg-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 0.56rem;
+    }
+    .pkg-list,
+    .pkg-strip-list { grid-template-columns: 1fr; }
+    .pkg-trust { grid-template-columns: 1fr; }
+}

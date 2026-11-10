@@ -83,64 +83,91 @@
         <!-- Карточки -->
         <section class="services">
             <div class="container">
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <img src="/img/services/personal-care.svg" alt="Personal Care" width="72" height="72">
+                <div class="pkg-grid">
+                    <div class="pkg-card">
+                        <div class="pkg-top">
+                            <h3>Personal Care</h3>
+                            <span class="pkg-kind">Підписка</span>
                         </div>
-                        <h3>Personal Care</h3>
-                        <p class="service-price" data-usd="≈ $251" data-uah="11300" data-period="mo">11 300 ₴/міс</p>
-                        <p class="service-description">Ваш персональний медичний координатор і необхідна команда спеціалістів.</p>
-                        <ul class="service-features">
-                            <li>Персональний лікар-куратор</li>
-                            <li>Консультації профільних спеціалістів</li>
-                            <li>Мультидисциплінарні консультації в обмеженому обсязі</li>
-                            <li>Індивідуальний план обстежень і профілактики</li>
-                            <li>Регулярний контроль стану</li>
+                        <p class="service-price pkg-price" data-i18n="svc_pc_price" data-usd="≈ $251" data-uah="11300" data-period="mo">11 300 <span class="pkg-per">₴ / місяць</span></p>
+                        <p class="pkg-fine">Оплата у гривні · скасувати можна будь-коли</p>
+                        <p class="pkg-promise" data-i18n="svc_pc_desc">Ваш персональний медичний координатор і необхідна команда спеціалістів.</p>
+                        <div class="pkg-rule"></div>
+                        <ul class="pkg-list">
+                            <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_pc_f1">Персональний лікар-куратор</span></li>
+                            <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_pc_f2">Консультації профільних спеціалістів</span></li>
+                            <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_pc_f3">Мультидисциплінарні консультації в обмеженому обсязі</span></li>
+                            <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_pc_f4">Індивідуальний план обстежень і профілактики</span></li>
+                            <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_pc_f5">Регулярний контроль стану</span></li>
                         </ul>
-                        <div class="card-actions"><a href="/services/healthcare.html" class="btn btn-primary">Що входить у пакет</a>
-                            <a href="https://secure.wayforpay.com/button/b827acdb437e3" class="btn btn-outline" target="_blank" rel="noopener" data-i18n="btn_pay_online">Оплатити онлайн</a></div>
+                        <div class="pkg-foot">
+                            <a href="/services/healthcare.html" class="btn btn-primary" data-i18n="btn_more">Що входить у пакет</a>
+                            <a href="https://secure.wayforpay.com/button/b827acdb437e3" class="btn btn-outline" target="_blank" rel="noopener" data-i18n="btn_pay_online">Оплатити онлайн</a>
+                            <p class="pkg-note">Склад послуг відповідає Публічній оферті</p>
+                        </div>
                     </div>
 
-                    <div class="service-card featured">
-                        <div class="service-badge">Рекомендуємо</div>
-                        <div class="service-icon">
-                            <img src="/img/services/integrated-care.svg" alt="Integrated Care" width="72" height="72">
+                    <div class="pkg-card is-rec">
+                        <div class="pkg-top">
+                            <h3>Integrated Care</h3>
+                            <span class="pkg-kind" data-i18n="badge_recommended">Рекомендуємо</span>
                         </div>
-                        <h3>Integrated Care</h3>
-                        <p class="service-price" data-usd="≈ $500" data-uah="22500" data-period="mo">22 500 ₴/міс</p>
-                        <p class="service-description">Розширений персональний супровід із пріоритетним доступом до лікаря-куратора, необмеженими консультаціями та командною роботою спеціалістів — для профілактики, контролю здоров'я і комплексного ведення.</p>
-                        <p class="service-rec-note">Найкращий вибір для тих, хто хоче передати координацію свого здоров'я команді спеціалістів.</p>
-                        <ul class="service-features">
-                            <li>Усе з пакета Personal Care</li>
-                            <li>Необмежені консультації за медичною потребою</li>
-                            <li>Необмежені мультидисциплінарні консультації за медичною потребою</li>
-                            <li>Пріоритетний доступ до лікаря-куратора</li>
-                            <li>Пріоритетний порядок опрацювання звернень</li>
+                        <p class="service-price pkg-price" data-i18n="svc_ic_price" data-usd="≈ $500" data-uah="22500" data-period="mo">22 500 <span class="pkg-per">₴ / місяць</span></p>
+                        <p class="pkg-fine">Оплата у гривні · скасувати можна будь-коли</p>
+                        <p class="pkg-promise">Розширений супровід із пріоритетним доступом до лікаря-куратора та командною роботою спеціалістів.</p>
+                        <div class="pkg-rule"></div>
+                        <ul class="pkg-list">
+                            <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_ic_f1">Усе з пакета Personal Care</span></li>
+                            <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_ic_f2">Необмежені консультації за медичною потребою</span></li>
+                            <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_ic_f3">Необмежені мультидисциплінарні консультації за медичною потребою</span></li>
+                            <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_ic_f4">Пріоритетний доступ до лікаря-куратора</span></li>
+                            <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_ic_f5">Пріоритетний порядок опрацювання звернень</span></li>
                         </ul>
-                        <p class="service-fineprint">«Необмежено» — за медичною потребою та в межах <a href="/service-rules.html">правил сервісу</a>.</p>
-                        <div class="card-actions"><a href="/services/ambulance.html" class="btn btn-primary">Що входить у пакет</a>
-                            <a href="https://secure.wayforpay.com/button/b2df06e394241" class="btn btn-outline" target="_blank" rel="noopener" data-i18n="btn_pay_online">Оплатити онлайн</a></div>
-                    </div>
-
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <img src="/img/services/health-checkup.svg" alt="HealthCheckup" width="72" height="72">
+                        <div class="pkg-foot">
+                            <a href="/services/ambulance.html" class="btn btn-primary" data-i18n="btn_more">Що входить у пакет</a>
+                            <a href="https://secure.wayforpay.com/button/b2df06e394241" class="btn btn-outline" target="_blank" rel="noopener" data-i18n="btn_pay_online">Оплатити онлайн</a>
+                            <p class="pkg-note">«Необмежено» — за медичною потребою та в межах <a href="/service-rules.html">правил сервісу</a>.</p>
                         </div>
-                        <h3>HealthCheckup</h3>
-                        <p class="service-price" data-usd="≈ $104" data-uah="4700" data-period="once">4 700 ₴ одноразово</p>
-                        <p class="service-description">Комплексна оцінка стану здоров'я з персональними рекомендаціями та планом дій</p>
-                        <ul class="service-features">
-                            <li>Комплексний аналіз здоров'я</li>
-                            <li>Персональний звіт</li>
-                            <li>Рекомендації спеціалістів</li>
-                            <li>План профілактичних заходів</li>
-                            <li>Консультація за результатами</li>
-                        </ul>
-                        <div class="card-actions"><a href="/services/checkup.html" class="btn btn-primary">Що входить у пакет</a>
-                            <a href="https://secure.wayforpay.com/button/b0eadd0f5cc46" class="btn btn-outline" target="_blank" rel="noopener" data-i18n="btn_pay_online">Оплатити онлайн</a></div>
                     </div>
                 </div>
+
+                <div class="pkg-strip">
+                    <div class="pkg-strip-id">
+                        <h3>HealthCheckup</h3>
+                        <p class="service-price pkg-price" data-i18n="svc_ch_price" data-usd="≈ $104" data-uah="4700" data-period="once">4 700 <span class="pkg-per">₴ одноразово</span></p>
+                        <p class="pkg-fine">Без підписки · одна оплата</p>
+                    </div>
+                    <ul class="pkg-strip-list">
+                        <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_ch_f1">Комплексний аналіз здоров'я</span></li>
+                        <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_ch_f2">Персональний звіт</span></li>
+                        <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_ch_f3">Рекомендації спеціалістів</span></li>
+                        <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_ch_f4">План профілактичних заходів</span></li>
+                        <li><svg class="pkg-tick" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="svc_ch_f5">Консультація за результатами</span></li>
+                    </ul>
+                    <div class="pkg-strip-cta">
+                        <a href="/services/checkup.html" class="btn btn-primary" data-i18n="btn_more">Що входить у пакет</a>
+                        <a href="https://secure.wayforpay.com/button/b0eadd0f5cc46" class="btn btn-outline" target="_blank" rel="noopener" data-i18n="btn_pay_online">Оплатити онлайн</a>
+                    </div>
+                </div>
+
+                <dl class="pkg-trust">
+                    <div>
+                        <dt>Дистанційно</dt>
+                        <dd>Консультації та ведення — онлайн, без візитів до клініки.</dd>
+                    </div>
+                    <div>
+                        <dt>Оплата у гривні</dt>
+                        <dd>Суми встановлені й списуються у гривні; валютний еквівалент — приблизний.</dd>
+                    </div>
+                    <div>
+                        <dt>Зафіксовано договором</dt>
+                        <dd>Склад кожного пакета описаний у Публічній оферті.</dd>
+                    </div>
+                    <div>
+                        <dt>Підтримка 8:00–22:00</dt>
+                        <dd>Щодня, через чат платформи, за київським часом.</dd>
+                    </div>
+                </dl>
             </div>
         </section>
 
